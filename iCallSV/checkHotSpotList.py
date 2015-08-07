@@ -59,6 +59,7 @@ def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
                 (hsStart, hsEnd, gene) = re.split(pattern, allCordinates)
                 if((start >= int(hsStart) and start <= int(hsEnd)) or (end >= int(hsStart) and end <= int(hsEnd))):
                     hotspotTag = True
+                    break
                 else:
                     hotspotTag = False
         else:
@@ -83,6 +84,7 @@ def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
                 (hsStart, hsEnd, gene) = re.split(pattern, allCordinates)
                 if(start1 >= int(hsStart) and start1 <= int(hsEnd)):
                     hotspotTag = True
+                    break
                 else:
                     hotspotTag = False
         elif chr2 in hotspotDict:
@@ -104,6 +106,7 @@ def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
                 (hsStart, hsEnd, gene) = re.split(pattern, allCordinates)
                 if(start2 >= int(hsStart) and start2 <= int(hsEnd)):
                     hotspotTag = True
+                    break
                 else:
                     hotspotTag = False
         else:
