@@ -61,8 +61,6 @@ def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
                     hotspotTag = True
                 else:
                     hotspotTag = False
-        else:
-            hotspotTag = False
     else:
         if chr1 in hotspotDict:
             allCordinates = hotspotDict[chr1]
