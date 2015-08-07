@@ -85,7 +85,9 @@ def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
                     hotspotTag = True
                 else:
                     hotspotTag = False
-        elif chr2 in hotspotDict:
+        else:
+            hotspotTag = False
+        if ((chr2 in hotspotDict) and (hotspotTag is False)):
             allCordinates = hotspotDict[chr2]
             pattern = re.compile("#")
             match = re.search(pattern, allCordinates)
