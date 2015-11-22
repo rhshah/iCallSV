@@ -5,7 +5,7 @@ Description: This module will make directory structure for running analysis
 '''
 '''
 ::Inputs::
-args: Arguments passsed to iCallSV
+args: Arguments passed to iCallSV
 '''
 import os
 import re

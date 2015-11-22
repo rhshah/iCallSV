@@ -25,7 +25,8 @@ from argparse import RawDescriptionHelpFormatter
 import ConfigParser as configparser
 import logging
 import make_analysis_dir as mad
-import Run_Delly as rd
+import launch_Run_Delly as lrd
+
 
 __all__ = []
 __version__ = 0.1
@@ -95,7 +96,7 @@ USAGE
     if(tag):
         if(verbose):
             logging.info('iCallSV:Output of delly for %s will be written in %s', args.patientId, sampleOutdirForDelly)
-        
+        (del_vcf,dup_vcf,inv_vcf,tra_vcf,ins_vcf) = lrd.launch_delly_for_different_analysis_type(args,config,sampleOutdirForDelly)
     else:
         if(verbose):
             logging.fatal("The output directory for the %s already exists. Please delete %s folder and rerun",args.patientId,sampleOutdirForDelly)
