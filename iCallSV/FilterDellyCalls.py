@@ -36,7 +36,7 @@ import vcf
 import re
 import checkparameters as cp
 import checkHotSpotList as chl
-
+import checkBlackList as cbl
 
 def FilterVCF(
         inputVcf,
@@ -45,6 +45,7 @@ def FilterVCF(
         controlId,
         caseID,
         hotspotFile,
+        blacklistFile,
         svlength,
         mapq,
         mapqHotspot,
@@ -123,6 +124,7 @@ def FilterVCF(
     thresholdVariables = ",".join(str(v) for v in thresholdVariablesList)
 
     hotspotDict = chl.ReadHotSpotFile(hotspotFile)
+    blacklist = cbl.ReadBlackListFile(blacklistFile)
     vcf_reader = vcf.Reader(open(inputVcf, 'r'))
     outputFile = outputDir + "/" + outputVcf
     vcf_writer = vcf.Writer(open(outputFile, 'w'), vcf_reader)
@@ -215,7 +217,7 @@ def FilterVCF(
         # print chrom1, start1, start2, chrom2, svlengthFromDelly, mapqFromDelly,
         # svtype, peSupportFromDelly, srSupportFromDelly, contype, caseDV, caseRV,
         # controlDV, controlRV
-        filterFlag = GetFilteredRecords(dellyVariables, thresholdVariables, hotspotDict)
+        filterFlag = GetFilteredRecords(dellyVariables, thresholdVariables, hotspotDict, blacklist)
         if(filterFlag):
             vcf_writer.write_record(record)
     vcf_writer.close()
@@ -224,7 +226,7 @@ def FilterVCF(
     return(outputFile)
 
 
-def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict):
+def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blacklist):
     (svlength,
      mapq,
      mapqHotspot,
@@ -259,6 +261,8 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict):
      controlRV) = dellyVarialbles.split(",")
     # Get if its a hotspot or not
     hotspotTag = chl.CheckIfItIsHotspot(chrom1, start1, chrom2, start2, hotspotDict)
+    # Get if its a blacklist or not
+    blacklistTag = cbl.CheckIfItIsBlacklisted(chrom1, start1, chrom2, start2, blacklist, 20)
     filterFlag = False
     if(hotspotTag):
         if(filter == "PASS" and controlFT == "LowQual"):
@@ -318,7 +322,10 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict):
                     filterFlag = True
             else:
                 filterFlag = False
-
+    
+    if(blacklistTag):
+        filterFlag = True
+    
     return(filterFlag)
 
 
@@ -330,6 +337,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict):
 #     controlId="35462375-N",
 #     caseID="35462375-T",
 #     hotspotFile="/home/shahr2/workspace/dmp-data/mskdata/interval-lists/structuralvariants_geneInterval.txt",
+#     blacklistFile = ""
 #     svlength=500,
 #     mapq=20,
 #     mapqHotspot=5,
