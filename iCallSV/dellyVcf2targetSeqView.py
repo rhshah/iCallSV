@@ -74,4 +74,4 @@ def Convert2targetSeqView(
     print "Convert2targetSeqView: Finished conversion of Vcf file to targetSeqView file format.\n"
     print "Convert2targetSeqView: Output can be found: ", outputFile, "\n"
     return(outputFile)
-#Test module
+# Test module

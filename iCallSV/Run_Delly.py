@@ -65,9 +65,9 @@ def run(
         logging.info("Run_Delly: All the input parameters look good for running delly")
         logging.info("Run_Delly: ProcessID:%s,Date:%s", myPid, today)
     if(debug):
-        cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + " -q " + str(
-            mapq) + " -o " + outputVcf + " " + caseBam + " " + controlBam
-        logging.debug("Run_Delly: Command that will be run %s",cmd)
+        cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
+            " -q " + str(mapq) + " -o " + outputVcf + " " + caseBam + " " + controlBam
+        logging.debug("Run_Delly: Command that will be run %s", cmd)
     else:
         # Check if bam index files are there else make them
         controlBai = controlBam + ".bai"
@@ -76,7 +76,9 @@ def run(
                 logging.info("Run_Delly: Bam Index file is present for %s ", controlBai)
         else:
             if(verbose):
-                logging.warn("Run_Delly: Bam Index file is not present and we will make it for %s ", controlBai)
+                logging.warn(
+                    "Run_Delly: Bam Index file is not present and we will make it for %s ",
+                    controlBai)
             mbi.MakeIndex(controlBam)
         caseBai = caseBam + ".bai"
         if(os.path.isfile(caseBai)):
@@ -84,10 +86,12 @@ def run(
                 logging.info("Run_Delly: Bam Index file is present for %s ", caseBai)
         else:
             if(verbose):
-                logging.warn("Run_Delly: Bam Index file is not present and we will make it for %s ", caseBai)
+                logging.warn(
+                    "Run_Delly: Bam Index file is not present and we will make it for %s ",
+                    caseBai)
             mbi.MakeIndex(caseBam)
-        cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + " -q " + str(
-            mapq) + " -o " + outputVcf + " " + caseBam + " " + controlBam
+        cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
+            " -q " + str(mapq) + " -o " + outputVcf + " " + caseBam + " " + controlBam
         if(verbose):
             logging.info("Run_Delly: Command that will be run:%s", cmd)
         args = shlex.split(cmd)
@@ -98,10 +102,14 @@ def run(
             end_time = time.time()
             totaltime = str(timedelta(seconds=end_time - start_time))
             if(verbose):
-                logging.info("Run_Delly: We have finished running Delly for %s using local machine", caseId)
+                logging.info(
+                    "Run_Delly: We have finished running Delly for %s using local machine", caseId)
                 logging.info("Run_Delly Duration: %s", totaltime)
         else:
-            logging.fatal("Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s", retcode,caseId)
+            logging.fatal(
+                "Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s",
+                retcode,
+                caseId)
             sys.exit(1)
     return(outputVcf)
 

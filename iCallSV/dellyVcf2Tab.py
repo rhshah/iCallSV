@@ -78,5 +78,5 @@ def vcf2tab(vcfFile, outputFileName, outputDir):
     print "dellyVcf2Tab: Output can be found: ", outputFile, "\n"
     return(outputFile)
 
-#Test Module
+# Test Module
 #vcf2tab("/dmp/hot/shahr2/IMPACT/Test/SVtest//35462375-T_bc44_jmp.stdfilter.vcf","35462375-T_bc44_jmp.stdfilter.tab" ,"/dmp/hot/shahr2/IMPACT/Test/SVtest/" )

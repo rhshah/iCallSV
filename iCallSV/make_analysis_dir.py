@@ -11,7 +11,8 @@ import os
 import re
 import logging
 
-def makeOutputDir(args,tool):
+
+def makeOutputDir(args, tool):
     SampleDirName = args.patientId
     static_SV_Dir = "StructuralVariantAnalysis"
     static_tool_Dir = tool
@@ -27,15 +28,17 @@ def makeOutputDir(args,tool):
         os.mkdir(ToolDir)
     except OSError:
         if(args.verbose):
-             logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
-    
+            logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
+
     if os.path.isdir(SampleAnalysisDir):
-            if(args.verbose):
-                logging.fatal("make_output_dir:Dir=>%s exists and we wont run the analysis", SampleAnalysisDir)
-                logging.info("make_output_dir:Please delete this directory and rerun the program")
-            tag = False
+        if(args.verbose):
+            logging.fatal(
+                "make_output_dir:Dir=>%s exists and we wont run the analysis",
+                SampleAnalysisDir)
+            logging.info("make_output_dir:Please delete this directory and rerun the program")
+        tag = False
     else:
         os.mkdir(SampleAnalysisDir)
         tag = True
-        
-    return(tag,SampleAnalysisDir)
+
+    return(tag, SampleAnalysisDir)

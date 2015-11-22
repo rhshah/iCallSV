@@ -43,7 +43,7 @@ def run(samtools, samblaster, bamFile, discordantFileName, splitFileName, output
         " -a -e --maxSplitCount 10 -d " + discordantFile + " -s " + splitFile + " -o /dev/null"
     print "Run_samblaster: Command that will be run\n", cmd, "\n"
     #args = shlex.split(cmd)
-    proc = Popen(cmd,shell=True)
+    proc = Popen(cmd, shell=True)
     proc.wait()
     retcode = proc.returncode
     if(retcode >= 0):
@@ -54,5 +54,7 @@ def run(samtools, samblaster, bamFile, discordantFileName, splitFileName, output
         print "Run_samblaster: samblaster is either still running on local machine or it errored out with return code", retcode, " for", bamFile, "\n"
         sys.exit()
     return(discordantFile, splitFile)
-#Test Module
-run("/dmp/resources/dev2/bin/samtools", "/dmp/resources/dev2/bin/samblaster", "/dmp/hot/shahr2/IMPACT/Test/SVtest/35117191-T_bc07_IMPACTv3-CLIN-20140160_L000_mrg_cl_aln_srt_MD_IR_BR_NSORT.bam","samp.disc.sam","samp.split.sam","/dmp/hot/shahr2/IMPACT/Test/SVtest/")
+# Test Module
+run("/dmp/resources/dev2/bin/samtools", "/dmp/resources/dev2/bin/samblaster",
+    "/dmp/hot/shahr2/IMPACT/Test/SVtest/35117191-T_bc07_IMPACTv3-CLIN-20140160_L000_mrg_cl_aln_srt_MD_IR_BR_NSORT.bam",
+    "samp.disc.sam", "samp.split.sam", "/dmp/hot/shahr2/IMPACT/Test/SVtest/")
