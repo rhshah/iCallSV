@@ -28,8 +28,8 @@ def ReadBlackListFile(BlackListFile):
 
 
 # Read the hotspot dictionary and tell if the event occurs in blacklist or not
-def CheckIfItIsHotspot(chr1, start1, chr2, start2, blacklist, range):
-    hotspotTag = None
+def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, range):
+    blacklistTag = None
     chr1 = str(chr1)
     chr2 = str(chr2)
     start1 = int(start1)
@@ -42,25 +42,32 @@ def CheckIfItIsHotspot(chr1, start1, chr2, start2, blacklist, range):
         		if(bchr1 == bchr2):
         			if(chr1 == bchr1):
         				if(((start <= int(bstart1 - range) and (start >= int(bstart1 + range))) and ((end <= int(bstart2 - range)) and (end <= int(bstart2 + range)))):
-        					blacklistTag = True
+        					blacklistTag=True
         				else:
-        					blacklistTag = False
+        					blacklistTag=False
         				if(((end <= int(bstart1 - range) and (end >= int(bstart1 + range))) and ((start <= int(bstart2 - range)) and (start <= int(bstart2 + range)))):
-        					blacklistTag = True
+        					blacklistTag=True
         				else:
-        					blacklistTag = False
-            
+        					blacklistTag=False
+                    else:
+                        continue
+
+                else:
+                    continue
+
     else:
          for entries in blacklist:
-        		(bchr1, bstart1, bchr2, bstart2) = entries.rstrip().split("\t")
+        		(bchr1, bstart1, bchr2, bstart2)=entries.rstrip().split("\t")
         		if(((chr1 == bchr1) and (chr2 == bchr2)) or ((chr1 == bchr2) and (chr2 == bchr1))):
         			if(((start <= int(bstart1 - range) and (start >= int(bstart1 + range))) and ((end <= int(bstart2 - range)) and (end <= int(bstart2 + range)))):
-        					blacklistTag = True
+        					blacklistTag=True
         			else:
-        					blacklistTag = False
+        					blacklistTag=False
         			if(((end <= int(bstart1 - range) and (end >= int(bstart1 + range))) and ((start <= int(bstart2 - range)) and (start <= int(bstart2 + range)))):
-        					blacklistTag = True
+        					blacklistTag=True
         			else:
-        					blacklistTag = False
-        		
+        					blacklistTag=False
+                else:
+                        continue
+
     return(blacklistTag)
