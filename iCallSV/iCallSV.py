@@ -9,7 +9,7 @@ It defines classes_and_methods
 
 @author:     Ronak H Shah
 
-@copyright:  2015 Ronak H Shah. All rights reserved.
+@copyright:  2015-2016 Ronak H Shah. All rights reserved.
 
 @license:    Apache License 2.0
 
@@ -22,6 +22,9 @@ import os
 import time
 from argparse import ArgumentParser
 from argparse import RawDescriptionHelpFormatter
+import ConfigParser as configparser
+import logging
+import make_analysis_dir as mad
 import Run_Delly as rd
 
 __all__ = []
@@ -58,32 +61,45 @@ USAGE
 
     # Setup argument parser
     parser = ArgumentParser(description=program_license, formatter_class=RawDescriptionHelpFormatter)
-    parser.add_argument("-v", "--verbose", dest="verbose", action="count", help="set verbosity level [default: %(default)s]")
+    parser.add_argument("-v", "--verbose", dest="verbose", action="store_true", default=True, help="set verbosity level [default: %(default)s]")
     parser.add_argument('-V', '--version', action='version', version=program_version_message)
-    parser.add_argument("-sc", "--svConfig", action="store", dest="config", required=True, metavar='pindel.conf', help="Full path to the structural variant configuration") 
+    parser.add_argument("-sc", "--svConfig", action="store", dest="config_file", required=True, metavar='config.ini', help="Full path to the structural variant configuration") 
     parser.add_argument("-abam", "--caseBam", action="store", dest="caseBam", required=True, metavar='caseBAMFile.bam', help="Full path to the case bam file")
     parser.add_argument("-bbam", "--controlBam", action="store", dest="controlBam", required=True, metavar='controlBAMFile.bam', help="Full path to the control bam file")
     #parser.add_argument("-afastq", "--caseFastq", action="store", dest="caseFastq", required=False, metavar='caseFastqFile.fastq', help="Full path to the case fastq file")
     #parser.add_argument("-bfastq", "--controlFastq", action="store", dest="controlFastq", required=False, metavar='controlFastqFile.fastq', help="Full path to the control fastq file")
-    parser.add_argument("-pId", "--patientId", action="store", dest="patientId", required=True, metavar='PatientID', help="Id of the Patient for which the bam files are to be realigned")
+    parser.add_argument("-pId", "--patientId", action="store", dest="patientId", required=True, metavar='PatientID', help="Id of the Patient this will be the sub-folder")
     parser.add_argument("-t", "--threads", action="store", dest="threads", required=True, metavar='5', help="Number of Threads to be used to run tools")
     parser.add_argument("-o", "--outDir", action="store", dest="outdir", required=True, metavar='/somepath/output', help="Full Path to the output dir.")
-    parser.add_argument("-op", "--outPrefix", action="store", dest="outprefix", required=True, metavar='TumorID', help="Id of the Tumor bam file which will be used as the prefix for Pindel output files")
+    parser.add_argument("-op", "--outPrefix", action="store", dest="outprefix", required=True, metavar='TumorID', help="Id of the Tumor bam file which will be used as the prefix for output files")
     
     # Process arguments
     args = parser.parse_args()
+    #
+    # Parse a config ini-style file
+    #
     verbose = args.verbose
-    
+    #Create Logger if verbose
+    logging.basicConfig(filename='icallsv.log',filemode='w',level=logging.DEBUG)
     # Print if Verbose mode is on
-    if verbose > 0:
-        print("Verbose mode on")
+    if(verbose):
+        logging.info("Verbose mode on")
+    here = os.path.realpath('.')
     
+    config_file = args.config_file
+    logging.info('Reading configuration from %s' %(config_file))
+    config = configparser.ConfigParser(defaults = {'here': here})
+    config.read(args.config_file)
+    (tag,sampleOutdirForDelly) = mad.makeOutputDir(args,"DellyDir")
+    if(tag):
+        logging.info('Output of delly for %s will be written in %s' %(args.pId,sampleOutdirForDelly))
 
+    
     
     
 if __name__ == "__main__":
     start_time = time.time()  
     main()
     end_time = time.time()
-    print("Elapsed time was %g seconds" % (end_time - start_time))
+    logging.info("Elapsed time was %g seconds" % (end_time - start_time))
     
