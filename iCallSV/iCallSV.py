@@ -88,13 +88,13 @@ USAGE
     
     config_file = args.config_file
     if(verbose):
-        logging.info('iCallSV:Reading configuration from %s' %(config_file))
+        logging.info('iCallSV:Reading configuration from %s', config_file)
     config = configparser.ConfigParser(defaults = {'here': here})
     config.read(args.config_file)
     (tag,sampleOutdirForDelly) = mad.makeOutputDir(args,"DellyDir")
     if(tag):
         if(verbose):
-            logging.info('iCallSV:Output of delly for %s will be written in %s' %(args.pId,sampleOutdirForDelly))
+            logging.info('iCallSV:Output of delly for %s will be written in %s', args.patientId, sampleOutdirForDelly)
         #Run Delly for Deletion
         del_vcf = rd.run(
         delly=config.get("SVcaller","DELLY" ),
@@ -102,7 +102,7 @@ USAGE
         reference=config.get("ReferenceFasta","REFFASTA"),
         controlBam=args.controlBam,
         caseBam=args.caseBam,
-        caseId=args.pId,
+        caseId=args.patientId,
         mapq=config.get("ParametersToRunDelly","MAPQ" ),
         excludeRegions=config.get("ExcludeRegion","EXREGIONS"),
         outputdir=sampleOutdirForDelly,
@@ -115,7 +115,7 @@ USAGE
         reference=config.get("ReferenceFasta","REFFASTA"),
         controlBam=args.controlBam,
         caseBam=args.caseBam,
-        caseId=args.pId,
+        caseId=args.patientId,
         mapq=config.get("ParametersToRunDelly","MAPQ" ),
         excludeRegions=config.get("ExcludeRegion","EXREGIONS"),
         outputdir=sampleOutdirForDelly,
@@ -128,7 +128,7 @@ USAGE
         reference=config.get("ReferenceFasta","REFFASTA"),
         controlBam=args.controlBam,
         caseBam=args.caseBam,
-        caseId=args.pId,
+        caseId=args.patientId,
         mapq=config.get("ParametersToRunDelly","MAPQ" ),
         excludeRegions=config.get("ExcludeRegion","EXREGIONS"),
         outputdir=sampleOutdirForDelly,
@@ -141,7 +141,7 @@ USAGE
         reference=config.get("ReferenceFasta","REFFASTA"),
         controlBam=args.controlBam,
         caseBam=args.caseBam,
-        caseId=args.pId,
+        caseId=args.patientId,
         mapq=config.get("ParametersToRunDelly","MAPQ" ),
         excludeRegions=config.get("ExcludeRegion","EXREGIONS"),
         outputdir=sampleOutdirForDelly,
@@ -154,19 +154,22 @@ USAGE
         reference=config.get("ReferenceFasta","REFFASTA"),
         controlBam=args.controlBam,
         caseBam=args.caseBam,
-        caseId=args.pId,
+        caseId=args.patientId,
         mapq=config.get("ParametersToRunDelly","MAPQ" ),
         excludeRegions=config.get("ExcludeRegion","EXREGIONS"),
         outputdir=sampleOutdirForDelly,
         verbose=verbose,
         debug=True)
     else:
-        
+        if(verbose):
+            logging.fatal("The output directory for the %s already exists. Please delete %s folder and rerun",args.patientId,sampleOutdirForDelly)
+            sys.exit(1)
     
     
 if __name__ == "__main__":
     start_time = time.time()  
     main()
     end_time = time.time()
-    logging.info("iCallSV:Elapsed time was %g seconds" % (end_time - start_time))
+    totaltime = end_time - start_time
+    logging.info("iCallSV:Elapsed time was %g seconds", totaltime)
     
