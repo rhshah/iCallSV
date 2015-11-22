@@ -38,8 +38,10 @@ setup(
     platforms='any',
     packages=['iCallSV'],
     install_requires=[
-        'pandas',
-        'numpy',
+        'pandas==0.16.1',
+        'pysam==0.8.4',
+        'pyvcf=0.6.7',
+        'biopython=1.66'
     ],
     zip_safe=False,
     classifiers=(

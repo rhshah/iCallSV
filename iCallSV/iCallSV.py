@@ -153,7 +153,7 @@ USAGE
         # Run Delly and and get the raw calls
         (del_vcf, dup_vcf, inv_vcf, tra_vcf, ins_vcf) = lrd.launch_delly_for_different_analysis_type(
             args, config, sampleOutdirForDelly)
-        
+        #Run 
     else:
         if(verbose):
             logging.fatal(
