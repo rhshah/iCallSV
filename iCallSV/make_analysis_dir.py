@@ -22,18 +22,19 @@ def makeOutputDir(args,tool):
         os.mkdir(AnalysisDir)
     except OSError:
         if(args.verbose):
-            logging.warn("Dir:", AnalysisDir, " exists thus we wont be making it")
+            logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it",%(AnalysisDir))
     try:
         os.mkdir(ToolDir)
     except OSError:
         if(args.verbose):
-             logging.warn("Dir:", ToolDir, " exists thus we wont be making it.")
+             logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it",%(ToolDir))
     
     if os.path.isdir(SampleAnalysisDir):
             if(args.verbose):
-                logging.info("Dir:", SampleAnalysisDir, " exists and we wont run the analysis")
-            tag = 0
+                logging.fatal("make_output_dir:Dir=>%s exists and we wont run the analysis", %(SampleAnalysisDir))
+                logging.info("make_output_dir:Please delete this directory and rerun the program")
+            tag = False
     else:
         os.mkdir(SampleAnalysisDir)
-        tag = 1
+        tag = True
 return(tag,SampleAnalysisDir)

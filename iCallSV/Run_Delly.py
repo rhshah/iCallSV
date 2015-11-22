@@ -27,7 +27,7 @@ import time
 from datetime import date, timedelta
 import checkparameters as cp
 import makebamindex as mbi
-
+import logging
 # This function will run delly based on given inputs
 
 
@@ -37,14 +37,15 @@ def run(
         reference,
         controlBam,
         caseBam,
-        controlId,
         caseId,
         mapq,
         excludeRegions,
         outputdir,
+        verbose,
         debug):
     start_time = time.time()
-    print "Run_Delly: We are now going to run Delly for you. It going to be exciting time.\n"
+    if(verbose):
+        logging.info("Run_Delly: We are now going to run Delly for you. It going to be exciting time.")
     myPid = os.getpid()
     day = date.today()
     today = day.isoformat()
@@ -58,44 +59,50 @@ def run(
     cp.checkFile(excludeRegions)
     cp.checkDir(outputdir)
     cp.checkInt(mapq, "Delly MAPQ")
-    cp.checkEmpty(controlId, "Delly Control BAM ID")
     cp.checkEmpty(caseId, "Delly Case BAM ID")
     cp.checkDellyAnalysisType(analysisType)
-    print "Run_Delly: All the input parameters look good for running delly\n"
-    print "Run_Delly: ProcessID:", myPid, " Date:", today, "\n"
+    if(verbose):
+        logging.info("Run_Delly: All the input parameters look good for running delly")
+        logging.info("Run_Delly: ProcessID:%s,Date:%s", %(myPid,today))
     if(debug):
         cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + " -q " + str(
             mapq) + " -o " + outputVcf + " " + caseBam + " " + controlBam
-        print "Run_Delly: Command that will be run\n", cmd, "\n"
+        logging.debug("Run_Delly: Command that will be run %s",%(cmd))
     else:
         # Check if bam index files are there else make them
         controlBai = controlBam + ".bai"
         if(os.path.isfile(controlBai)):
-            print "Run_Delly: Bam Index file is present for ", controlBai, " \n"
+            if(verbose):
+                logging.info("Run_Delly: Bam Index file is present for %s ", %(controlBai))
         else:
-            print "Run_Delly: Bam Index file is not present and we will make it for ", controlBai, " \n"
+            if(verbose):
+                logging.warn("Run_Delly: Bam Index file is not present and we will make it for %s ", %(controlBai))
             mbi.MakeIndex(controlBam)
         caseBai = caseBam + ".bai"
         if(os.path.isfile(caseBai)):
-            print "Run_Delly: Bam Index file is present for ", caseBai, " \n"
+            if(verbose):
+                logging.info("Run_Delly: Bam Index file is present for %s ", %(caseBai))
         else:
-            print "Run_Delly: Bam Index file is not present and we will make it for ", caseBai, " \n"
+            if(verbose):
+                logging.warn("Run_Delly: Bam Index file is not present and we will make it for %s ", %(caseBai))
             mbi.MakeIndex(caseBam)
         cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + " -q " + str(
             mapq) + " -o " + outputVcf + " " + caseBam + " " + controlBam
-        print "Run_Delly: Command that will be run\n", cmd, "\n"
+        if(verbose):
+            logging.info("Run_Delly: Command that will be run:%s", %(cmd))
         args = shlex.split(cmd)
         proc = Popen(args)
         proc.wait()
         retcode = proc.returncode
         if(retcode >= 0):
             end_time = time.time()
-            print "Run_Delly: We have finished running Delly for ", caseId, " using local machine.\n"
-            print "Run_Delly Duration:", str(timedelta(seconds=end_time - start_time)), "\n"
+            if(verbose):
+                logging.info("Run_Delly: We have finished running Delly for %s using local machine",%(caseId))
+                logging.info("Run_Delly Duration:%s", %(str(timedelta(seconds=end_time - start_time))))
         else:
-            print "Run_Delly: Delly is either still running on local machine or it errored out with return code", retcode, " for", caseId, "\n"
+            logging.fatal("Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s", %(retcode,caseId))
             sys.exit()
     return(outputVcf)
 
 # Testing the module
-# run("/dmp/resources/dev2/bin/delly", "TRA", "/dmp/data/pubdata/hg-fasta/production/Homo_sapiens_assembly19.fasta", "/dmp/hot/shahr2/IMPACT/Test/SVtest/35462375-N_bc45_IMPACTv5-CLIN-20150050_L000_mrg_cl_aln_srt_MD_IR_BR.bam", "/dmp/hot/shahr2/IMPACT/Test/SVtest/35462375-T_bc44_IMPACTv5-CLIN-20150050_L000_mrg_cl_aln_srt_MD_IR_BR.bam", "35462375-N", "35462375-T", 20, "/dmp/data/mskdata/sv-files/production/human.hg19.excl.tsv", "/dmp/hot/shahr2/IMPACT/Test/SVtest/", False)
+# run("/dmp/resources/dev2/bin/delly", "TRA", "/dmp/data/pubdata/hg-fasta/production/Homo_sapiens_assembly19.fasta", "/dmp/hot/shahr2/IMPACT/Test/SVtest/35462375-N_bc45_IMPACTv5-CLIN-20150050_L000_mrg_cl_aln_srt_MD_IR_BR.bam", "/dmp/hot/shahr2/IMPACT/Test/SVtest/35462375-T_bc44_IMPACTv5-CLIN-20150050_L000_mrg_cl_aln_srt_MD_IR_BR.bam","35462375-T", 20, "/dmp/data/mskdata/sv-files/production/human.hg19.excl.tsv", "/dmp/hot/shahr2/IMPACT/Test/SVtest/", False)

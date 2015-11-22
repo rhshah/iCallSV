@@ -69,7 +69,7 @@ USAGE
     #parser.add_argument("-afastq", "--caseFastq", action="store", dest="caseFastq", required=False, metavar='caseFastqFile.fastq', help="Full path to the case fastq file")
     #parser.add_argument("-bfastq", "--controlFastq", action="store", dest="controlFastq", required=False, metavar='controlFastqFile.fastq', help="Full path to the control fastq file")
     parser.add_argument("-pId", "--patientId", action="store", dest="patientId", required=True, metavar='PatientID', help="Id of the Patient this will be the sub-folder")
-    parser.add_argument("-t", "--threads", action="store", dest="threads", required=True, metavar='5', help="Number of Threads to be used to run tools")
+    #parser.add_argument("-t", "--threads", action="store", dest="threads", required=True, metavar='5', help="Number of Threads to be used to run tools")
     parser.add_argument("-o", "--outDir", action="store", dest="outdir", required=True, metavar='/somepath/output', help="Full Path to the output dir.")
     parser.add_argument("-op", "--outPrefix", action="store", dest="outprefix", required=True, metavar='TumorID', help="Id of the Tumor bam file which will be used as the prefix for output files")
     
@@ -83,23 +83,90 @@ USAGE
     logging.basicConfig(filename='icallsv.log',filemode='w',level=logging.DEBUG)
     # Print if Verbose mode is on
     if(verbose):
-        logging.info("Verbose mode on")
+        logging.info("iCallSV:Verbose mode on")
     here = os.path.realpath('.')
     
     config_file = args.config_file
-    logging.info('Reading configuration from %s' %(config_file))
+    if(verbose):
+        logging.info('iCallSV:Reading configuration from %s' %(config_file))
     config = configparser.ConfigParser(defaults = {'here': here})
     config.read(args.config_file)
     (tag,sampleOutdirForDelly) = mad.makeOutputDir(args,"DellyDir")
     if(tag):
-        logging.info('Output of delly for %s will be written in %s' %(args.pId,sampleOutdirForDelly))
-
-    
+        if(verbose):
+            logging.info('iCallSV:Output of delly for %s will be written in %s' %(args.pId,sampleOutdirForDelly))
+        #Run Delly for Deletion
+        del_vcf = rd.run(
+        delly=config.get("SVcaller","DELLY" ),
+        analysisType="DEL",
+        reference=config.get("ReferenceFasta","REFFASTA"),
+        controlBam=args.controlBam,
+        caseBam=args.caseBam,
+        caseId=args.pId,
+        mapq=config.get("ParametersToRunDelly","MAPQ" ),
+        excludeRegions=config.get("ExcludeRegion","EXREGIONS"),
+        outputdir=sampleOutdirForDelly,
+        verbose=verbose,
+        debug=True)
+        #Run Delly for duplication
+        dup_vcf = rd.run(
+        delly=config.get("SVcaller","DELLY" ),
+        analysisType="DUP",
+        reference=config.get("ReferenceFasta","REFFASTA"),
+        controlBam=args.controlBam,
+        caseBam=args.caseBam,
+        caseId=args.pId,
+        mapq=config.get("ParametersToRunDelly","MAPQ" ),
+        excludeRegions=config.get("ExcludeRegion","EXREGIONS"),
+        outputdir=sampleOutdirForDelly,
+        verbose=verbose,
+        debug=True)
+        #Run Delly for inversion
+        inv_vcf = rd.run(
+        delly=config.get("SVcaller","DELLY" ),
+        analysisType="INV",
+        reference=config.get("ReferenceFasta","REFFASTA"),
+        controlBam=args.controlBam,
+        caseBam=args.caseBam,
+        caseId=args.pId,
+        mapq=config.get("ParametersToRunDelly","MAPQ" ),
+        excludeRegions=config.get("ExcludeRegion","EXREGIONS"),
+        outputdir=sampleOutdirForDelly,
+        verbose=verbose,
+        debug=True)
+        #Run Delly for Translocation
+        bnd_vcf = rd.run(
+        delly=config.get("SVcaller","DELLY" ),
+        analysisType="TRA",
+        reference=config.get("ReferenceFasta","REFFASTA"),
+        controlBam=args.controlBam,
+        caseBam=args.caseBam,
+        caseId=args.pId,
+        mapq=config.get("ParametersToRunDelly","MAPQ" ),
+        excludeRegions=config.get("ExcludeRegion","EXREGIONS"),
+        outputdir=sampleOutdirForDelly,
+        verbose=verbose,
+        debug=True)
+        #Run Delly for insertion
+        ins_vcf = rd.run(
+        delly=config.get("SVcaller","DELLY" ),
+        analysisType="INS",
+        reference=config.get("ReferenceFasta","REFFASTA"),
+        controlBam=args.controlBam,
+        caseBam=args.caseBam,
+        caseId=args.pId,
+        mapq=config.get("ParametersToRunDelly","MAPQ" ),
+        excludeRegions=config.get("ExcludeRegion","EXREGIONS"),
+        outputdir=sampleOutdirForDelly,
+        verbose=verbose,
+        debug=True)
+    else:
+        
     
     
 if __name__ == "__main__":
     start_time = time.time()  
     main()
     end_time = time.time()
-    logging.info("Elapsed time was %g seconds" % (end_time - start_time))
+    logging.info("iCallSV:Elapsed time was %g seconds" % (end_time - start_time))
     
