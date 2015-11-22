@@ -81,7 +81,7 @@ USAGE
     #
     verbose = args.verbose
     #Create Logger if verbose
-    logging.basicConfig(filename='iCallSV.log',filemode='w',level=logging.DEBUG)
+    logging.basicConfig(filename='iCallSV.log',filemode='w',format='%(levelname)s: %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p',level=logging.DEBUG)
     # Print if Verbose mode is on
     if(verbose):
         logging.info("iCallSV:Verbose mode on")
@@ -96,6 +96,7 @@ USAGE
     if(tag):
         if(verbose):
             logging.info('iCallSV:Output of delly for %s will be written in %s', args.patientId, sampleOutdirForDelly)
+        #Run Delly and 
         (del_vcf,dup_vcf,inv_vcf,tra_vcf,ins_vcf) = lrd.launch_delly_for_different_analysis_type(args,config,sampleOutdirForDelly)
     else:
         if(verbose):
