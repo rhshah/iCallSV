@@ -11,6 +11,7 @@ outputDir: Output directory
 controlId: Control Sample ID (Should be part of Sample Name in VCF)
 caseID: Case Sample ID (Should be part of Sample Name in VCF)
 hospotFile: List of Genes that have Hotspot Structural Variants (Tab-delimited Format without header:chr    start    end    geneName).
+blacklistFile: List of Genes that have blacklist of Structural Variants (Tab-delimited Format without header:chr    start1    chr2     start2; where chr1==chr2, end==start2).
 peSupport: overall pair-end read support threshold for the event
 srSupport: overall split-reads support threshold for the event
 peSupportHotspot: overall pair-end read support threshold for the event in hot-spot region
@@ -37,6 +38,8 @@ import re
 import checkparameters as cp
 import checkHotSpotList as chl
 import checkBlackList as cbl
+import logging
+
 
 def FilterVCF(
         inputVcf,
@@ -60,12 +63,15 @@ def FilterVCF(
         peSupportControl,
         srSupportControl,
         peSupportHotspotControl,
-        srSupportHotspotControl):
-    print "FilterDellyCalls: We will now check all the input parameters.\n"
+        srSupportHotspotControl,
+        verbose):
+    if(verbose):
+        logging.info("FilterDellyCalls: We will now check all the input parameters")
     # Check input parameters
     cp.checkDir(outputDir)
     cp.checkFile(inputVcf)
     cp.checkFile(hotspotFile)
+    cp.checkFile(blacklistFile)
     cp.checkEmpty(controlId, "Control Bam ID")
     cp.checkEmpty(caseID, "Case Bam ID")
     cp.checkInt(svlength, "Length of Structural Variant Threshold")
@@ -103,8 +109,9 @@ def FilterVCF(
     cp.checkInt(
         srSupportHotspotControl,
         "overall split-reads support threshold for the event in hot-spot region for the Control sample")
-    print "FilterDellyCalls: All Input Parameters look good for filtering these VCF file.\n"
-    print "FilterDellyCalls: We will filter the given VCF file now.\n"
+    if(verbose):
+        logging.info("FilterDellyCalls: All Input Parameters look good for filtering these VCF file.")
+        logging.info("FilterDellyCalls: We will filter the given VCF file now.")
     # Make a string of all the variables
     thresholdVariablesList = [svlength,
                               mapq,
@@ -221,8 +228,9 @@ def FilterVCF(
         if(filterFlag):
             vcf_writer.write_record(record)
     vcf_writer.close()
-    print "FilterDellyCalls: We have finished filtering: ", inputVcf, " file.\n"
-    print "FilterFellyCalls: Output hass been written in: ", outputFile, " file.\n"
+    if(verbose):
+        logging.info("FilterDellyCalls: We have finished filtering: %s file", inputVcf)
+        logging.info("FilterFellyCalls: Output hass been written in: $s file", outputFile)
     return(outputFile)
 
 
@@ -322,10 +330,10 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                     filterFlag = True
             else:
                 filterFlag = False
-    
+
     if(blacklistTag):
         filterFlag = True
-    
+
     return(filterFlag)
 
 
