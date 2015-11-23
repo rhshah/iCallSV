@@ -127,10 +127,11 @@ USAGE
     #
     verbose = args.verbose
     # Create Logger if verbose
+    loggeroutput = args.outdir + "/" + args.outprefix + "_iCallSV.log"
     logging.basicConfig(
-        filename='iCallSV.log',
+        filename=loggeroutput,
         filemode='w',
-        format='%(levelname)s: %(asctime)s %(message)s',
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         datefmt='%m/%d/%Y %I:%M:%S %p',
         level=logging.DEBUG)
     # Print if Verbose mode is on
@@ -150,10 +151,12 @@ USAGE
                 'iCallSV:Output of delly for %s will be written in %s',
                 args.patientId,
                 sampleOutdirForDelly)
-        # Run Delly and and get the raw calls
+        # Run Delly and get the raw calls
         (del_vcf, dup_vcf, inv_vcf, tra_vcf, ins_vcf) = lrd.launch_delly_for_different_analysis_type(
             args, config, sampleOutdirForDelly)
-        #Run 
+        # Run Filter Delly and get filtered calls
+        (filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf, filter_ins_vcf) = lfd.launch_filterdellycalls_for_different_analysis_type(
+            args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf, ins_vcf)
     else:
         if(verbose):
             logging.fatal(
