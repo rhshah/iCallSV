@@ -41,17 +41,17 @@ def run(
     cp.checkInt(distance, "Distance for extending the promoter region")
     cp.checkEmpty(build, "Which human reference file to be used, hg18,hg19 or hg38")
     cp.checkFile(canonicalTranscriptFile)
-    print "Run_iAnnotateSV: All input parameters look good. Lets run the package.\n"
+    logging.info("Run_iAnnotateSV: All input parameters look good. Lets run the package.")
     myPid = os.getpid()
     day = date.today()
     today = day.isoformat()
-    print "Run_iAnnotateSV: ProcessID:", myPid, " Date:", today, "\n"
+    logging.info("Run_iAnnotateSV: ProcessID:%s, Date:%s", myPid, today)
     outputFile = outputDir + "/" + outputTabFile
     cmd = python + " " + iAnnotateSV + " -r " + build + " -i " + inputTabFile + \
         " -o " + outputFile + " -d " + str(distance) + " -c " + canonicalTranscriptFile
     args = shlex.split(cmd)
-    print "Run_iAnnotateSV: Command that will be run\n", cmd, "\n"
-    # Reomove if the file exists
+    logging.info("Run_iAnnotateSV: Command that will be run: %s", cmd)
+    # Remove if the file exists
     if(os.path.isfile(outputFile)):
         os.remove(outputFile)
     proc = Popen(args)
@@ -59,10 +59,11 @@ def run(
     retcode = proc.returncode
     if(retcode >= 0):
         end_time = time.time()
-        print "Run_iAnnotateSV: We have finished running iAnnotateSV for ", inputTabFile, " using local machine.\n"
-        print "Run_iAnnotateSV Duration:", str(timedelta(seconds=end_time - start_time)), "\n"
+        totaltime = str(timedelta(seconds=end_time - start_time))
+        logging.info("Run_iAnnotateSV: We have finished running iAnnotateSV for %s using local machine", inputTabFile)
+        logging.info("Run_iAnnotateSV Duration: %s", totaltime)
     else:
-        print "Run_iAnnotateSV: iAnnotateSV is either still running on local machine or it errored out with return code", retcode, " for", inputTabFile, "\n"
+        logging.info("Run_iAnnotateSV: iAnnotateSV is either still running on local machine or it errored out with return code %d for %s", retcode,inputTabFile)
         sys.exit()
     return(outputFile)
 # # test moudule
