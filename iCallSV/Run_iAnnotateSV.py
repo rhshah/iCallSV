@@ -22,7 +22,7 @@ import shlex
 import time
 from datetime import date, timedelta
 import checkparameters as cp
-
+import logging
 
 def run(
         python,

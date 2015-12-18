@@ -18,14 +18,14 @@ import logging
 import FilterDellyCalls as fdc
 
 
-def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf, ins_vcf):
+def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):
     verbose = args.verbose
-
+    
     # Run Delly for Deletion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Deletion Events")
 
-    del_vcf = rd.run(
+    filter_del_vcf = fdc.run(
         delly=config.get("SVcaller", "DELLY"),
         analysisType="DEL",
         reference=config.get("ReferenceFasta", "REFFASTA"),
@@ -42,7 +42,7 @@ def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutd
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Duplication Events")
 
-    dup_vcf = rd.run(
+    dup_vcf = fdc.run(
         delly=config.get("SVcaller", "DELLY"),
         analysisType="DUP",
         reference=config.get("ReferenceFasta", "REFFASTA"),
@@ -59,7 +59,7 @@ def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutd
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Inversion Events")
 
-    inv_vcf = rd.run(
+    inv_vcf = fdc.run(
         delly=config.get("SVcaller", "DELLY"),
         analysisType="INV",
         reference=config.get("ReferenceFasta", "REFFASTA"),
@@ -76,7 +76,7 @@ def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutd
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Translocation Envents")
 
-    tra_vcf = rd.run(
+    tra_vcf = fdc.run(
         delly=config.get("SVcaller", "DELLY"),
         analysisType="TRA",
         reference=config.get("ReferenceFasta", "REFFASTA"),
@@ -88,12 +88,12 @@ def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutd
         outputdir=sampleOutdirForDelly,
         verbose=verbose,
         debug=False)
-
+'''
 # Run Delly for Insertion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Insertion Events")
 
-    ins_vcf = rd.run(
+    ins_vcf = fdc.run(
         delly=config.get("SVcaller", "DELLY"),
         analysisType="INS",
         reference=config.get("ReferenceFasta", "REFFASTA"),
@@ -105,5 +105,5 @@ def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutd
         outputdir=sampleOutdirForDelly,
         verbose=verbose,
         debug=False)
-
-    return(del_vcf, dup_vcf, inv_vcf, tra_vcf, ins_vcf)
+'''
+    return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)

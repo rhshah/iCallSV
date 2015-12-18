@@ -17,15 +17,18 @@ chr2: Its the chromosome name for second break point [1,2,3,4,5,6,7 etc..],
 pos2: Its the chromosome loaction for second break point [1-based],
 str2: Its the read direction for the second break point [0=top/plus/reference, 1=bottom/minus/complement],
 '''
+import os
 import vcf
 import checkparameters as cp
+import logging
 
-
-def vcf2tab(vcfFile, outputFileName, outputDir):
+def vcf2tab(vcfFile, outputDir, verbose):
     cp.checkFile(vcfFile)
     cp.checkDir(outputDir)
-    print "dellyVcf2Tab: All Input Parameters look good. Lets convert to tab-delimited file\n"
+    if(verbose):
+        logging.info("dellyVcf2Tab: All Input Parameters look good. Lets convert to tab-delimited file")
     vcf_reader = vcf.Reader(open(vcfFile, 'r'))
+    outputFileName = os.path.splitext((os.path.basename(vcfFile)))[0] + ".tab"
     outputFile = outputDir + "/" + outputFileName
     outputHandle = open(outputFile, "w")
     outputHandle.write("chr1\tpos1\tstr1\tchr2\tpos2\tstr2\n")
@@ -59,7 +62,8 @@ def vcf2tab(vcfFile, outputFileName, outputDir):
             str1 = 1
             str2 = 1
         else:
-            print "dellyVcf2Tab: The connection type (CT) given in the vcf file is incorrect.CT:", contype, "\n"
+             if(verbose):
+                 logging.info("dellyVcf2Tab: The connection type (CT) given in the vcf file is incorrect.CT: %s", contype)
         outputHandle.write(
             str(chrom1) +
             "\t" +
@@ -74,8 +78,9 @@ def vcf2tab(vcfFile, outputFileName, outputDir):
             str(str2) +
             "\n")
     outputHandle.close()
-    print "dellyVcf2Tab: Finished conversion of Vcf file to tab-delimited file.\n"
-    print "dellyVcf2Tab: Output can be found: ", outputFile, "\n"
+    if(verbose):
+        logging.info("dellyVcf2Tab: Finished conversion of Vcf file to tab-delimited file")
+        logging.info("dellyVcf2Tab: Output can be found: %s", outputFile)
     return(outputFile)
 
 # Test Module

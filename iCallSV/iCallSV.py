@@ -26,12 +26,12 @@ import ConfigParser as configparser
 import logging
 import make_analysis_dir as mad
 import launch_Run_Delly as lrd
-
+import dellyVcf2Tab as dvcf2tab
 
 __all__ = []
 __version__ = 0.1
 __date__ = '2015-03-30'
-__updated__ = '2015-04-25'
+__updated__ = '2015-12-20'
 
 
 def main(argv=None):  # IGNORE:C0111
@@ -50,7 +50,7 @@ def main(argv=None):  # IGNORE:C0111
     program_license = '''%s
 
   Created by Ronak H Shah on %s.
-  Copyright 2015 Ronak H Shah. All rights reserved.
+  Copyright 2015-2016 Ronak H Shah. All rights reserved.
 
   Licensed under the Apache License 2.0
   http://www.apache.org/licenses/LICENSE-2.0
@@ -145,6 +145,7 @@ USAGE
     config = configparser.ConfigParser(defaults={'here': here})
     config.read(args.config_file)
     (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir")
+    #Decide based on tag what to do
     if(tag):
         if(verbose):
             logging.info(
@@ -152,11 +153,18 @@ USAGE
                 args.patientId,
                 sampleOutdirForDelly)
         # Run Delly and get the raw calls
-        (del_vcf, dup_vcf, inv_vcf, tra_vcf, ins_vcf) = lrd.launch_delly_for_different_analysis_type(
+        (del_vcf, dup_vcf, inv_vcf, tra_vcf) = lrd.launch_delly_for_different_analysis_type(
             args, config, sampleOutdirForDelly)
         # Run Filter Delly and get filtered calls
-        (filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf, filter_ins_vcf) = lfd.launch_filterdellycalls_for_different_analysis_type(
-            args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf, ins_vcf)
+        (filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf) = lfd.launch_filterdellycalls_for_different_analysis_type(
+            args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf)
+        # convert vcf files to tab-delimited using vcf2tab
+        filter_del_tab = dvcf2tab.vcf2tab(filter_del_vcf,sampleOutdirForDelly,verbose)
+        filter_dup_tab = dvcf2tab.vcf2tab(filter_dup_vcf,sampleOutdirForDelly,verbose)
+        filter_inv_tab = dvcf2tab.vcf2tab(filter_inv_vcf,sampleOutdirForDelly,verbose)
+        filter_tra_tab = dvcf2tab.vcf2tab(filter_tra_vcf,sampleOutdirForDelly,verbose)
+        # Annotate using iAnnotateSV
+        
     else:
         if(verbose):
             logging.fatal(

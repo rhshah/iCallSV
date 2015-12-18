@@ -83,7 +83,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
         outputdir=sampleOutdirForDelly,
         verbose=verbose,
         debug=False)
-
+'''
 # Run Delly for Insertion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Insertion Events")
@@ -100,5 +100,5 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
         outputdir=sampleOutdirForDelly,
         verbose=verbose,
         debug=False)
-
-    return(del_vcf, dup_vcf, inv_vcf, tra_vcf, ins_vcf)
+'''
+    return(del_vcf, dup_vcf, inv_vcf, tra_vcf)
