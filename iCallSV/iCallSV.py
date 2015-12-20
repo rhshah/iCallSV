@@ -27,6 +27,10 @@ import logging
 import make_analysis_dir as mad
 import launch_Run_Delly as lrd
 import dellyVcf2Tab as dvcf2tab
+import combineVCF as cvcf
+import Run_iAnnotateSV as annSV
+improt dellyVcf2targetSeqView as dvcf2tsv
+import Run_targetSeqView as rtsv
 
 __all__ = []
 __version__ = 0.1
@@ -145,7 +149,7 @@ USAGE
     config = configparser.ConfigParser(defaults={'here': here})
     config.read(args.config_file)
     (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir")
-    #Decide based on tag what to do
+    # Decide based on tag what to do
     if(tag):
         if(verbose):
             logging.info(
@@ -156,15 +160,44 @@ USAGE
         (del_vcf, dup_vcf, inv_vcf, tra_vcf) = lrd.launch_delly_for_different_analysis_type(
             args, config, sampleOutdirForDelly)
         # Run Filter Delly and get filtered calls
-        (filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf) = lfd.launch_filterdellycalls_for_different_analysis_type(
-            args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf)
+        (filter_del_vcf,
+         filter_dup_vcf,
+         filter_inv_vcf,
+         filter_tra_vcf) = lfd.launch_filterdellycalls_for_different_analysis_type(args,
+                                                                                   config,
+                                                                                   sampleOutdirForDelly,
+                                                                                   del_vcf,
+                                                                                   dup_vcf,
+                                                                                   inv_vcf,
+                                                                                   tra_vcf)
+        # Combine all VCF to a single VCF file
+        listOfFilteredVCFfiles = [filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf]
+        combinedVCF = sampleOutdirForDelly + "/" + args.patientId + "_allSVFiltered.vcf"
+        combinedAnnVCF = args.patientId + "_allAnnotatedSVFiltered.tab"
+        combinedTargetSeqView = args.patientId + "_allSVFiltered_tsvInput.txt"
+        combinedTargetSeqViewCscore = args.patientId + "_allSVFiltered_cScore.txt"
+        combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose)
         # convert vcf files to tab-delimited using vcf2tab
-        filter_del_tab = dvcf2tab.vcf2tab(filter_del_vcf,sampleOutdirForDelly,verbose)
-        filter_dup_tab = dvcf2tab.vcf2tab(filter_dup_vcf,sampleOutdirForDelly,verbose)
-        filter_inv_tab = dvcf2tab.vcf2tab(filter_inv_vcf,sampleOutdirForDelly,verbose)
-        filter_tra_tab = dvcf2tab.vcf2tab(filter_tra_vcf,sampleOutdirForDelly,verbose)
+        combinedTAB = dvcf2tab.vcf2tab(combinedVCF, sampleOutdirForDelly, verbose)
         # Annotate using iAnnotateSV
-        
+        combinedAnnTAB = annSV.run(
+            config.get(
+                "Python", "PYTHON"), config.get(
+                "iAnnotateSV", "ANNOSV"), config.get(
+                "iAnnotateSV", "GENOMEBUILD"), config.get(
+                    "iAnnotateSV", "DISTANCE"), config.get(
+                        "iAnnotateSV", "CANONICALTRANSCRIPTFILE"), combinedTab, combinedAnnVCF, sampleOutdirForDelly)
+        # convert vcf to targetseqviewformat
+        combinedTargetSeqView = dvcf2tsv.Convert2targetSeqView(
+            args.patientID,
+            args.caseBam,
+            args.caseBam,
+            combinedVCF,
+            sampleOutdirForDelly,
+            combinedTargetSeqView)
+        # Get Confidence score using targetSeqView
+        combinedTargetSeqViewCscore = rtsv.run(config.get("R", "RHOME"), config.get("TargetSeqView", "CalculateConfidenceScore"), nodes=5, args.caseBam, combinedTargetSeqView, config.get("TargetSeqView", "GENOMEBUILD"), config.get("TargetSeqView", "ReadLength"), sampleOutdirForDelly, combinedTargetSeqViewCscore)
+        # Merge Results from vcf, tab and targetseqview
     else:
         if(verbose):
             logging.fatal(

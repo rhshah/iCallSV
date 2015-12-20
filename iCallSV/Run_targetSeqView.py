@@ -36,7 +36,7 @@ def run(
         outputDir,
         outsvFileName):
     start_time = time.time()
-    print "We will now be running targetSeqView. Hope fully the R package targetSeqView is installed."
+    logging.info("We will now be running targetSeqView. Hope fully the R package targetSeqView is installed.")
     cp.checkFile(targetSeqView)
     cp.checkInt(nodes, "Number of nodes to run targetSeqView")
     cp.checkDir(bamFilePath)
@@ -44,17 +44,17 @@ def run(
     cp.checkEmpty(build, "Genome build to be used for targetSeqView")
     cp.checkInt(readLength, "Sequencing Read Length")
     cp.checkDir(outputDir)
-    print "All Input Parameters look good. Lets Run targetSeqView\n"
+    logging.info("All Input Parameters look good. Lets Run targetSeqView")
     myPid = os.getpid()
     day = date.today()
     today = day.isoformat()
-    print "Run_targetSeqView: ProcessID:", myPid, " Date:", today, "\n"
+    logging.info("Run_targetSeqView: ProcessID: %s, Date: %s", myPid, today )
     outputFile = outputDir + "/" + outsvFileName
     stdoutFile = outputDir + "/" + outsvFileName[:-4] + "_" + str(myPid) + ".stdout"
     stderrFile = outputDir + "/" + outsvFileName[:-4] + "_" + str(myPid) + ".stderr"
     cmd = RLocation + " --slave --vanilla --args " + str(nodes) + " " + bamFilePath + " " + svFile + " " + build + " " + str(
         readLength) + " " + outputDir + " " + outsvFileName + " < " + targetSeqView + " > " + stdoutFile + " 2> " + stderrFile
-    print "Run_targetSeqView: Command that will be run\n", cmd, "\n"
+    logging.info("Run_targetSeqView: Command that will be run %s", cmd)
     # Reomove if the file exists
     if(os.path.isfile(outputFile)):
         os.remove(outputFile)
@@ -63,10 +63,11 @@ def run(
     retcode = proc.returncode
     if(retcode >= 0):
         end_time = time.time()
-        print "Run_targetSeqView: We have finished running targetSeqView for ", svFile, " using local machine.\n"
-        print "Run_targetSeqView Duration:", str(timedelta(seconds=end_time - start_time)), "\n"
+        totaltime = str(timedelta(seconds=end_time - start_time))
+        logging.info("Run_targetSeqView: We have finished running targetSeqView for %s using local machine.", svFile)
+        logging.info("Run_targetSeqView Duration: %s", totaltime )
     else:
-        print "Run_targetSeqView: targetSeqView is either still running on local machine or it errored out with return code", retcode, " for", svFile, "\n"
+        logging.info("Run_targetSeqView: targetSeqView is either still running on local machine or it errored out with return code %d for %s", retcode, svFile)
         sys.exit()
     return(outputFile)
 # # Test module
