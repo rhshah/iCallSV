@@ -8,19 +8,21 @@ Created on Mar 16, 2015.
 import pysam
 import os
 import sys
-
+import logging
 
 def MakeIndex(bamFile):
-    print "makebamindex: Trying to make index for bam file\n"
+    logging.info("makebamindex: Trying to make index for bam file")
     if(os.path.isfile(bamFile)):
         try:
             pysam.index(bamFile)
         except IndexError as err:
-            print "Index error({0}): {1}".format(err.errno, err.strerror)
+            exception = "Index error({0}): {1}".format(err.errno, err.strerror)
+            logging.info ("%s", exception)
         except IOError as err:
-            print "I/O error({0}): {1}".format(err.errno, err.strerror)
+            exception = "I/O error({0}): {1}".format(err.errno, err.strerror)
+            logging.info ("%s", exception)
     else:
-        print bamFile, " File doesnot exists !!"
+        logging.info("Bam File %s does not exists", bamFile)
         sys.exit()
 
 # MakeIndex('/home/shahr2/M15-2555.recal.bam')

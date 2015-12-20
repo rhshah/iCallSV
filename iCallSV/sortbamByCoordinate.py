@@ -6,25 +6,27 @@ Description: This module will sort bam file by coordinate
 import os
 import sys
 import pysam
-
+import logging
 
 def sortBam(inputBam, outputBamName, outputDir):
-    print "sortbamByCoordinate: Trying to sort BAM file by Coordinate"
+    logging.info("sortbamByCoordinate: Trying to sort BAM file by Coordinate")
     if(os.path.isdir(outputDir)):
-        print "sortbamByCoordinate: The output directory ", outputDir, " exists"
+        logging.info("sortbamByCoordinate: The output directory %s exists", outputDir)
     outputFile = outputDir + "/" + outputBamName
 
     if(os.path.isfile(inputBam)):
         try:
             pysam.sort(inputBam, outputFile)
         except IndexError as err:
-            print "Index error({0}): {1}".format(err.errno, err.strerror)
+            exception = "Index error({0}): {1}".format(err.errno, err.strerror)
+            logging.info("%s",exception)
         except IOError as err:
-            print "I/O error({0}): {1}".format(err.errno, err.strerror)
+            exception = "I/O error({0}): {1}".format(err.errno, err.strerror)
+            logging.info("%s",exception)
     else:
-        print inputBam, " File doesnot exists !!"
+        logging.info("Bam File %s does not exists !!", inputBam)
         sys.exit()
-    print "sortbamByCoordinate: Finished sorting BAM file by Coordinate.\n"
+    logging.info("sortbamByCoordinate: Finished sorting BAM file by Coordinate.")
     return(outputFile)
 
 #sortBam('/home/shahr2/M15-2555.recal.bam', "M15-2555.recal.NSORT","/home/shahr2/")
