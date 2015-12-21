@@ -99,7 +99,7 @@ USAGE
     #parser.add_argument("-afastq", "--caseFastq", action="store", dest="caseFastq", required=False, metavar='caseFastqFile.fastq', help="Full path to the case fastq file")
     #parser.add_argument("-bfastq", "--controlFastq", action="store", dest="controlFastq", required=False, metavar='controlFastqFile.fastq', help="Full path to the control fastq file")
     parser.add_argument(
-        "-caseId",
+        "-aId",
         "--caseId",
         action="store",
         dest="caseId",
@@ -107,7 +107,7 @@ USAGE
         metavar='caseID',
         help="Id of the case to be analyzed, this will be the sub-folder")
     parser.add_argument(
-        "-controlId",
+        "-bId",
         "--controlId",
         action="store",
         dest="controlId",
