@@ -196,7 +196,12 @@ USAGE
             sampleOutdirForDelly,
             combinedTargetSeqView)
         # Get Confidence score using targetSeqView
-        combinedTargetSeqViewCscore = rtsv.run(config.get("R", "RHOME"), config.get("TargetSeqView", "CalculateConfidenceScore"), nodes=5, args.caseBam, combinedTargetSeqView, config.get("TargetSeqView", "GENOMEBUILD"), config.get("TargetSeqView", "ReadLength"), sampleOutdirForDelly, combinedTargetSeqViewCscore)
+        combinedTargetSeqViewCscore = rtsv.run(config.get("R", "RHOME"), 
+                                               config.get("TargetSeqView", "CalculateConfidenceScore"), 
+                                               5, args.caseBam, combinedTargetSeqView, 
+                                               config.get("TargetSeqView", "GENOMEBUILD"), 
+                                               config.get("TargetSeqView", "ReadLength"), 
+                                               sampleOutdirForDelly, combinedTargetSeqViewCscore)
         # Merge Results from vcf, tab and targetseqview
     else:
         if(verbose):
