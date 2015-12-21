@@ -13,7 +13,7 @@ import logging
 
 
 def makeOutputDir(args, tool):
-    SampleDirName = args.patientId
+    SampleDirName = args.caseId
     static_SV_Dir = "StructuralVariantAnalysis"
     static_tool_Dir = tool
     AnalysisDir = os.path.join(args.outdir, static_SV_Dir)
