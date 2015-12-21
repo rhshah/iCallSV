@@ -106,7 +106,7 @@ USAGE
         required=True,
         metavar='caseID',
         help="Id of the case to be analyzed, this will be the sub-folder")
-     parser.add_argument(
+    parser.add_argument(
         "-controlId",
         "--controlId",
         action="store",
@@ -204,11 +204,11 @@ USAGE
             sampleOutdirForDelly,
             combinedTargetSeqView)
         # Get Confidence score using targetSeqView
-        combinedTargetSeqViewCscore = rtsv.run(config.get("R", "RHOME"), 
-                                               config.get("TargetSeqView", "CalculateConfidenceScore"), 
-                                               5, args.caseBam, combinedTargetSeqView, 
-                                               config.get("TargetSeqView", "GENOMEBUILD"), 
-                                               int(config.get("TargetSeqView", "ReadLength")), 
+        combinedTargetSeqViewCscore = rtsv.run(config.get("R", "RHOME"),
+                                               config.get("TargetSeqView", "CalculateConfidenceScore"),
+                                               5, args.caseBam, combinedTargetSeqView,
+                                               config.get("TargetSeqView", "GENOMEBUILD"),
+                                               int(config.get("TargetSeqView", "ReadLength")),
                                                sampleOutdirForDelly, combinedTargetSeqViewCscore)
         # Merge Results from vcf, tab and targetseqview
     else:

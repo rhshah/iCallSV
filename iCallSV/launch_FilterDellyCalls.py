@@ -19,9 +19,10 @@ import logging
 import FilterDellyCalls as fdc
 
 
-def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):
+def launch_filterdellycalls_for_different_analysis_type(
+    args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):
     verbose = args.verbose
-    
+
     # Run Delly for Deletion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Deletion Events")
@@ -32,23 +33,23 @@ def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutd
         sampleOutdirForDelly,
         args.controlId,
         args.caseId,
-        config.get("HotSpotRegions","HotspotFile"),
-        config.get("BlackListRegions","BlackListFile"),
-        int(config.get("ParametersToFilterDellyResults","LengthOfSV")),
-        int(config.get("ParametersToFilterDellyResults","OverallMapq")),
-        int(config.get("ParametersToFilterDellyResults","OverallMapqHotspot")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReadsHotspot")),
+        config.get("HotSpotRegions", "HotspotFile"),
+        config.get("BlackListRegions", "BlackListFile"),
+        int(config.get("ParametersToFilterDellyResults", "LengthOfSV")),
+        int(config.get("ParametersToFilterDellyResults", "OverallMapq")),
+        int(config.get("ParametersToFilterDellyResults", "OverallMapqHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
         verbose)
 
 # Run Delly for duplication
@@ -60,82 +61,82 @@ def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutd
         sampleOutdirForDelly,
         args.controlId,
         args.caseId,
-        config.get("HotSpotRegions","HotspotFile"),
-        config.get("BlackListRegions","BlackListFile"),
-        int(config.get("ParametersToFilterDellyResults","LengthOfSV")),
-        int(config.get("ParametersToFilterDellyResults","OverallMapq")),
-        int(config.get("ParametersToFilterDellyResults","OverallMapqHotspot")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReadsHotspot")),
+        config.get("HotSpotRegions", "HotspotFile"),
+        config.get("BlackListRegions", "BlackListFile"),
+        int(config.get("ParametersToFilterDellyResults", "LengthOfSV")),
+        int(config.get("ParametersToFilterDellyResults", "OverallMapq")),
+        int(config.get("ParametersToFilterDellyResults", "OverallMapqHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
         verbose)
 
 # Run Delly for inversion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Inversion Events")
-    filter_inv_vcf = os.path.split(os.path.basename(inv_vcf))[0] + "_filtered.vcf"
+    filter_inv_vcf=os.path.split(os.path.basename(inv_vcf))[0] + "_filtered.vcf"
     del_vcf,
         filter_inv_vcf,
         sampleOutdirForDelly,
         args.controlId,
         args.caseId,
-        config.get("HotSpotRegions","HotspotFile"),
-        config.get("BlackListRegions","BlackListFile"),
-        int(config.get("ParametersToFilterDellyResults","LengthOfSV")),
-        int(config.get("ParametersToFilterDellyResults","OverallMapq")),
-        int(config.get("ParametersToFilterDellyResults","OverallMapqHotspot")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReadsHotspot")),
+        config.get("HotSpotRegions", "HotspotFile"),
+        config.get("BlackListRegions", "BlackListFile"),
+        int(config.get("ParametersToFilterDellyResults", "LengthOfSV")),
+        int(config.get("ParametersToFilterDellyResults", "OverallMapq")),
+        int(config.get("ParametersToFilterDellyResults", "OverallMapqHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
         verbose)
         debug=False)
 
 # Run Delly for Translocation
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Translocation Envents")
-    filter_tra_vcf = os.path.split(os.path.basename(tra_vcf))[0] + "_filtered.vcf"
+    filter_tra_vcf=os.path.split(os.path.basename(tra_vcf))[0] + "_filtered.vcf"
     del_vcf,
         filter_tra_vcf,
         sampleOutdirForDelly,
         args.controlId,
         args.caseId,
-        config.get("HotSpotRegions","HotspotFile"),
-        config.get("BlackListRegions","BlackListFile"),
-        int(config.get("ParametersToFilterDellyResults","LengthOfSV")),
-        int(config.get("ParametersToFilterDellyResults","OverallMapq")),
-        int(config.get("ParametersToFilterDellyResults","OverallMapqHotspot")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingReads")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReads")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReadsHotspot")),
+        config.get("HotSpotRegions", "HotspotFile"),
+        config.get("BlackListRegions", "BlackListFile"),
+        int(config.get("ParametersToFilterDellyResults", "LengthOfSV")),
+        int(config.get("ParametersToFilterDellyResults", "OverallMapq")),
+        int(config.get("ParametersToFilterDellyResults", "OverallMapqHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
         verbose)
-        
+
     return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)
 '''
 # Run Delly for Insertion
@@ -167,4 +168,3 @@ def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutd
         int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReadsHotspot")),
         verbose)
 '''
-    
