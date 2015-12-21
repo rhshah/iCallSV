@@ -29,7 +29,7 @@ import launch_Run_Delly as lrd
 import dellyVcf2Tab as dvcf2tab
 import combineVCF as cvcf
 import Run_iAnnotateSV as annSV
-improt dellyVcf2targetSeqView as dvcf2tsv
+import dellyVcf2targetSeqView as dvcf2tsv
 import Run_targetSeqView as rtsv
 
 __all__ = []
