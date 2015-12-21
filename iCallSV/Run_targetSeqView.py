@@ -45,6 +45,7 @@ def run(
     cp.checkInt(readLength, "Sequencing Read Length")
     cp.checkDir(outputDir)
     logging.info("All Input Parameters look good. Lets Run targetSeqView")
+    RLocation = RLocation + "/bin/R"
     myPid = os.getpid()
     day = date.today()
     today = day.isoformat()
