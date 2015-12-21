@@ -25,7 +25,7 @@ def checkFile(fileToCheck):
 
 def checkDir(folderToCheck):
     if(os.path.isdir(folderToCheck)):
-        logging.infor("checkparameters:Given Directory: %s exists.", folderToCheck)
+        logging.info("checkparameters:Given Directory: %s exists.", folderToCheck)
     else:
         logging.fatal(
             "checkparameters:Given Directory: %s does not exists. Sorry please check this Input and Run Again.",
