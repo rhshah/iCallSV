@@ -56,7 +56,8 @@ def launch_filterdellycalls_for_different_analysis_type(
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Duplication Events")
     filter_dup_vcf = os.path.split(os.path.basename(dup_vcf))[0] + "_filtered.vcf"
-    del_vcf,
+    filter_del_vcf = fdc.run(
+        dup_vcf,
         filter_dup_vcf,
         sampleOutdirForDelly,
         args.controlId,
@@ -83,8 +84,9 @@ def launch_filterdellycalls_for_different_analysis_type(
 # Run Delly for inversion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Inversion Events")
-    filter_inv_vcf=os.path.split(os.path.basename(inv_vcf))[0] + "_filtered.vcf"
-    del_vcf,
+    filter_inv_vcf = os.path.split(os.path.basename(inv_vcf))[0] + "_filtered.vcf"
+    filter_inv_vcf = fdc.run(
+        inv_vcf
         filter_inv_vcf,
         sampleOutdirForDelly,
         args.controlId,
@@ -107,13 +109,14 @@ def launch_filterdellycalls_for_different_analysis_type(
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
         verbose)
-        debug=False)
+        debug = False)
 
 # Run Delly for Translocation
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Translocation Envents")
     filter_tra_vcf=os.path.split(os.path.basename(tra_vcf))[0] + "_filtered.vcf"
-    del_vcf,
+    filter_tra_vcf=fdc.run(
+        tra_vcf
         filter_tra_vcf,
         sampleOutdirForDelly,
         args.controlId,
