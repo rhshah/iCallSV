@@ -27,7 +27,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
         controlBam=args.controlBam,
         caseBam=args.caseBam,
         caseId=args.patientId,
-        mapq=config.get("ParametersToRunDelly", "MAPQ"),
+        mapq=int(config.get("ParametersToRunDelly", "MAPQ")),
         excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
         outputdir=sampleOutdirForDelly,
         verbose=verbose,
@@ -44,7 +44,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
         controlBam=args.controlBam,
         caseBam=args.caseBam,
         caseId=args.patientId,
-        mapq=config.get("ParametersToRunDelly", "MAPQ"),
+        mapq=int(config.get("ParametersToRunDelly", "MAPQ")),
         excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
         outputdir=sampleOutdirForDelly,
         verbose=verbose,
@@ -61,7 +61,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
         controlBam=args.controlBam,
         caseBam=args.caseBam,
         caseId=args.patientId,
-        mapq=config.get("ParametersToRunDelly", "MAPQ"),
+        mapq=int(config.get("ParametersToRunDelly", "MAPQ")),
         excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
         outputdir=sampleOutdirForDelly,
         verbose=verbose,
@@ -78,12 +78,12 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
         controlBam=args.controlBam,
         caseBam=args.caseBam,
         caseId=args.patientId,
-        mapq=config.get("ParametersToRunDelly", "MAPQ"),
+        mapq=int(config.get("ParametersToRunDelly", "MAPQ")),
         excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
         outputdir=sampleOutdirForDelly,
         verbose=verbose,
         debug=False)
-    
+
     return(del_vcf, dup_vcf, inv_vcf, tra_vcf)
 '''
 # Run Delly for Insertion
@@ -97,10 +97,9 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
         controlBam=args.controlBam,
         caseBam=args.caseBam,
         caseId=args.patientId,
-        mapq=config.get("ParametersToRunDelly", "MAPQ"),
+        mapq=int(config.get("ParametersToRunDelly", "MAPQ")),
         excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
         outputdir=sampleOutdirForDelly,
         verbose=verbose,
         debug=False)
 '''
-    

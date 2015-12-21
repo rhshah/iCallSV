@@ -41,7 +41,7 @@ import checkBlackList as cbl
 import logging
 
 
-def FilterVCF(
+def run(
         inputVcf,
         outputVcf,
         outputDir,
@@ -338,7 +338,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
 
 
 # # Test the module
-# FilterVCF(
+# run(
 #     inputVcf="/dmp/hot/shahr2/IMPACT/Test/SVtest/35462375-T_bc44_jmp.vcf",
 #     outputVcf="35462375-T_bc44_jmp.stdfilter.vcf",
 #     outputDir="/dmp/hot/shahr2/IMPACT/Test/SVtest/",

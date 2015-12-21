@@ -14,6 +14,7 @@ inv_vcf: Path to inversion based vcf file
 tra_vcf: Path to translocation based vcf file
 ins_vcf: Path to insertion based vcf file
 '''
+import os
 import logging
 import FilterDellyCalls as fdc
 
@@ -24,86 +25,146 @@ def launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutd
     # Run Delly for Deletion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Deletion Events")
-
+    filter_del_vcf = os.path.split(os.path.basename(del_vcf))[0] + "_filtered.vcf"
     filter_del_vcf = fdc.run(
-        delly=config.get("SVcaller", "DELLY"),
-        analysisType="DEL",
-        reference=config.get("ReferenceFasta", "REFFASTA"),
-        controlBam=args.controlBam,
-        caseBam=args.caseBam,
-        caseId=args.patientId,
-        mapq=config.get("ParametersToRunDelly", "MAPQ"),
-        excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
-        outputdir=sampleOutdirForDelly,
-        verbose=verbose,
-        debug=False)
+        del_vcf,
+        filter_del_vcf,
+        sampleOutdirForDelly,
+        args.controlId,
+        args.caseId,
+        config.get("HotSpotRegions","HotspotFile"),
+        config.get("BlackListRegions","BlackListFile"),
+        int(config.get("ParametersToFilterDellyResults","LengthOfSV")),
+        int(config.get("ParametersToFilterDellyResults","OverallMapq")),
+        int(config.get("ParametersToFilterDellyResults","OverallMapqHotspot")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReadsHotspot")),
+        verbose)
 
 # Run Delly for duplication
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Duplication Events")
-
-    dup_vcf = fdc.run(
-        delly=config.get("SVcaller", "DELLY"),
-        analysisType="DUP",
-        reference=config.get("ReferenceFasta", "REFFASTA"),
-        controlBam=args.controlBam,
-        caseBam=args.caseBam,
-        caseId=args.patientId,
-        mapq=config.get("ParametersToRunDelly", "MAPQ"),
-        excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
-        outputdir=sampleOutdirForDelly,
-        verbose=verbose,
-        debug=False)
+    filter_dup_vcf = os.path.split(os.path.basename(dup_vcf))[0] + "_filtered.vcf"
+    del_vcf,
+        filter_dup_vcf,
+        sampleOutdirForDelly,
+        args.controlId,
+        args.caseId,
+        config.get("HotSpotRegions","HotspotFile"),
+        config.get("BlackListRegions","BlackListFile"),
+        int(config.get("ParametersToFilterDellyResults","LengthOfSV")),
+        int(config.get("ParametersToFilterDellyResults","OverallMapq")),
+        int(config.get("ParametersToFilterDellyResults","OverallMapqHotspot")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReadsHotspot")),
+        verbose)
 
 # Run Delly for inversion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Inversion Events")
-
-    inv_vcf = fdc.run(
-        delly=config.get("SVcaller", "DELLY"),
-        analysisType="INV",
-        reference=config.get("ReferenceFasta", "REFFASTA"),
-        controlBam=args.controlBam,
-        caseBam=args.caseBam,
-        caseId=args.patientId,
-        mapq=config.get("ParametersToRunDelly", "MAPQ"),
-        excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
-        outputdir=sampleOutdirForDelly,
-        verbose=verbose,
+    filter_inv_vcf = os.path.split(os.path.basename(inv_vcf))[0] + "_filtered.vcf"
+    del_vcf,
+        filter_inv_vcf,
+        sampleOutdirForDelly,
+        args.controlId,
+        args.caseId,
+        config.get("HotSpotRegions","HotspotFile"),
+        config.get("BlackListRegions","BlackListFile"),
+        int(config.get("ParametersToFilterDellyResults","LengthOfSV")),
+        int(config.get("ParametersToFilterDellyResults","OverallMapq")),
+        int(config.get("ParametersToFilterDellyResults","OverallMapqHotspot")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReadsHotspot")),
+        verbose)
         debug=False)
 
 # Run Delly for Translocation
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Translocation Envents")
-
-    tra_vcf = fdc.run(
-        delly=config.get("SVcaller", "DELLY"),
-        analysisType="TRA",
-        reference=config.get("ReferenceFasta", "REFFASTA"),
-        controlBam=args.controlBam,
-        caseBam=args.caseBam,
-        caseId=args.patientId,
-        mapq=config.get("ParametersToRunDelly", "MAPQ"),
-        excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
-        outputdir=sampleOutdirForDelly,
-        verbose=verbose,
-        debug=False)
+    filter_tra_vcf = os.path.split(os.path.basename(tra_vcf))[0] + "_filtered.vcf"
+    del_vcf,
+        filter_tra_vcf,
+        sampleOutdirForDelly,
+        args.controlId,
+        args.caseId,
+        config.get("HotSpotRegions","HotspotFile"),
+        config.get("BlackListRegions","BlackListFile"),
+        int(config.get("ParametersToFilterDellyResults","LengthOfSV")),
+        int(config.get("ParametersToFilterDellyResults","OverallMapq")),
+        int(config.get("ParametersToFilterDellyResults","OverallMapqHotspot")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReadsHotspot")),
+        verbose)
+        
+    return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)
 '''
 # Run Delly for Insertion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Insertion Events")
-
+    filter_ins_vcf = os.path.split(os.path.basename(tra_vcf))[0] + "_filtered.vcf"
     ins_vcf = fdc.run(
-        delly=config.get("SVcaller", "DELLY"),
-        analysisType="INS",
-        reference=config.get("ReferenceFasta", "REFFASTA"),
-        controlBam=args.controlBam,
-        caseBam=args.caseBam,
-        caseId=args.patientId,
-        mapq=config.get("ParametersToRunDelly", "MAPQ"),
-        excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
-        outputdir=sampleOutdirForDelly,
-        verbose=verbose,
-        debug=False)
+        del_vcf,
+        filter_ins_vcf,
+        sampleOutdirForDelly,
+        args.controlId,
+        args.caseId,
+        config.get("HotSpotRegions","HotspotFile"),
+        config.get("BlackListRegions","BlackListFile"),
+        int(config.get("ParametersToFilterDellyResults","LengthOfSV")),
+        int(config.get("ParametersToFilterDellyResults","OverallMapq")),
+        int(config.get("ParametersToFilterDellyResults","OverallMapqHotspot")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","OverallSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","CaseSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults","ControlSupportingSplitReadsHotspot")),
+        verbose)
 '''
-    return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)
+    

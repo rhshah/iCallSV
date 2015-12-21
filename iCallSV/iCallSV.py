@@ -99,13 +99,21 @@ USAGE
     #parser.add_argument("-afastq", "--caseFastq", action="store", dest="caseFastq", required=False, metavar='caseFastqFile.fastq', help="Full path to the case fastq file")
     #parser.add_argument("-bfastq", "--controlFastq", action="store", dest="controlFastq", required=False, metavar='controlFastqFile.fastq', help="Full path to the control fastq file")
     parser.add_argument(
-        "-pId",
-        "--patientId",
+        "-caseId",
+        "--caseId",
         action="store",
-        dest="patientId",
+        dest="caseId",
         required=True,
-        metavar='PatientID',
-        help="Id of the Patient this will be the sub-folder")
+        metavar='caseID',
+        help="Id of the case to be analyzed, this will be the sub-folder")
+     parser.add_argument(
+        "-controlId",
+        "--controlId",
+        action="store",
+        dest="controlId",
+        required=True,
+        metavar='controlID',
+        help="Id of the control to be used, this will be used for filtering variants")
     #parser.add_argument("-t", "--threads", action="store", dest="threads", required=True, metavar='5', help="Number of Threads to be used to run tools")
     parser.add_argument(
         "-o",
@@ -154,7 +162,7 @@ USAGE
         if(verbose):
             logging.info(
                 'iCallSV:Output of delly for %s will be written in %s',
-                args.patientId,
+                args.caseId,
                 sampleOutdirForDelly)
         # Run Delly and get the raw calls
         (del_vcf, dup_vcf, inv_vcf, tra_vcf) = lrd.launch_delly_for_different_analysis_type(
@@ -172,10 +180,10 @@ USAGE
                                                                                    tra_vcf)
         # Combine all VCF to a single VCF file
         listOfFilteredVCFfiles = [filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf]
-        combinedVCF = sampleOutdirForDelly + "/" + args.patientId + "_allSVFiltered.vcf"
-        combinedAnnVCF = args.patientId + "_allAnnotatedSVFiltered.tab"
-        combinedTargetSeqView = args.patientId + "_allSVFiltered_tsvInput.txt"
-        combinedTargetSeqViewCscore = args.patientId + "_allSVFiltered_cScore.txt"
+        combinedVCF = sampleOutdirForDelly + "/" + args.caseId + "_allSVFiltered.vcf"
+        combinedAnnVCF = args.caseId + "_allAnnotatedSVFiltered.tab"
+        combinedTargetSeqView = args.caseId + "_allSVFiltered_tsvInput.txt"
+        combinedTargetSeqViewCscore = args.caseId + "_allSVFiltered_cScore.txt"
         combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose)
         # convert vcf files to tab-delimited using vcf2tab
         combinedTAB = dvcf2tab.vcf2tab(combinedVCF, sampleOutdirForDelly, verbose)
@@ -184,12 +192,12 @@ USAGE
             config.get(
                 "Python", "PYTHON"), config.get(
                 "iAnnotateSV", "ANNOSV"), config.get(
-                "iAnnotateSV", "GENOMEBUILD"), config.get(
-                    "iAnnotateSV", "DISTANCE"), config.get(
+                "iAnnotateSV", "GENOMEBUILD"), int(config.get(
+                    "iAnnotateSV", "DISTANCE")), config.get(
                         "iAnnotateSV", "CANONICALTRANSCRIPTFILE"), combinedTab, combinedAnnVCF, sampleOutdirForDelly)
         # convert vcf to targetseqviewformat
         combinedTargetSeqView = dvcf2tsv.Convert2targetSeqView(
-            args.patientID,
+            args.caseId,
             args.caseBam,
             args.caseBam,
             combinedVCF,
@@ -200,14 +208,14 @@ USAGE
                                                config.get("TargetSeqView", "CalculateConfidenceScore"), 
                                                5, args.caseBam, combinedTargetSeqView, 
                                                config.get("TargetSeqView", "GENOMEBUILD"), 
-                                               config.get("TargetSeqView", "ReadLength"), 
+                                               int(config.get("TargetSeqView", "ReadLength")), 
                                                sampleOutdirForDelly, combinedTargetSeqViewCscore)
         # Merge Results from vcf, tab and targetseqview
     else:
         if(verbose):
             logging.fatal(
                 "The output directory for the %s already exists. Please delete %s folder and rerun",
-                args.patientId,
+                args.caseId,
                 sampleOutdirForDelly)
             sys.exit(1)
 
