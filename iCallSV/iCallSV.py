@@ -26,6 +26,7 @@ import ConfigParser as configparser
 import logging
 import make_analysis_dir as mad
 import launch_Run_Delly as lrd
+import launch_FilterDellyCalls as lfd
 import dellyVcf2Tab as dvcf2tab
 import combineVCF as cvcf
 import Run_iAnnotateSV as annSV
