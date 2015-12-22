@@ -55,21 +55,21 @@ def Convert2targetSeqView(
         outputHandle.write(
             sampleName +
             "\t" +
-            chrom1 +
+            str(chrom1) +
             "\t" +
-            start1 +
+            str(start1) +
             "\t" +
-            start1 +
+            str(start1) +
             "\tFALSE\t" +
-            chrom2 +
+            str(chrom2) +
             "\t" +
-            start2 +
+            str(start2) +
             "\t" +
-            start2 +
+            str(start2) +
             "\tFALSE\tFailed PCR\t" +
-            sampleBamName +
+            str(sampleBamName) +
             "\t" +
-            sampleSplitBamName)
+            str(sampleSplitBamName))
     outputHandle.close()
     logging.info("Convert2targetSeqView: Finished conversion of Vcf file to targetSeqView file format.")
     logging.info("Convert2targetSeqView: Output can be found: %s", outputFile) 
