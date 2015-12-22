@@ -3,6 +3,7 @@ Created on November 19, 2015
 Description: This module will be launching delly using Run_Delly
 @author: Ronak H Shah
 '''
+from _mysql import result
 '''
 ::Inputs::
 args: Arguments passed to iCallSV
@@ -11,11 +12,33 @@ sampleOutdirForDelly: Output directory for delly vcf files.
 '''
 import logging
 import Run_Delly as rd
+import multiprocessing as mp
+
 
 
 def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly):
     verbose = args.verbose
+    pool = mp.Pool(processes=4)
+    analyisisType = ["DEL","DUP","INV","TRA"]
+     if(verbose):
+        logging.info("launch_Run_Delly: Launched Delly for Deletion, Duplication, Inversion and Translocation Events")
+    results = [pool.apply(rd.run, args=(
+        delly=config.get("SVcaller", "DELLY"),
+        analysisType=x,
+        reference=config.get("ReferenceFasta", "REFFASTA"),
+        controlBam=args.controlBam,
+        caseBam=args.caseBam,
+        caseId=args.caseId,
+        mapq=int(config.get("ParametersToRunDelly", "MAPQ")),
+        excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
+        outputdir=sampleOutdirForDelly,
+        verbose=verbose,
+        debug=False)) for x in analyisisType]
+    print(results)
+    del_vcf,dup_vcf,inv_vcf,tra_vcf = results
+    return(del_vcf, dup_vcf, inv_vcf, tra_vcf)
 
+'''
     # Run Delly for Deletion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Deletion Events")
@@ -85,7 +108,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
         debug=False)
 
     return(del_vcf, dup_vcf, inv_vcf, tra_vcf)
-'''
+
 # Run Delly for Insertion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Insertion Events")
