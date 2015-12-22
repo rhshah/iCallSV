@@ -49,8 +49,8 @@ def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, range):
                     if(((end <= int(bstart1 - range)) and (end >= int(bstart1 + range))) 
                         and ((start <= int(bstart2 - range)) and (start <= int(bstart2 + range)))):
                         blacklistTag=True
-        			else:
-        				blacklistTag=False
+                    else:
+                        blacklistTag=False
                 else:
                     continue
             else:
