@@ -211,7 +211,7 @@ USAGE
                 hasRecords = False
         #If there are VCF records do further analysis.        
         if(hasRecords):
-            combinedAnnVCF = args.caseId + "_allAnnotatedSVFiltered.tab"
+            combinedAnnTAB = args.caseId + "_allAnnotatedSVFiltered.tab"
             combinedTargetSeqView = args.caseId + "_allSVFiltered_tsvInput.txt"
             combinedTargetSeqViewCscore = args.caseId + "_allSVFiltered_cScore.txt"
             # convert vcf files to tab-delimited using vcf2tab
@@ -224,7 +224,7 @@ USAGE
                     "iAnnotateSV", "GENOMEBUILD"), int(config.get(
                         "iAnnotateSV", "DISTANCE")), config.get(
                             "iAnnotateSV", "CANONICALTRANSCRIPTFILE"), config.get(
-                            "iAnnotateSV", "UNIPROTFILE"), combinedTAB, combinedAnnVCF, sampleOutdirForDelly)
+                            "iAnnotateSV", "UNIPROTFILE"), combinedTAB, combinedAnnTAB, sampleOutdirForDelly)
             # convert vcf to targetseqviewformat
             combinedTargetSeqView = dvcf2tsv.Convert2targetSeqView(
                 args.caseId,
