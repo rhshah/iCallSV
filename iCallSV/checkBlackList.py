@@ -57,18 +57,20 @@ def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, range):
                 continue
 
     else:
-         for entries in blacklist:
-             (bchr1, bstart1, bchr2, bstart2)=entries.rstrip().split("\t")
-        		if(((chr1 == bchr1) and (chr2 == bchr2)) or ((chr1 == bchr2) and (chr2 == bchr1))):
-        			if(((start <= int(bstart1 - range)) and (start >= int(bstart1 + range))) and ((end <= int(bstart2 - range)) and (end <= int(bstart2 + range)))):
-        					blacklistTag=True
-        			else:
-        					blacklistTag=False
-        			if(((end <= int(bstart1 - range)) and (end >= int(bstart1 + range))) and ((start <= int(bstart2 - range)) and (start <= int(bstart2 + range)))):
-        					blacklistTag=True
-        			else:
-        					blacklistTag=False
+        for entries in blacklist:
+            (bchr1, bstart1, bchr2, bstart2)=entries.rstrip().split("\t")
+            if(((chr1 == bchr1) and (chr2 == bchr2)) or ((chr1 == bchr2) and (chr2 == bchr1))):
+                if(((start <= int(bstart1 - range)) and (start >= int(bstart1 + range))) 
+                   and ((end <= int(bstart2 - range)) and (end <= int(bstart2 + range)))):
+                    blacklistTag=True
                 else:
-                    continue
+                    blacklistTag=False
+                if(((end <= int(bstart1 - range)) and (end >= int(bstart1 + range))) 
+                   and ((start <= int(bstart2 - range)) and (start <= int(bstart2 + range)))):
+                    blacklistTag=True
+                else:
+                    blacklistTag=False
+            else:
+                continue
 
     return(blacklistTag)
