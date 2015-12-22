@@ -166,8 +166,8 @@ USAGE
     analysisType = ["DEL", "DUP", "INV", "TRA"]
     if(tag == False):
         for analysis in analysisType:
-            tag = analysis.lower()
-            outputVcf = outputdir + "/" + args.caseId + "_" + tag + ".vcf"
+            at = analysis.lower()
+            outputVcf = sampleOutdirForDelly + "/" + args.caseId + "_" + at + ".vcf"
             if(os.path.isfile(outputVcf)):
                 tag = True
                 runDellyTag = False
