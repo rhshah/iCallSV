@@ -228,8 +228,8 @@ USAGE
             # convert vcf to targetseqviewformat
             combinedTargetSeqView = dvcf2tsv.Convert2targetSeqView(
                 args.caseId,
-                args.caseBam,
-                args.caseBam,
+                os.path.basename(os.path.abspath(args.caseBam)),
+                os.path.basename(os.path.abspath(args.caseBam)),
                 combinedVCF,
                 sampleOutdirForDelly,
                 combinedTargetSeqView)
