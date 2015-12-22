@@ -23,7 +23,7 @@ from subprocess import Popen
 import time
 from datetime import date, timedelta
 import checkparameters as cp
-
+import logging
 
 def run(
         RLocation,
