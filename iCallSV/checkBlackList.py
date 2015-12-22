@@ -68,6 +68,6 @@ def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, range):
         			else:
         					blacklistTag=False
                 else:
-                        continue
+                    continue
 
     return(blacklistTag)
