@@ -163,7 +163,7 @@ USAGE
     (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir")
     runDellyTag = True
     analysisFiles = []
-    analyisisType = ["DEL", "DUP", "INV", "TRA"]
+    analysisType = ["DEL", "DUP", "INV", "TRA"]
     if(tag == False):
         for analysis in analysisType:
             tag = analysis.lower()
