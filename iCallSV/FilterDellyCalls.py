@@ -130,8 +130,8 @@ def run(
 
     hotspotDict = chl.ReadHotSpotFile(hotspotFile)
     blacklist = cbl.ReadBlackListFile(blacklistFile)
+    outputVcf = os.path.split(os.path.basename(inputVcf)[0] + "_filtered.vcf"
     vcf_reader = vcf.Reader(open(inputVcf, 'r'))
-    outputVcf = os.path.split(os.path.basename(inputVcf))[0] + "_filtered.vcf"
     outputFile = outputDir + "/" + outputVcf
     vcf_writer = vcf.Writer(open(outputFile, 'w'), vcf_reader)
     samples = vcf_reader.samples
@@ -336,27 +336,26 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     return(filterFlag)
 
 
-# # Test the module
-# run(
-#     inputVcf="/dmp/hot/shahr2/IMPACT/Test/SVtest/35462375-T_bc44_jmp.vcf",
-#     outputVcf="35462375-T_bc44_jmp.stdfilter.vcf",
-#     outputDir="/dmp/hot/shahr2/IMPACT/Test/SVtest/",
-#     controlId="35462375-N",
-#     caseID="35462375-T",
-#     hotspotFile="/home/shahr2/workspace/dmp-data/mskdata/interval-lists/structuralvariants_geneInterval.txt",
-#     blacklistFile = ""
-#     svlength=500,
-#     mapq=20,
-#     mapqHotspot=5,
-#     peSupport=5,
-#     srSupport=0,
-#     peSupportHotspot=3,
-#     srSupportHotspot=0,
-#     peSupportCase=2,
-#     srSupportCase=0,
-#     peSupportHotspotCase=1,
-#     srSupportHotspotCase=0,
-#     peSupportControl=5,
-#     srSupportControl=5,
-#     peSupportHotspotControl=5,
-#     srSupportHotspotControl=5)
+# Test the module
+run(
+    inputVcf="/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/s-EV-crc-001-M2_tra.vcf",
+    outputDir="/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/",
+    controlId="s-EV-crc-001-N2",
+    caseID="s-EV-crc-001-M2",
+    hotspotFile="/ifs/depot/resources/dmp/data/mskdata/interval-lists/VERSIONS/cv5/structuralvariants_geneInterval.txt",
+    blacklistFile = "/home/shahr2/git/iCallSV/iCallSV/data/blacklist.txt"
+    svlength=500,
+    mapq=20,
+    mapqHotspot=5,
+    peSupport=5,
+    srSupport=0,
+    peSupportHotspot=3,
+    srSupportHotspot=0,
+    peSupportCase=2,
+    srSupportCase=0,
+    peSupportHotspotCase=1,
+    srSupportHotspotCase=0,
+    peSupportControl=5,
+    srSupportControl=5,
+    peSupportHotspotControl=5,
+    srSupportHotspotControl=5)
