@@ -41,11 +41,13 @@ def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, range):
         		(bchr1, bstart1, bchr2, bstart2) = entries.rstrip().split("\t")
         		if(bchr1 == bchr2):
         			if(chr1 == bchr1):
-        				if(((start <= int(bstart1 - range)) and (start >= int(bstart1 + range))) and ((end <= int(bstart2 - range)) and (end <= int(bstart2 + range)))):
+        				if(((start <= int(bstart1 - range)) and (start >= int(bstart1 + range))) 
+                           and ((end <= int(bstart2 - range)) and (end <= int(bstart2 + range)))):
         					blacklistTag=True
         				else:
         					blacklistTag=False
-        				if(((end <= int(bstart1 - range)) and (end >= int(bstart1 + range))) and ((start <= int(bstart2 - range)) and (start <= int(bstart2 + range)))):
+        				if(((end <= int(bstart1 - range)) and (end >= int(bstart1 + range))) 
+                           and ((start <= int(bstart2 - range)) and (start <= int(bstart2 + range)))):
         					blacklistTag=True
         				else:
         					blacklistTag=False
