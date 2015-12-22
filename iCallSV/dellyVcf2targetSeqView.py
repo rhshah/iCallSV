@@ -69,7 +69,7 @@ def Convert2targetSeqView(
             "\tFALSE\tFailed PCR\t" +
             str(sampleBamName) +
             "\t" +
-            str(sampleSplitBamName))
+            str(sampleSplitBamName)) + "\n"
     outputHandle.close()
     logging.info("Convert2targetSeqView: Finished conversion of Vcf file to targetSeqView file format.")
     logging.info("Convert2targetSeqView: Output can be found: %s", outputFile) 
