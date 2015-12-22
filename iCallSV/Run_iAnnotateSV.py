@@ -50,7 +50,7 @@ def run(
     logging.info("Run_iAnnotateSV: ProcessID:%s, Date:%s", myPid, today)
     outputFile = outputTabFile
     cmd = python + " " + iAnnotateSV + " -r " + build + " -i " + inputTabFile + \
-        " -o " + outputDir + " -of " + outputFile + " -d " + str(distance) + " -c " + canonicalTranscriptFile + " -p True" + " -u " + uniprotFile 
+        " -o " + outputDir + " -of " + outputFile + " -d " + str(distance) + " -c " + canonicalTranscriptFile + " -p " + " -u " + uniprotFile 
     args = shlex.split(cmd)
     logging.info("Run_iAnnotateSV: Command that will be run: %s", cmd)
     # Remove if the file exists
