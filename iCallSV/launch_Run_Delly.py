@@ -20,7 +20,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
     verbose = args.verbose
     pool = mp.Pool(processes=4)
     analyisisType = ["DEL","DUP","INV","TRA"]
-     if(verbose):
+    if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Deletion, Duplication, Inversion and Translocation Events")
     results = [pool.apply(rd.run, args=(
         delly=config.get("SVcaller", "DELLY"),
