@@ -18,7 +18,7 @@ import re
 
 # Read the hotspot file and make a dictionary of it
 def ReadBlackListFile(BlackListFile):
-    blacklist = ()
+    blacklist = []
     if os.path.isfile(BlackListFile):
         with open(BlackListFile, 'r') as filecontent:
             for line in filecontent:

@@ -17,19 +17,52 @@ ins_vcf: Path to insertion based vcf file
 import os
 import logging
 import FilterDellyCalls as fdc
+import multiprocessing as mp
 
 
 def launch_filterdellycalls_for_different_analysis_type(
-    args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):
+        args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):
     verbose = args.verbose
+    fileType = [del_vcf, dup_vcf, inv_vcf, tra_vcf]
+    pool = mp.Pool(processes=4)
+    if(verbose):
+        logging.info(
+            "launch_FilterDellyCalls: Launched FilterDellyCalls for Deletion, Duplication, Inversion and Translocation Events")
+    results = [pool.apply_async(fdc.run, args=(
+        x,
+        sampleOutdirForDelly,
+        args.controlId,
+        args.caseId,
+        config.get("HotSpotRegions", "HotspotFile"),
+        config.get("BlackListRegions", "BlackListFile"),
+        int(config.get("ParametersToFilterDellyResults", "LengthOfSV")),
+        int(config.get("ParametersToFilterDellyResults", "OverallMapq")),
+        int(config.get("ParametersToFilterDellyResults", "OverallMapqHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "CaseSupportingSplitReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingReads")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReads")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
+        verbose)) for x in fileType]
+    output = [p.get() for p in results]
+    filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf = output
+    return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)
 
+    '''
     # Run Delly for Deletion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Deletion Events")
     filter_del_vcf = os.path.split(os.path.basename(del_vcf))[0] + "_filtered.vcf"
+    filter_dup_vcf = os.path.split(os.path.basename(dup_vcf))[0] + "_filtered.vcf"
     filter_del_vcf = fdc.run(
         del_vcf,
-        filter_del_vcf,
         sampleOutdirForDelly,
         args.controlId,
         args.caseId,
@@ -56,9 +89,8 @@ def launch_filterdellycalls_for_different_analysis_type(
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Duplication Events")
     filter_dup_vcf = os.path.split(os.path.basename(dup_vcf))[0] + "_filtered.vcf"
-    filter_del_vcf = fdc.run(
+    filter_dup_vcf = fdc.run(
         dup_vcf,
-        filter_dup_vcf,
         sampleOutdirForDelly,
         args.controlId,
         args.caseId,
@@ -87,7 +119,6 @@ def launch_filterdellycalls_for_different_analysis_type(
     filter_inv_vcf = os.path.split(os.path.basename(inv_vcf))[0] + "_filtered.vcf"
     filter_inv_vcf = fdc.run(
         inv_vcf,
-        filter_inv_vcf,
         sampleOutdirForDelly,
         args.controlId,
         args.caseId,
@@ -116,7 +147,6 @@ def launch_filterdellycalls_for_different_analysis_type(
     filter_tra_vcf=os.path.split(os.path.basename(tra_vcf))[0] + "_filtered.vcf"
     filter_tra_vcf=fdc.run(
         tra_vcf,
-        filter_tra_vcf,
         sampleOutdirForDelly,
         args.controlId,
         args.caseId,
@@ -140,14 +170,13 @@ def launch_filterdellycalls_for_different_analysis_type(
         verbose)
 
     return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)
-'''
+
 # Run Delly for Insertion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Insertion Events")
     filter_ins_vcf = os.path.split(os.path.basename(tra_vcf))[0] + "_filtered.vcf"
     ins_vcf = fdc.run(
-        del_vcf,
-        filter_ins_vcf,
+        ins_vcf,
         sampleOutdirForDelly,
         args.controlId,
         args.caseId,

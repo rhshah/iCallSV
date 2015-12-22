@@ -6,7 +6,6 @@ Description: This module will filter calls made by Delly which are in a VCF form
 '''
 ::Inputs::
 inputVcf: Input VCF file name with path
-outputVcf: Output VCF file name.
 outputDir: Output directory
 controlId: Control Sample ID (Should be part of Sample Name in VCF)
 caseID: Case Sample ID (Should be part of Sample Name in VCF)
@@ -43,7 +42,6 @@ import logging
 
 def run(
         inputVcf,
-        outputVcf,
         outputDir,
         controlId,
         caseID,
@@ -133,6 +131,7 @@ def run(
     hotspotDict = chl.ReadHotSpotFile(hotspotFile)
     blacklist = cbl.ReadBlackListFile(blacklistFile)
     vcf_reader = vcf.Reader(open(inputVcf, 'r'))
+    outputVcf = os.path.split(os.path.basename(del_vcf))[0] + "_filtered.vcf"
     outputFile = outputDir + "/" + outputVcf
     vcf_writer = vcf.Writer(open(outputFile, 'w'), vcf_reader)
     samples = vcf_reader.samples

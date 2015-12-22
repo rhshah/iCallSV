@@ -33,7 +33,6 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
         sampleOutdirForDelly,
         verbose,
         False)) for x in analyisisType]
-    print(results)
     output = [p.get() for p in results]
     del_vcf, dup_vcf, inv_vcf, tra_vcf = output
     return(del_vcf, dup_vcf, inv_vcf, tra_vcf)
