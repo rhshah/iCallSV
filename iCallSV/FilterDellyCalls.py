@@ -359,4 +359,4 @@ run(
     srSupportControl=5,
     peSupportHotspotControl=5,
     srSupportHotspotControl=5,
-    True)
+    verbose=True)
