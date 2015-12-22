@@ -186,10 +186,9 @@ USAGE
         with open(combinedVCF, 'r') as filecontent:
             if any(not line.startswith("#") for line in filecontent):
                 hasRecords = True
-                continue
             else:
                 hasRecords = False
-                
+        #If there are VCF records do further analysis.        
         if(hasRecords):
             combinedAnnVCF = args.caseId + "_allAnnotatedSVFiltered.tab"
             combinedTargetSeqView = args.caseId + "_allSVFiltered_tsvInput.txt"
