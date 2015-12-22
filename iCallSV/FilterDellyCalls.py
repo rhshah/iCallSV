@@ -338,27 +338,27 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     return(filterFlag)
 
 
-# Test the module
-run(
-    inputVcf="/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/s-EV-crc-001-M2_del.vcf",
-    outputDir="/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/",
-    controlId="s-EV-crc-001-N2",
-    caseID="s-EV-crc-001-M2",
-    hotspotFile="/ifs/depot/resources/dmp/data/mskdata/interval-lists/VERSIONS/cv5/structuralvariants_geneInterval.txt",
-    blacklistFile = "/home/shahr2/git/iCallSV/iCallSV/data/blacklist.txt",
-    svlength=500,
-    mapq=20,
-    mapqHotspot=5,
-    peSupport=5,
-    srSupport=0,
-    peSupportHotspot=3,
-    srSupportHotspot=0,
-    peSupportCase=1,
-    srSupportCase=0,
-    peSupportHotspotCase=0,
-    srSupportHotspotCase=0,
-    peSupportControl=5,
-    srSupportControl=5,
-    peSupportHotspotControl=5,
-    srSupportHotspotControl=5,
-    verbose=True)
+# # Test the module
+# run(
+#     inputVcf="/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/s-EV-crc-001-M2_del.vcf",
+#     outputDir="/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/",
+#     controlId="s-EV-crc-001-N2",
+#     caseID="s-EV-crc-001-M2",
+#     hotspotFile="/ifs/depot/resources/dmp/data/mskdata/interval-lists/VERSIONS/cv5/structuralvariants_geneInterval.txt",
+#     blacklistFile = "/home/shahr2/git/iCallSV/iCallSV/data/blacklist.txt",
+#     svlength=500,
+#     mapq=20,
+#     mapqHotspot=5,
+#     peSupport=5,
+#     srSupport=0,
+#     peSupportHotspot=3,
+#     srSupportHotspot=0,
+#     peSupportCase=1,
+#     srSupportCase=0,
+#     peSupportHotspotCase=0,
+#     srSupportHotspotCase=0,
+#     peSupportControl=5,
+#     srSupportControl=5,
+#     peSupportHotspotControl=5,
+#     srSupportHotspotControl=5,
+#     verbose=True)
