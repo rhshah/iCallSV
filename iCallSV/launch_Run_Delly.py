@@ -15,27 +15,27 @@ import Run_Delly as rd
 import multiprocessing as mp
 
 
-
 def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly):
     verbose = args.verbose
     pool = mp.Pool(processes=4)
-    analyisisType = ["DEL","DUP","INV","TRA"]
+    analyisisType = ["DEL", "DUP", "INV", "TRA"]
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Deletion, Duplication, Inversion and Translocation Events")
+        logging.info(
+            "launch_Run_Delly: Launched Delly for Deletion, Duplication, Inversion and Translocation Events")
     results = [pool.apply(rd.run, args=(
-        delly=config.get("SVcaller", "DELLY"),
-        analysisType=x,
-        reference=config.get("ReferenceFasta", "REFFASTA"),
-        controlBam=args.controlBam,
-        caseBam=args.caseBam,
-        caseId=args.caseId,
-        mapq=int(config.get("ParametersToRunDelly", "MAPQ")),
-        excludeRegions=config.get("ExcludeRegion", "EXREGIONS"),
-        outputdir=sampleOutdirForDelly,
-        verbose=verbose,
-        debug=False)) for x in analyisisType]
+        config.get("SVcaller", "DELLY"),
+        x,
+        config.get("ReferenceFasta", "REFFASTA"),
+        args.controlBam,
+        args.caseBam,
+        args.caseId,
+        int(config.get("ParametersToRunDelly", "MAPQ")),
+        config.get("ExcludeRegion", "EXREGIONS"),
+        sampleOutdirForDelly,
+        verbose,
+        False)) for x in analyisisType]
     print(results)
-    del_vcf,dup_vcf,inv_vcf,tra_vcf = results
+    del_vcf, dup_vcf, inv_vcf, tra_vcf = results
     return(del_vcf, dup_vcf, inv_vcf, tra_vcf)
 
 '''
