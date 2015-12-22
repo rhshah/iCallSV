@@ -26,6 +26,7 @@ from argparse import RawDescriptionHelpFormatter
 import ConfigParser as configparser
 import logging
 import make_analysis_dir as mad
+import checkparameters as cp
 import launch_Run_Delly as lrd
 import launch_FilterDellyCalls as lfd
 import dellyVcf2Tab as dvcf2tab
@@ -160,6 +161,19 @@ USAGE
     config = configparser.ConfigParser(defaults={'here': here})
     config.read(args.config_file)
     (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir")
+    runDellyTag = True
+    analysisFiles = []
+    if(tag = False):
+        analyisisType = ["DEL", "DUP", "INV", "TRA"]
+        for analysis in analysisType:
+            tag = analysis.lower()
+            outputVcf = outputdir + "/" + args.caseId + "_" + tag + ".vcf"
+            if(os.path.isfile(outputVcf)):
+                tag = True
+                runDellyTag = False
+                analysisFiles.append(outputVcf)
+            else:
+                tag = False
     # Decide based on tag what to do
     if(tag):
         if(verbose):
@@ -168,8 +182,11 @@ USAGE
                 args.caseId,
                 sampleOutdirForDelly)
         # Run Delly and get the raw calls
-        (del_vcf, dup_vcf, inv_vcf, tra_vcf) = lrd.launch_delly_for_different_analysis_type(
-            args, config, sampleOutdirForDelly)
+        if(runDellyTag):
+            (del_vcf, dup_vcf, inv_vcf, tra_vcf) = lrd.launch_delly_for_different_analysis_type(
+                args, config, sampleOutdirForDelly)
+        else:
+            del_vcf, dup_vcf, inv_vcf, tra_vcf = analysisFiles
         # Run Filter Delly and get filtered calls
         (filter_del_vcf,
          filter_dup_vcf,
