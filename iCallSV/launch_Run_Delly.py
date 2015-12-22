@@ -3,7 +3,6 @@ Created on November 19, 2015
 Description: This module will be launching delly using Run_Delly
 @author: Ronak H Shah
 '''
-from _mysql import result
 '''
 ::Inputs::
 args: Arguments passed to iCallSV
