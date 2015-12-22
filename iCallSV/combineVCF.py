@@ -11,13 +11,12 @@ mergedVCF: Name of the combined vcf to output
 ::Output::
 It is a merged vcf file 
 '''
-import sys
 import vcf
 import logging
 
 def run(vcfFiles,combinedVCF,verbose):
 	vcf_header = vcf.Reader(filename=vcfFiles[1])
-	vcf_output = vcf.Writer(combinedVCF,vcf_header)
+	vcf_output = vcf.Writer(open(combinedVCF,'w'),vcf_header)
 	for vcffile in vcfFiles:
 		vcf_reader = vcf.Reader(open(vcffile, 'r'))
 		for each in vcf_reader:

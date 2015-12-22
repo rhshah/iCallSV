@@ -14,6 +14,7 @@ It defines classes_and_methods
 @license:    Apache License 2.0
 
 @contact:    rons.shah@gmail.com
+
 @deffield    updated: Updated
 '''
 
@@ -32,6 +33,7 @@ import combineVCF as cvcf
 import Run_iAnnotateSV as annSV
 import dellyVcf2targetSeqView as dvcf2tsv
 import Run_targetSeqView as rtsv
+
 
 __all__ = []
 __version__ = 0.1
@@ -184,6 +186,7 @@ USAGE
         combinedVCF = sampleOutdirForDelly + "/" + args.caseId + "_allSVFiltered.vcf"
         combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose)
         #Check if VCF file is empty
+        hasRecords = False
         with open(combinedVCF, 'r') as filecontent:
             if any(not line.startswith("#") for line in filecontent):
                 hasRecords = True
