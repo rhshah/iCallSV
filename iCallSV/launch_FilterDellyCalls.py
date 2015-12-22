@@ -86,7 +86,7 @@ def launch_filterdellycalls_for_different_analysis_type(
         logging.info("launch_Run_Delly: Launched Delly for Inversion Events")
     filter_inv_vcf = os.path.split(os.path.basename(inv_vcf))[0] + "_filtered.vcf"
     filter_inv_vcf = fdc.run(
-        inv_vcf
+        inv_vcf,
         filter_inv_vcf,
         sampleOutdirForDelly,
         args.controlId,
@@ -116,7 +116,7 @@ def launch_filterdellycalls_for_different_analysis_type(
         logging.info("launch_Run_Delly: Launched Delly for Translocation Envents")
     filter_tra_vcf=os.path.split(os.path.basename(tra_vcf))[0] + "_filtered.vcf"
     filter_tra_vcf=fdc.run(
-        tra_vcf
+        tra_vcf,
         filter_tra_vcf,
         sampleOutdirForDelly,
         args.controlId,
