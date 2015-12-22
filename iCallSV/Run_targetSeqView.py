@@ -56,7 +56,7 @@ def run(
     cmd = RLocation + " --slave --vanilla --args " + str(nodes) + " " + bamFilePath + " " + svFile + " " + build + " " + str(
         readLength) + " " + outputDir + " " + outsvFileName + " < " + targetSeqView + " > " + stdoutFile + " 2> " + stderrFile
     logging.info("Run_targetSeqView: Command that will be run %s", cmd)
-    # Reomove if the file exists
+    # Remove if the file exists
     if(os.path.isfile(outputFile)):
         os.remove(outputFile)
     proc = Popen(cmd, shell=True)
