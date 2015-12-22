@@ -109,7 +109,6 @@ def launch_filterdellycalls_for_different_analysis_type(
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
         verbose)
-        debug = False)
 
 # Run Delly for Translocation
     if(verbose):
