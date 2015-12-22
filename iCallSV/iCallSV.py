@@ -236,7 +236,7 @@ USAGE
             # Get Confidence score using targetSeqView
             combinedTargetSeqViewCscore = rtsv.run(config.get("R", "RHOME"),
                                                    config.get("TargetSeqView", "CalculateConfidenceScore"),
-                                                   5, os.path.basename(args.caseBam), combinedTargetSeqView,
+                                                   5, os.path.dirname(os.path.abspath(args.caseBam)), combinedTargetSeqView,
                                                    config.get("TargetSeqView", "GENOMEBUILD"),
                                                    int(config.get("TargetSeqView", "ReadLength")),
                                                    sampleOutdirForDelly, combinedTargetSeqViewCscore)
