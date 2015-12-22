@@ -182,6 +182,7 @@ USAGE
         # Combine all VCF to a single VCF file
         listOfFilteredVCFfiles = [filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf]
         combinedVCF = sampleOutdirForDelly + "/" + args.caseId + "_allSVFiltered.vcf"
+        combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose)
         #Check if VCF file is empty
         with open(combinedVCF, 'r') as filecontent:
             if any(not line.startswith("#") for line in filecontent):
@@ -193,7 +194,6 @@ USAGE
             combinedAnnVCF = args.caseId + "_allAnnotatedSVFiltered.tab"
             combinedTargetSeqView = args.caseId + "_allSVFiltered_tsvInput.txt"
             combinedTargetSeqViewCscore = args.caseId + "_allSVFiltered_cScore.txt"
-            combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose)
             # convert vcf files to tab-delimited using vcf2tab
             combinedTAB = dvcf2tab.vcf2tab(combinedVCF, sampleOutdirForDelly, verbose)
             # Annotate using iAnnotateSV
