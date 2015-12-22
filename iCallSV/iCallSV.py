@@ -182,36 +182,49 @@ USAGE
         # Combine all VCF to a single VCF file
         listOfFilteredVCFfiles = [filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf]
         combinedVCF = sampleOutdirForDelly + "/" + args.caseId + "_allSVFiltered.vcf"
-        combinedAnnVCF = args.caseId + "_allAnnotatedSVFiltered.tab"
-        combinedTargetSeqView = args.caseId + "_allSVFiltered_tsvInput.txt"
-        combinedTargetSeqViewCscore = args.caseId + "_allSVFiltered_cScore.txt"
-        combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose)
-        # convert vcf files to tab-delimited using vcf2tab
-        combinedTAB = dvcf2tab.vcf2tab(combinedVCF, sampleOutdirForDelly, verbose)
-        # Annotate using iAnnotateSV
-        combinedAnnTAB = annSV.run(
-            config.get(
-                "Python", "PYTHON"), config.get(
-                "iAnnotateSV", "ANNOSV"), config.get(
-                "iAnnotateSV", "GENOMEBUILD"), int(config.get(
-                    "iAnnotateSV", "DISTANCE")), config.get(
-                        "iAnnotateSV", "CANONICALTRANSCRIPTFILE"), combinedTab, combinedAnnVCF, sampleOutdirForDelly)
-        # convert vcf to targetseqviewformat
-        combinedTargetSeqView = dvcf2tsv.Convert2targetSeqView(
-            args.caseId,
-            args.caseBam,
-            args.caseBam,
-            combinedVCF,
-            sampleOutdirForDelly,
-            combinedTargetSeqView)
-        # Get Confidence score using targetSeqView
-        combinedTargetSeqViewCscore = rtsv.run(config.get("R", "RHOME"),
-                                               config.get("TargetSeqView", "CalculateConfidenceScore"),
-                                               5, args.caseBam, combinedTargetSeqView,
-                                               config.get("TargetSeqView", "GENOMEBUILD"),
-                                               int(config.get("TargetSeqView", "ReadLength")),
-                                               sampleOutdirForDelly, combinedTargetSeqViewCscore)
-        # Merge Results from vcf, tab and targetseqview
+        #Check if VCF file is empty
+        with open(combinedVCF, 'r') as filecontent:
+            if any(not line.startswith("#") for line in filecontent):
+                hasRecords = True
+                break
+            else:
+                hasRecords = False
+                break
+        if(hasRecords):
+            combinedAnnVCF = args.caseId + "_allAnnotatedSVFiltered.tab"
+            combinedTargetSeqView = args.caseId + "_allSVFiltered_tsvInput.txt"
+            combinedTargetSeqViewCscore = args.caseId + "_allSVFiltered_cScore.txt"
+            combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose)
+            # convert vcf files to tab-delimited using vcf2tab
+            combinedTAB = dvcf2tab.vcf2tab(combinedVCF, sampleOutdirForDelly, verbose)
+            # Annotate using iAnnotateSV
+            combinedAnnTAB = annSV.run(
+                config.get(
+                    "Python", "PYTHON"), config.get(
+                    "iAnnotateSV", "ANNOSV"), config.get(
+                    "iAnnotateSV", "GENOMEBUILD"), int(config.get(
+                        "iAnnotateSV", "DISTANCE")), config.get(
+                            "iAnnotateSV", "CANONICALTRANSCRIPTFILE"), combinedTab, combinedAnnVCF, sampleOutdirForDelly)
+            # convert vcf to targetseqviewformat
+            combinedTargetSeqView = dvcf2tsv.Convert2targetSeqView(
+                args.caseId,
+                args.caseBam,
+                args.caseBam,
+                combinedVCF,
+                sampleOutdirForDelly,
+                combinedTargetSeqView)
+            # Get Confidence score using targetSeqView
+            combinedTargetSeqViewCscore = rtsv.run(config.get("R", "RHOME"),
+                                                   config.get("TargetSeqView", "CalculateConfidenceScore"),
+                                                   5, args.caseBam, combinedTargetSeqView,
+                                                   config.get("TargetSeqView", "GENOMEBUILD"),
+                                                   int(config.get("TargetSeqView", "ReadLength")),
+                                                   sampleOutdirForDelly, combinedTargetSeqViewCscore)
+            # Merge Results from vcf, tab and targetseqview
+        else:
+            logging.warn("All Records have been filtered in standard filtered step. Thus we will exit the program and not proceed.")
+            logging.info("Thank you for using iCallSV.")
+            sys.exit(0)
     else:
         if(verbose):
             logging.fatal(
