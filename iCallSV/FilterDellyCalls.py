@@ -343,7 +343,7 @@ run(
     controlId="s-EV-crc-001-N2",
     caseID="s-EV-crc-001-M2",
     hotspotFile="/ifs/depot/resources/dmp/data/mskdata/interval-lists/VERSIONS/cv5/structuralvariants_geneInterval.txt",
-    blacklistFile = "/home/shahr2/git/iCallSV/iCallSV/data/blacklist.txt"
+    blacklistFile = "/home/shahr2/git/iCallSV/iCallSV/data/blacklist.txt",
     svlength=500,
     mapq=20,
     mapqHotspot=5,
