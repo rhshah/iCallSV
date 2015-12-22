@@ -163,8 +163,8 @@ USAGE
     (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir")
     runDellyTag = True
     analysisFiles = []
+    analyisisType = ["DEL", "DUP", "INV", "TRA"]
     if(tag == False):
-        analyisisType = ["DEL", "DUP", "INV", "TRA"]
         for analysis in analysisType:
             tag = analysis.lower()
             outputVcf = outputdir + "/" + args.caseId + "_" + tag + ".vcf"
