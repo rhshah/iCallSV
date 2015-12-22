@@ -46,9 +46,9 @@ def run(
     day = date.today()
     today = day.isoformat()
     logging.info("Run_iAnnotateSV: ProcessID:%s, Date:%s", myPid, today)
-    outputFile = outputDir + "/" + outputTabFile
+    outputFile = outputTabFile
     cmd = python + " " + iAnnotateSV + " -r " + build + " -i " + inputTabFile + \
-        " -o " + outputFile + " -d " + str(distance) + " -c " + canonicalTranscriptFile
+        " -o " + outputDir + " -of " + outputFile + " -d " + str(distance) + " -c " + canonicalTranscriptFile
     args = shlex.split(cmd)
     logging.info("Run_iAnnotateSV: Command that will be run: %s", cmd)
     # Remove if the file exists
