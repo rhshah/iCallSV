@@ -223,7 +223,8 @@ USAGE
                     "iAnnotateSV", "ANNOSV"), config.get(
                     "iAnnotateSV", "GENOMEBUILD"), int(config.get(
                         "iAnnotateSV", "DISTANCE")), config.get(
-                            "iAnnotateSV", "CANONICALTRANSCRIPTFILE"), combinedTAB, combinedAnnVCF, sampleOutdirForDelly)
+                            "iAnnotateSV", "CANONICALTRANSCRIPTFILE"), config.get(
+                            "iAnnotateSV", "UNIPORTFILE"), combinedTAB, combinedAnnVCF, sampleOutdirForDelly)
             # convert vcf to targetseqviewformat
             combinedTargetSeqView = dvcf2tsv.Convert2targetSeqView(
                 args.caseId,

@@ -30,6 +30,7 @@ def run(
         build,
         distance,
         canonicalTranscriptFile,
+        uniprotFile,
         inputTabFile,
         outputTabFile,
         outputDir):
@@ -41,6 +42,7 @@ def run(
     cp.checkInt(distance, "Distance for extending the promoter region")
     cp.checkEmpty(build, "Which human reference file to be used, hg18,hg19 or hg38")
     cp.checkFile(canonicalTranscriptFile)
+    cp.checkFile(uniprotFile)
     logging.info("Run_iAnnotateSV: All input parameters look good. Lets run the package.")
     myPid = os.getpid()
     day = date.today()
@@ -48,7 +50,7 @@ def run(
     logging.info("Run_iAnnotateSV: ProcessID:%s, Date:%s", myPid, today)
     outputFile = outputTabFile
     cmd = python + " " + iAnnotateSV + " -r " + build + " -i " + inputTabFile + \
-        " -o " + outputDir + " -of " + outputFile + " -d " + str(distance) + " -c " + canonicalTranscriptFile
+        " -o " + outputDir + " -of " + outputFile + " -d " + str(distance) + " -c " + canonicalTranscriptFile + " -p True" + " -u " + uniprotFile 
     args = shlex.split(cmd)
     logging.info("Run_iAnnotateSV: Command that will be run: %s", cmd)
     # Remove if the file exists
