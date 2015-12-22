@@ -21,7 +21,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
     if(verbose):
         logging.info(
             "launch_Run_Delly: Launched Delly for Deletion, Duplication, Inversion and Translocation Events")
-    results = [pool.apply(rd.run, args=(
+    results = [pool.apply_async(rd.run, args=(
         config.get("SVcaller", "DELLY"),
         x,
         config.get("ReferenceFasta", "REFFASTA"),
@@ -34,7 +34,8 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
         verbose,
         False)) for x in analyisisType]
     print(results)
-    del_vcf, dup_vcf, inv_vcf, tra_vcf = results
+    output = [p.get() for p in results]
+    del_vcf, dup_vcf, inv_vcf, tra_vcf = output
     return(del_vcf, dup_vcf, inv_vcf, tra_vcf)
 
 '''
