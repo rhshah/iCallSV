@@ -14,7 +14,7 @@ calculateConfidenceScore<-function(nodes,bamFilePath,svFile,build,readLength,out
 	mmRate(candidateSVs) <- precomputedTargetCapture100bpMMRate()
 	indelRate(candidateSVs) <- precomputedTargetCapture100bpIndelRate()
 	print("Finished Making the candidates object. Will Now Score all Events.")
-	candidateSVs <- fullScoreAndView(candidateSVs, findSplitReads = TRUE)
+	candidateSVs <- fullScoreAndView(candidateSVs, verbose = TRUE, findSplitReads = TRUE)
 	print ("Completed Scoring All Events.")
 	svScore=candidateSVs@fullScore
 	numberOfEvents = length(svScore)
