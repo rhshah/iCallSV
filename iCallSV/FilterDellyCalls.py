@@ -131,7 +131,7 @@ def run(
     hotspotDict = chl.ReadHotSpotFile(hotspotFile)
     blacklist = cbl.ReadBlackListFile(blacklistFile)
     vcf_reader = vcf.Reader(open(inputVcf, 'r'))
-    outputVcf = os.path.split(os.path.basename(del_vcf))[0] + "_filtered.vcf"
+    outputVcf = os.path.split(os.path.basename(inputVcf))[0] + "_filtered.vcf"
     outputFile = outputDir + "/" + outputVcf
     vcf_writer = vcf.Writer(open(outputFile, 'w'), vcf_reader)
     samples = vcf_reader.samples
