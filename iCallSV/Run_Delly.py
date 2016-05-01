@@ -18,7 +18,7 @@ excludeRegions: Regions to be excluded for calling structural variation.
 outputdir: directory for the output of delly
 debug: If you just wish to test what we will do
 ::Output::
-BCF file having all the structural variants called
+VCF file having all the structural variants called
 '''
 import os
 import sys
