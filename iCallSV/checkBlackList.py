@@ -10,10 +10,9 @@ chr1: Chromosome location for 1st breakpoint
 start1: Start location of the 1st breakpoint
 chr2: Chromosome location for 2nd breakpoint
 start2: Start Location of the second breakpoint
-
+extention: How much should the intervals be extended in positive and negative directions
 '''
 import os
-import re
 
 
 # Read the hotspot file and make a dictionary of it
@@ -28,7 +27,7 @@ def ReadBlackListFile(BlackListFile):
 
 
 # Read the hotspot dictionary and tell if the event occurs in blacklist or not
-def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, range):
+def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, extention):
     blacklistTag = None
     chr1 = str(chr1)
     chr2 = str(chr2)
@@ -43,13 +42,13 @@ def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, range):
             bstart2 = int(bstart2)
             if(bchr1 == bchr2):
                 if(chr1 == bchr1):
-                    if(((start <= int(bstart1 - range)) and (start >= int(bstart1 + range))) 
-                       and ((end <= int(bstart2 - range)) and (end <= int(bstart2 + range)))):
+                    if(((start <= int(bstart1 - extention)) and (start >= int(bstart1 + extention))) 
+                       and ((end <= int(bstart2 - extention)) and (end <= int(bstart2 + extention)))):
                         blacklistTag=True
                     else:
                         blacklistTag=False
-                    if(((end <= int(bstart1 - range)) and (end >= int(bstart1 + range))) 
-                        and ((start <= int(bstart2 - range)) and (start <= int(bstart2 + range)))):
+                    if(((end <= int(bstart1 - extention)) and (end >= int(bstart1 + extention))) 
+                        and ((start <= int(bstart2 - extention)) and (start <= int(bstart2 + extention)))):
                         blacklistTag=True
                     else:
                         blacklistTag=False
@@ -64,13 +63,13 @@ def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, range):
             bstart1 = int(bstart1)
             bstart2 = int(bstart2)
             if(((chr1 == bchr1) and (chr2 == bchr2)) or ((chr1 == bchr2) and (chr2 == bchr1))):
-                if(((start1 <= int(bstart1 - range)) and (start1 >= int(bstart1 + range))) 
-                   and ((start2 <= int(bstart2 - range)) and (start2 <= int(bstart2 + range)))):
+                if(((start1 <= int(bstart1 - extention)) and (start1 >= int(bstart1 + extention))) 
+                   and ((start2 <= int(bstart2 - extention)) and (start2 <= int(bstart2 + extention)))):
                     blacklistTag=True
                 else:
                     blacklistTag=False
-                if(((start2 <= int(bstart1 - range)) and (start2 >= int(bstart1 + range))) 
-                   and ((start1 <= int(bstart2 - range)) and (start1 <= int(bstart2 + range)))):
+                if(((start2 <= int(bstart1 - extention)) and (start2 >= int(bstart1 + extention))) 
+                   and ((start1 <= int(bstart2 - extention)) and (start1 <= int(bstart2 + extention)))):
                     blacklistTag=True
                 else:
                     blacklistTag=False

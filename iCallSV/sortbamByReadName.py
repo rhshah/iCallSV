@@ -10,7 +10,7 @@ import logging
 
 
 def sortBam(inputBam, outputBamName, outputDir):
-     logging.info("sortbamByReadName: Trying to sort BAM file by Read Name")
+    logging.info("sortbamByReadName: Trying to sort BAM file by Read Name")
     if(os.path.isdir(outputDir)):
         logging.info("sortbamByReadName: The output directory %s exists", outputDir)
         outputFile = outputDir + "/" + outputBamName
