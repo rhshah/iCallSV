@@ -111,26 +111,26 @@ def run(
             if(os.path.isfile(outputBcf)):
                 retcode = 1
             else:
-            cmd = bcftools  + " view "  + outputBcf  + " > " + outputVcf
-            if(verbose):
-                logging.info("Run_Delly_bcf2vcf: Command that will be run:%s", cmd)
-            args = shlex.split(cmd)
-            proc = Popen(args)
-            proc.wait()
-            retcode = proc.returncode
-            if(retcode >= 0):  
-                end_time = time.time()
-                totaltime = str(timedelta(seconds=end_time - start_time))
+                cmd = bcftools  + " view "  + outputBcf  + " > " + outputVcf
                 if(verbose):
-                    logging.info(
-                        "Run_Delly_bcf2vcf: We have finished running bcftools for %s using local machine", caseId)
-                    logging.info("Run_Delly_bcf2vcf Duration: %s", totaltime)
-            else:
-                logging.fatal(
-                "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
-                retcode,
-                caseId)
-                sys.exit(1)
+                    logging.info("Run_Delly_bcf2vcf: Command that will be run:%s", cmd)
+                args = shlex.split(cmd)
+                proc = Popen(args)
+                proc.wait()
+                retcode = proc.returncode
+                if(retcode >= 0):  
+                    end_time = time.time()
+                    totaltime = str(timedelta(seconds=end_time - start_time))
+                    if(verbose):
+                        logging.info(
+                            "Run_Delly_bcf2vcf: We have finished running bcftools for %s using local machine", caseId)
+                        logging.info("Run_Delly_bcf2vcf Duration: %s", totaltime)
+                else:
+                    logging.fatal(
+                    "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
+                    retcode,
+                    caseId)
+                    sys.exit(1)
         else:
             logging.fatal(
                 "Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s",
