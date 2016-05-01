@@ -13,7 +13,10 @@ def sortBam(inputBam, outputBamName, outputDir):
      logging.info("sortbamByReadName: Trying to sort BAM file by Read Name")
     if(os.path.isdir(outputDir)):
         logging.info("sortbamByReadName: The output directory %s exists", outputDir)
-    outputFile = outputDir + "/" + outputBamName
+        outputFile = outputDir + "/" + outputBamName
+    else:
+        logging.info("sortbamByReadName: The output directory %s does not exists !!", outputDir)
+        sys.exit()
 
     if(os.path.isfile(inputBam)):
         try:
@@ -25,7 +28,7 @@ def sortBam(inputBam, outputBamName, outputDir):
             exception = "I/O error({0}): {1}".format(err.errno, err.strerror)
             logging.info("%s",exception)
     else:
-        logging.info("Bam File %s does not exists !!", inputBam)
+        logging.info("sortbamByReadName:Bam File %s does not exists !!", inputBam)
         sys.exit()
     logging.info("sortbamByReadName: Finished sorting BAM file by Read Name.")
     return(outputFile)

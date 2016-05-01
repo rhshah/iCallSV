@@ -12,7 +12,10 @@ def sortBam(inputBam, outputBamName, outputDir):
     logging.info("sortbamByCoordinate: Trying to sort BAM file by Coordinate")
     if(os.path.isdir(outputDir)):
         logging.info("sortbamByCoordinate: The output directory %s exists", outputDir)
-    outputFile = outputDir + "/" + outputBamName
+        outputFile = outputDir + "/" + outputBamName
+    else:
+        logging.info("sortbamByCoordinate:The output directory %s does not exists !!", outputDir)
+        sys.exit()
 
     if(os.path.isfile(inputBam)):
         try:
@@ -24,7 +27,7 @@ def sortBam(inputBam, outputBamName, outputDir):
             exception = "I/O error({0}): {1}".format(err.errno, err.strerror)
             logging.info("%s",exception)
     else:
-        logging.info("Bam File %s does not exists !!", inputBam)
+        logging.info("sortbamByCoordinate: bam File %s does not exists !!", inputBam)
         sys.exit()
     logging.info("sortbamByCoordinate: Finished sorting BAM file by Coordinate.")
     return(outputFile)
