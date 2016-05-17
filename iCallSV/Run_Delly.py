@@ -109,7 +109,7 @@ def run(
                 logging.info("Run_Delly: We have finished running Delly for %s using local machine", caseId)
                 logging.info("Run_Delly Duration: %s", totaltime)
             if(os.path.isfile(outputBcf)):
-                cmd = bcftools  + " view "  + outputBcf  + " > " + outputVcf
+                cmd = bcftools  + " view "  + outputBcf  + " -O v -o " + outputVcf
                 if(verbose):
                     logging.info("Run_Delly_bcf2vcf: Command that will be run:%s", cmd)
                 args = shlex.split(cmd)
