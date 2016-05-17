@@ -142,8 +142,15 @@ USAGE
     # Parse a config ini-style file
     #
     verbose = args.verbose
+    
+    here = os.path.realpath('.')
+
+    config_file = args.config_file
+    config = configparser.ConfigParser(defaults={'here': here})
+    config.read(args.config_file)
+    (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir")
     # Create Logger if verbose
-    loggeroutput = args.outdir + "/" + args.outprefix + "_iCallSV.log"
+    loggeroutput = sampleOutdirForDelly + "/" + args.outprefix + "_iCallSV.log"
     logging.basicConfig(
         filename=loggeroutput,
         filemode='w',
@@ -153,14 +160,8 @@ USAGE
     # Print if Verbose mode is on
     if(verbose):
         logging.info("iCallSV:Verbose mode on")
-    here = os.path.realpath('.')
-
-    config_file = args.config_file
     if(verbose):
         logging.info('iCallSV:Reading configuration from %s', config_file)
-    config = configparser.ConfigParser(defaults={'here': here})
-    config.read(args.config_file)
-    (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir")
     runDellyTag = True
     analysisFiles = []
     analysisType = ["DEL", "DUP", "INV", "TRA"]
