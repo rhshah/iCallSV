@@ -36,10 +36,13 @@ Quick Usage
 
 .. code-block:: sh
 
-	python iCallSV.py -sc /path/to/template.ini -abam /path/to/casebamFile -bbam /path/to/controlbamFile -aId caseID -bId controlId -o /path/to/output/directory -op prefix for the output files
+	python iCallSV.py -sc /path/to/template.ini -abam /path/to/casebamFile -bbam /path/to/controlbamFile -aId caseID -bId controlId -o /path/to/output/directory -op prefix_for_the_output_files
 
 
 .. code-block:: sh
+	
+	> python iCallSV.py -h
+	
 	usage: iCallSV.py [-h] [-v] [-V] -sc config.ini -abam caseBAMFile.bam -bbam
 	                  controlBAMFile.bam -aId caseID -bId controlID -o
 	                  /somepath/output -op TumorID
