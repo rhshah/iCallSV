@@ -211,20 +211,23 @@ USAGE
                 hasRecords = False
         #If there are VCF records do further analysis.        
         if(hasRecords):
-            combinedAnnTAB = args.caseId + "_allAnnotatedSVFiltered.tab"
+            combinedAnnTAB = args.caseId + "_allSVFiltered"
             combinedTargetSeqView = args.caseId + "_allSVFiltered_tsvInput.txt"
             combinedTargetSeqViewCscore = args.caseId + "_allSVFiltered_cScore.txt"
             # convert vcf files to tab-delimited using vcf2tab
             combinedTAB = dvcf2tab.vcf2tab(combinedVCF, sampleOutdirForDelly, verbose)
             # Annotate using iAnnotateSV
             combinedAnnTAB = annSV.run(
-                config.get(
-                    "Python", "PYTHON"), config.get(
-                    "iAnnotateSV", "ANNOSV"), config.get(
-                    "iAnnotateSV", "GENOMEBUILD"), int(config.get(
-                        "iAnnotateSV", "DISTANCE")), config.get(
-                            "iAnnotateSV", "CANONICALTRANSCRIPTFILE"), config.get(
-                            "iAnnotateSV", "UNIPROTFILE"), combinedTAB, combinedAnnTAB, sampleOutdirForDelly)
+                config.get("Python", "PYTHON"), 
+                config.get("iAnnotateSV", "ANNOSV"), 
+                config.get("iAnnotateSV", "GENOMEBUILD"), 
+                int(config.get("iAnnotateSV", "DISTANCE")), 
+                config.get("iAnnotateSV", "CANONICALTRANSCRIPTFILE"), 
+                config.get("iAnnotateSV", "UNIPROTFILE"), 
+                config.get("iAnnotateSV", "CosmicCensus"), 
+                config.get("iAnnotateSV", "RepeatRegionAnnotation"), 
+                config.get("iAnnotateSV", "DGvAnnotations"), 
+                combinedTAB, combinedAnnTAB, sampleOutdirForDelly)
             # convert vcf to targetseqviewformat
             combinedTargetSeqView = dvcf2tsv.Convert2targetSeqView(
                 args.caseId,
@@ -242,8 +245,9 @@ USAGE
                                                    sampleOutdirForDelly, combinedTargetSeqViewCscore)
             # Merge Results from vcf, tab and targetseqview
         else:
-            logging.warn("All Records have been filtered in standard filtered step. Thus we will exit the program and not proceed.")
-            logging.info("Thank you for using iCallSV.")
+            if(verbose):
+                logging.warn("All Records have been filtered in standard filtered step. Thus we will exit the program and not proceed.")
+                logging.info("Thank you for using iCallSV.")
             sys.exit(0)
     else:
         if(verbose):
@@ -251,7 +255,7 @@ USAGE
                 "The output directory for the %s already exists. Please delete %s folder and rerun",
                 args.caseId,
                 sampleOutdirForDelly)
-            sys.exit(1)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

@@ -9,9 +9,12 @@ python : Location for the python executable.
 iAnnotateSV : Location of the wrapper iAnnotateSV package (iAnnotateSV.py)
 build : Which human reference file to be used, hg18,hg19 or hg38
 inputTabFile : Tab-Delimited Input FIle compatible with iAnnotateSV package.
-outputTabFile: Name of the output Tab-Delimited file with Annotations
+outputTabFile: Prefix of the output files/DIR with Annotations and images
 outputDir : Name of the output directory where the outputTabFile will be written
-
+uniprotFile: Location for ucsc uniprot file
+cosmicFile: Location for cosmic census file
+repeatregionFile: Location for repeat region file
+dgvFile: Location for database of Genomic Variants file
 ::Output::
 It is a tab-delimited file with annotation in them
 '''
@@ -31,6 +34,9 @@ def run(
         distance,
         canonicalTranscriptFile,
         uniprotFile,
+        cosmicFile,
+        repeatregionFile,
+        dgvFile,
         inputTabFile,
         outputTabFile,
         outputDir):
@@ -43,6 +49,9 @@ def run(
     cp.checkEmpty(build, "Which human reference file to be used, hg18,hg19 or hg38")
     cp.checkFile(canonicalTranscriptFile)
     cp.checkFile(uniprotFile)
+    cp.checkFile(cosmicFile)
+    cp.checkFile(repeatregionFile)
+    cp.checkFile(dgvFile)
     logging.info("Run_iAnnotateSV: All input parameters look good. Lets run the package.")
     myPid = os.getpid()
     day = date.today()
@@ -50,7 +59,7 @@ def run(
     logging.info("Run_iAnnotateSV: ProcessID:%s, Date:%s", myPid, today)
     outputFile = outputTabFile
     cmd = python + " " + iAnnotateSV + " -r " + build + " -i " + inputTabFile + \
-        " -o " + outputDir + " -of " + outputFile + " -d " + str(distance) + " -c " + canonicalTranscriptFile  + " -p -u " + uniprotFile
+        " -o " + outputDir + " -ofp " + outputFile + " -d " + str(distance) + " -c " + canonicalTranscriptFile + " -rr " + repeatregionFile  + " -cc " + cosmicFile + " -dgv " + dgvFile + " -p -u " + uniprotFile
     args = shlex.split(cmd)
     logging.info("Run_iAnnotateSV: Command that will be run: %s", cmd)
     # Remove if the file exists
