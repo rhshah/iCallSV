@@ -94,7 +94,7 @@ def run(
                     "Run_Delly: Bam Index file is not present and we will make it for %s ",
                     caseBai)
             mbi.MakeIndex(caseBam)
-        cmd = delly + "call -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
+        cmd = delly + " call -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
             " -q " + str(mapq) + " -o " + outputBcf + " " + caseBam + " " + controlBam
         if(verbose):
             logging.info("Run_Delly: Command that will be run:%s", cmd)
