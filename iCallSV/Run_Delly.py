@@ -109,8 +109,6 @@ def run(
                 logging.info("Run_Delly: We have finished running Delly for %s using local machine", caseId)
                 logging.info("Run_Delly Duration: %s", totaltime)
             if(os.path.isfile(outputBcf)):
-                retcode = 1
-            else:
                 cmd = bcftools  + " view "  + outputBcf  + " > " + outputVcf
                 if(verbose):
                     logging.info("Run_Delly_bcf2vcf: Command that will be run:%s", cmd)
@@ -126,16 +124,25 @@ def run(
                             "Run_Delly_bcf2vcf: We have finished running bcftools for %s using local machine", caseId)
                         logging.info("Run_Delly_bcf2vcf Duration: %s", totaltime)
                 else:
-                    logging.fatal(
-                    "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
-                    retcode,
-                    caseId)
+                    if(verbose):
+                        logging.fatal(
+                                      "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
+                                      retcode,
+                                      caseId)
                     sys.exit(1)
+            else:
+                if(verbose):
+                    logging.fatal(
+                                  "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
+                                 retcode,
+                                 caseId)
+                sys.exit(1)
         else:
-            logging.fatal(
-                "Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s",
-                retcode,
-                caseId)
+            if(verbose):
+                logging.fatal(
+                              "Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s",
+                              retcode,
+                              caseId)
             sys.exit(1)
     return(outputVcf)
 
