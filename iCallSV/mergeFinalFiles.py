@@ -143,7 +143,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             contype = record.INFO['CT']
         if("CONSENSUS" in record.INFO):
             conseq = record.INFO['CONSENSUS']
-        if(record.is_sv_precise()):
+        if(record.is_sv_precise):
             brktype = "PRECISE"
         else:
             brktype = "IMPPRECISE"
