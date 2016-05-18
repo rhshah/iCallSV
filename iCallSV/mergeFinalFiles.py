@@ -146,7 +146,6 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         caseCalls = record.genotype(caseIDinVcf)
         controlCalls = record.genotype(controlIDinVcf)
 
-
         if(hasattr(caseCalls.data, "GQ")):
             caseGQ = caseCalls.data.GQ
         if(hasattr(caseCalls.data, "RC")):
@@ -156,7 +155,6 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         if(hasattr(caseCalls.data, "RV")):
             caseRV = caseCalls.data.RV
 
-    
         if(hasattr(controlCalls.data, "GQ")):
             controlGQ = controlCalls.data.GQ
         if(hasattr(controlCalls.data, "RC")):
@@ -204,10 +202,10 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                 annoDF['pos2'] == int(start2))).index.tolist()
         """
         indexList = annoDF.loc[(annoDF['chr1'] == chrom1) & (
-                annoDF['pos1'] == int(start1)) & (
-                annoDF['chr2'] == chrom2) & (
-                annoDF['pos2'] == int(start2))].index.tolist()
-        print len(indexList) , indexList
+            annoDF['pos1'] == int(start1)) & (
+            annoDF['chr2'] == chrom2) & (
+            annoDF['pos2'] == int(start2))].index.tolist()
+        print len(indexList), indexList
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
@@ -244,9 +242,9 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                 confDF['Start2'] == int(start2))).index.tolist()
         """
         index.List = confDF.loc[(confDF['Chr1'] == chrom1) & (
-                confDF['Start1'] == int(start1)) & (
-                confDF['Chr2'] == chrom2) & (
-                confDF['Start2'] == int(start2))].index.tolist()
+            confDF['Start1'] == int(start1)) & (
+            confDF['Chr2'] == chrom2) & (
+            confDF['Start2'] == int(start2))].index.tolist()
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
@@ -272,8 +270,8 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                                                      svtype, gene1, gene2, transcript1, transcript2, site1, site2, fusion, confidenceScore,
                                                      None, None, contype, svlengthFromDelly, mapqFromDelly, peSupportFromDelly,
                                                      srSupportFromDelly, brktype, conseq, caseDV, caseRV, caseRC, caseGQ, controlDV,
-                                                     controlRV, controlRC, controlGQ, rr_site1, rr_site2, cc_chr_band, cc_t_t,
-                                                     cc_c_s, cc_m_t, cc_t_p, dgv_site1, dgv_site2]
+                                                     controlRV, controlRC, controlGQ, rr_site1, rr_site2, cc_chr_band, cc_t_t, cc_c_s,
+                                                     cc_m_t, cc_t_p, dgv_site1, dgv_site2]
 
         count = count + 1
 
