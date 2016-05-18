@@ -23,10 +23,10 @@ def sortBam(inputBam, outputBamName, outputDir):
             pysam.sort("-n", inputBam, outputFile)
         except IndexError as err:
             exception = "Index error({0}): {1}".format(err.errno, err.strerror)
-            logging.info("%s",exception)
+            logging.info("%s", exception)
         except IOError as err:
             exception = "I/O error({0}): {1}".format(err.errno, err.strerror)
-            logging.info("%s",exception)
+            logging.info("%s", exception)
     else:
         logging.info("sortbamByReadName:Bam File %s does not exists !!", inputBam)
         sys.exit()

@@ -25,6 +25,7 @@ from datetime import date, timedelta
 import checkparameters as cp
 import logging
 
+
 def run(
         RLocation,
         targetSeqView,
@@ -36,7 +37,8 @@ def run(
         outputDir,
         outsvFileName):
     start_time = time.time()
-    logging.info("We will now be running targetSeqView. Hope fully the R package targetSeqView is installed.")
+    logging.info(
+        "We will now be running targetSeqView. Hope fully the R package targetSeqView is installed.")
     cp.checkFile(targetSeqView)
     cp.checkInt(nodes, "Number of nodes to run targetSeqView")
     cp.checkDir(bamFilePath)
@@ -49,7 +51,7 @@ def run(
     myPid = os.getpid()
     day = date.today()
     today = day.isoformat()
-    logging.info("Run_targetSeqView: ProcessID: %s, Date: %s", myPid, today )
+    logging.info("Run_targetSeqView: ProcessID: %s, Date: %s", myPid, today)
     outputFile = outputDir + "/" + outsvFileName
     stdoutFile = outputDir + "/" + outsvFileName[:-4] + "_" + str(myPid) + ".stdout"
     stderrFile = outputDir + "/" + outsvFileName[:-4] + "_" + str(myPid) + ".stderr"
@@ -65,10 +67,15 @@ def run(
     if(retcode >= 0):
         end_time = time.time()
         totaltime = str(timedelta(seconds=end_time - start_time))
-        logging.info("Run_targetSeqView: We have finished running targetSeqView for %s using local machine.", svFile)
-        logging.info("Run_targetSeqView Duration: %s", totaltime )
+        logging.info(
+            "Run_targetSeqView: We have finished running targetSeqView for %s using local machine.",
+            svFile)
+        logging.info("Run_targetSeqView Duration: %s", totaltime)
     else:
-        logging.info("Run_targetSeqView: targetSeqView is either still running on local machine or it errored out with return code %d for %s", retcode, svFile)
+        logging.info(
+            "Run_targetSeqView: targetSeqView is either still running on local machine or it errored out with return code %d for %s",
+            retcode,
+            svFile)
         sys.exit()
     return(outputFile)
 # # Test module

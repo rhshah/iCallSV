@@ -22,6 +22,7 @@ import vcf
 import checkparameters as cp
 import logging
 
+
 def vcf2tab(vcfFile, outputDir, verbose):
     cp.checkFile(vcfFile)
     cp.checkDir(outputDir)
@@ -62,8 +63,10 @@ def vcf2tab(vcfFile, outputDir, verbose):
             str1 = 1
             str2 = 1
         else:
-             if(verbose):
-                 logging.info("dellyVcf2Tab: The connection type (CT) given in the vcf file is incorrect.CT: %s", contype)
+            if(verbose):
+                logging.info(
+                    "dellyVcf2Tab: The connection type (CT) given in the vcf file is incorrect.CT: %s",
+                    contype)
         outputHandle.write(
             str(chrom1) +
             "\t" +

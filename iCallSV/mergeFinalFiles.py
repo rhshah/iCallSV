@@ -23,6 +23,7 @@ import checkparameters as cp
 import pandas as pd
 import re
 
+
 def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     if(verbose):
         logging.info(

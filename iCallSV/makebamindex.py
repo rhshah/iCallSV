@@ -10,6 +10,7 @@ import os
 import sys
 import logging
 
+
 def MakeIndex(bamFile):
     logging.info("makebamindex: Trying to make index for bam file")
     if(os.path.isfile(bamFile)):
@@ -17,10 +18,10 @@ def MakeIndex(bamFile):
             pysam.index(bamFile)
         except IndexError as err:
             exception = "Index error({0}): {1}".format(err.errno, err.strerror)
-            logging.info ("%s", exception)
+            logging.info("%s", exception)
         except IOError as err:
             exception = "I/O error({0}): {1}".format(err.errno, err.strerror)
-            logging.info ("%s", exception)
+            logging.info("%s", exception)
     else:
         logging.info("Bam File %s does not exists", bamFile)
         sys.exit()
