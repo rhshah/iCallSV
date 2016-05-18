@@ -230,9 +230,13 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
             if(sampleClass == "Tumor"):
                 basename = sampleId
                 tBamFile = filter(idRegXcompile.match, bamFileList).pop()
+                os.symlink(tBamFile,os.path.join(outdir,os.path.basename(tBamFile)))
+                tBamFile = os.path.join(outdir,os.path.basename(tBamFile)
                 tsampleId = sampleId
             if(sampleClass == "Normal"):
                 nBamFile = filter(idRegXcompile.match, bamFileList).pop()
+                os.symlink(nBamFile,os.path.join(outdir,os.path.basename(nBamFile)))
+                nBamFile = os.path.join(outdir,os.path.basename(nBamFile))
                 nsampleId = sampleId
                 nHSmetricsFile = filter(idRegXcompile.match, HSmetricsFileList).pop()
                 (decision) = SelectNormal(nHSmetricsFile, poolHsmetricsFile)
