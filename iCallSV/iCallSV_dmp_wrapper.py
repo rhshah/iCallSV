@@ -139,7 +139,6 @@ def main():
                         outdir,
                         HSmetricsFileList,
                         bamFileList,
-                        segmentFileList,
                         args)
 
     if(args.verbose):
@@ -177,18 +176,6 @@ def SetupRun(poolName, args):
         if(args.verbose):
             print "\tTitleFile:", titleFile, " DOSE NOT EXISITS!!!, Please make sure that all qcLocation have title file\n"
 
-    segFile = qclocation + "/*_copynumber.seg"
-    segFileList = glob.glob(segFile)
-    if(args.verbose):
-        print "\tAllSegFiles:\n"
-    for file in segFileList:
-        if(os.path.isfile(file)):
-            if(args.verbose):
-                print"\t\t", file, "\n"
-        else:
-            if(args.verbose):
-                print "\t\t", file, "Does Not Exist!!!, Please make sure qcLocation have all segments files\n"
-
     HSmetricsFile = qclocation + "/*.HSmetrics.txt"
     HSmetricsFileList = glob.glob(HSmetricsFile)
     if(args.verbose):
@@ -214,10 +201,10 @@ def SetupRun(poolName, args):
                 print "\t\t", file, "Does Not Exist!!!, Please make sure bamLocation have all bam files\n"
     outdir = poolName.replace("/", "")
     outdir = args.outDir + "/" + outdir
-    return(titleFile, outdir, HSmetricsFileList, bamFileList, segFileList)
+    return(titleFile, outdir, HSmetricsFileList, bamFileList)
 
 
-def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, segmentFileList, args):
+def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
     # Run Preprocess
     titleFileDF = pd.read_csv(titleFile, sep='\t', header=0, keep_default_na='True')
     groupByPatientId = titleFileDF.groupby('Patient_ID')
