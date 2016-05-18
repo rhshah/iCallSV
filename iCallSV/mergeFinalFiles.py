@@ -65,7 +65,8 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             "NormalVariantCount",
             "NormalSplitVariantCount",
             "NormalReadCount",
-            "NormalGenotypeQScorerepName-repClass-repFamily:-site1",
+            "NormalGenotypeQScore,
+            "repName-repClass-repFamily:-site1",
             "repName-repClass-repFamily:-site2",
             "CC_Chr_Band",
             "CC_Tumour_Types(Somatic)",
@@ -211,8 +212,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          dgv_site1,
          dgv_site2
          ) = (None for i in range(18))
-        #indexList = ((str(annoDF['chr1']) == str(chrom1)) & (str(annoDF['pos1']) == str(start1)) & (
-        #   str(annoDF['chr2']) == str(chrom2)) & (str(annoDF['pos2']) == str(start2))).index.tolist()
+        
         indexList = ((annoDF['chr1'] == chrom1) & (annoDF['pos1'] == int(start1)) & (annoDF['chr2'] == chrom2) & (annoDF['pos2'] == int(start2))).index.tolist()
         if(len(indexList) > 1):
             if(verbose):
@@ -221,6 +221,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             sys.exit(1)
         else:
             annoIndex = indexList[0]
+        
         gene1 = annoDF.iloc[annoIndex]['gene1']
         gene2 = annoDF.iloc[annoIndex]['gene2']
         transcript1 = annoDF.iloc[annoIndex]['transcript1']
@@ -241,11 +242,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         # Get information for confidence score
         confIndex = None
         confidenceScore = None
-        #indexList = ((str(confDF['Chr1']) == str(chrom1)) & (str(confDF['Start1']) == str(start1)) & (
-        #    str(confDF['Chr2']) == str(chrom2)) & (str(confDF['Start2']) == str(start2))).index.tolist()
-        
         indexList = ((confDF['Chr1'] == chrom1) & (confDF['Start1'] == int(start1)) & (confDF['Chr2'] == chrom2) & (confDF['Start2'] == int(start2))).index.tolist()
-        
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
