@@ -8,13 +8,10 @@ import argparse
 import os
 import sys
 import time
-import stat
 import glob
 import pandas as pd
 from subprocess import Popen, PIPE
 import shlex
-import shutil
-from pprint import pprint
 import re
 # import multiprocessing as mp
 from Queue import *
@@ -120,11 +117,8 @@ def main():
         required=True,
         metavar='/somepath/output',
         help="Full Path to the output dir.")
-    
 
     args = parser.parse_args()
-    jobqueue = Queue()
-
     if(args.verbose):
         print "Starting the Process to Run iCallSV."
         with open(args.folderList, 'r') as filecontent:
@@ -146,8 +140,7 @@ def main():
                         HSmetricsFileList,
                         bamFileList,
                         segmentFileList,
-                        args,
-                        jobqueue)
+                        args)
 
     if(args.verbose):
         print "Finished the Process to Run iCallSV."
@@ -224,7 +217,7 @@ def SetupRun(poolName, args):
     return(titleFile, outdir, HSmetricsFileList, bamFileList, segFileList)
 
 
-def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, segmentFileList, args, jobqueue):
+def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, segmentFileList, args):
     # Run Preprocess
     titleFileDF = pd.read_csv(titleFile, sep='\t', header=0, keep_default_na='True')
     groupByPatientId = titleFileDF.groupby('Patient_ID')
@@ -247,8 +240,6 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, segmentFileLis
             os.mkdir(outdir)
             os.chmod(outdir, 0o755)
         for count, row in group.iterrows():
-            bcId = row.loc['Barcode']
-            poolId = row.loc['Pool']
             sampleId = row.loc['Sample_ID']
             patientId = row.loc['Patient_ID']
             sampleClass = row.loc['Class']
@@ -270,12 +261,13 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, segmentFileLis
         if(os.path.isfile(tBamFile) and (os.path.isfile(nBamFile))):
             jobId = "iCallSV_" + str(count) + "_" + str(basename)
             cmdList = []
-            cmd = args.python + " " + args.icsv + " -sc " + args.conf + " -bbam "+ nBamFile + " -abam " + tBamFile + " -aId " + tsampleId + " -bId " + nsampleId + " -op " + tsampleId + " -o " + outdir 
+            cmd = args.python + " " + args.icsv + " -sc " + args.conf + " -bbam " + nBamFile + " -abam " + \
+                tBamFile + " -aId " + tsampleId + " -bId " + nsampleId + " -op " + tsampleId + " -o " + outdir
             # cmd = str(cmd)
             threads = int(args.threads)
             threads = threads + 1
-            qsub_cmd = args.qsub + " -q " + args.queue + " -N " + jobId + " -o " + jobId + ".stdout" + " -e " + \
-                jobId + ".stderr" + " -V -l h_vmem=6G,virtual_free=6G -pe smp " + str(threads) + " -wd " + outdir + " -sync y " + " -b y " + cmd
+            qsub_cmd = args.qsub + " -q " + args.queue + " -N " + jobId + " -o " + jobId + ".stdout" + " -e " + jobId + ".stderr" + \
+                " -V -l h_vmem=6G,virtual_free=6G -pe smp " + str(threads) + " -wd " + outdir + " -sync y " + " -b y " + cmd
             print "qsub_cmd:", qsub_cmd, "\n"
             cmdList.append(qsub_cmd)
             job = Job(
@@ -284,7 +276,7 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, segmentFileLis
                 kwlist=None,
                 cleanup=True,
                 mem_free="2G",
-                name=jobId_preprocess,
+                name=jobId,
                 num_slots=1,
                 queue=args.queue)
             jobs.append(job)
