@@ -181,15 +181,15 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         if(hasattr(controlCalls.data, "RV")):
             controlRV = controlCalls.data.RV
 
-        if(chrom1 is not "X" or chrom1 is not "Y"):
-            chrom1=int(chrom1)
+        if(chrom1 is 'X' or chrom1 is 'Y'):
+            chrom1 = chrom1 
         else:
-            chrom1 = str(chrom1)
+            chrom1 = int(chrom1)
         
-        if(chrom2 is not "X" or chrom2 is not "Y"):
-            chrom2=int(chrom2)
+        if(chrom2 is 'X' or chrom2 is 'Y'):
+            chrom2 = chrom2
         else:
-            chrom2 = str(chrom2)
+            chrom2 = int(chrom2)
             
         # Get data from annotation file
         (indexList,
