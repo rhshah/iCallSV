@@ -114,7 +114,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          controlGQ,
          controlRC,
          controlDV,
-         controlRV) = (None for i in range(27))
+         controlRV) = (None for i in range(21))
         chrom1 = record.CHROM
         start1 = record.POS
         filter = record.FILTER
