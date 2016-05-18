@@ -13,8 +13,6 @@ import pandas as pd
 from subprocess import Popen, PIPE
 import shlex
 import re
-# import multiprocessing as mp
-from Queue import *
 # from threading import Thread, Lock
 from gridmap import Job, process_jobs
 
