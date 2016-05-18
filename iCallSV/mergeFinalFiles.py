@@ -228,10 +228,11 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         # Get information for confidence score
         confIndex=None
         confidenceScore=None
-        index.List=confDF.loc[confDF['Chr1'].isin([chrom1]) & 
+        indexList = confDF.loc[confDF['Chr1'].isin([chrom1]) & 
             confDF['Start1'].isin([int(start1)]) & 
             confDF['Chr2'].isin([chrom2]) & 
             confDF['Start2'].isin([int(start2)])].index.tolist()
+            
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
