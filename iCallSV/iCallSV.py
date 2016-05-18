@@ -212,7 +212,7 @@ USAGE
                 hasRecords = False
         # If there are VCF records do further analysis.
         if(hasRecords):
-            combinedAnnTAB = args.caseId + "_allSVFiltered"
+            combinedAnnPrefix = args.caseId + "_allSVFiltered"
             combinedTargetSeqView = args.caseId + "_allSVFiltered_tsvInput.txt"
             combinedTargetSeqViewCscore = args.caseId + "_allSVFiltered_cScore.txt"
             # convert vcf files to tab-delimited using vcf2tab
@@ -228,7 +228,7 @@ USAGE
                 config.get("iAnnotateSV", "CosmicCensus"),
                 config.get("iAnnotateSV", "RepeatRegionAnnotation"),
                 config.get("iAnnotateSV", "DGvAnnotations"),
-                combinedTAB, combinedAnnTAB, sampleOutdirForDelly)
+                combinedTAB, combinedAnnPrefix, sampleOutdirForDelly)
             # convert vcf to targetseqviewformat
             combinedTargetSeqView = dvcf2tsv.Convert2targetSeqView(
                 args.caseId,
