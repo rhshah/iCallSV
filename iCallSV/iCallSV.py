@@ -34,7 +34,7 @@ import combineVCF as cvcf
 import Run_iAnnotateSV as annSV
 import dellyVcf2targetSeqView as dvcf2tsv
 import Run_targetSeqView as rtsv
-
+import mergeFinalFiles as mff
 
 __all__ = []
 __version__ = 0.1
@@ -245,6 +245,8 @@ USAGE
                                                    int(config.get("TargetSeqView", "ReadLength")),
                                                    sampleOutdirForDelly, combinedTargetSeqViewCscore)
             # Merge Results from vcf, tab and targetseqview
+            finalFile = mff.run(args.caseId, args.controlId, combinedVCF, combinedAnnTAB, combinedTargetSeqViewCscore, sampleOutdirForDelly, args.outprefix, args.verbose )
+        
         else:
             if(verbose):
                 logging.warn("All Records have been filtered in standard filtered step. Thus we will exit the program and not proceed.")
