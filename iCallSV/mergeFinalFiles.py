@@ -187,7 +187,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             chrom1 = str(chrom1)
         
         if(chrom2 != "X" or chrom2 != "Y"):
-            chrom1=chrom1
+            chrom2=int(chrom2)
         else:
             chrom2 = str(chrom2)
             
