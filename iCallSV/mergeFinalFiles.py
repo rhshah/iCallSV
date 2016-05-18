@@ -181,12 +181,12 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         if(hasattr(controlCalls.data, "RV")):
             controlRV = controlCalls.data.RV
 
-        if(chrom1 != "X" or chrom1 != "Y"):
+        if(chrom1 is not "X" or chrom1 is not "Y"):
             chrom1=int(chrom1)
         else:
             chrom1 = str(chrom1)
         
-        if(chrom2 != "X" or chrom2 != "Y"):
+        if(chrom2 is not "X" or chrom2 is not "Y"):
             chrom2=int(chrom2)
         else:
             chrom2 = str(chrom2)
