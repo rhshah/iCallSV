@@ -242,9 +242,9 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                 confDF['Start2'] == int(start2))).index.tolist()
         """
         index.List = confDF.loc[(confDF['Chr1'] == chrom1) & (
-            confDF['Pos1'] == int(start1)) & (
+            confDF['Start1'] == int(start1)) & (
             confDF['Chr2'] == chrom2) & (
-            confDF['Pos2'] == int(start2))].index.tolist()
+            confDF['Start2'] == int(start2))].index.tolist()
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
