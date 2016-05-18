@@ -231,7 +231,7 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
                 basename = sampleId
                 tBamFile = filter(idRegXcompile.match, bamFileList).pop()
                 os.symlink(tBamFile,os.path.join(outdir,os.path.basename(tBamFile)))
-                tBamFile = os.path.join(outdir,os.path.basename(tBamFile)
+                tBamFile = os.path.join(outdir,os.path.basename(tBamFile))
                 tsampleId = sampleId
             if(sampleClass == "Normal"):
                 nBamFile = filter(idRegXcompile.match, bamFileList).pop()
