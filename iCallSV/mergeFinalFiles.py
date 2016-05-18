@@ -275,8 +275,8 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                    "DGv_Name-DGv_VarType-site2"]] = [aId, bId, chrom1, start1, chrom2, start2,
                                                      svtype, gene1, gene2, transcript1, transcript2, site1, site2, fusion, confidenceScore,
                                                      None, None, contype, svlengthFromDelly, mapqFromDelly, peSupportFromDelly,
-                                                     srSupportFromDelly, brktype, conseq, caseDV, caseRV, caseDR, caseRC, caseGQ, controlDV,
-                                                     controlRV, controlDR, controlRC, controlGQ, rr_site1, rr_site2, cc_chr_band, cc_t_t,
+                                                     srSupportFromDelly, brktype, conseq, caseDV, caseRV, caseRC, caseGQ, controlDV,
+                                                     controlRV, controlRC, controlGQ, rr_site1, rr_site2, cc_chr_band, cc_t_t,
                                                      cc_c_s, cc_m_t, cc_t_p, dgv_site1, dgv_site2]
 
         count = count + 1
