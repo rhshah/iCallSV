@@ -199,7 +199,6 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             annoDF['pos1'].isin([int(start1)]) & 
             annoDF['chr2'].isin([chrom2]) & 
             annoDF['pos2'].isin([int(start2)])].index.tolist()
-        print len(indexList), indexList
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
