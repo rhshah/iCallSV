@@ -1,5 +1,5 @@
 """
-Created on 10/28/2014.
+Created on 05/18/2016.
 
 @Ronak Shah
 
@@ -24,8 +24,8 @@ from gridmap import Job, process_jobs
 
 def main():
     parser = argparse.ArgumentParser(
-        prog='Run_PyLoh.py',
-        description='Run_PyLOH on selected pools using MSK data',
+        prog='iCallSV_dmp_wrapper.py',
+        description='Run iCallSV on selected pools using MSK data',
         usage='%(prog)s [options]')
     parser.add_argument(
         "-fl",
@@ -61,23 +61,23 @@ def main():
         metavar='/somepath/python',
         help="Full path Pyhton executables.")
     parser.add_argument(
-        "-pl",
-        "--pyloh",
+        "-icsv",
+        "--iCallSV",
         action="store",
-        dest="pyloh",
+        dest="icsv",
         required=False,
-        default='/home/shahr2/.local/bin/PyLOH.py',
-        metavar='/somepath/PyLOH.py',
-        help="Full path PyLOH.py executables.")
+        default='/home/shahr2/git/iCallSV-master/iCallSV/iCallSV.py',
+        metavar='/somepath/iCallSV.py',
+        help="Full path iCallSV.py executables.")
     parser.add_argument(
-        "-r",
-        "--referenceFile",
+        "-conf",
+        "--iCallSVconf",
         action="store",
-        dest="ref",
+        dest="conf",
         required=False,
-        default='/dmp/data/pubdata/hg-fasta/production/Homo_sapiens_assembly19.fasta',
-        metavar='/somepath/Homo_Sapeins_hg19.fasta',
-        help="Full Path to the reference file with the bwa index.")
+        default='/home/shahr2/git/iCallSV-master/iCallSV/configuration/template_dmp.ini',
+        metavar='/somepath/template.ini',
+        help="Full path configuration file to run iCallSV")
     parser.add_argument(
         "-q",
         "--queue",
@@ -97,33 +97,6 @@ def main():
         metavar='/somepath/qsub',
         help="Full Path to the qsub executables of SGE.")
     parser.add_argument(
-        "-md",
-        "--minimum_depth",
-        action="store",
-        dest="minDepth",
-        required=False,
-        default='20',
-        metavar='20',
-        help="Minimum depth in both normal and tumor sample required to use a site in the analysis.")
-    parser.add_argument(
-        "-mbq",
-        "--minimum_base_qual",
-        action="store",
-        dest="minBQ",
-        required=False,
-        default='20',
-        metavar='20',
-        help="Minimum base quality required for each base.")
-    parser.add_argument(
-        "-mmq",
-        "--minimum_mapping_qual",
-        action="store",
-        dest="minMQ",
-        required=False,
-        default='0',
-        metavar='0',
-        help="Minimum mapping quality required for each base.")
-    parser.add_argument(
         "-t",
         "--threads",
         action="store",
@@ -131,7 +104,7 @@ def main():
         required=False,
         default='5',
         metavar='5',
-        help="Number of Threads to be used to run Pindel")
+        help="Number of Threads to be used to run iCallSV")
     parser.add_argument(
         "-v",
         "--verbose",
@@ -147,12 +120,13 @@ def main():
         required=True,
         metavar='/somepath/output',
         help="Full Path to the output dir.")
+    
 
     args = parser.parse_args()
     jobqueue = Queue()
 
     if(args.verbose):
-        print "Starting the Process to Run PyLOH."
+        print "Starting the Process to Run iCallSV."
         with open(args.folderList, 'r') as filecontent:
             for line in filecontent:
                 poolName = line.rstrip()
@@ -176,7 +150,7 @@ def main():
                         jobqueue)
 
     if(args.verbose):
-        print "Finished the Process to Run PyLOH."
+        print "Finished the Process to Run iCallSV."
 
 
 def SetupRun(poolName, args):
@@ -261,11 +235,11 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, segmentFileLis
     poolbamFile = filter(poolidRegXcompile.match, bamFileList).pop()
     for patientID, group in groupByPatientId:
         print patientID, ":"
-        outTargetFile = ''
+        tsampleId = ''
         tBamFile = ''
         nBamFile = ''
         basename = ''
-        toutdir = ''
+        nsampleId = ''
         if(os.path.isdir(outdir)):
             if(args.verbose):
                 print "Pool Output Dir:", outdir, "exists!!!"
@@ -280,29 +254,12 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, segmentFileLis
             sampleClass = row.loc['Class']
             idRegXcompile = re.compile('.*' + sampleId + '.*')
             if(sampleClass == "Tumor"):
-                toutdir = outdir + "/" + sampleId
-                if(os.path.isdir(toutdir)):
-                    if(args.verbose):
-                        print "Output Dir:", toutdir, "exists!!!"
-                else:
-                    os.mkdir(toutdir)
-                    os.chmod(toutdir, 0o755)
-                outTargetFile = toutdir + "/" + sampleId + "_targetRegion.bed"
-                txt_fh = open(outTargetFile, "wb")
-                txt_fh.write("chrom\tloc.start\tloc.end\n")
                 basename = sampleId
                 tBamFile = filter(idRegXcompile.match, bamFileList).pop()
-                segfile = filter(idRegXcompile.match, segmentFileList).pop()
-                if(segfile):
-                    segFileDF = pd.read_csv(segfile, sep=' ', header=0, keep_default_na='True')
-                    for segcount, segrow in segFileDF.iterrows():
-                        chr = segrow.loc['chrom']
-                        start = segrow.loc['loc.start']
-                        end = segrow.loc['loc.end']
-                        txt_fh.write(str(chr) + "\t" + str(start) + "\t" + str(end) + "\n")
-                    txt_fh.close()
+                tsampleId = sampleId
             if(sampleClass == "Normal"):
                 nBamFile = filter(idRegXcompile.match, bamFileList).pop()
+                nsampleId = sampleId
                 nHSmetricsFile = filter(idRegXcompile.match, HSmetricsFileList).pop()
                 (decision) = SelectNormal(nHSmetricsFile, poolHsmetricsFile)
                 if(decision == 'UnMatched'):
@@ -310,63 +267,15 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, segmentFileLis
                 else:
                     if(args.verbose):
                         print "Matched Sample\n"
-        if(os.path.isfile(tBamFile) and (os.path.isfile(nBamFile))and (os.path.isfile(outTargetFile))):
-            jobId_preprocess = "Preprocess_" + str(count) + "_" + str(basename)
-            baseNames[basename] = toutdir + "#" + jobId_preprocess
-            outsegFile = toutdir + "/" + basename + '.PyLOH.segments'
-            if(os.path.isfile(outsegFile)):
-                continue
-            else:
-                cmdList = []
-                cmd = args.python + " " + args.pyloh + " preprocess " + args.ref + " " + nBamFile + " " + tBamFile + " " + basename + " --segments_bed " + outTargetFile + \
-                    " --min_depth " + args.minDepth + " --min_base_qual " + args.minBQ + " --min_map_qual " + args.minMQ + " --process_num " + args.threads + " --WES"
-                # cmd = str(cmd)
-                threads = int(args.threads)
-                threads = threads + 1
-                qsub_cmd = args.qsub + " -q " + args.queue + " -N " + jobId_preprocess + " -o " + jobId_preprocess + ".stdout" + " -e " + \
-                    jobId_preprocess + ".stderr" + " -V -l h_vmem=6G,virtual_free=6G -pe smp " + str(threads) + " -wd " + toutdir + " -sync y " + " -b y " + cmd
-                print "qsub_cmd:", qsub_cmd, "\n"
-                cmdList.append(qsub_cmd)
-                job = Job(
-                    RunJob,
-                    cmdList,
-                    kwlist=None,
-                    cleanup=True,
-                    mem_free="2G",
-                    name=jobId_preprocess,
-                    num_slots=1,
-                    queue=args.queue)
-                jobs.append(job)
-    print("sending function jobs to cluster")
-    print("")
-
-    job_outputs = process_jobs(
-        jobs,
-        max_processes=10,
-        temp_dir='/dmp/analysis/SCRATCH/',
-        white_list=None,
-        quiet=False,
-        local=False)
-
-    print("results from each job")
-    for (i, result) in enumerate(job_outputs):
-        print("Job {0}- result: {1}".format(i, result))
-
-    # RunModel
-    count = 0
-    jobs = []
-    for basename, jdata in baseNames.iteritems():
-        (toutdir, jobId_preprocess) = jdata.split('#', 1)
-        jobId_runmodel = "RunModel_" + str(count) + "_" + str(basename)
-        outsegFile = toutdir + "/" + basename + '.PyLOH.segments.extended'
-        if(os.path.isfile(outsegFile)):
-            continue
-        else:
+        if(os.path.isfile(tBamFile) and (os.path.isfile(nBamFile))):
+            jobId = "iCallSV_" + str(count) + "_" + str(basename)
             cmdList = []
-            # + " --allelenumber_max 2 --max_iters 100 --stop_value 1e-7"
-            cmd = args.python + " " + args.pyloh + " run_model " + basename
-            qsub_cmd = args.qsub + " -q " + args.queue + " -N " + jobId_runmodel + " -o " + jobId_runmodel + ".stdout" + " -e " + \
-                jobId_runmodel + ".stderr" + " -V -l h_vmem=6G,virtual_free=6G -pe smp 1" + " -wd " + toutdir + " -sync y " + "-b y " + cmd
+            cmd = args.python + " " + args.icsv + " -sc " + args.conf + " -bbam "+ nBamFile + " -abam " + tBamFile + " -aId " + tsampleId + " -bId " + nsampleId + " -op " + tsampleId + " -o " + outdir 
+            # cmd = str(cmd)
+            threads = int(args.threads)
+            threads = threads + 1
+            qsub_cmd = args.qsub + " -q " + args.queue + " -N " + jobId + " -o " + jobId + ".stdout" + " -e " + \
+                jobId + ".stderr" + " -V -l h_vmem=6G,virtual_free=6G -pe smp " + str(threads) + " -wd " + outdir + " -sync y " + " -b y " + cmd
             print "qsub_cmd:", qsub_cmd, "\n"
             cmdList.append(qsub_cmd)
             job = Job(
@@ -375,51 +284,10 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, segmentFileLis
                 kwlist=None,
                 cleanup=True,
                 mem_free="2G",
-                name=jobId_runmodel,
+                name=jobId_preprocess,
                 num_slots=1,
                 queue=args.queue)
             jobs.append(job)
-            count = count + 1
-
-    print("sending function jobs to cluster")
-    print("")
-
-    job_outputs = process_jobs(
-        jobs,
-        max_processes=10,
-        temp_dir='/dmp/analysis/SCRATCH/',
-        white_list=None,
-        quiet=False,
-        local=False)
-
-    print("results from each job")
-    for (i, result) in enumerate(job_outputs):
-        print("Job {0}- result: {1}".format(i, result))
-
-    # Run BAF
-    count = 0
-    jobs = []
-    for basename, jdata in baseNames.iteritems():
-        (toutdir, jobId_preprocess) = jdata.split('#', 1)
-        jobId_BAF = "BAF_" + str(count) + "_" + str(basename)
-        cmdList = []
-        cmd = args.python + " " + args.pyloh + " BAF_heatmap " + basename
-        qsub_cmd = args.qsub + " -q " + args.queue + " -N " + jobId_BAF + " -o " + jobId_BAF + ".stdout" + " -e " + \
-            jobId_BAF + ".stderr" + " -V -l h_vmem=6G,virtual_free=6G -pe smp 1" + " -wd " + toutdir + " -sync y " + " -b y " + cmd
-        print "qsub_cmd:", qsub_cmd, "\n"
-        cmdList.append(qsub_cmd)
-        job = Job(
-            RunJob,
-            cmdList,
-            kwlist=None,
-            cleanup=True,
-            mem_free="2G",
-            name=jobId_BAF,
-            num_slots=1,
-            queue=args.queue)
-        jobs.append(job)
-        count = count + 1
-
     print("sending function jobs to cluster")
     print("")
 
