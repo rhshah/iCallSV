@@ -157,7 +157,10 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          dgv_site1,
          dgv_site2
          ) = (None for i in range(18))  
-        indexList = ((str(annoDF['chr1']) == str(chrom1)) & (str(annoDF['pos1']) == str(start1)) & (str(annoDF['chr2']) == str(chrom2])) & str((annoDF['pos2'] == start2))).index.tolist()
+        indexList = ((str(annoDF['chr1']) == str(chrom1)) & 
+                     (str(annoDF['pos1']) == str(start1)) & 
+                     (str(annoDF['chr2']) == str(chrom2)) & 
+                     (str(annoDF['pos2']) == str(start2))).index.tolist()
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal("iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for annotated file. Please check and rerun")
@@ -184,7 +187,10 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         #Get information for confidence score
         confIndex = None
         confidenceScore = None
-        indexList = ((str(confDF['Chr1']) == str(chrom1)) & (str(confDF['Start1']) == str(start1)) & (str(confDF['Chr2']) == str(chrom2])) & str((confDF['Start2'] == start2))).index.tolist()
+        indexList = ((str(confDF['Chr1']) == str(chrom1)) & 
+                     (str(confDF['Start1']) == str(start1)) & 
+                     (str(confDF['Chr2']) == str(chrom2)) & 
+                     (str(confDF['Start2']) == str(start2))).index.tolist()
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal("iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for confidence score. Please check and rerun")
