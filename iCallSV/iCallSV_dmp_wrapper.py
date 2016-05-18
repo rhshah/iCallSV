@@ -129,9 +129,7 @@ def main():
                     (titleFile,
                      outdir,
                      HSmetricsFileList,
-                     bamFileList,
-                     segmentFileList) = SetupRun(poolName,
-                                                 args)
+                     bamFileList) = SetupRun(poolName,args)
                     RunPerPool(
                         titleFile,
                         outdir,
