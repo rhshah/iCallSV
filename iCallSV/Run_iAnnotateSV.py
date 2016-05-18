@@ -27,6 +27,7 @@ from datetime import date, timedelta
 import checkparameters as cp
 import logging
 
+
 def run(
         python,
         iAnnotateSV,
@@ -58,8 +59,8 @@ def run(
     today = day.isoformat()
     logging.info("Run_iAnnotateSV: ProcessID:%s, Date:%s", myPid, today)
     outputFile = outputTabFile
-    cmd = python + " " + iAnnotateSV + " -r " + build + " -i " + inputTabFile + \
-        " -o " + outputDir + " -ofp " + outputFile + " -d " + str(distance) + " -c " + canonicalTranscriptFile + " -rr " + repeatregionFile  + " -cc " + cosmicFile + " -dgv " + dgvFile + " -p -u " + uniprotFile
+    cmd = python + " " + iAnnotateSV + " -r " + build + " -i " + inputTabFile + " -o " + outputDir + " -ofp " + outputFile + " -d " + str(
+        distance) + " -c " + canonicalTranscriptFile + " -rr " + repeatregionFile + " -cc " + cosmicFile + " -dgv " + dgvFile + " -p -u " + uniprotFile
     args = shlex.split(cmd)
     logging.info("Run_iAnnotateSV: Command that will be run: %s", cmd)
     # Remove if the file exists
@@ -71,10 +72,15 @@ def run(
     if(retcode >= 0):
         end_time = time.time()
         totaltime = str(timedelta(seconds=end_time - start_time))
-        logging.info("Run_iAnnotateSV: We have finished running iAnnotateSV for %s using local machine", inputTabFile)
+        logging.info(
+            "Run_iAnnotateSV: We have finished running iAnnotateSV for %s using local machine",
+            inputTabFile)
         logging.info("Run_iAnnotateSV Duration: %s", totaltime)
     else:
-        logging.info("Run_iAnnotateSV: iAnnotateSV is either still running on local machine or it errored out with return code %d for %s", retcode,inputTabFile)
+        logging.info(
+            "Run_iAnnotateSV: iAnnotateSV is either still running on local machine or it errored out with return code %d for %s",
+            retcode,
+            inputTabFile)
         sys.exit()
     return(outputFile)
 # # test moudule

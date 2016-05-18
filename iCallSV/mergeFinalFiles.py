@@ -5,7 +5,7 @@ Description: Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single
 ::Input::
 aId: Sample ID for case that has the structural abberations
 bId: Sample ID for control
-vcfFile: Delly filtered and merged VCF file 
+vcfFile: Delly filtered and merged VCF file
 annoTab: iAnnotateSV tab-delimited file with annotations
 confTab: targetSeqView tab-delimited file with probability score
 outputDir: Directory to write the output file
@@ -22,14 +22,57 @@ import vcf
 import checkparameters as cp
 import pandas as pd
 
+
 def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     if(verbose):
-        logging.info("iCallSV::MergeFinalFile: Merging Delly Filtered VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file")
+        logging.info(
+            "iCallSV::MergeFinalFile: Merging Delly Filtered VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file")
     cp.checkFile(vcfFile)
     cp.checkFile(annoTab)
     cp.checkFile(confTab)
     cp.checkDir(outDir)
-    outDF = pd.DataFrame(columns=["TumorId", "NormalId", "Chr1", "Pos1", "Chr2", "Pos2", "SV_Type", "Gene1", "Gene2", "Transcript1", "Transcript2", "Site1Description", "Site2Description", "Fusion", "ProbabilityScore", "Confidence", "Comments", "Connection_Type", "SV_LENGTH", "MAPQ", "PairEndReadSupport", "SplitReadSupport", "BrkptType", "ConsensusSequence", "TumorVariantCount", "TumorSplitVariantCount", "TumorReadCount", "TumorGenotypeQScore", "NormalVariantCount", "NormalSplitVariantCount", "NormalReadCount", "NormalGenotypeQScorerepName-repClass-repFamily:-site1", "repName-repClass-repFamily:-site2", "CC_Chr_Band", "CC_Tumour_Types(Somatic)", "CC_Cancer_Syndrome", "CC_Mutation_Type", "CC_Translocation_Partner", "DGv_Name-DGv_VarType-site1", "DGv_Name-DGv_VarType-site2"])
+    outDF = pd.DataFrame(
+        columns=[
+            "TumorId",
+            "NormalId",
+            "Chr1",
+            "Pos1",
+            "Chr2",
+            "Pos2",
+            "SV_Type",
+            "Gene1",
+            "Gene2",
+            "Transcript1",
+            "Transcript2",
+            "Site1Description",
+            "Site2Description",
+            "Fusion",
+            "ProbabilityScore",
+            "Confidence",
+            "Comments",
+            "Connection_Type",
+            "SV_LENGTH",
+            "MAPQ",
+            "PairEndReadSupport",
+            "SplitReadSupport",
+            "BrkptType",
+            "ConsensusSequence",
+            "TumorVariantCount",
+            "TumorSplitVariantCount",
+            "TumorReadCount",
+            "TumorGenotypeQScore",
+            "NormalVariantCount",
+            "NormalSplitVariantCount",
+            "NormalReadCount",
+            "NormalGenotypeQScorerepName-repClass-repFamily:-site1",
+            "repName-repClass-repFamily:-site2",
+            "CC_Chr_Band",
+            "CC_Tumour_Types(Somatic)",
+            "CC_Cancer_Syndrome",
+            "CC_Mutation_Type",
+            "CC_Translocation_Partner",
+            "DGv_Name-DGv_VarType-site1",
+            "DGv_Name-DGv_VarType-site2"])
     annoDF = pd.read_csv(annoTab, sep="\t", header=0, keep_default_na='True')
     confDF = pd.read_csv(confTab, sep="\t", header=0, keep_default_na='True')
     # Read VCF and Traverse through it
@@ -45,7 +88,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             caseIDinVcf = sample
         else:
             controlIDinVcf = sample
-    #traverse through the vcf
+    # traverse through the vcf
     count = 0
     for record in vcf_reader:
         # Define all variables:
@@ -103,10 +146,10 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             brktype = "PRECISE"
         else:
             brktype = "IMPPRECISE"
-        
+
         caseCalls = record.genotype(caseIDinVcf)
         controlCalls = record.genotype(controlIDinVcf)
-        
+
         if(hasattr(caseCalls.data, "FT")):
             caseFT = caseCalls.data.FT
         if(hasattr(caseCalls.data, "GQ")):
@@ -136,8 +179,8 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             controlRR = controlCalls.data.RR
         if(hasattr(controlCalls.data, "RV")):
             controlRV = controlCalls.data.RV
-        
-        #Get data from annotation file
+
+        # Get data from annotation file
         (indexList,
          annoIndex,
          gene1,
@@ -156,17 +199,18 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          cc_t_p,
          dgv_site1,
          dgv_site2
-         ) = (None for i in range(18))  
-        indexList = ((str(annoDF['chr1']) == str(chrom1)) & 
-                     (str(annoDF['pos1']) == str(start1)) & 
-                     (str(annoDF['chr2']) == str(chrom2)) & 
+         ) = (None for i in range(18))
+        indexList = ((str(annoDF['chr1']) == str(chrom1)) &
+                     (str(annoDF['pos1']) == str(start1)) &
+                     (str(annoDF['chr2']) == str(chrom2)) &
                      (str(annoDF['pos2']) == str(start2))).index.tolist()
         if(len(indexList) > 1):
             if(verbose):
-                logging.fatal("iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for annotated file. Please check and rerun")
+                logging.fatal(
+                    "iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for annotated file. Please check and rerun")
             sys.exit(1)
         else:
-            annoIndex=indexList[0]
+            annoIndex = indexList[0]
         gene1 = annoDF.iloc[annoIndex]['gene1']
         gene2 = annoDF.iloc[annoIndex]['gene2']
         transcript1 = annoDF.iloc[annoIndex]['transcript1']
@@ -183,44 +227,47 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         cc_t_p = annoDF.iloc[annoIndex]['CC_Translocation_Partner']
         dgv_site1 = annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site1']
         dgv_site2 = annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site2']
-        
-        #Get information for confidence score
+
+        # Get information for confidence score
         confIndex = None
         confidenceScore = None
-        indexList = ((str(confDF['Chr1']) == str(chrom1)) & 
-                     (str(confDF['Start1']) == str(start1)) & 
-                     (str(confDF['Chr2']) == str(chrom2)) & 
+        indexList = ((str(confDF['Chr1']) == str(chrom1)) &
+                     (str(confDF['Start1']) == str(start1)) &
+                     (str(confDF['Chr2']) == str(chrom2)) &
                      (str(confDF['Start2']) == str(start2))).index.tolist()
         if(len(indexList) > 1):
             if(verbose):
-                logging.fatal("iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for confidence score. Please check and rerun")
+                logging.fatal(
+                    "iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for confidence score. Please check and rerun")
             sys.exit(1)
         else:
-            confIndex=indexList[0]
+            confIndex = indexList[0]
         confidenceScore = confDF.iloc[confIndex]['ProbabilityScore']
-        
-        #populate final dataframe
-        outDF.loc[
-                count,
-                ["TumorId", "NormalId", "Chr1", "Pos1", "Chr2", "Pos2", "SV_Type", "Gene1", "Gene2", 
-                 "Transcript1", "Transcript2", "Site1Description", "Site2Description", "Fusion", 
-                 "ProbabilityScore", "Confidence", "Comments", "Connection_Type", "SV_LENGTH", "MAPQ", 
-                 "PairEndReadSupport", "SplitReadSupport", "BrkptType", "ConsensusSequence", "TumorVariantCount", 
-                 "TumorSplitVariantCount", "TumorReadCount", "TumorGenotypeQScore", "NormalVariantCount", 
-                 "NormalSplitVariantCount", "NormalReadCount", "NormalGenotypeQScore", "repName-repClass-repFamily:-site1", 
-                 "repName-repClass-repFamily:-site2", "CC_Chr_Band", "CC_Tumour_Types(Somatic)", "CC_Cancer_Syndrome", 
-                 "CC_Mutation_Type", "CC_Translocation_Partner", "DGv_Name-DGv_VarType-site1", "DGv_Name-DGv_VarType-site2"]] = 
-                [aId, bId, chrom1, start1, chrom2, start2, svtype, gene1, gene2, transcript1, transcript2, 
-                 site1, site2, fusion, confidenceScore, None, None, contype, svlengthFromDelly, 
-                 mapqFromDelly, peSupportFromDelly, srSupportFromDelly, brktype, conseq, caseDV, caseRV, 
-                 caseDR, caseRC, caseGQ, controlDV, controlRV, controlDR, controlRC, controlGQ,rr_site1, rr_site2,
-                 cc_chr_band, cc_t_t, cc_c_s, cc_m_t, cc_t_p, dgv_site1, dgv_site2]    
-    
-        count = count + 1 
-   
-    #Write Output
+
+        # populate final dataframe
+        outDF.loc[count,
+                  ["TumorId", "NormalId", "Chr1", "Pos1", "Chr2", "Pos2", "SV_Type", "Gene1",
+                   "Gene2", "Transcript1", "Transcript2", "Site1Description", "Site2Description",
+                   "Fusion", "ProbabilityScore", "Confidence", "Comments", "Connection_Type",
+                   "SV_LENGTH", "MAPQ", "PairEndReadSupport", "SplitReadSupport", "BrkptType",
+                   "ConsensusSequence", "TumorVariantCount", "TumorSplitVariantCount",
+                   "TumorReadCount", "TumorGenotypeQScore", "NormalVariantCount",
+                   "NormalSplitVariantCount", "NormalReadCount", "NormalGenotypeQScore",
+                   "repName-repClass-repFamily:-site1", "repName-repClass-repFamily:-site2",
+                   "CC_Chr_Band", "CC_Tumour_Types(Somatic)", "CC_Cancer_Syndrome",
+                   "CC_Mutation_Type", "CC_Translocation_Partner", "DGv_Name-DGv_VarType-site1",
+                   "DGv_Name-DGv_VarType-site2"]] = [aId, bId, chrom1, start1, chrom2, start2,
+                                                     svtype, gene1, gene2, transcript1, transcript2, site1, site2, fusion, confidenceScore,
+                                                     None, None, contype, svlengthFromDelly, mapqFromDelly, peSupportFromDelly,
+                                                     srSupportFromDelly, brktype, conseq, caseDV, caseRV, caseDR, caseRC, caseGQ, controlDV,
+                                                     controlRV, controlDR, controlRC, controlGQ, rr_site1, rr_site2, cc_chr_band, cc_t_t,
+                                                     cc_c_s, cc_m_t, cc_t_p, dgv_site1, dgv_site2]
+
+        count = count + 1
+
+    # Write Output
     outFile = outDir + "/" + outputPrefix + "_final.txt"
-    outDF.to_csv(outFile,sep='\t', index=False)
+    outDF.to_csv(outFile, sep='\t', index=False)
     if(verbose):
         logging.info("iCallSV::MergeFinalFile: Finished merging, Final data written in %s", outFile)
     return(outFile)
