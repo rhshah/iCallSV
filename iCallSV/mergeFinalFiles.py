@@ -194,17 +194,11 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          dgv_site1,
          dgv_site2
          ) = (None for i in range(18))
-        """
-        indexList = (
-            (annoDF['chr1'] == chrom1) & (
-                annoDF['pos1'] == int(start1)) & (
-                annoDF['chr2'] == chrom2) & (
-                annoDF['pos2'] == int(start2))).index.tolist()
-        """
+       
         indexList = annoDF.loc[(annoDF['chr1'].isin([chrom1]) & (
             annoDF['pos1'].isin([int(start1)])) & (
-            annoDF['chr2'].isin([chrom2]) & (
-            annoDF['pos2'].isin([int(start2)])].index.tolist()
+            annoDF['chr2'].isin([chrom2])) & (
+            annoDF['pos2'].isin([int(start2)]))].index.tolist()
         print len(indexList), indexList
         if(len(indexList) > 1):
             if(verbose):
@@ -234,17 +228,10 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         # Get information for confidence score
         confIndex=None
         confidenceScore=None
-        """
-        indexList = (
-            (confDF['Chr1'] == chrom1) & (
-                confDF['Start1'] == int(start1)) & (
-                confDF['Chr2'] == chrom2) & (
-                confDF['Start2'] == int(start2))).index.tolist()
-        """
         index.List=confDF.loc[(confDF['Chr1'].isin([chrom1]) & (
             confDF['Start1'].isin([int(start1)])) & (
-            confDF['Chr2'].isin([chrom2]) & (
-            confDF['Start2'].isin([int(start2)])].index.tolist()
+            confDF['Chr2'].isin([chrom2])) & (
+            confDF['Start2'].isin([int(start2)]))].index.tolist()
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
