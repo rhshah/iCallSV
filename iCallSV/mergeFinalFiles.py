@@ -203,7 +203,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          ) = (None for i in range(18))
         #indexList = ((str(annoDF['chr1']) == str(chrom1)) & (str(annoDF['pos1']) == str(start1)) & (
         #   str(annoDF['chr2']) == str(chrom2)) & (str(annoDF['pos2']) == str(start2))).index.tolist()
-        indexList = ((annoDF['chr1'] == chrom1) & (annoDF['pos1'] == start1) & (annoDF['chr2'] == chrom2) & (annoDF['pos2'] == start2)).index.tolist()
+        indexList = ((annoDF['chr1'] == int(chrom1)) & (annoDF['pos1'] == int(start1)) & (annoDF['chr2'] == int(chrom2)) & (annoDF['pos2'] == int(start2))).index.tolist()
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
@@ -233,7 +233,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         confidenceScore = None
         #indexList = ((str(confDF['Chr1']) == str(chrom1)) & (str(confDF['Start1']) == str(start1)) & (
         #    str(confDF['Chr2']) == str(chrom2)) & (str(confDF['Start2']) == str(start2))).index.tolist()
-        indexList = ((confDF['Chr1'] == chrom1) & (confDF['Start1'] == start1) & (confDF['Chr2'] == chrom2) & (confDF['Start2'] == start2)).index.tolist()
+        indexList = ((confDF['Chr1'] == int(chrom1)) & (confDF['Start1'] == int(start1)) & (confDF['Chr2'] == int(chrom2)) & (confDF['Start2'] == int(start2))).index.tolist()
         
         if(len(indexList) > 1):
             if(verbose):
