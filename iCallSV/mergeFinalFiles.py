@@ -141,7 +141,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             srSupportFromDelly = record.INFO['SR']
         if("CT" in record.INFO):
             contype = record.INFO['CT']
-        if("CONSENSUS" in record.INFO['CONSENSUS']):
+        if("CONSENSUS" in record.INFO):
             conseq = record.INFO['CONSENSUS']
         if(record.INFO.is_sv_precise()):
             brktype = "PRECISE"
