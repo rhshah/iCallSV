@@ -1,9 +1,8 @@
-'''
+"""
 Created on Mar 18, 2015
 Description: This module will run iAnnotateSV package
 @author: Ronak H Shah
-'''
-'''
+
 ::Input::
 python : Location for the python executable.
 iAnnotateSV : Location of the wrapper iAnnotateSV package (iAnnotateSV.py)
@@ -17,7 +16,8 @@ repeatregionFile: Location for repeat region file
 dgvFile: Location for database of Genomic Variants file
 ::Output::
 It is a tab-delimited file with annotation in them
-'''
+"""
+
 import os
 import sys
 from subprocess import Popen

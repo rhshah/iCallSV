@@ -1,19 +1,19 @@
-'''
+"""
 Created on December 21, 2015
 Description: This module will be launching functions as threads
 @author: Ronak H Shah
-'''
-'''
+"""
+"""
 ::Inputs::
 threadID: Id for the thread
 name: name for the thread
 counter: a counter to keep track of the thread
-'''
-'''
+"""
+"""
 Taken from:
 http://www.tutorialspoint.com/python/python_multithreading.htm
 
-'''
+"""
 
 import logging
 import threading

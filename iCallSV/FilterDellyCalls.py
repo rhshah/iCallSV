@@ -1,9 +1,8 @@
-'''
+"""
 Created on Mar 17, 2015
 Description: This module will filter calls made by Delly which are in a VCF format
 @author: Ronak H Shah
-'''
-'''
+
 ::Inputs::
 inputVcf: Input VCF file name with path
 outputDir: Output directory
@@ -29,7 +28,7 @@ mapqHotspot: mapping quality for hot-spots
 
 ::Output::
 Filtered VCF files
-'''
+"""
 import os
 import sys
 import vcf

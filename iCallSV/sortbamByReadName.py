@@ -1,8 +1,9 @@
-'''
+"""
 Created on Mar 18, 2015
 Description: This module will sort bam file by name
 @author: Ronak H Shah
-'''
+"""
+
 import os
 import sys
 import pysam

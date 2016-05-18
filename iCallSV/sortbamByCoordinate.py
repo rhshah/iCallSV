@@ -1,8 +1,9 @@
-'''
+"""
 Created on Mar 19, 2015
 Description: This module will sort bam file by coordinate
 @author: Ronak H Shah
-'''
+"""
+
 import os
 import sys
 import pysam

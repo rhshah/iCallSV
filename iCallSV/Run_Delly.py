@@ -1,9 +1,9 @@
-'''
+"""
 Created on March 17, 2015
 Description: Runs the delly program on case and control bam file to give its results
 @author: Ronak H Shah
-'''
-'''
+"""
+"""
 ::Inputs::
 delly:Path to delly executables (0.7.3 or above)
 bcftools:Path to bcftools executables (1.3.1 or above)
@@ -19,7 +19,8 @@ outputdir: directory for the output of delly
 debug: If you just wish to test what we will do
 ::Output::
 VCF file having all the structural variants called
-'''
+"""
+
 import os
 import sys
 from subprocess import Popen

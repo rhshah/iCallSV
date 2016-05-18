@@ -1,12 +1,13 @@
-'''
+"""
 Created on November 19, 2015
 Description: This module will make directory structure for running analysis
 @author: Ronak H Shah
-'''
-'''
+"""
+"""
 ::Inputs::
 args: Arguments passed to iCallSV
-'''
+"""
+
 import os
 import re
 import logging

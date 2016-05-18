@@ -1,9 +1,9 @@
-'''
+"""
 Created on Mar 18, 2015
 Description: This module converts the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV
 @author: Ronak H Shah
-'''
-'''
+"""
+"""
 ::Input::
 vcfFile: Input vcf file to convert
 outputFileName: Name of the output file
@@ -16,7 +16,8 @@ str1: Its the read direction for the first break point [0=top/plus/reference, 1=
 chr2: Its the chromosome name for second break point [1,2,3,4,5,6,7 etc..],
 pos2: Its the chromosome loaction for second break point [1-based],
 str2: Its the read direction for the second break point [0=top/plus/reference, 1=bottom/minus/complement],
-'''
+"""
+
 import os
 import vcf
 import checkparameters as cp

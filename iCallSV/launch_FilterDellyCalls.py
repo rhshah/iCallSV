@@ -1,9 +1,9 @@
-'''
+"""
 Created on November 20, 2015
 Description: This module will filter delly results and create filtered delly vcf files
 @author: Ronak H Shah
-'''
-'''
+"""
+"""
 ::Inputs::
 args: Arguments passed to iCallSV
 config: configuration file passed to iCallSV
@@ -13,7 +13,8 @@ dup_vcf: Path to duplication based vcf file
 inv_vcf: Path to inversion based vcf file
 tra_vcf: Path to translocation based vcf file
 ins_vcf: Path to insertion based vcf file
-'''
+"""
+
 import os
 import logging
 import FilterDellyCalls as fdc

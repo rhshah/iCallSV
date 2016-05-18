@@ -1,9 +1,9 @@
-'''
+"""
 Created on Mar 20, 2015
 Description : This module will run samblaster for extracting discordant and spit reads in sam format
 @author: Ronak Shah
-'''
-'''
+"""
+"""
 ::Input::
 samtools: To stream bam to sam into samblaster
 samblaster: Location of the samblaster executables
@@ -14,7 +14,8 @@ outputDir : name the output directory
 ::Output::
 discordantFile : SAM file containing discordant read entries
 splitFile : SAM file containing split read entries
-'''
+"""
+
 import os
 import sys
 from subprocess import Popen

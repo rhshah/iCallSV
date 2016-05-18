@@ -1,16 +1,16 @@
-'''
+"""
 Created on Mar 17, 2015
 Description: This module will read the hotspot file and tell if it is a hotspot or not
 @author: Ronak H Shah
-'''
-'''
+"""
+"""
 ::Inputs::
 HotSpotFile: List of Genes that have Hotspot Structural Variants (Tab-delimited Format without header:chr    start    end    geneName).
 chr1: Chromosome location for 1st breakpoint
 start1: Start location of the breakpoint
 chr2: Chromosome location for 2nd breakpoint
 start2: Start Location of the second breakpoint
-'''
+"""
 import os
 import re
 

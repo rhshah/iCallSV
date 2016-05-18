@@ -1,14 +1,15 @@
-'''
+"""
 Created on November 19, 2015
 Description: This module will be launching delly using Run_Delly
 @author: Ronak H Shah
-'''
-'''
+"""
+"""
 ::Inputs::
 args: Arguments passed to iCallSV
 config: configuration file passed to iCallSV
 sampleOutdirForDelly: Output directory for delly vcf files.
-'''
+"""
+
 import logging
 import Run_Delly as rd
 import multiprocessing as mp

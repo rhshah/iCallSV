@@ -1,4 +1,4 @@
-'''
+"""
 Created on Mar 19, 2015
 Description: Convert VCF to targetSeqView
 #Example:
@@ -14,7 +14,8 @@ outputFileName: Name of the output File
 ::Output::
 outputFile: TargetSeqView format text file for a given vcf file.
 @author: Ronak H Shah
-'''
+"""
+
 import vcf
 import checkparameters as cp
 import logging

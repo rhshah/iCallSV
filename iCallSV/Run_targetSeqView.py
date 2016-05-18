@@ -1,9 +1,9 @@
-'''
+"""
 Created on Mar 19, 2015
 Description: This module will run targetSeqView
 @author: Ronak H Shah
-'''
-'''
+"""
+"""
 ::Input::
 RLocation : Location of the R executable (>3.1.2).
 targetSeqView: Location of R script that will run tragetSeqView
@@ -16,7 +16,8 @@ outputDir : Directory for output files
 outsvFile : Name of the output structural variant file that has added confidence score to it.
 ::Output::
 Tab-delimited File with added confidence score and Image of each SV
-'''
+"""
+
 import os
 import sys
 from subprocess import Popen
