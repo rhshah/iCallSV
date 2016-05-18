@@ -65,7 +65,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             "NormalVariantCount",
             "NormalSplitVariantCount",
             "NormalReadCount",
-            "NormalGenotypeQScore,
+            "NormalGenotypeQScore",
             "repName-repClass-repFamily:-site1",
             "repName-repClass-repFamily:-site2",
             "CC_Chr_Band",
@@ -183,15 +183,15 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             controlRV = controlCalls.data.RV
 
         if(chrom1 is 'X' or chrom1 is 'Y'):
-            chrom1 = chrom1 
+            chrom1 = chrom1
         else:
             chrom1 = int(chrom1)
-        
+
         if(chrom2 is 'X' or chrom2 is 'Y'):
             chrom2 = chrom2
         else:
             chrom2 = int(chrom2)
-            
+
         # Get data from annotation file
         (indexList,
          annoIndex,
@@ -212,8 +212,12 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          dgv_site1,
          dgv_site2
          ) = (None for i in range(18))
-        
-        indexList = ((annoDF['chr1'] == chrom1) & (annoDF['pos1'] == int(start1)) & (annoDF['chr2'] == chrom2) & (annoDF['pos2'] == int(start2))).index.tolist()
+
+        indexList = (
+            (annoDF['chr1'] == chrom1) & (
+                annoDF['pos1'] == int(start1)) & (
+                annoDF['chr2'] == chrom2) & (
+                annoDF['pos2'] == int(start2))).index.tolist()
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
@@ -221,7 +225,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             sys.exit(1)
         else:
             annoIndex = indexList[0]
-        
+
         gene1 = annoDF.iloc[annoIndex]['gene1']
         gene2 = annoDF.iloc[annoIndex]['gene2']
         transcript1 = annoDF.iloc[annoIndex]['transcript1']
@@ -242,7 +246,11 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         # Get information for confidence score
         confIndex = None
         confidenceScore = None
-        indexList = ((confDF['Chr1'] == chrom1) & (confDF['Start1'] == int(start1)) & (confDF['Chr2'] == chrom2) & (confDF['Start2'] == int(start2))).index.tolist()
+        indexList = (
+            (confDF['Chr1'] == chrom1) & (
+                confDF['Start1'] == int(start1)) & (
+                confDF['Chr2'] == chrom2) & (
+                confDF['Start2'] == int(start2))).index.tolist()
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
