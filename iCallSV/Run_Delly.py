@@ -122,31 +122,29 @@ def run(
                 logging.info(
                     "Run_Delly: We have finished running Delly for %s using local machine", caseId)
                 logging.info("Run_Delly Duration: %s", totaltime)
-            if(os.path.isfile(outputBcf)):
-                cmd = bcftools + " view " + outputBcf + " -O v -o " + outputVcf
-                if(verbose):
-                    logging.info("Run_Delly_bcf2vcf: Command that will be run:%s", cmd)
-                args = shlex.split(cmd)
-                proc = Popen(args)
-                proc.wait()
-                retcode = proc.returncode
-                if(retcode >= 0):
-                    end_time = time.time()
-                    totaltime = str(timedelta(seconds=end_time - start_time))
+            if(version >= StrictVersion('0.7.3')):
+                if(os.path.isfile(outputBcf)):
+                    cmd = bcftools + " view " + outputBcf + " -O v -o " + outputVcf
                     if(verbose):
-                        logging.info(
-                            "Run_Delly_bcf2vcf: We have finished running bcftools for %s using local machine", caseId)
-                        logging.info("Run_Delly_bcf2vcf Duration: %s", totaltime)
-                else:
-                    if(verbose):
-                        logging.fatal(
-                            "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
-                            retcode,
-                            caseId)
-                    sys.exit(1)
-            else:
-                if(os.path.isfile(outputVcf)):
-                    return(outputVcf)
+                        logging.info("Run_Delly_bcf2vcf: Command that will be run:%s", cmd)
+                    args = shlex.split(cmd)
+                    proc = Popen(args)
+                    proc.wait()
+                    retcode = proc.returncode
+                    if(retcode >= 0):
+                        end_time = time.time()
+                        totaltime = str(timedelta(seconds=end_time - start_time))
+                        if(verbose):
+                            logging.info(
+                                "Run_Delly_bcf2vcf: We have finished running bcftools for %s using local machine", caseId)
+                            logging.info("Run_Delly_bcf2vcf Duration: %s", totaltime)
+                    else:
+                        if(verbose):
+                            logging.fatal(
+                                "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
+                                retcode,
+                                caseId)
+                        sys.exit(1)
                 else:
                     if(verbose):
                         logging.fatal(
@@ -154,6 +152,16 @@ def run(
                                       retcode,
                                       caseId)
                         sys.exit(1)
+            else:
+                if(os.path.isfile(outputVcf)):
+                    return(outputVcf)
+                else:
+                    if(verbose):
+                        logging.fatal(
+                                      "Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s",
+                                      retcode,
+                                      caseId)
+                    sys.exit(1)
         else:
             if(verbose):
                 logging.fatal(
