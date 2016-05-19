@@ -80,7 +80,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     if(os.path.isfile(confTab)):
         confDF = pd.read_csv(confTab, sep="\t", header=0, keep_default_na='True')
     else:
-        confDF = None
+        confDF = pd.DataFrame()
     # Read VCF and Traverse through it
     vcf_reader = vcf.Reader(open(vcfFile, 'r'))
     samples = vcf_reader.samples
@@ -228,7 +228,9 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         dgv_site1=annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site1']
         dgv_site2=annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site2']
         
-        if(confDF):
+        if(confDF.empty()):
+            confidenceScore=None
+        else:
             # Get information for confidence score
             confIndex=None
             confidenceScore=None
@@ -245,8 +247,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             else:
                 confIndex=indexList[0]
             confidenceScore=confDF.iloc[confIndex]['ProbabilityScore']
-        else:
-            confidenceScore=None
+            
 
         # populate final dataframe
         outDF.loc[count,
