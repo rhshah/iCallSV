@@ -26,7 +26,6 @@ import shlex
 import time
 from datetime import date, timedelta
 import checkparameters as cp
-import makebamindex as mbi
 import logging
 from distutils.version import LooseVersion, StrictVersion
 # This function will run delly based on given inputs
@@ -81,7 +80,6 @@ def run(
             logging.debug("Run_Delly: Command that will be run %s", cmd)
     else:
         # Check if bam index files are there else make them
-        time.sleep(60)
         controlBai = controlBam + ".bai"
         if(os.path.isfile(controlBai)):
             if(verbose):

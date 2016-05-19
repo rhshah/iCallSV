@@ -9,10 +9,11 @@ args: Arguments passed to iCallSV
 config: configuration file passed to iCallSV
 sampleOutdirForDelly: Output directory for delly vcf files.
 """
-
+import os
 import logging
 import Run_Delly as rd
 import multiprocessing as mp
+import makebamindex as mbi
 
 
 def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly):
@@ -22,6 +23,28 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
     if(verbose):
         logging.info(
             "launch_Run_Delly: Launched Delly for Deletion, Duplication, Inversion and Translocation Events")
+    # check of index file before run
+    controlBai = args.controlBam + ".bai"
+    if(os.path.isfile(controlBai)):
+        if(verbose):
+            logging.info("Run_Delly: Bam Index file is present for %s ", controlBai)
+    else:
+        if(verbose):
+            logging.warn(
+                "Run_Delly: Bam Index file is not present and we will make it for %s ",
+                controlBai)
+        mbi.MakeIndex(controlBam)
+    caseBai = args.caseBam + ".bai"
+    if(os.path.isfile(caseBai)):
+        if(verbose):
+            logging.info("Run_Delly: Bam Index file is present for %s ", caseBai)
+    else:
+        if(verbose):
+            logging.warn(
+                "Run_Delly: Bam Index file is not present and we will make it for %s ",
+                caseBai)
+        mbi.MakeIndex(caseBam)
+    # launch commands
     results = [pool.apply_async(rd.run, args=(
         config.get("SVcaller", "DELLY"),
         config.get("SVcaller", "DellyVersion"),
