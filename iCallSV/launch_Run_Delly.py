@@ -2,8 +2,6 @@
 Created on November 19, 2015
 Description: This module will be launching delly using Run_Delly
 @author: Ronak H Shah
-"""
-"""
 ::Inputs::
 args: Arguments passed to iCallSV
 config: configuration file passed to iCallSV
@@ -17,6 +15,15 @@ import makebamindex as mbi
 
 
 def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly):
+    """
+    Created on November 19, 2015
+    Description: This module will be launching delly using Run_Delly
+    @author: Ronak H Shah
+    ::Inputs::
+    args: Arguments passed to iCallSV
+    config: configuration file passed to iCallSV
+    sampleOutdirForDelly: Output directory for delly vcf files.
+    """
     verbose = args.verbose
     pool = mp.Pool(processes=4)
     analyisisType = ["DEL", "DUP", "INV", "TRA"]

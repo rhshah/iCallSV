@@ -46,6 +46,28 @@ def run(
         outputdir,
         verbose,
         debug):
+    """
+    Created on March 17, 2015
+    Description: Runs the delly program on case and control bam file to give its results
+    @author: Ronak H Shah
+    ::Inputs::
+    delly:Path to delly executables (0.7.3 or above)
+    bcftools:Path to bcftools executables (1.3.1 or above)
+    type: What ot run in delly, DEL:Deletion, DUP: Duplication,TRA:Translocation, INV:Inversion
+    reference: Reference Genome that was used to align the reads.
+    controlBam: Path to control/normal bam file
+    caseBam: Path to case/tumor bam file
+    controlID: Id of the control/normal sample
+    caseID: Id of the case/tumor sample
+    mapq: mapping quality cutoff for delly
+    excludeRegions: Regions to be excluded for calling structural variation.
+    outputdir: directory for the output of delly
+    debug: If you just wish to test what we will do
+    ::Output::
+    VCF file having all the structural variants called
+    
+    """
+    
     start_time = time.time()
     if(verbose):
         logging.info("Run_Delly: We are now going to run Delly for you. It going to be exciting time.")

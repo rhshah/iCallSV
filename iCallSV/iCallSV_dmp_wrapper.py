@@ -18,6 +18,12 @@ from gridmap import Job, process_jobs
 
 
 def main():
+    """
+    Created on 05/18/2016.
+    @Description: This does the processing for all Samples in multiple pools
+    @author: Ronak H Shah
+    
+    """
     parser = argparse.ArgumentParser(
         prog='iCallSV_dmp_wrapper.py',
         description='Run iCallSV on selected pools using MSK data',
