@@ -158,12 +158,16 @@ def run(
          peSupportFromDelly,
          srSupportFromDelly,
          contype,
+         caseDR,
          caseDV,
+         caseRR,
          caseRV,
          caseFT,
+         contrilDR,
          controlDV,
+         controlRR,
          controlRV,
-         controlFT) = (None for i in range(17))
+         controlFT) = (None for i in range(21))
         chrom1 = record.CHROM
         start1 = record.POS
         filter = record.FILTER
@@ -189,15 +193,23 @@ def run(
         controlCalls = record.genotype(controlIDinVcf)
         if(hasattr(caseCalls.data, "FT")):
             caseFT = caseCalls.data.FT
+        if(hasattr(caseCalls.data, "DR")):
+            caseDR = caseCalls.data.DR
         if(hasattr(caseCalls.data, "DV")):
             caseDV = caseCalls.data.DV
+        if(hasattr(caseCalls.data, "RR")):
+            caseRR = caseCalls.data.RR
         if(hasattr(caseCalls.data, "RV")):
             caseRV = caseCalls.data.RV
 
         if(hasattr(controlCalls.data, "FT")):
             controlFT = controlCalls.data.FT
+        if(hasattr(controlCalls.data, "DR")):
+            controlDR = controlCalls.data.DR
         if(hasattr(controlCalls.data, "DV")):
             controlDV = controlCalls.data.DV
+        if(hasattr(controlCalls.data, "RR")):
+            controlRR = controlCalls.data.RR
         if(hasattr(controlCalls.data, "RV")):
             controlRV = controlCalls.data.RV
         # Make a string of all the variables
@@ -213,10 +225,14 @@ def run(
                               srSupportFromDelly,
                               contype,
                               caseFT,
+                              caseDR,
                               caseDV,
+                              caseRR,
                               caseRV,
                               controlFT,
+                              controlDR,
                               controlDV,
+                              controlRR,
                               controlRV]
         dellyVariables = ",".join(str(v) for v in dellyVariablesList)
         # print chrom1, start1, start2, chrom2, svlengthFromDelly, mapqFromDelly,
@@ -260,10 +276,14 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
      srSupportFromDelly,
      contype,
      caseFT,
+     caseDR,
      caseDV,
+     caseRR,
      caseRV,
      controlFT,
+     controlDR,
      controlDV,
+     controlRR,
      controlRV) = dellyVarialbles.split(",")
     # Get if its a hotspot or not
     hotspotTag = chl.CheckIfItIsHotspot(chrom1, start1, chrom2, start2, hotspotDict)
