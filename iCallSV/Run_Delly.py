@@ -35,6 +35,7 @@ import logging
 
 def run(
         delly,
+        version,
         bcftools,
         analysisType,
         reference,

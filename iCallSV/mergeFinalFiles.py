@@ -17,6 +17,7 @@ outputFile: File with following header
 @author: Ronak H Shah
 """
 import sys
+import os
 import logging
 import vcf
 import checkparameters as cp
