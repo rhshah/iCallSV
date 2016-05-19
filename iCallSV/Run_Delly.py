@@ -60,6 +60,7 @@ def run(
     cp.checkFile(controlBam)
     cp.checkFile(caseBam)
     cp.checkFile(delly)
+    cp.checkEmpty(version,"Delly Version")
     cp.checkFile(bcftools)
     cp.checkFile(reference)
     cp.checkFile(excludeRegions)

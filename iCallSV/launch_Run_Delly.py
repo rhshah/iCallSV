@@ -24,7 +24,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
             "launch_Run_Delly: Launched Delly for Deletion, Duplication, Inversion and Translocation Events")
     results = [pool.apply_async(rd.run, args=(
         config.get("SVcaller", "DELLY"),
-        config.get("SVcaller", "DELLY_VERSION"),
+        config.get("SVcaller", "DellyVersion"),
         config.get("SVcaller", "BCFTOOLS"),
         x,
         config.get("ReferenceFasta", "REFFASTA"),
