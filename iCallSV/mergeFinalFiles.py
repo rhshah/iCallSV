@@ -30,7 +30,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             "iCallSV::MergeFinalFile: Merging Delly Filtered VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file")
     cp.checkFile(vcfFile)
     cp.checkFile(annoTab)
-    cp.checkFile(confTab)
+    #cp.checkFile(confTab)
     cp.checkDir(outDir)
     outDF = pd.DataFrame(
         columns=[
@@ -76,7 +76,10 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             "DGv_Name-DGv_VarType-site1",
             "DGv_Name-DGv_VarType-site2"])
     annoDF = pd.read_csv(annoTab, sep="\t", header=0, keep_default_na='True')
-    confDF = pd.read_csv(confTab, sep="\t", header=0, keep_default_na='True')
+    if(os.path.isfile(confTab)):
+        confDF = pd.read_csv(confTab, sep="\t", header=0, keep_default_na='True')
+    else:
+        confDF = None
     # Read VCF and Traverse through it
     vcf_reader = vcf.Reader(open(vcfFile, 'r'))
     samples = vcf_reader.samples
@@ -223,23 +226,26 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         cc_t_p=annoDF.iloc[annoIndex]['CC_Translocation_Partner']
         dgv_site1=annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site1']
         dgv_site2=annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site2']
-
-        # Get information for confidence score
-        confIndex=None
-        confidenceScore=None
-        indexList = confDF.loc[confDF['Chr1'].isin([chrom1]) & 
-            confDF['Start1'].isin([int(start1)]) & 
-            confDF['Chr2'].isin([chrom2]) & 
-            confDF['Start2'].isin([int(start2)])].index.tolist()
-            
-        if(len(indexList) > 1):
-            if(verbose):
-                logging.fatal(
-                    "iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for confidence score. Please check and rerun")
-            sys.exit(1)
+        
+        if(confDF):
+            # Get information for confidence score
+            confIndex=None
+            confidenceScore=None
+            indexList = confDF.loc[confDF['Chr1'].isin([chrom1]) & 
+                confDF['Start1'].isin([int(start1)]) & 
+                confDF['Chr2'].isin([chrom2]) & 
+                confDF['Start2'].isin([int(start2)])].index.tolist()
+                
+            if(len(indexList) > 1):
+                if(verbose):
+                    logging.fatal(
+                        "iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for confidence score. Please check and rerun")
+                sys.exit(1)
+            else:
+                confIndex=indexList[0]
+            confidenceScore=confDF.iloc[confIndex]['ProbabilityScore']
         else:
-            confIndex=indexList[0]
-        confidenceScore=confDF.iloc[confIndex]['ProbabilityScore']
+            confidenceScore=None
 
         # populate final dataframe
         outDF.loc[count,

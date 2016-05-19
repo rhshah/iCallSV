@@ -45,6 +45,7 @@ def run(
         excludeRegions,
         outputdir,
         verbose,
+        version,
         debug):
     start_time = time.time()
     if(verbose):
@@ -95,8 +96,12 @@ def run(
                     "Run_Delly: Bam Index file is not present and we will make it for %s ",
                     caseBai)
             mbi.MakeIndex(caseBam)
-        cmd = delly + " call -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
-            " -q " + str(mapq) + " -o " + outputBcf + " " + caseBam + " " + controlBam
+        if(version is "0.7.3"):
+            cmd = delly + " call -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
+                " -q " + str(mapq) + " -o " + outputBcf + " " + caseBam + " " + controlBam
+        else:
+            cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
+                " -q " + str(mapq) + " -o " + outputVcf + " " + caseBam + " " + controlBam
         if(verbose):
             logging.info("Run_Delly: Command that will be run:%s", cmd)
         args = shlex.split(cmd)
@@ -133,12 +138,15 @@ def run(
                             caseId)
                     sys.exit(1)
             else:
-                if(verbose):
-                    logging.fatal(
-                        "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
-                        retcode,
-                        caseId)
-                sys.exit(1)
+                if(os.path.isfile(outputVcf)):
+                    return(outputVcf)
+                else:
+                    if(verbose):
+                        logging.fatal(
+                                      "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
+                                      retcode,
+                                      caseId)
+                        sys.exit(1)
         else:
             if(verbose):
                 logging.fatal(
