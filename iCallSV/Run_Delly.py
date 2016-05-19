@@ -2,8 +2,6 @@
 Created on March 17, 2015
 Description: Runs the delly program on case and control bam file to give its results
 @author: Ronak H Shah
-"""
-"""
 ::Inputs::
 delly:Path to delly executables (0.7.3 or above)
 bcftools:Path to bcftools executables (1.3.1 or above)
@@ -83,6 +81,7 @@ def run(
             logging.debug("Run_Delly: Command that will be run %s", cmd)
     else:
         # Check if bam index files are there else make them
+        time.sleep(60)
         controlBai = controlBam + ".bai"
         if(os.path.isfile(controlBai)):
             if(verbose):
