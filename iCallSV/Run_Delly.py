@@ -30,6 +30,7 @@ from datetime import date, timedelta
 import checkparameters as cp
 import makebamindex as mbi
 import logging
+from distutils.version import LooseVersion, StrictVersion
 # This function will run delly based on given inputs
 
 
@@ -72,9 +73,14 @@ def run(
         logging.info("Run_Delly: All the input parameters look good for running delly")
         logging.info("Run_Delly: ProcessID:%s,Date:%s", myPid, today)
     if(debug):
-        cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
-            " -q " + str(mapq) + " -o " + outputBcf + " " + caseBam + " " + controlBam
-        logging.debug("Run_Delly: Command that will be run %s", cmd)
+        if(version >= StrictVersion('0.7.3')):
+            cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
+                " -q " + str(mapq) + " -o " + outputBcf + " " + caseBam + " " + controlBam
+            logging.debug("Run_Delly: Command that will be run %s", cmd)
+        else:
+            cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
+                " -q " + str(mapq) + " -o " + outputVcf + " " + caseBam + " " + controlBam
+            logging.debug("Run_Delly: Command that will be run %s", cmd)
     else:
         # Check if bam index files are there else make them
         controlBai = controlBam + ".bai"
@@ -97,7 +103,7 @@ def run(
                     "Run_Delly: Bam Index file is not present and we will make it for %s ",
                     caseBai)
             mbi.MakeIndex(caseBam)
-        if(version is "0.7.3"):
+        if(version >= StrictVersion('0.7.3')):
             cmd = delly + " call -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
                 " -q " + str(mapq) + " -o " + outputBcf + " " + caseBam + " " + controlBam
         else:
