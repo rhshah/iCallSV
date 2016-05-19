@@ -46,7 +46,6 @@ def run(
         excludeRegions,
         outputdir,
         verbose,
-        version,
         debug):
     start_time = time.time()
     if(verbose):
