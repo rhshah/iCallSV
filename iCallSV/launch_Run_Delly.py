@@ -33,7 +33,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
             logging.warn(
                 "Run_Delly: Bam Index file is not present and we will make it for %s ",
                 controlBai)
-        mbi.MakeIndex(controlBam)
+        mbi.MakeIndex(args.controlBam)
     caseBai = args.caseBam + ".bai"
     if(os.path.isfile(caseBai)):
         if(verbose):
@@ -43,7 +43,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
             logging.warn(
                 "Run_Delly: Bam Index file is not present and we will make it for %s ",
                 caseBai)
-        mbi.MakeIndex(caseBam)
+        mbi.MakeIndex(args.caseBam)
     # launch commands
     results = [pool.apply_async(rd.run, args=(
         config.get("SVcaller", "DELLY"),
