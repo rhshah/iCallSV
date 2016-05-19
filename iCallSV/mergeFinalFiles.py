@@ -31,7 +31,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             "iCallSV::MergeFinalFile: Merging Delly Filtered VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file")
     cp.checkFile(vcfFile)
     cp.checkFile(annoTab)
-    #cp.checkFile(confTab)
+    # cp.checkFile(confTab)
     cp.checkDir(outDir)
     outDF = pd.DataFrame(
         columns=[
@@ -119,13 +119,13 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          controlRC,
          controlDV,
          controlRV) = (None for i in range(21))
-        chrom1 = record.CHROM
+        chrom1 = str(record.CHROM)
         start1 = record.POS
         filter = record.FILTER
         if("END" in record.INFO):
             start2 = record.INFO['END']
         if("CHR2" in record.INFO):
-            chrom2 = record.INFO['CHR2']
+            chrom2 = str(record.INFO['CHR2'])
         if("SVLEN" in record.INFO):
             svlengthFromDelly = record.INFO['SVLEN']
         else:
@@ -168,16 +168,6 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         if(hasattr(controlCalls.data, "RV")):
             controlRV = controlCalls.data.RV
 
-        if(chrom1 is 'X' or chrom1 is 'Y'):
-            chrom1 = chrom1
-        else:
-            chrom1 = int(chrom1)
-
-        if(chrom2 is 'X' or chrom2 is 'Y'):
-            chrom2 = chrom2
-        else:
-            chrom2 = int(chrom2)
-
         # Get data from annotation file
         (indexList,
          annoIndex,
@@ -198,56 +188,57 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          dgv_site1,
          dgv_site2
          ) = (None for i in range(18))
-       
-        indexList = annoDF.loc[annoDF['chr1'].isin([chrom1]) & 
-            annoDF['pos1'].isin([int(start1)]) & 
-            annoDF['chr2'].isin([chrom2]) & 
-            annoDF['pos2'].isin([int(start2)])].index.tolist()
+
+        annoDF[['chr1', 'chr2']] = annoDF[['chr1', 'chr2']].astype(str)
+        indexList = annoDF.loc[annoDF['chr1'].isin([chrom1]) &
+                               annoDF['pos1'].isin([int(start1)]) &
+                               annoDF['chr2'].isin([chrom2]) &
+                               annoDF['pos2'].isin([int(start2)])].index.tolist()
         if(len(indexList) > 1):
             if(verbose):
                 logging.fatal(
                     "iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for annotated file. Please check and rerun")
             sys.exit(1)
         else:
-            annoIndex=indexList[0]
+            annoIndex = indexList[0]
 
-        gene1=annoDF.iloc[annoIndex]['gene1']
-        gene2=annoDF.iloc[annoIndex]['gene2']
-        transcript1=annoDF.iloc[annoIndex]['transcript1']
-        transcript2=annoDF.iloc[annoIndex]['transcript2']
-        site1=annoDF.iloc[annoIndex]['site1']
-        site2=annoDF.iloc[annoIndex]['site2']
-        fusion=annoDF.iloc[annoIndex]['fusion']
-        rr_site1=annoDF.iloc[annoIndex]['repName-repClass-repFamily:-site1']
-        rr_site2=annoDF.iloc[annoIndex]['repName-repClass-repFamily:-site2']
-        cc_chr_band=annoDF.iloc[annoIndex]['CC_Chr_Band']
-        cc_t_t=annoDF.iloc[annoIndex]['CC_Tumour_Types(Somatic)']
-        cc_c_s=annoDF.iloc[annoIndex]['CC_Cancer_Syndrome']
-        cc_m_t=annoDF.iloc[annoIndex]['CC_Mutation_Type']
-        cc_t_p=annoDF.iloc[annoIndex]['CC_Translocation_Partner']
-        dgv_site1=annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site1']
-        dgv_site2=annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site2']
-        
+        gene1 = annoDF.iloc[annoIndex]['gene1']
+        gene2 = annoDF.iloc[annoIndex]['gene2']
+        transcript1 = annoDF.iloc[annoIndex]['transcript1']
+        transcript2 = annoDF.iloc[annoIndex]['transcript2']
+        site1 = annoDF.iloc[annoIndex]['site1']
+        site2 = annoDF.iloc[annoIndex]['site2']
+        fusion = annoDF.iloc[annoIndex]['fusion']
+        rr_site1 = annoDF.iloc[annoIndex]['repName-repClass-repFamily:-site1']
+        rr_site2 = annoDF.iloc[annoIndex]['repName-repClass-repFamily:-site2']
+        cc_chr_band = annoDF.iloc[annoIndex]['CC_Chr_Band']
+        cc_t_t = annoDF.iloc[annoIndex]['CC_Tumour_Types(Somatic)']
+        cc_c_s = annoDF.iloc[annoIndex]['CC_Cancer_Syndrome']
+        cc_m_t = annoDF.iloc[annoIndex]['CC_Mutation_Type']
+        cc_t_p = annoDF.iloc[annoIndex]['CC_Translocation_Partner']
+        dgv_site1 = annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site1']
+        dgv_site2 = annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site2']
+
         if(confDF is None):
-            confidenceScore=None
+            confidenceScore = None
         else:
             # Get information for confidence score
-            confIndex=None
-            confidenceScore=None
-            indexList = confDF.loc[confDF['Chr1'].isin([chrom1]) & 
-                confDF['Start1'].isin([int(start1)]) & 
-                confDF['Chr2'].isin([chrom2]) & 
-                confDF['Start2'].isin([int(start2)])].index.tolist()
-                
+            confIndex = None
+            confidenceScore = None
+            confDF[['Chr1', 'Chr2']] = confDF[['Chr1', 'Chr2']].astype(str)
+            indexList = confDF.loc[confDF['Chr1'].isin([chrom1]) &
+                                   confDF['Start1'].isin([int(start1)]) &
+                                   confDF['Chr2'].isin([chrom2]) &
+                                   confDF['Start2'].isin([int(start2)])].index.tolist()
+
             if(len(indexList) > 1):
                 if(verbose):
                     logging.fatal(
                         "iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for confidence score. Please check and rerun")
                 sys.exit(1)
             else:
-                confIndex=indexList[0]
-            confidenceScore=confDF.iloc[confIndex]['ProbabilityScore']
-            
+                confIndex = indexList[0]
+            confidenceScore = confDF.iloc[confIndex]['ProbabilityScore']
 
         # populate final dataframe
         outDF.loc[count,
@@ -261,17 +252,17 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                    "repName-repClass-repFamily:-site1", "repName-repClass-repFamily:-site2",
                    "CC_Chr_Band", "CC_Tumour_Types(Somatic)", "CC_Cancer_Syndrome",
                    "CC_Mutation_Type", "CC_Translocation_Partner", "DGv_Name-DGv_VarType-site1",
-                   "DGv_Name-DGv_VarType-site2"]]=[aId, bId, chrom1, start1, chrom2, start2,
+                   "DGv_Name-DGv_VarType-site2"]] = [aId, bId, chrom1, start1, chrom2, start2,
                                                      svtype, gene1, gene2, transcript1, transcript2, site1, site2, fusion, confidenceScore,
                                                      None, None, contype, svlengthFromDelly, mapqFromDelly, peSupportFromDelly,
                                                      srSupportFromDelly, brktype, conseq, caseDV, caseRV, caseRC, caseGQ, controlDV,
                                                      controlRV, controlRC, controlGQ, rr_site1, rr_site2, cc_chr_band, cc_t_t, cc_c_s,
                                                      cc_m_t, cc_t_p, dgv_site1, dgv_site2]
 
-        count=count + 1
+        count = count + 1
 
     # Write Output
-    outFile=outDir + "/" + outputPrefix + "_final.txt"
+    outFile = outDir + "/" + outputPrefix + "_final.txt"
     outDF.to_csv(outFile, sep='\t', index=False)
     if(verbose):
         logging.info("iCallSV::MergeFinalFile: Finished merging, Final data written in %s", outFile)
