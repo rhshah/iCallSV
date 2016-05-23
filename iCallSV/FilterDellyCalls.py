@@ -40,6 +40,7 @@ import logging
 
 logger = logging.getLogger('iCallSV.FilterDellyCalls')
 
+
 def run(
         inputVcf,
         outputDir,
@@ -188,7 +189,7 @@ def run(
             else:
                 svlengthFromDelly = abs(start2 - start1)
         if("MAPQ" in record.INFO):
-            mapqFromDelly = record.INFO['MAPQ'] 
+            mapqFromDelly = record.INFO['MAPQ']
         if("PE" in record.INFO):
             peSupportFromDelly = record.INFO['PE']
         if("SR" in record.INFO):
@@ -303,7 +304,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV)
     controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV)
     filterFlag = False
-    print "CaseControlPassFlag:",casePassFlag," : ",controlPassFlag
+    print "CaseControlPassFlag:", casePassFlag, " : ", controlPassFlag
     if(casePassFlag and controlPassFlag):
         if(hotspotTag):
             if(filter is "PASS" and controlFT is "LowQual"):
@@ -373,18 +374,27 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
 
     return(filterFlag)
 
+
 def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
     caseAltAf = 0.0
     caseCovg = 0
     caseFlag = False
+    if(caseDR is None):
+        caseDR = 0
+    if(caseDV is None):
+        caseDV = 0
+    if(caseRR is None):
+        caseRR = 0
+    if(caseRV is None):
+        caseRR = 0
     if(preciseFlag is "True"):
         caseCovg = int(caseRR) + int(caseRV)
-        if((caseRR is not None or float(caseRR) != 0) and (caseRV is not None or float(caseRV) != 0)):
-            caseAltAf = float(caseRV) / float(caseRR) + float(caseRV)
+        if((float(caseRR) != 0.0) and (float(caseRV) != 0.0)):
+            caseAltAf = float(caseRV) / float(int(caseRR) + int(caseRV))
 
     else:
         caseCovg = int(caseDR) + int(caseDV)
-        if((caseDR is not None or float(caseDR) != 0) and (caseDV is not None or float(caseDV) != 0)):
+        if((float(caseDR) != 0.0) and (float(caseDV) != 0.0)):
             caseAltAf = float(caseDV) / float(caseDR) + float(caseDV)
 
     if(caseAltAf >= 0.2 and caseCovg >= 10):
@@ -398,18 +408,26 @@ def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
     controlAltAf = 0.0
     controlCovg = 0
     controlFlag = False
+    if(controlDR is None):
+        controlDR = 0
+    if(controlDV is None):
+        controlDV = 0
+    if(controlRR is None):
+        controlRR = 0
+    if(controlRV is None):
+        controlRR = 0
     if(preciseFlag is "True"):
-        if((controlRR is not None or float(controlRR) != 0.0) and (controlRV is not None or float(controlRV) != 0.0)):
-            controlAltAf = flaot(controlRV) / float(controlRR) + float(controlRV)
+        if(float(controlRR) != 0.0) and (float(controlRV) != 0.0)):
+            controlAltAf=float(controlRV) / float(controlRR) + float(controlRV)
 
     else:
-        if((controlDR is not None or float(controlDR) != 0.0) and (controlDV is not None or float(controlDV) != 0.0)):
-            controlAltAf = float(controlDV) / float(controlDR) + float(controlDV)
+        if(float(controlDR) != 0.0) and (float(controlDV) != 0.0)):
+            controlAltAf=float(controlDV) / float(controlDR) + float(controlDV)
 
     if(controlAltAf <= 0.0):
-        controlFlag = True
+        controlFlag=True
     else:
-        controlFlag = False
+        controlFlag=False
     return(controlFlag)
 
 # # Test the module
