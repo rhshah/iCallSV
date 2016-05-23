@@ -380,12 +380,12 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
     if(preciseFlag is "True"):
         caseCovg = int(caseRR) + int(caseRV)
         if((caseRR is not None or caseRR != 0) and (caseRV is not None or caseRV != 0)):
-            caseAltAf = caseRV / float(caseRR + caseRV)
+            caseAltAf = float(caseRV) / float(caseRR) + float(caseRV)
 
     else:
         caseCovg = int(caseDR) + int(caseDV)
         if((caseDR is not None or caseDR != 0) and (caseDV is not None or caseDV != 0)):
-            caseAltAf = caseDV / float(caseDR + caseDV)
+            caseAltAf = float(caseDV) / float(caseDR) + float(caseDV)
 
     if(caseAltAf >= 0.2 and caseCovg >= 10):
         caseFlag = True
@@ -400,11 +400,11 @@ def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
     controlFlag = False
     if(preciseFlag is "True"):
         if((controlRR is not None or controlRR != 0) and (controlRV is not None or controlRV != 0)):
-            controlAltAf = controlRV / float(controlRR + controlRV)
+            controlAltAf = flaot(controlRV) / float(controlRR) + float(controlRV)
 
     else:
         if((controlDR is not None or controlDR != 0) and (controlDV is not None or controlDV != 0)):
-            controlAltAf = controlDV / float(controlDR + controlDV)
+            controlAltAf = float(controlDV) / float(controlDR) + float(controlDV)
 
     if(controlAltAf <= 0.0):
         controlFlag = True
