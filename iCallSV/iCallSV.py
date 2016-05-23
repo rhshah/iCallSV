@@ -149,6 +149,8 @@ USAGE
     config_file = args.config_file
     config = configparser.ConfigParser(defaults={'here': here})
     config.read(args.config_file)
+    #Make output dir
+    (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir")
     # Create Logger if verbose
     loggeroutput = sampleOutdirForDelly + "/" + args.outprefix + "_iCallSV.log"
     '''
@@ -166,8 +168,7 @@ USAGE
     formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handler.setFormatter(formatter)
     logger.addHandler(handler)
-    #Make output dir
-    (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir",loggeroutput)
+    
     # Print if Verbose mode is on
     if(verbose):
         logger.info("iCallSV:Verbose mode on")

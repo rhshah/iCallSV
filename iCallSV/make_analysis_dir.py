@@ -15,13 +15,6 @@ import logging
 
 def makeOutputDir(args, tool):
     #Get logging settings
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    handler = logging.FileHandler(loggeroutput)
-    handler.setLevel(logging.INFO)
-    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
     SampleDirName = args.caseId
     static_SV_Dir = "StructuralVariantAnalysis"
     static_tool_Dir = tool
@@ -32,19 +25,19 @@ def makeOutputDir(args, tool):
         os.mkdir(AnalysisDir)
     except OSError:
         if(args.verbose):
-            logger.warn("make_output_dir:Dir=>%s exists thus we wont be making it", AnalysisDir)
+            logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", AnalysisDir)
     try:
         os.mkdir(ToolDir)
     except OSError:
         if(args.verbose):
-            logger.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
+            logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
 
     if os.path.isdir(SampleAnalysisDir):
         if(args.verbose):
-            logger.fatal(
+            logging.fatal(
                 "make_output_dir:Dir=>%s exists and we wont run the analysis",
                 SampleAnalysisDir)
-            logger.info("make_output_dir:Please delete this directory and rerun the program")
+            logging.info("make_output_dir:Please delete this directory and rerun the program")
         tag = False
     else:
         os.mkdir(SampleAnalysisDir)
