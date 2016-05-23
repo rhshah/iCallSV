@@ -175,6 +175,7 @@ def run(
         start1 = record.POS
         filter = record.FILTER
         preciseFlag = record.is_sv_precise
+        print "Precise:",preciseFlag,":",type(preciseFlag)
         if("END" in record.INFO):
             start2 = record.INFO['END']
         if("CHR2" in record.INFO):
@@ -296,6 +297,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
      controlDV,
      controlRR,
      controlRV) = dellyVarialbles.split(",")
+    print "PreciseFlagInFilter:",preciseFlag,":",type(preciseFlag)
     # Get if its a hotspot or not
     hotspotTag = chl.CheckIfItIsHotspot(chrom1, start1, chrom2, start2, hotspotDict)
     # Get if its a blacklist or not
