@@ -35,7 +35,8 @@ def launch_filterdellycalls_for_different_analysis_type(
         args.controlId,
         args.caseId,
         config.get("HotSpotRegions", "HotspotFile"),
-        config.get("BlackListRegions", "BlackListFile"),
+        config.get("BlackListRegions", "BlackListFile"), ,
+        verbose,
         int(config.get("ParametersToFilterDellyResults", "LengthOfSV")),
         int(config.get("ParametersToFilterDellyResults", "OverallMapq")),
         int(config.get("ParametersToFilterDellyResults", "OverallMapqHotspot")),
@@ -50,8 +51,7 @@ def launch_filterdellycalls_for_different_analysis_type(
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingReads")),
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReads")),
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
-        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
-        verbose)) for x in fileType]
+        int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")))) for x in fileType]
     output = [p.get() for p in results]
     filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf = output
     return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)

@@ -46,6 +46,7 @@ def run(
         caseID,
         hotspotFile,
         blacklistFile,
+        verbose,
         svlength=500,
         mapq=20,
         mapqHotspot=5,
@@ -60,8 +61,7 @@ def run(
         peSupportControl=5,
         srSupportControl=5,
         peSupportHotspotControl=5,
-        srSupportHotspotControl=5,
-        verbose):
+        srSupportHotspotControl=5):
     if(verbose):
         logging.info("FilterDellyCalls: We will now check all the input parameters")
     # Check input parameters
