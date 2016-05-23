@@ -417,11 +417,11 @@ def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
     if(controlRV is None):
         controlRR = 0
     if(preciseFlag is "True"):
-        if(float(controlRR) != 0.0) and (float(controlRV) != 0.0)):
+        if((float(controlRR) != 0.0) and (float(controlRV) != 0.0)):
             controlAltAf=float(controlRV) / float(controlRR) + float(controlRV)
 
     else:
-        if(float(controlDR) != 0.0) and (float(controlDV) != 0.0)):
+        if((float(controlDR) != 0.0) and (float(controlDV) != 0.0)):
             controlAltAf=float(controlDV) / float(controlDR) + float(controlDV)
 
     if(controlAltAf <= 0.0):
