@@ -56,7 +56,7 @@ def launch_filterdellycalls_for_different_analysis_type(
     filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf = output
     return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)
 
-    '''
+'''
     # Run Delly for Deletion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Deletion Events")
@@ -85,7 +85,6 @@ def launch_filterdellycalls_for_different_analysis_type(
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
         verbose)
-
 # Run Delly for duplication
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Duplication Events")
@@ -113,7 +112,6 @@ def launch_filterdellycalls_for_different_analysis_type(
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
         verbose)
-
 # Run Delly for inversion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Inversion Events")
@@ -141,7 +139,6 @@ def launch_filterdellycalls_for_different_analysis_type(
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
         verbose)
-
 # Run Delly for Translocation
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Translocation Envents")
@@ -169,9 +166,7 @@ def launch_filterdellycalls_for_different_analysis_type(
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
         verbose)
-
     return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)
-
 # Run Delly for Insertion
     if(verbose):
         logging.info("launch_Run_Delly: Launched Delly for Insertion Events")
