@@ -318,7 +318,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
             if(not filterFlag):
                 if(svlengthFromDelly is not "None"):
                     if((int(svlengthFromDelly) >= int(svlength)) and (int(mapqFromDelly) >= int(mapqHotspot)) and (int(peSupportFromDelly) >= int(peSupportHotspot)) and (int(caseDV) > int(peSupportHotspotCase)) and (int(controlDV) <= int(peSupportHotspotControl)) and (int(controlDV) < int(caseDV))):
-                        if(srSupportFromDelly is not "None"):
+                        if(preciseFlag is "True"):
                             if((int(srSupportFromDelly) >= int(srSupportHotspot)) and (int(caseRV) >= int(srSupportHotspotCase)) and (int(controlRV) <= int(srSupportHotspotControl)) and (int(controlRV) < int(caseRV))):
                                 filterFlag = True
                             else:
@@ -329,7 +329,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                         filterFlag = False
                 else:
                     if((int(mapqFromDelly) >= int(mapqHotspot)) and (int(peSupportFromDelly) >= int(peSupportHotspot)) and (int(caseDV) >= int(peSupportHotspotCase)) and (int(controlDV) <= int(peSupportHotspotControl)) and (int(controlDV) < int(caseDV))):
-                        if(srSupportFromDelly is not "None"):
+                        if(preciseFlag is "True"):
                             if((int(srSupportFromDelly) >= int(srSupportHotspot)) and (int(caseRV) >= int(srSupportHotspotCase)) and (int(controlRV) <= int(srSupportHotspotControl)) and (int(controlRV) < int(caseRV))):
                                 filterFlag = True
                             else:
@@ -344,7 +344,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                 # peSupportFromDelly, peSupport, caseDV, peSupportCase, controlDV,
                 # peSupportControl
                 if((int(svlengthFromDelly) >= int(svlength)) and (int(mapqFromDelly) >= int(mapq)) and (int(peSupportFromDelly) >= int(peSupport)) and (int(caseDV) >= int(peSupportCase)) and (int(controlDV) <= int(peSupportControl)) and (int(controlDV) < int(caseDV))):
-                    if(srSupportFromDelly is not "None"):
+                    if(preciseFlag is "True"):
                         if((int(srSupportFromDelly) >= int(srSupport)) and (int(caseRV) >= int(srSupportCase)) and (int(controlRV) <= int(srSupportControl)) and (int(controlRV) < int(caseRV))):
                             filterFlag = True
                         else:
@@ -355,7 +355,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                     filterFlag = False
             else:
                 if((int(mapqFromDelly) >= int(mapq)) and (int(peSupportFromDelly) >= int(peSupport)) and (int(caseDV) >= int(peSupportCase)) and (int(controlDV) <= int(peSupportControl)) and (int(controlDV) < int(caseDV))):
-                    if(srSupportFromDelly is not "None"):
+                    if(preciseFlag is "True"):
                         if((int(srSupportFromDelly) >= int(srSupport)) and (int(caseRV) >= int(srSupportCase)) and (int(controlRV) <= int(srSupportControl)) and (int(controlRV) < int(caseRV))):
                             filterFlag = True
                         else:
@@ -389,12 +389,12 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
         caseRR = 0
     if(preciseFlag is "True"):
         caseCovg = int(caseRR) + int(caseRV)
-        if((float(caseRR) != 0.0) and (float(caseRV) != 0.0)):
+        if((float(caseRR) != 0.0) or (float(caseRV) != 0.0)):
             caseAltAf = float(caseRV) / float(int(caseRR) + int(caseRV))
 
     else:
         caseCovg = int(caseDR) + int(caseDV)
-        if((float(caseDR) != 0.0) and (float(caseDV) != 0.0)):
+        if((float(caseDR) != 0.0) or (float(caseDV) != 0.0)):
             caseAltAf = float(caseDV) / float(caseDR) + float(caseDV)
 
     if(caseAltAf >= 0.2 and caseCovg >= 10):
@@ -417,11 +417,11 @@ def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
     if(controlRV is None):
         controlRR = 0
     if(preciseFlag is "True"):
-        if((float(controlRR) != 0.0) and (float(controlRV) != 0.0)):
+        if((float(controlRR) != 0.0) or (float(controlRV) != 0.0)):
             controlAltAf=float(controlRV) / float(controlRR) + float(controlRV)
 
     else:
-        if((float(controlDR) != 0.0) and (float(controlDV) != 0.0)):
+        if((float(controlDR) != 0.0) or (float(controlDV) != 0.0)):
             controlAltAf=float(controlDV) / float(controlDR) + float(controlDV)
 
     if(controlAltAf <= 0.0):
