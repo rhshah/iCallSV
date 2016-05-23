@@ -60,15 +60,15 @@ def Convert2targetSeqView(
             "\t" +
             str(chrom1) +
             "\t" +
-            str(start1) +
+            str(int(start1)-20) +
             "\t" +
-            str(start1) +
+            str(int(start1)+20) +
             "\tFALSE\t" +
             str(chrom2) +
             "\t" +
-            str(start2) +
+            str(int(start2)-20) +
             "\t" +
-            str(start2) +
+            str(int(start2)+20) +
             "\tFALSE\tFailed PCR\t" +
             str(sampleBamName) +
             "\t" +
