@@ -161,7 +161,8 @@ USAGE
         level=logger.DEBUG)
     '''
     logger = logging.getLogger(__name__)
-    handler = logger.FileHandler(loggeroutput)
+    logger.setLevel(logger.INFO)
+    handler = logging.FileHandler(loggeroutput)
     handler.setLevel(logger.INFO)
     formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handler.setFormatter(formatter)
