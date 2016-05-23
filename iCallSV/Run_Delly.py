@@ -45,7 +45,8 @@ def run(
         excludeRegions,
         outputdir,
         verbose,
-        debug):
+        debug,
+        loggeroutput):
     """
     Created on March 17, 2015
     Description: Runs the delly program on case and control bam file to give its results
@@ -68,6 +69,12 @@ def run(
     
     """
     logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    handler = logging.FileHandler(loggeroutput)
+    handler.setLevel(logging.INFO)
+    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
     start_time = time.time()
     if(verbose):
         logger.info("Run_Delly: We are now going to run Delly for you. It going to be exciting time.")

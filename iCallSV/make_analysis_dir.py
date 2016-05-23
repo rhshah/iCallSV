@@ -14,7 +14,14 @@ import logging
 
 
 def makeOutputDir(args, tool):
+    #Get logging settings
     logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    handler = logging.FileHandler(loggeroutput)
+    handler.setLevel(logging.INFO)
+    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
     SampleDirName = args.caseId
     static_SV_Dir = "StructuralVariantAnalysis"
     static_tool_Dir = tool

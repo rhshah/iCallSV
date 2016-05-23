@@ -61,7 +61,8 @@ def run(
         srSupportControl,
         peSupportHotspotControl,
         srSupportHotspotControl,
-        verbose):
+        verbose,
+        loggeroutput):
     logger = logging.getLogger(__name__)
     if(verbose):
         logger.info("FilterDellyCalls: We will now check all the input parameters")
