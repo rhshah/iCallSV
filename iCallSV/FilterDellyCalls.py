@@ -253,7 +253,7 @@ def run(
     vcf_writer.close()
     if(verbose):
         logging.info("FilterDellyCalls: We have finished filtering: %s file", inputVcf)
-        logging.info("FilterFellyCalls: Output hass been written in: %s file", outputFile)
+        logging.info("FilterFellyCalls: Output has been written in: %s file", outputFile)
     return(outputFile)
 
 
