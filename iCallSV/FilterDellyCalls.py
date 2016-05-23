@@ -377,13 +377,12 @@ def GetCaseFlag(caseDR,caseDV,preciseFlag,caseRR,caseRV):
     if(preciseFlag):
         if((caseRR is not None or caseRR != 0) and (caseRV is not None or caseRV != 0)):
             caseAltAf = caseRV / float(caseRR + caseRV) 
-        
         caseCovg = caseRR + caseRV
     else:
          if((caseDR is not None or caseDR != 0) and (caseDV is not None or caseDV != 0)):
             caseAltAf = caseDV / float(caseDR + caseDV) 
-        
         caseCovg = caseDR + caseDV
+    
     if(caseAltAf >= 0.2 and caseCovg >= 10):
         caseFlag = True
     else:
