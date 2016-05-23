@@ -175,7 +175,7 @@ def run(
         start1 = record.POS
         filter = record.FILTER
         preciseFlag = record.is_sv_precise
-        print "Precise:",preciseFlag,":",type(preciseFlag)
+        # print "Precise:",preciseFlag,":",type(preciseFlag)
         if("END" in record.INFO):
             start2 = record.INFO['END']
         if("CHR2" in record.INFO):
@@ -244,14 +244,14 @@ def run(
                               controlRR,
                               controlRV]
         dellyVariables = ",".join(str(v) for v in dellyVariablesList)
-        # print chrom1, start1, start2, chrom2, svlengthFromDelly, mapqFromDelly,
-        # svtype, peSupportFromDelly, srSupportFromDelly, contype, caseDV, caseRV,
-        # controlDV, controlRV
+        print chrom1, start1, start2, chrom2, "Coordinate"
+        print svlengthFromDelly, mapqFromDelly, svtype, peSupportFromDelly, srSupportFromDelly, contype, "Overall"
+        print caseDR, caseDV, caseRR, caseRV, "Case"
+        print controlDR, controlDV, controlRR, controlRV, "Control"
         filterFlag = GetFilteredRecords(dellyVariables, thresholdVariables, hotspotDict, blacklist)
         if(filterFlag):
+            print "Passs"
             vcf_writer.write_record(record)
-        else:
-            continue
     vcf_writer.close()
     if(verbose):
         logger.info("FilterDellyCalls: We have finished filtering: %s file", inputVcf)
@@ -297,7 +297,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
      controlDV,
      controlRR,
      controlRV) = dellyVarialbles.split(",")
-    print "PreciseFlagInFilter:",preciseFlag,":",type(preciseFlag)
+    # print "PreciseFlagInFilter:",preciseFlag,":",type(preciseFlag)
     # Get if its a hotspot or not
     hotspotTag = chl.CheckIfItIsHotspot(chrom1, start1, chrom2, start2, hotspotDict)
     # Get if its a blacklist or not
@@ -306,7 +306,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV)
     controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV)
     filterFlag = False
-    #print "CaseControlPassFlag:", casePassFlag, " : ", controlPassFlag
+    # print "CaseControlPassFlag:", casePassFlag, " : ", controlPassFlag
     if(casePassFlag and controlPassFlag):
         if(hotspotTag):
             if(filter is "PASS" and controlFT is "LowQual"):
@@ -427,9 +427,9 @@ def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
             controlAltAf = float(controlDV) / float(int(controlDR) + int(controlDV))
 
     if(controlAltAf <= 0.0):
-        controlFlag=True
+        controlFlag = True
     else:
-        controlFlag=False
+        controlFlag = False
     return(controlFlag)
 
 # # Test the module
