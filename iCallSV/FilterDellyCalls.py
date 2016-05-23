@@ -248,6 +248,8 @@ def run(
         filterFlag = GetFilteredRecords(dellyVariables, thresholdVariables, hotspotDict, blacklist)
         if(filterFlag):
             vcf_writer.write_record(record)
+        else:
+            continue
     vcf_writer.close()
     if(verbose):
         logging.info("FilterDellyCalls: We have finished filtering: %s file", inputVcf)
