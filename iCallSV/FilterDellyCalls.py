@@ -393,7 +393,7 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
 
 
 def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
-    controlAltAf = 0
+    controlAltAf = 0.0
     controlCovg = 0
     controlFlag = False
     if(preciseFlag):
