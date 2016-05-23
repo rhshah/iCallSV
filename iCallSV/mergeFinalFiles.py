@@ -22,7 +22,7 @@ import checkparameters as cp
 import pandas as pd
 import re
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('iCallSV.mergeFinalFiles')
 
 def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     """

@@ -20,7 +20,7 @@ import vcf
 import checkparameters as cp
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('iCallSV.dellyVcf2targetSeqView')
 
 def Convert2targetSeqView(
         sampleName,

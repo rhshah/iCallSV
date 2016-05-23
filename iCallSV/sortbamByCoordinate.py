@@ -10,7 +10,7 @@ import pysam
 import logging
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('iCallSV.sortbamByCoordinate')
 
 def sortBam(inputBam, outputBamName, outputDir):
     logger.info("sortbamByCoordinate: Trying to sort BAM file by Coordinate")

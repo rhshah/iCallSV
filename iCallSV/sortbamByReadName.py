@@ -9,7 +9,7 @@ import sys
 import pysam
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('iCallSV.sortbamByReadName')
 
 def sortBam(inputBam, outputBamName, outputDir):
     logger.info("sortbamByReadName: Trying to sort BAM file by Read Name")

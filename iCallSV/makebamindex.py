@@ -10,7 +10,7 @@ import os
 import sys
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('iCallSV.makebamindex')
 
 def MakeIndex(bamFile):
     logger.info("makebamindex: Trying to make index for bam file")

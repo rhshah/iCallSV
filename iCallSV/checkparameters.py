@@ -9,7 +9,7 @@ import sys
 import logging
 
 #initiate Logger
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('iCallSV.checkparameters')
 
 # Check if the file exist
 

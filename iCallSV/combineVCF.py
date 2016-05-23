@@ -14,7 +14,7 @@ It is a merged vcf file
 import vcf
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('iCallSV.combineVCF')
 
 def run(vcfFiles, combinedVCF, verbose):
     vcf_header = vcf.Reader(filename=vcfFiles[1])

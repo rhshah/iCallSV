@@ -38,7 +38,7 @@ import checkHotSpotList as chl
 import checkBlackList as cbl
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('iCallSV.FilterDellyCalls')
 
 def run(
         inputVcf,

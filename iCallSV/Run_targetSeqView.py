@@ -26,7 +26,7 @@ from datetime import date, timedelta
 import checkparameters as cp
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('iCallSV.Run_targetSeqView')
 
 def run(
         RLocation,

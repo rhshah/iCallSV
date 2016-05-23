@@ -162,7 +162,7 @@ USAGE
         level=logger.DEBUG)
     '''
     # create logger with 'spam_application'
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger("iCallSV")
     logger.setLevel(logging.DEBUG)
     # create file handler which logs even debug messages
     fh = logging.FileHandler(loggeroutput)

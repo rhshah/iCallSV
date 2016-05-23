@@ -23,7 +23,7 @@ import vcf
 import checkparameters as cp
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('iCallSV.dellyVcf2Tab')
 
 def vcf2tab(vcfFile, outputDir, verbose):
     cp.checkFile(vcfFile)
