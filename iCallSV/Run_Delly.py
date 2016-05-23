@@ -46,8 +46,7 @@ def run(
         excludeRegions,
         outputdir,
         verbose,
-        debug,
-        loggeroutput):
+        debug):
     """
     Created on March 17, 2015
     Description: Runs the delly program on case and control bam file to give its results
