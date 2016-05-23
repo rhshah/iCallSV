@@ -299,4 +299,4 @@ if __name__ == "__main__":
     main()
     end_time = time.time()
     totaltime = end_time - start_time
-    logger.info("iCallSV:Elapsed time was %g seconds", totaltime)
+    logging.info("iCallSV:Elapsed time was %g seconds", totaltime)
