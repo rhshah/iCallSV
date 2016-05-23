@@ -161,10 +161,10 @@ USAGE
         level=logger.DEBUG)
     '''
     logger = logging.getLogger(__name__)
-    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handler.setFormatter(formatter)
     handler = logger.FileHandler(loggeroutput)
     handler.setLevel(logger.INFO)
+    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handler.setFormatter(formatter)
     logger.addHandler(handler)
 
     # Print if Verbose mode is on
