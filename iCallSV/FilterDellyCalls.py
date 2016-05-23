@@ -372,7 +372,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
 
 
 def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
-    caseAltAf = 0
+    caseAltAf = 0.0
     caseCovg = 0
     caseFlag = False
     if(preciseFlag):
