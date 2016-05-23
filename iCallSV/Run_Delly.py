@@ -31,6 +31,7 @@ import makebamindex as mbi
 from distutils.version import LooseVersion, StrictVersion
 # This function will run delly based on given inputs
 
+logger = logging.getLogger(__name__)
 
 def run(
         delly,
@@ -68,13 +69,8 @@ def run(
     VCF file having all the structural variants called
     
     """
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    handler = logging.FileHandler(loggeroutput)
-    handler.setLevel(logging.INFO)
-    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+    
+    
     start_time = time.time()
     if(verbose):
         logger.info("Run_Delly: We are now going to run Delly for you. It going to be exciting time.")

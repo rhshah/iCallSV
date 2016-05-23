@@ -23,15 +23,9 @@ import vcf
 import checkparameters as cp
 import logging
 
+logger = logging.getLogger(__name__)
 
-def vcf2tab(vcfFile, outputDir, verbose, loggeroutput):
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    handler = logging.FileHandler(loggeroutput)
-    handler.setLevel(logging.INFO)
-    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+def vcf2tab(vcfFile, outputDir, verbose):
     cp.checkFile(vcfFile)
     cp.checkDir(outputDir)
     if(verbose):

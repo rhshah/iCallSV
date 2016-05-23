@@ -38,6 +38,7 @@ import checkHotSpotList as chl
 import checkBlackList as cbl
 import logging
 
+logger = logging.getLogger(__name__)
 
 def run(
         inputVcf,
@@ -61,9 +62,8 @@ def run(
         srSupportControl,
         peSupportHotspotControl,
         srSupportHotspotControl,
-        verbose,
-        loggeroutput):
-    logger = logging.getLogger(__name__)
+        verbose):
+    
     if(verbose):
         logger.info("FilterDellyCalls: We will now check all the input parameters")
     # Check input parameters
@@ -260,7 +260,6 @@ def run(
 
 
 def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blacklist):
-    logger = logging.getLogger(__name__)
     (svlength,
      mapq,
      mapqHotspot,
@@ -377,7 +376,6 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
 
 
 def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
-    logger = logging.getLogger(__name__)
     caseAltAf = 0.0
     caseCovg = 0
     caseFlag = False
@@ -399,7 +397,6 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
 
 
 def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
-    logger = logging.getLogger(__name__)
     controlAltAf = 0.0
     controlCovg = 0
     controlFlag = False

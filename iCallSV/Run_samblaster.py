@@ -24,6 +24,7 @@ import time
 from datetime import date, timedelta
 import checkparameters as cp
 
+logger = logging.getLogger(__name__)
 
 def run(samtools, samblaster, bamFile, discordantFileName, splitFileName, outputDir):
     start_time = time.time()

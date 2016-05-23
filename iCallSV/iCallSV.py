@@ -161,13 +161,22 @@ USAGE
         datefmt='%m/%d/%Y %I:%M:%S %p',
         level=logger.DEBUG)
     '''
+    # create logger with 'spam_application'
     logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    handler = logging.FileHandler(loggeroutput)
-    handler.setLevel(logging.INFO)
-    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+    logger.setLevel(logging.DEBUG)
+    # create file handler which logs even debug messages
+    fh = logging.FileHandler(loggeroutput)
+    fh.setLevel(logging.DEBUG)
+    # create console handler with a higher log level
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.ERROR)
+    # create formatter and add it to the handlers
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    fh.setFormatter(formatter)
+    ch.setFormatter(formatter)
+    # add the handlers to the logger
+    logger.addHandler(fh)
+    logger.addHandler(ch)
     
     # Print if Verbose mode is on
     if(verbose):
@@ -197,7 +206,7 @@ USAGE
         # Run Delly and get the raw calls
         if(runDellyTag):
             (del_vcf, dup_vcf, inv_vcf, tra_vcf) = lrd.launch_delly_for_different_analysis_type(
-                args, config, sampleOutdirForDelly, loggeroutput)
+                args, config, sampleOutdirForDelly)
         else:
             del_vcf, dup_vcf, inv_vcf, tra_vcf = analysisFiles
         # Run Filter Delly and get filtered calls
@@ -210,12 +219,11 @@ USAGE
                                                                                    del_vcf,
                                                                                    dup_vcf,
                                                                                    inv_vcf,
-                                                                                   tra_vcf,
-                                                                                   loggeroutput)
+                                                                                   tra_vcf)
         # Combine all VCF to a single VCF file
         listOfFilteredVCFfiles = [filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf]
         combinedVCF = sampleOutdirForDelly + "/" + args.caseId + "_allSVFiltered.vcf"
-        combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose, loggeroutput)
+        combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose)
         # Check if VCF file is empty
         hasRecords = False
         with open(combinedVCF, 'r') as filecontent:
@@ -229,7 +237,7 @@ USAGE
             combinedTargetSeqView = args.caseId + "_allSVFiltered_tsvInput.txt"
             combinedTargetSeqViewCscore = args.caseId + "_allSVFiltered_cScore.txt"
             # convert vcf files to tab-delimited using vcf2tab
-            combinedTAB = dvcf2tab.vcf2tab(combinedVCF, sampleOutdirForDelly, verbose, loggeroutput)
+            combinedTAB = dvcf2tab.vcf2tab(combinedVCF, sampleOutdirForDelly, verbose)
             # Annotate using iAnnotateSV
             combinedAnnTAB = annSV.run(
                 config.get("Python", "PYTHON"),

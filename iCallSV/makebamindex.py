@@ -10,9 +10,9 @@ import os
 import sys
 import logging
 
+logger = logging.getLogger(__name__)
 
 def MakeIndex(bamFile):
-    logger = logging.getLogger(__name__)
     logger.info("makebamindex: Trying to make index for bam file")
     if(os.path.isfile(bamFile)):
         try:

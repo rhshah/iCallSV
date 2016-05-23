@@ -20,16 +20,10 @@ import logging
 import FilterDellyCalls as fdc
 import multiprocessing as mp
 
+logger = logging.getLogger(__name__)
 
 def launch_filterdellycalls_for_different_analysis_type(
-        args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf,loggeroutput):
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    handler = logging.FileHandler(loggeroutput)
-    handler.setLevel(logging.INFO)
-    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+        args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):
     verbose = args.verbose
     fileType = [del_vcf, dup_vcf, inv_vcf, tra_vcf]
     pool = mp.Pool(processes=4)
@@ -58,8 +52,7 @@ def launch_filterdellycalls_for_different_analysis_type(
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReads")),
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingReadsHotspot")),
         int(config.get("ParametersToFilterDellyResults", "ControlSupportingSplitReadsHotspot")),
-        verbose,
-        loggeroutput)) for x in fileType]
+        verbose)) for x in fileType]
     output = [p.get() for p in results]
     filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf = output
     return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)

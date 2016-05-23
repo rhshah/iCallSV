@@ -10,8 +10,9 @@ import pysam
 import logging
 
 
+logger = logging.getLogger(__name__)
+
 def sortBam(inputBam, outputBamName, outputDir):
-    logger = logging.getLogger(__name__)
     logger.info("sortbamByCoordinate: Trying to sort BAM file by Coordinate")
     if(os.path.isdir(outputDir)):
         logger.info("sortbamByCoordinate: The output directory %s exists", outputDir)

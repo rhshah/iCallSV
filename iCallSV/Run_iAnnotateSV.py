@@ -27,6 +27,7 @@ from datetime import date, timedelta
 import checkparameters as cp
 import logging
 
+logger = logging.getLogger(__name__)
 
 def run(
         python,
@@ -41,7 +42,6 @@ def run(
         inputTabFile,
         outputPrefix,
         outputDir):
-    logger = logging.getLogger(__name__)
     start_time = time.time()
     cp.checkDir(outputDir)
     cp.checkFile(iAnnotateSV)

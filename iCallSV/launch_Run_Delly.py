@@ -13,8 +13,9 @@ import Run_Delly as rd
 import multiprocessing as mp
 import makebamindex as mbi
 
+logger = logging.getLogger(__name__)
 
-def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly,loggeroutput):
+def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly):
     """
     Created on November 19, 2015
     Description: This module will be launching delly using Run_Delly
@@ -24,13 +25,6 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly,
     config: configuration file passed to iCallSV
     sampleOutdirForDelly: Output directory for delly vcf files.
     """
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    handler = logging.FileHandler(loggeroutput)
-    handler.setLevel(logging.INFO)
-    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
     verbose = args.verbose
     pool = mp.Pool(processes=4)
     analyisisType = ["DEL", "DUP", "INV", "TRA"]
@@ -72,8 +66,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly,
         config.get("ExcludeRegion", "EXREGIONS"),
         sampleOutdirForDelly,
         verbose,
-        False,
-        loggeroutput)) for x in analyisisType]
+        False)) for x in analyisisType]
     output = [p.get() for p in results]
     del_vcf, dup_vcf, inv_vcf, tra_vcf = output
     return(del_vcf, dup_vcf, inv_vcf, tra_vcf)

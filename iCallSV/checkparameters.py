@@ -8,11 +8,12 @@ import os
 import sys
 import logging
 
+#initiate Logger
+logger = logging.getLogger(__name__)
 
 # Check if the file exist
 
 def checkFile(fileToCheck):
-    logger = logging.getLogger(__name__)
     if(os.path.isfile(fileToCheck)):
         logger.info("checkparameters:Given File: %s exists.", fileToCheck)
     else:
@@ -25,7 +26,6 @@ def checkFile(fileToCheck):
 # Check if the Directory exists
 
 def checkDir(folderToCheck):
-    logger = logging.getLogger(__name__)
     if(os.path.isdir(folderToCheck)):
         logger.info("checkparameters:Given Directory: %s exists.", folderToCheck)
     else:
@@ -38,7 +38,6 @@ def checkDir(folderToCheck):
 # Check if the variable is and Integer
 
 def checkInt(variableToCheck, variableName):
-    logger = logging.getLogger(__name__)
     if(isinstance(variableToCheck, int)):
         logger.info(
             "checkparameters: %s Variable: %d is an Integer.",
@@ -55,7 +54,6 @@ def checkInt(variableToCheck, variableName):
 # Check if the given variable is not Empty
 
 def checkEmpty(variableToCheck, variableName):
-    logger = logging.getLogger(__name__)
     if(variableToCheck):
         logger.info("checkparameters: %s Variable:%s is not empty.", variableName, variableToCheck)
     else:
@@ -69,7 +67,6 @@ def checkEmpty(variableToCheck, variableName):
 # Check the Delly Analysis Type is Valid or Not
 
 def checkDellyAnalysisType(varaibleToCheck):
-    logger = logging.getLogger(__name__)
     if(varaibleToCheck == "DEL" or varaibleToCheck == "DUP" or varaibleToCheck == "INV" or varaibleToCheck == "TRA"):
         logger.info("checkparameters:Given Delly Analysis Type:%s is valid.", varaibleToCheck)
     else:

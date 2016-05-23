@@ -9,9 +9,9 @@ import sys
 import pysam
 import logging
 
+logger = logging.getLogger(__name__)
 
 def sortBam(inputBam, outputBamName, outputDir):
-    logger = logging.getLogger(__name__)
     logger.info("sortbamByReadName: Trying to sort BAM file by Read Name")
     if(os.path.isdir(outputDir)):
         logger.info("sortbamByReadName: The output directory %s exists", outputDir)

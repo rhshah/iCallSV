@@ -20,6 +20,7 @@ import vcf
 import checkparameters as cp
 import logging
 
+logger = logging.getLogger(__name__)
 
 def Convert2targetSeqView(
         sampleName,
@@ -28,7 +29,7 @@ def Convert2targetSeqView(
         vcfFile,
         outputDir,
         outputFileName):
-    logger = logging.getLogger(__name__)
+    
     logger.info("Convert2targetSeqView: Will convert vcf to targetSeqVie format")
     cp.checkFile(vcfFile)
     cp.checkDir(outputDir)

@@ -14,15 +14,9 @@ It is a merged vcf file
 import vcf
 import logging
 
+logger = logging.getLogger(__name__)
 
-def run(vcfFiles, combinedVCF, verbose, loggeroutput):
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    handler = logging.FileHandler(loggeroutput)
-    handler.setLevel(logging.INFO)
-    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+def run(vcfFiles, combinedVCF, verbose):
     vcf_header = vcf.Reader(filename=vcfFiles[1])
     vcf_output = vcf.Writer(open(combinedVCF, 'w'), vcf_header)
     for vcffile in vcfFiles:

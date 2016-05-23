@@ -26,6 +26,7 @@ from datetime import date, timedelta
 import checkparameters as cp
 import logging
 
+logger = logging.getLogger(__name__)
 
 def run(
         RLocation,
@@ -37,7 +38,6 @@ def run(
         readLength,
         outputDir,
         outsvFileName):
-    logger = logging.getLogger(__name__)
     start_time = time.time()
     logger.info(
         "We will now be running targetSeqView. Hope fully the R package targetSeqView is installed.")
