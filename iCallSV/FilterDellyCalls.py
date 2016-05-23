@@ -188,7 +188,7 @@ def run(
                 svlengthFromDelly = None
         if("MAPQ" in record.INFO):
             mapqFromDelly = record.INFO['MAPQ']
-        
+
         if("PE" in record.INFO):
             peSupportFromDelly = record.INFO['PE']
         if("SR" in record.INFO):
@@ -298,8 +298,8 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     # Get if its a blacklist or not
     blacklistTag = cbl.CheckIfItIsBlacklisted(chrom1, start1, chrom2, start2, blacklist, 20)
     # Get the flag for pass and fail for tumor and normal
-    casePassFlag = GetCaseFlag(caseDR,caseDV,preciseFlag,caseRR,caseRV)
-    controlPassFlag = GetControlFlag(controlDR,controlDV,preciseFlag,controlRR,controlRV)
+    casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV)
+    controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV)
     filterFlag = False
     if(casePassFlag and controlPassFlag):
         if(hotspotTag):
@@ -370,44 +370,46 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
 
     return(filterFlag)
 
-def GetCaseFlag(caseDR,caseDV,preciseFlag,caseRR,caseRV):
+
+def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
     caseAltAf = 0
     caseCovg = 0
     caseFlag = False
     if(preciseFlag):
+        caseCovg = int(caseRR) + int(caseRV)
         if((caseRR is not None or caseRR != 0) and (caseRV is not None or caseRV != 0)):
-            caseAltAf = caseRV / float(caseRR + caseRV) 
-        caseCovg = caseRR + caseRV
+            caseAltAf = caseRV / float(caseRR + caseRV)
+
     else:
-         if((caseDR is not None or caseDR != 0) and (caseDV is not None or caseDV != 0)):
-            caseAltAf = caseDV / float(caseDR + caseDV) 
-        caseCovg = caseDR + caseDV
-    
+        caseCovg = int(caseDR) + int(caseDV)
+        if((caseDR is not None or caseDR != 0) and (caseDV is not None or caseDV != 0)):
+            caseAltAf = caseDV / float(caseDR + caseDV)
+
     if(caseAltAf >= 0.2 and caseCovg >= 10):
         caseFlag = True
     else:
         caseFlag = False
     return(caseFlag)
 
-def GetcontrolFlag(controlDR,controlDV,preciseFlag,controlRR,controlRV):
+
+def GetcontrolFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
     controlAltAf = 0
     controlCovg = 0
     controlFlag = False
     if(preciseFlag):
         if((controlRR is not None or controlRR != 0) and (controlRV is not None or controlRV != 0)):
-            controlAltAf = controlRV / float(controlRR + controlRV) 
-        
-        
+            controlAltAf = controlRV / float(controlRR + controlRV)
+
     else:
-         if((controlDR is not None or controlDR != 0) and (controlDV is not None or controlDV != 0)):
-            controlAltAf = controlDV / float(controlDR + controlDV) 
-        
-    if(controlAltAf <= 0.0 ):
+        if((controlDR is not None or controlDR != 0) and (controlDV is not None or controlDV != 0)):
+            controlAltAf = controlDV / float(controlDR + controlDV)
+
+    if(controlAltAf <= 0.0):
         controlFlag = True
     else:
         controlFlag = False
     return(controlFlag)
-    
+
 # # Test the module
 # run(
 #     inputVcf="/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/s-EV-crc-001-M2_del.vcf",
