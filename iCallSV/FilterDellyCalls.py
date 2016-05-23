@@ -392,7 +392,7 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
     return(caseFlag)
 
 
-def GetcontrolFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
+def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
     controlAltAf = 0
     controlCovg = 0
     controlFlag = False
