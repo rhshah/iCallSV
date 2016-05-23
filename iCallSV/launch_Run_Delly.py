@@ -13,6 +13,7 @@ import Run_Delly as rd
 import multiprocessing as mp
 import makebamindex as mbi
 
+logging.basicConfig()
 logger = logging.getLogger(__name__)
 
 def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly):

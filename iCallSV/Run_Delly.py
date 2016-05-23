@@ -31,6 +31,7 @@ import makebamindex as mbi
 from distutils.version import LooseVersion, StrictVersion
 # This function will run delly based on given inputs
 
+logging.basicConfig()
 logger = logging.getLogger(__name__)
 
 def run(
