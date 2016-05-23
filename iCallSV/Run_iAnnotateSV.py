@@ -41,6 +41,7 @@ def run(
         inputTabFile,
         outputPrefix,
         outputDir):
+    logger = logging.getLogger(__name__)
     start_time = time.time()
     cp.checkDir(outputDir)
     cp.checkFile(iAnnotateSV)
@@ -53,16 +54,16 @@ def run(
     cp.checkFile(cosmicFile)
     cp.checkFile(repeatregionFile)
     cp.checkFile(dgvFile)
-    logging.info("Run_iAnnotateSV: All input parameters look good. Lets run the package.")
+    logger.info("Run_iAnnotateSV: All input parameters look good. Lets run the package.")
     myPid = os.getpid()
     day = date.today()
     today = day.isoformat()
-    logging.info("Run_iAnnotateSV: ProcessID:%s, Date:%s", myPid, today)
+    logger.info("Run_iAnnotateSV: ProcessID:%s, Date:%s", myPid, today)
     outputFile = outputDir + "/" + outputPrefix + "_Annotated.txt"
     cmd = python + " " + iAnnotateSV + " -r " + build + " -i " + inputTabFile + " -o " + outputDir + " -ofp " + outputPrefix + " -d " + str(
         distance) + " -c " + canonicalTranscriptFile + " -rr " + repeatregionFile + " -cc " + cosmicFile + " -dgv " + dgvFile + " -p -u " + uniprotFile
     args = shlex.split(cmd)
-    logging.info("Run_iAnnotateSV: Command that will be run: %s", cmd)
+    logger.info("Run_iAnnotateSV: Command that will be run: %s", cmd)
     # Remove if the file exists
     if(os.path.isfile(outputFile)):
         os.remove(outputFile)
@@ -72,12 +73,12 @@ def run(
     if(retcode >= 0):
         end_time = time.time()
         totaltime = str(timedelta(seconds=end_time - start_time))
-        logging.info(
+        logger.info(
             "Run_iAnnotateSV: We have finished running iAnnotateSV for %s using local machine",
             inputTabFile)
-        logging.info("Run_iAnnotateSV Duration: %s", totaltime)
+        logger.info("Run_iAnnotateSV Duration: %s", totaltime)
     else:
-        logging.info(
+        logger.info(
             "Run_iAnnotateSV: iAnnotateSV is either still running on local machine or it errored out with return code %d for %s",
             retcode,
             inputTabFile)

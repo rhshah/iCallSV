@@ -28,10 +28,11 @@ def Convert2targetSeqView(
         vcfFile,
         outputDir,
         outputFileName):
-    logging.info("Convert2targetSeqView: Will convert vcf to targetSeqVie format")
+    logger = logging.getLogger(__name__)
+    logger.info("Convert2targetSeqView: Will convert vcf to targetSeqVie format")
     cp.checkFile(vcfFile)
     cp.checkDir(outputDir)
-    logging.info(
+    logger.info(
         "Convert2targetSeqView: All Input Parameters look good. Lets convert to tab-delimited file")
     vcf_reader = vcf.Reader(open(vcfFile, 'r'))
     outputFile = outputDir + "/" + outputFileName
@@ -75,7 +76,7 @@ def Convert2targetSeqView(
             str(sampleSplitBamName) +
             "\n")
     outputHandle.close()
-    logging.info("Convert2targetSeqView: Finished conversion of Vcf file to targetSeqView file format.")
-    logging.info("Convert2targetSeqView: Output can be found: %s", outputFile)
+    logger.info("Convert2targetSeqView: Finished conversion of Vcf file to targetSeqView file format.")
+    logger.info("Convert2targetSeqView: Output can be found: %s", outputFile)
     return(outputFile)
 # Test module

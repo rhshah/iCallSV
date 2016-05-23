@@ -24,30 +24,31 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
     config: configuration file passed to iCallSV
     sampleOutdirForDelly: Output directory for delly vcf files.
     """
+    logger = logging.getLogger(__name__)
     verbose = args.verbose
     pool = mp.Pool(processes=4)
     analyisisType = ["DEL", "DUP", "INV", "TRA"]
     if(verbose):
-        logging.info(
+        logger.info(
             "launch_Run_Delly: Launched Delly for Deletion, Duplication, Inversion and Translocation Events")
     # check of index file before run
     controlBai = args.controlBam + ".bai"
     if(os.path.isfile(controlBai)):
         if(verbose):
-            logging.info("Run_Delly: Bam Index file is present for %s ", controlBai)
+            logger.info("Run_Delly: Bam Index file is present for %s ", controlBai)
     else:
         if(verbose):
-            logging.warn(
+            logger.warn(
                 "Run_Delly: Bam Index file is not present and we will make it for %s ",
                 controlBai)
         mbi.MakeIndex(args.controlBam)
     caseBai = args.caseBam + ".bai"
     if(os.path.isfile(caseBai)):
         if(verbose):
-            logging.info("Run_Delly: Bam Index file is present for %s ", caseBai)
+            logger.info("Run_Delly: Bam Index file is present for %s ", caseBai)
     else:
         if(verbose):
-            logging.warn(
+            logger.warn(
                 "Run_Delly: Bam Index file is not present and we will make it for %s ",
                 caseBai)
         mbi.MakeIndex(args.caseBam)
@@ -73,7 +74,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
 '''
     # Run Delly for Deletion
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Deletion Events")
+        logger.info("launch_Run_Delly: Launched Delly for Deletion Events")
 
     del_vcf = rd.run(
         delly=config.get("SVcaller", "DELLY"),
@@ -90,7 +91,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
 
 # Run Delly for duplication
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Duplication Events")
+        logger.info("launch_Run_Delly: Launched Delly for Duplication Events")
 
     dup_vcf = rd.run(
         delly=config.get("SVcaller", "DELLY"),
@@ -107,7 +108,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
 
 # Run Delly for inversion
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Inversion Events")
+        logger.info("launch_Run_Delly: Launched Delly for Inversion Events")
 
     inv_vcf = rd.run(
         delly=config.get("SVcaller", "DELLY"),
@@ -124,7 +125,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
 
 # Run Delly for Translocation
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Translocation Envents")
+        logger.info("launch_Run_Delly: Launched Delly for Translocation Envents")
 
     tra_vcf = rd.run(
         delly=config.get("SVcaller", "DELLY"),
@@ -143,7 +144,7 @@ def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
 
 # Run Delly for Insertion
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Insertion Events")
+        logger.info("launch_Run_Delly: Launched Delly for Insertion Events")
 
     ins_vcf = rd.run(
         delly=config.get("SVcaller", "DELLY"),

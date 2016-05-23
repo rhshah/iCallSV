@@ -29,7 +29,8 @@ class myThread (threading.Thread):
         self.counter = counter
 
     def run(self):
-        logging.info("Starting %s", self.name)
+        logger = logging.getLogger(__name__)
+        logger.info("Starting %s", self.name)
         # Get lock to synchronize threads
         threadLock.acquire()
         print_time(self.name, self.counter, 3)

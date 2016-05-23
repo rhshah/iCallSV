@@ -62,8 +62,9 @@ def run(
         peSupportHotspotControl,
         srSupportHotspotControl,
         verbose):
+    logger = logging.getLogger(__name__)
     if(verbose):
-        logging.info("FilterDellyCalls: We will now check all the input parameters")
+        logger.info("FilterDellyCalls: We will now check all the input parameters")
     # Check input parameters
     cp.checkDir(outputDir)
     cp.checkFile(inputVcf)
@@ -107,8 +108,8 @@ def run(
         srSupportHotspotControl,
         "overall split-reads support threshold for the event in hot-spot region for the Control sample")
     if(verbose):
-        logging.info("FilterDellyCalls: All Input Parameters look good for filtering these VCF file.")
-        logging.info("FilterDellyCalls: We will filter the given VCF file now.")
+        logger.info("FilterDellyCalls: All Input Parameters look good for filtering these VCF file.")
+        logger.info("FilterDellyCalls: We will filter the given VCF file now.")
     # Make a string of all the variables
     thresholdVariablesList = [svlength,
                               mapq,
@@ -252,12 +253,13 @@ def run(
             continue
     vcf_writer.close()
     if(verbose):
-        logging.info("FilterDellyCalls: We have finished filtering: %s file", inputVcf)
-        logging.info("FilterFellyCalls: Output has been written in: %s file", outputFile)
+        logger.info("FilterDellyCalls: We have finished filtering: %s file", inputVcf)
+        logger.info("FilterFellyCalls: Output has been written in: %s file", outputFile)
     return(outputFile)
 
 
 def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blacklist):
+    logger = logging.getLogger(__name__)
     (svlength,
      mapq,
      mapqHotspot,
@@ -374,6 +376,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
 
 
 def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
+    logger = logging.getLogger(__name__)
     caseAltAf = 0.0
     caseCovg = 0
     caseFlag = False
@@ -395,6 +398,7 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
 
 
 def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
+    logger = logging.getLogger(__name__)
     controlAltAf = 0.0
     controlCovg = 0
     controlFlag = False

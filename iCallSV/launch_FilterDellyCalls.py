@@ -23,11 +23,12 @@ import multiprocessing as mp
 
 def launch_filterdellycalls_for_different_analysis_type(
         args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):
+    logger = logging.getLogger(__name__)
     verbose = args.verbose
     fileType = [del_vcf, dup_vcf, inv_vcf, tra_vcf]
     pool = mp.Pool(processes=4)
     if(verbose):
-        logging.info(
+        logger.info(
             "launch_FilterDellyCalls: Launched FilterDellyCalls for Deletion, Duplication, Inversion and Translocation Events")
     results = [pool.apply_async(fdc.run, args=(
         x,
@@ -59,7 +60,7 @@ def launch_filterdellycalls_for_different_analysis_type(
 '''
     # Run Delly for Deletion
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Deletion Events")
+        logger.info("launch_Run_Delly: Launched Delly for Deletion Events")
     filter_del_vcf = os.path.splitext(os.path.basename(del_vcf))[0] + "_filtered.vcf"
     filter_dup_vcf = os.path.splitext(os.path.basename(dup_vcf))[0] + "_filtered.vcf"
     filter_del_vcf = fdc.run(
@@ -87,7 +88,7 @@ def launch_filterdellycalls_for_different_analysis_type(
         verbose)
 # Run Delly for duplication
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Duplication Events")
+        logger.info("launch_Run_Delly: Launched Delly for Duplication Events")
     filter_dup_vcf = os.path.splitext(os.path.basename(dup_vcf))[0] + "_filtered.vcf"
     filter_dup_vcf = fdc.run(
         dup_vcf,
@@ -114,7 +115,7 @@ def launch_filterdellycalls_for_different_analysis_type(
         verbose)
 # Run Delly for inversion
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Inversion Events")
+        logger.info("launch_Run_Delly: Launched Delly for Inversion Events")
     filter_inv_vcf = os.path.splitext(os.path.basename(inv_vcf))[0] + "_filtered.vcf"
     filter_inv_vcf = fdc.run(
         inv_vcf,
@@ -141,7 +142,7 @@ def launch_filterdellycalls_for_different_analysis_type(
         verbose)
 # Run Delly for Translocation
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Translocation Envents")
+        logger.info("launch_Run_Delly: Launched Delly for Translocation Envents")
     filter_tra_vcf=os.path.splitext(os.path.basename(tra_vcf))[0] + "_filtered.vcf"
     filter_tra_vcf=fdc.run(
         tra_vcf,
@@ -169,7 +170,7 @@ def launch_filterdellycalls_for_different_analysis_type(
     return(filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf)
 # Run Delly for Insertion
     if(verbose):
-        logging.info("launch_Run_Delly: Launched Delly for Insertion Events")
+        logger.info("launch_Run_Delly: Launched Delly for Insertion Events")
     filter_ins_vcf = os.path.splitext(os.path.basename(tra_vcf))[0] + "_filtered.vcf"
     ins_vcf = fdc.run(
         ins_vcf,

@@ -25,10 +25,11 @@ import logging
 
 
 def vcf2tab(vcfFile, outputDir, verbose):
+    logger = logging.getLogger(__name__)
     cp.checkFile(vcfFile)
     cp.checkDir(outputDir)
     if(verbose):
-        logging.info("dellyVcf2Tab: All Input Parameters look good. Lets convert to tab-delimited file")
+        logger.info("dellyVcf2Tab: All Input Parameters look good. Lets convert to tab-delimited file")
     vcf_reader = vcf.Reader(open(vcfFile, 'r'))
     outputFileName = os.path.splitext((os.path.basename(vcfFile)))[0] + ".tab"
     outputFile = outputDir + "/" + outputFileName
@@ -65,7 +66,7 @@ def vcf2tab(vcfFile, outputDir, verbose):
             str2 = 1
         else:
             if(verbose):
-                logging.info(
+                logger.info(
                     "dellyVcf2Tab: The connection type (CT) given in the vcf file is incorrect.CT: %s",
                     contype)
         outputHandle.write(
@@ -83,8 +84,8 @@ def vcf2tab(vcfFile, outputDir, verbose):
             "\n")
     outputHandle.close()
     if(verbose):
-        logging.info("dellyVcf2Tab: Finished conversion of Vcf file to tab-delimited file")
-        logging.info("dellyVcf2Tab: Output can be found: %s", outputFile)
+        logger.info("dellyVcf2Tab: Finished conversion of Vcf file to tab-delimited file")
+        logger.info("dellyVcf2Tab: Output can be found: %s", outputFile)
     return(outputFile)
 
 # Test Module

@@ -16,6 +16,7 @@ import logging
 
 
 def run(vcfFiles, combinedVCF, verbose):
+    logger = logging.getLogger(__name__)
     vcf_header = vcf.Reader(filename=vcfFiles[1])
     vcf_output = vcf.Writer(open(combinedVCF, 'w'), vcf_header)
     for vcffile in vcfFiles:
@@ -23,5 +24,5 @@ def run(vcfFiles, combinedVCF, verbose):
         for each in vcf_reader:
             vcf_output.write_record(each)
     if(verbose):
-        logging.info("Finished combining vcf files")
+        logger.info("Finished combining vcf files")
     return(combinedVCF)

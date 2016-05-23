@@ -11,12 +11,13 @@ import logging
 
 
 def sortBam(inputBam, outputBamName, outputDir):
-    logging.info("sortbamByCoordinate: Trying to sort BAM file by Coordinate")
+    logger = logging.getLogger(__name__)
+    logger.info("sortbamByCoordinate: Trying to sort BAM file by Coordinate")
     if(os.path.isdir(outputDir)):
-        logging.info("sortbamByCoordinate: The output directory %s exists", outputDir)
+        logger.info("sortbamByCoordinate: The output directory %s exists", outputDir)
         outputFile = outputDir + "/" + outputBamName
     else:
-        logging.info("sortbamByCoordinate:The output directory %s does not exists !!", outputDir)
+        logger.info("sortbamByCoordinate:The output directory %s does not exists !!", outputDir)
         sys.exit()
 
     if(os.path.isfile(inputBam)):
@@ -24,14 +25,14 @@ def sortBam(inputBam, outputBamName, outputDir):
             pysam.sort(inputBam, outputFile)
         except IndexError as err:
             exception = "Index error({0}): {1}".format(err.errno, err.strerror)
-            logging.info("%s", exception)
+            logger.info("%s", exception)
         except IOError as err:
             exception = "I/O error({0}): {1}".format(err.errno, err.strerror)
-            logging.info("%s", exception)
+            logger.info("%s", exception)
     else:
-        logging.info("sortbamByCoordinate: bam File %s does not exists !!", inputBam)
+        logger.info("sortbamByCoordinate: bam File %s does not exists !!", inputBam)
         sys.exit()
-    logging.info("sortbamByCoordinate: Finished sorting BAM file by Coordinate.")
+    logger.info("sortbamByCoordinate: Finished sorting BAM file by Coordinate.")
     return(outputFile)
 
 #sortBam('/home/shahr2/M15-2555.recal.bam', "M15-2555.recal.NSORT","/home/shahr2/")
