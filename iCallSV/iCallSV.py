@@ -152,17 +152,26 @@ USAGE
     (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir")
     # Create Logger if verbose
     loggeroutput = sampleOutdirForDelly + "/" + args.outprefix + "_iCallSV.log"
-    logging.basicConfig(
+    '''
+    logger.basicConfig(
         filename=loggeroutput,
         filemode='w',
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         datefmt='%m/%d/%Y %I:%M:%S %p',
-        level=logging.DEBUG)
+        level=logger.DEBUG)
+    '''
+    logger = logging.getLogger(__name__)
+    formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handler.setFormatter(formatter)
+    handler = logger.FileHandler(loggeroutput)
+    handler.setLevel(logger.INFO)
+    logger.addHandler(handler)
+
     # Print if Verbose mode is on
     if(verbose):
-        logging.info("iCallSV:Verbose mode on")
+        logger.info("iCallSV:Verbose mode on")
     if(verbose):
-        logging.info('iCallSV:Reading configuration from %s', config_file)
+        logger.info('iCallSV:Reading configuration from %s', config_file)
     runDellyTag = True
     analysisFiles = []
     analysisType = ["DEL", "DUP", "INV", "TRA"]
@@ -179,7 +188,7 @@ USAGE
     # Decide based on tag what to do
     if(tag):
         if(verbose):
-            logging.info(
+            logger.info(
                 'iCallSV:Output of delly for %s will be written in %s',
                 args.caseId,
                 sampleOutdirForDelly)
@@ -261,13 +270,13 @@ USAGE
 
         else:
             if(verbose):
-                logging.warn(
+                logger.warn(
                     "All Records have been filtered in standard filtered step. Thus we will exit the program and not proceed.")
-                logging.info("Thank you for using iCallSV.")
+                logger.info("Thank you for using iCallSV.")
             sys.exit(0)
     else:
         if(verbose):
-            logging.fatal(
+            logger.fatal(
                 "The output directory for the %s already exists. Please delete %s folder and rerun",
                 args.caseId,
                 sampleOutdirForDelly)
@@ -279,4 +288,4 @@ if __name__ == "__main__":
     main()
     end_time = time.time()
     totaltime = end_time - start_time
-    logging.info("iCallSV:Elapsed time was %g seconds", totaltime)
+    logger.info("iCallSV:Elapsed time was %g seconds", totaltime)

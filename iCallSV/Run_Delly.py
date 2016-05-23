@@ -67,10 +67,10 @@ def run(
     VCF file having all the structural variants called
     
     """
-    
+    logger = logging.getLogger(__name__)
     start_time = time.time()
     if(verbose):
-        logging.info("Run_Delly: We are now going to run Delly for you. It going to be exciting time.")
+        logger.info("Run_Delly: We are now going to run Delly for you. It going to be exciting time.")
     myPid = os.getpid()
     day = date.today()
     today = day.isoformat()
@@ -90,36 +90,36 @@ def run(
     cp.checkEmpty(caseId, "Delly Case BAM ID")
     cp.checkDellyAnalysisType(analysisType)
     if(verbose):
-        logging.info("Run_Delly: All the input parameters look good for running delly")
-        logging.info("Run_Delly: ProcessID:%s,Date:%s", myPid, today)
+        logger.info("Run_Delly: All the input parameters look good for running delly")
+        logger.info("Run_Delly: ProcessID:%s,Date:%s", myPid, today)
     if(debug):
         if(version >= StrictVersion('0.7.3')):
             cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
                 " -q " + str(mapq) + " -o " + outputBcf + " " + caseBam + " " + controlBam
-            logging.debug("Run_Delly: Command that will be run %s", cmd)
+            logger.debug("Run_Delly: Command that will be run %s", cmd)
         else:
             cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
                 " -q " + str(mapq) + " -o " + outputVcf + " " + caseBam + " " + controlBam
-            logging.debug("Run_Delly: Command that will be run %s", cmd)
+            logger.debug("Run_Delly: Command that will be run %s", cmd)
     else:
         # Check if bam index files are there else make them
         controlBai = controlBam + ".bai"
         if(os.path.isfile(controlBai)):
             if(verbose):
-                logging.info("Run_Delly: Bam Index file is present for %s ", controlBai)
+                logger.info("Run_Delly: Bam Index file is present for %s ", controlBai)
         else:
             if(verbose):
-                logging.warn(
+                logger.warn(
                     "Run_Delly: Bam Index file is not present and we will make it for %s ",
                     controlBai)
             mbi.MakeIndex(controlBam)
         caseBai = caseBam + ".bai"
         if(os.path.isfile(caseBai)):
             if(verbose):
-                logging.info("Run_Delly: Bam Index file is present for %s ", caseBai)
+                logger.info("Run_Delly: Bam Index file is present for %s ", caseBai)
         else:
             if(verbose):
-                logging.warn(
+                logger.warn(
                     "Run_Delly: Bam Index file is not present and we will make it for %s ",
                     caseBai)
             mbi.MakeIndex(caseBam)
@@ -130,7 +130,7 @@ def run(
             cmd = delly + " -t " + analysisType + " -g " + reference + " -x " + excludeRegions + \
                 " -q " + str(mapq) + " -o " + outputVcf + " " + caseBam + " " + controlBam
         if(verbose):
-            logging.info("Run_Delly: Command that will be run:%s", cmd)
+            logger.info("Run_Delly: Command that will be run:%s", cmd)
         args = shlex.split(cmd)
         proc = Popen(args)
         proc.wait()
@@ -139,14 +139,14 @@ def run(
             end_time = time.time()
             totaltime = str(timedelta(seconds=end_time - start_time))
             if(verbose):
-                logging.info(
+                logger.info(
                     "Run_Delly: We have finished running Delly for %s using local machine", caseId)
-                logging.info("Run_Delly Duration: %s", totaltime)
+                logger.info("Run_Delly Duration: %s", totaltime)
             if(version >= StrictVersion('0.7.3')):
                 if(os.path.isfile(outputBcf)):
                     cmd = bcftools + " view " + outputBcf + " -O v -o " + outputVcf
                     if(verbose):
-                        logging.info("Run_Delly_bcf2vcf: Command that will be run:%s", cmd)
+                        logger.info("Run_Delly_bcf2vcf: Command that will be run:%s", cmd)
                     args = shlex.split(cmd)
                     proc = Popen(args)
                     proc.wait()
@@ -155,19 +155,19 @@ def run(
                         end_time = time.time()
                         totaltime = str(timedelta(seconds=end_time - start_time))
                         if(verbose):
-                            logging.info(
+                            logger.info(
                                 "Run_Delly_bcf2vcf: We have finished running bcftools for %s using local machine", caseId)
-                            logging.info("Run_Delly_bcf2vcf Duration: %s", totaltime)
+                            logger.info("Run_Delly_bcf2vcf Duration: %s", totaltime)
                     else:
                         if(verbose):
-                            logging.fatal(
+                            logger.fatal(
                                 "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
                                 retcode,
                                 caseId)
                         sys.exit(1)
                 else:
                     if(verbose):
-                        logging.fatal(
+                        logger.fatal(
                                       "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
                                       retcode,
                                       caseId)
@@ -177,14 +177,14 @@ def run(
                     return(outputVcf)
                 else:
                     if(verbose):
-                        logging.fatal(
+                        logger.fatal(
                                       "Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s",
                                       retcode,
                                       caseId)
                     sys.exit(1)
         else:
             if(verbose):
-                logging.fatal(
+                logger.fatal(
                     "Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s",
                     retcode,
                     caseId)

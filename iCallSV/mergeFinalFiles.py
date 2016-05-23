@@ -41,9 +41,9 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     "TumorId\tNormalId\tChr1\tPos1\tChr2\tPos2\tSV_Type\tGene1\tGene2\tTranscript1\tTranscript2\tSite1Description\tSite2Description\tFusion\tProbabilityScore\tConfidence\tComments\tConnection_Type\tSV_LENGTH\tMAPQ\tPairEndReadSupport\tSplitReadSupport\tBrkptType\tConsensusSequence\tTumorVariantCount\tTumorSplitVariantCount\tTumorReadCount\tTumorGenotypeQScore\tNormalVariantCount\tNormalSplitVariantCount\tNormalReadCount\tNormalGenotypeQScorerepName-repClass-repFamily:-site1\trepName-repClass-repFamily:-site2\tCC_Chr_Band\tCC_Tumour_Types(Somatic)\tCC_Cancer_Syndrome\tCC_Mutation_Type\tCC_Translocation_Partner\tDGv_Name-DGv_VarType-site1\tDGv_Name-DGv_VarType-site2\n";
     
     """
-    
+    logger = logging.getLogger(__name__)
     if(verbose):
-        logging.info(
+        logger.info(
             "iCallSV::MergeFinalFile: Merging Delly Filtered VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file")
     cp.checkFile(vcfFile)
     cp.checkFile(annoTab)
@@ -212,7 +212,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                                annoDF['pos2'].isin([int(start2)])].index.tolist()
         if(len(indexList) > 1):
             if(verbose):
-                logging.fatal(
+                logger.fatal(
                     "iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for annotated file. Please check and rerun")
             sys.exit(1)
         else:
@@ -249,7 +249,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
 
             if(len(indexList) > 1):
                 if(verbose):
-                    logging.fatal(
+                    logger.fatal(
                         "iCallSV::MergeFinalFile: More then one sv have same coordinate in same sample for confidence score. Please check and rerun")
                 sys.exit(1)
             else:
@@ -281,5 +281,5 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     outFile = outDir + "/" + outputPrefix + "_final.txt"
     outDF.to_csv(outFile, sep='\t', index=False)
     if(verbose):
-        logging.info("iCallSV::MergeFinalFile: Finished merging, Final data written in %s", outFile)
+        logger.info("iCallSV::MergeFinalFile: Finished merging, Final data written in %s", outFile)
     return(outFile)
