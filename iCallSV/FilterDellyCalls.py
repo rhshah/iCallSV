@@ -248,6 +248,8 @@ def run(
         filterFlag = GetFilteredRecords(dellyVariables, thresholdVariables, hotspotDict, blacklist)
         if(filterFlag):
             vcf_writer.write_record(record)
+        else:
+            continue
     vcf_writer.close()
     if(verbose):
         logger.info("FilterDellyCalls: We have finished filtering: %s file", inputVcf)
@@ -302,20 +304,47 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV)
     filterFlag = False
     print "CaseControlPassFlag:",casePassFlag," : ",controlPassFlag
-    if(hotspotTag):
-        if(filter is "PASS" and controlFT is "LowQual"):
-            if(svlengthFromDelly is not "None"):
-                if(int(svlengthFromDelly) >= int(svlength)):
-                    filterFlag = True
+    if(casePassFlag and controlPassFlag):
+        if(hotspotTag):
+            if(filter is "PASS" and controlFT is "LowQual"):
+                if(svlengthFromDelly is not "None"):
+                    if(int(svlengthFromDelly) >= int(svlength)):
+                        filterFlag = True
+                    else:
+                        filterFlag = False
                 else:
-                    filterFlag = False
-            else:
-                filterFlag = True
-        if(not filterFlag):
+                    filterFlag = True
+            if(not filterFlag):
+                if(svlengthFromDelly is not "None"):
+                    if((int(svlengthFromDelly) >= int(svlength)) and (int(mapqFromDelly) >= int(mapqHotspot)) and (int(peSupportFromDelly) >= int(peSupportHotspot)) and (int(caseDV) > int(peSupportHotspotCase)) and (int(controlDV) <= int(peSupportHotspotControl)) and (int(controlDV) < int(caseDV))):
+                        if(srSupportFromDelly is not "None"):
+                            if((int(srSupportFromDelly) >= int(srSupportHotspot)) and (int(caseRV) >= int(srSupportHotspotCase)) and (int(controlRV) <= int(srSupportHotspotControl)) and (int(controlRV) < int(caseRV))):
+                                filterFlag = True
+                            else:
+                                filterFlag = False
+                        else:
+                            filterFlag = True
+                    else:
+                        filterFlag = False
+                else:
+                    if((int(mapqFromDelly) >= int(mapqHotspot)) and (int(peSupportFromDelly) >= int(peSupportHotspot)) and (int(caseDV) >= int(peSupportHotspotCase)) and (int(controlDV) <= int(peSupportHotspotControl)) and (int(controlDV) < int(caseDV))):
+                        if(srSupportFromDelly is not "None"):
+                            if((int(srSupportFromDelly) >= int(srSupportHotspot)) and (int(caseRV) >= int(srSupportHotspotCase)) and (int(controlRV) <= int(srSupportHotspotControl)) and (int(controlRV) < int(caseRV))):
+                                filterFlag = True
+                            else:
+                                filterFlag = False
+                        else:
+                            filterFlag = True
+                    else:
+                        filterFlag = False
+        else:
             if(svlengthFromDelly is not "None"):
-                if((int(svlengthFromDelly) >= int(svlength)) and (int(mapqFromDelly) >= int(mapqHotspot)) and (int(peSupportFromDelly) >= int(peSupportHotspot)) and (int(caseDV) > int(peSupportHotspotCase)) and (int(controlDV) <= int(peSupportHotspotControl)) and (int(controlDV) < int(caseDV))):
+                # print svlengthFromDelly, svlength, mapqFromDelly, mapq,
+                # peSupportFromDelly, peSupport, caseDV, peSupportCase, controlDV,
+                # peSupportControl
+                if((int(svlengthFromDelly) >= int(svlength)) and (int(mapqFromDelly) >= int(mapq)) and (int(peSupportFromDelly) >= int(peSupport)) and (int(caseDV) >= int(peSupportCase)) and (int(controlDV) <= int(peSupportControl)) and (int(controlDV) < int(caseDV))):
                     if(srSupportFromDelly is not "None"):
-                        if((int(srSupportFromDelly) >= int(srSupportHotspot)) and (int(caseRV) >= int(srSupportHotspotCase)) and (int(controlRV) <= int(srSupportHotspotControl)) and (int(controlRV) < int(caseRV))):
+                        if((int(srSupportFromDelly) >= int(srSupport)) and (int(caseRV) >= int(srSupportCase)) and (int(controlRV) <= int(srSupportControl)) and (int(controlRV) < int(caseRV))):
                             filterFlag = True
                         else:
                             filterFlag = False
@@ -324,9 +353,9 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                 else:
                     filterFlag = False
             else:
-                if((int(mapqFromDelly) >= int(mapqHotspot)) and (int(peSupportFromDelly) >= int(peSupportHotspot)) and (int(caseDV) >= int(peSupportHotspotCase)) and (int(controlDV) <= int(peSupportHotspotControl)) and (int(controlDV) < int(caseDV))):
+                if((int(mapqFromDelly) >= int(mapq)) and (int(peSupportFromDelly) >= int(peSupport)) and (int(caseDV) >= int(peSupportCase)) and (int(controlDV) <= int(peSupportControl)) and (int(controlDV) < int(caseDV))):
                     if(srSupportFromDelly is not "None"):
-                        if((int(srSupportFromDelly) >= int(srSupportHotspot)) and (int(caseRV) >= int(srSupportHotspotCase)) and (int(controlRV) <= int(srSupportHotspotControl)) and (int(controlRV) < int(caseRV))):
+                        if((int(srSupportFromDelly) >= int(srSupport)) and (int(caseRV) >= int(srSupportCase)) and (int(controlRV) <= int(srSupportControl)) and (int(controlRV) < int(caseRV))):
                             filterFlag = True
                         else:
                             filterFlag = False
@@ -335,31 +364,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                 else:
                     filterFlag = False
     else:
-        if(svlengthFromDelly is not "None"):
-            # print svlengthFromDelly, svlength, mapqFromDelly, mapq,
-            # peSupportFromDelly, peSupport, caseDV, peSupportCase, controlDV,
-            # peSupportControl
-            if((int(svlengthFromDelly) >= int(svlength)) and (int(mapqFromDelly) >= int(mapq)) and (int(peSupportFromDelly) >= int(peSupport)) and (int(caseDV) >= int(peSupportCase)) and (int(controlDV) <= int(peSupportControl)) and (int(controlDV) < int(caseDV))):
-                if(srSupportFromDelly is not "None"):
-                    if((int(srSupportFromDelly) >= int(srSupport)) and (int(caseRV) >= int(srSupportCase)) and (int(controlRV) <= int(srSupportControl)) and (int(controlRV) < int(caseRV))):
-                        filterFlag = True
-                    else:
-                        filterFlag = False
-                else:
-                    filterFlag = True
-            else:
-                filterFlag = False
-        else:
-            if((int(mapqFromDelly) >= int(mapq)) and (int(peSupportFromDelly) >= int(peSupport)) and (int(caseDV) >= int(peSupportCase)) and (int(controlDV) <= int(peSupportControl)) and (int(controlDV) < int(caseDV))):
-                if(srSupportFromDelly is not "None"):
-                    if((int(srSupportFromDelly) >= int(srSupport)) and (int(caseRV) >= int(srSupportCase)) and (int(controlRV) <= int(srSupportControl)) and (int(controlRV) < int(caseRV))):
-                        filterFlag = True
-                    else:
-                        filterFlag = False
-                else:
-                    filterFlag = True
-            else:
-                filterFlag = False
+        filterFlag = True
 
     if(blacklistTag):
         filterFlag = True
