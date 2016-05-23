@@ -36,7 +36,6 @@ def launch_filterdellycalls_for_different_analysis_type(
         args.caseId,
         config.get("HotSpotRegions", "HotspotFile"),
         config.get("BlackListRegions", "BlackListFile"),
-        verbose,
         int(config.get("ParametersToFilterDellyResults", "LengthOfSV")),
         int(config.get("ParametersToFilterDellyResults", "OverallMapq")),
         int(config.get("ParametersToFilterDellyResults", "OverallMapqHotspot")),
