@@ -379,12 +379,12 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
     caseFlag = False
     if(preciseFlag is "True"):
         caseCovg = int(caseRR) + int(caseRV)
-        if((caseRR is not None or caseRR != 0) and (caseRV is not None or caseRV != 0)):
+        if((caseRR is not None or float(caseRR) != 0) and (caseRV is not None or float(caseRV) != 0)):
             caseAltAf = float(caseRV) / float(caseRR) + float(caseRV)
 
     else:
         caseCovg = int(caseDR) + int(caseDV)
-        if((caseDR is not None or caseDR != 0) and (caseDV is not None or caseDV != 0)):
+        if((caseDR is not None or float(caseDR) != 0) and (caseDV is not None or float(caseDV) != 0)):
             caseAltAf = float(caseDV) / float(caseDR) + float(caseDV)
 
     if(caseAltAf >= 0.2 and caseCovg >= 10):
@@ -399,11 +399,11 @@ def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
     controlCovg = 0
     controlFlag = False
     if(preciseFlag is "True"):
-        if((controlRR is not None or controlRR != 0) and (controlRV is not None or controlRV != 0)):
+        if((controlRR is not None or float(controlRR) != 0.0) and (controlRV is not None or float(controlRV) != 0.0)):
             controlAltAf = flaot(controlRV) / float(controlRR) + float(controlRV)
 
     else:
-        if((controlDR is not None or controlDR != 0) and (controlDV is not None or controlDV != 0)):
+        if((controlDR is not None or float(controlDR) != 0.0) and (controlDV is not None or float(controlDV) != 0.0)):
             controlAltAf = float(controlDV) / float(controlDR) + float(controlDV)
 
     if(controlAltAf <= 0.0):
