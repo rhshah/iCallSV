@@ -243,9 +243,9 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             confidenceScore = None
             confDF[['Chr1', 'Chr2']] = confDF[['Chr1', 'Chr2']].astype(str)
             indexList = confDF.loc[confDF['Chr1'].isin([chrom1]) &
-                                   confDF['Start1'].isin([int(start1)]) &
+                                   confDF['Start1'].isin([int(start1 - 50)]) &
                                    confDF['Chr2'].isin([chrom2]) &
-                                   confDF['Start2'].isin([int(start2)])].index.tolist()
+                                   confDF['Start2'].isin([int(start2 - 50)])].index.tolist()
 
             if(len(indexList) > 1):
                 if(verbose):
