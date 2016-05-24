@@ -183,6 +183,10 @@ def run(
         chrom1 = record.CHROM
         start1 = record.POS
         filter = record.FILTER
+        if(len(filter) < 1 ):
+            filter = None
+        else:
+            filter = filter[0]
         preciseFlag = record.is_sv_precise
         # print "Precise:",preciseFlag,":",type(preciseFlag)
         if("END" in record.INFO):
