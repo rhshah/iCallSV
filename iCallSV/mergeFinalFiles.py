@@ -134,12 +134,16 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          conseq,
          caseRC,
          caseGQ,
+         caseDR,
          caseDV,
+         caseRR,
          caseRV,
          controlGQ,
          controlRC,
+         controlDR,
          controlDV,
-         controlRV) = (None for i in range(21))
+         controlRR,
+         controlRV) = (None for i in range(25))
         chrom1 = str(record.CHROM)
         start1 = record.POS
         filter = record.FILTER
@@ -183,8 +187,12 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             caseGQ = caseCalls.data.GQ
         if(hasattr(caseCalls.data, "RC")):
             caseRC = caseCalls.data.RC
+        if(hasattr(caseCalls.data, "DR")):
+            caseDR = caseCalls.data.DR
         if(hasattr(caseCalls.data, "DV")):
             caseDV = caseCalls.data.DV
+        if(hasattr(caseCalls.data, "RR")):
+            caseRR = caseCalls.data.RR
         if(hasattr(caseCalls.data, "RV")):
             caseRV = caseCalls.data.RV
 
@@ -192,8 +200,12 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             controlGQ = controlCalls.data.GQ
         if(hasattr(controlCalls.data, "RC")):
             controlRC = controlCalls.data.RC
+        if(hasattr(controlCalls.data, "DR")):
+            controlDR = controlCalls.data.DR
         if(hasattr(controlCalls.data, "DV")):
             controlDV = controlCalls.data.DV
+        if(hasattr(controlCalls.data, "RR")):
+            controlRR = controlCalls.data.RR
         if(hasattr(controlCalls.data, "RV")):
             controlRV = controlCalls.data.RV
 
