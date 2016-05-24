@@ -39,7 +39,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     outputPrefix: Output File Prefix
     ::Output::
     outputFile: File with following header
-    "TumorId\tNormalId\tChr1\tPos1\tChr2\tPos2\tSV_Type\tGene1\tGene2\tTranscript1\tTranscript2\tSite1Description\tSite2Description\tFusion\tProbabilityScore\tConfidence\tComments\tConnection_Type\tSV_LENGTH\tMAPQ\tPairEndReadSupport\tSplitReadSupport\tBrkptType\tConsensusSequence\tTumorVariantCount\tTumorSplitVariantCount\tTumorReadCount\tTumorGenotypeQScore\tNormalVariantCount\tNormalSplitVariantCount\tNormalReadCount\tNormalGenotypeQScorerepName-repClass-repFamily:-site1\trepName-repClass-repFamily:-site2\tCC_Chr_Band\tCC_Tumour_Types(Somatic)\tCC_Cancer_Syndrome\tCC_Mutation_Type\tCC_Translocation_Partner\tDGv_Name-DGv_VarType-site1\tDGv_Name-DGv_VarType-site2\n";
+    "TumorId\tNormalId\tChr1\tPos1\tChr2\tPos2\tSV_Type\tGene1\tGene2\tTranscript1\tTranscript2\tSite1Description\tSite2Description\tFusion\tProbabilityScore\tConfidence\tComments\tConnection_Type\tSV_LENGTH\tMAPQ\tPairEndReadSupport\tSplitReadSupport\tBrkptType\tConsensusSequence\tTumorReferenceCount\tTumorSplitReferenceCount\tTumorVariantCount\tTumorSplitVariantCount\tTumorReadCount\tTumorGenotypeQScore\tNormalReferenceCount\tNormalSplitReferenceCount\tNormalVariantCount\tNormalSplitVariantCount\tNormalReadCount\tNormalGenotypeQScorerepName-repClass-repFamily:-site1\trepName-repClass-repFamily:-site2\tCC_Chr_Band\tCC_Tumour_Types(Somatic)\tCC_Cancer_Syndrome\tCC_Mutation_Type\tCC_Translocation_Partner\tDGv_Name-DGv_VarType-site1\tDGv_Name-DGv_VarType-site2\n";
     
     """
     if(verbose):
@@ -75,10 +75,14 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             "SplitReadSupport",
             "BrkptType",
             "ConsensusSequence",
+            "TumorReferenceCount", 
+            "TumorSplitReferenceCount",
             "TumorVariantCount",
             "TumorSplitVariantCount",
             "TumorReadCount",
             "TumorGenotypeQScore",
+            "NormalReferenceCount", 
+            "NormalSplitReferenceCount",
             "NormalVariantCount",
             "NormalSplitVariantCount",
             "NormalReadCount",
@@ -270,8 +274,8 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                    "Gene2", "Transcript1", "Transcript2", "Site1Description", "Site2Description",
                    "Fusion", "ProbabilityScore", "Confidence", "Comments", "Connection_Type",
                    "SV_LENGTH", "MAPQ", "PairEndReadSupport", "SplitReadSupport", "BrkptType",
-                   "ConsensusSequence", "TumorVariantCount", "TumorSplitVariantCount",
-                   "TumorReadCount", "TumorGenotypeQScore", "NormalVariantCount",
+                   "ConsensusSequence", "TumorReferenceCount", "TumorSplitReferenceCount", "TumorVariantCount", "TumorSplitVariantCount",
+                   "TumorReadCount", "TumorGenotypeQScore", "NormalReferenceCount", "NormalSplitReferenceCount", "NormalVariantCount",
                    "NormalSplitVariantCount", "NormalReadCount", "NormalGenotypeQScore",
                    "repName-repClass-repFamily:-site1", "repName-repClass-repFamily:-site2",
                    "CC_Chr_Band", "CC_Tumour_Types(Somatic)", "CC_Cancer_Syndrome",
@@ -279,7 +283,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                    "DGv_Name-DGv_VarType-site2"]] = [aId, bId, chrom1, start1, chrom2, start2,
                                                      svtype, gene1, gene2, transcript1, transcript2, site1, site2, fusion, confidenceScore,
                                                      None, None, contype, svlengthFromDelly, mapqFromDelly, peSupportFromDelly,
-                                                     srSupportFromDelly, brktype, conseq, caseDV, caseRV, caseRC, caseGQ, controlDV,
+                                                     srSupportFromDelly, brktype, conseq, caseDR, caseRR ,caseDV, caseRV, caseRC, caseGQ, controlDR, controlRR ,controlDV,
                                                      controlRV, controlRC, controlGQ, rr_site1, rr_site2, cc_chr_band, cc_t_t, cc_c_s,
                                                      cc_m_t, cc_t_p, dgv_site1, dgv_site2]
 
