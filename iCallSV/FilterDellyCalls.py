@@ -244,13 +244,13 @@ def run(
                               controlRR,
                               controlRV]
         dellyVariables = ",".join(str(v) for v in dellyVariablesList)
-        print chrom1, start1, start2, chrom2, "Coordinate"
-        print svlengthFromDelly, mapqFromDelly, svtype, peSupportFromDelly, srSupportFromDelly, contype, "Overall"
-        print caseDR, caseDV, caseRR, caseRV, "Case"
-        print controlDR, controlDV, controlRR, controlRV, "Control"
+        #print chrom1, start1, start2, chrom2, "Coordinate"
+        #print svlengthFromDelly, mapqFromDelly, svtype, peSupportFromDelly, srSupportFromDelly, contype, "Overall"
+        #print caseDR, caseDV, caseRR, caseRV, "Case"
+        #print controlDR, controlDV, controlRR, controlRV, "Control"
         filterFlag = GetFilteredRecords(dellyVariables, thresholdVariables, hotspotDict, blacklist)
         if(filterFlag):
-            print "Passs"
+            #print "Passs"
             vcf_writer.write_record(record)
     vcf_writer.close()
     if(verbose):
@@ -306,7 +306,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV)
     controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV)
     filterFlag = False
-    print "CaseControlPassFlag:", casePassFlag, " : ", controlPassFlag
+    #print "CaseControlPassFlag:", casePassFlag, " : ", controlPassFlag
     if(casePassFlag and controlPassFlag):
         if(hotspotTag):
             if(filter is "PASS" and controlFT is "LowQual"):
