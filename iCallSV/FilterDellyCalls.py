@@ -10,6 +10,9 @@ controlId: Control Sample ID (Should be part of Sample Name in VCF)
 caseID: Case Sample ID (Should be part of Sample Name in VCF)
 hospotFile: List of Genes that have Hotspot Structural Variants (Tab-delimited Format without header:chr    start    end    geneName).
 blacklistFile: List of Genes that have blacklist of Structural Variants (Tab-delimited Format without header:chr    start1    chr2     start2; where chr1==chr2, end==start2).
+caseAltFreq: Alternate Allele Frequency threshold for case
+caseTotalCount: Total ReadCount threshold for case
+ccontrolAltFreq: Alternate Allele Frequency threshold for control
 peSupport: overall pair-end read support threshold for the event
 srSupport: overall split-reads support threshold for the event
 peSupportHotspot: overall pair-end read support threshold for the event in hot-spot region

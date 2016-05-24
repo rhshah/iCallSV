@@ -22,6 +22,7 @@ import multiprocessing as mp
 
 logger = logging.getLogger('iCallSV.launch_FilterDellyCalls')
 
+
 def launch_filterdellycalls_for_different_analysis_type(
         args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):
     verbose = args.verbose
@@ -40,6 +41,9 @@ def launch_filterdellycalls_for_different_analysis_type(
         int(config.get("ParametersToFilterDellyResults", "LengthOfSV")),
         int(config.get("ParametersToFilterDellyResults", "OverallMapq")),
         int(config.get("ParametersToFilterDellyResults", "OverallMapqHotspot")),
+        float(config.get("ParametersToFilterDellyResults", "CaseAltFreq")),
+        int(config.get("ParametersToFilterDellyResults", "CaseCoverage")),
+        float(config.get("ParametersToFilterDellyResults", "ControlAltFreq")),
         int(config.get("ParametersToFilterDellyResults", "OverallSupportingReads")),
         int(config.get("ParametersToFilterDellyResults", "OverallSupportingSplitReads")),
         int(config.get("ParametersToFilterDellyResults", "OverallSupportingReadsHotspot")),
