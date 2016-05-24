@@ -332,7 +332,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     # print "CaseControlPassFlag:", casePassFlag, " : ", controlPassFlag
     
     if(hotspotTag):
-        casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreqHotsot, caseTotalCountHotspot)
+        casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreqHotspot, caseTotalCountHotspot)
         controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, controlAltFreqHotspot)
         if(casePassFlag and controlPassFlag):
             if(filter == "PASS" and controlFT == "LowQual"):
