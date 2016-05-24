@@ -124,23 +124,23 @@ def main():
     args = parser.parse_args()
     if(args.verbose):
         print "Starting the Process to Run iCallSV."
-        with open(args.folderList, 'r') as filecontent:
-            for line in filecontent:
-                poolName = line.rstrip()
-                # print poolName
-                if poolName:
-                    if(args.verbose):
-                        print "####Processing data for:", poolName
-                    (titleFile,
-                     outdir,
-                     HSmetricsFileList,
-                     bamFileList) = SetupRun(poolName,args)
-                    RunPerPool(
-                        titleFile,
-                        outdir,
-                        HSmetricsFileList,
-                        bamFileList,
-                        args)
+    with open(args.folderList, 'r') as filecontent:
+        for line in filecontent:
+            poolName = line.rstrip()
+            # print poolName
+            if poolName:
+                if(args.verbose):
+                    print "####Processing data for:", poolName
+                (titleFile,
+                 outdir,
+                 HSmetricsFileList,
+                 bamFileList) = SetupRun(poolName,args)
+                RunPerPool(
+                    titleFile,
+                    outdir,
+                    HSmetricsFileList,
+                    bamFileList,
+                    args)
 
     if(args.verbose):
         print "Finished the Process to Run iCallSV."
