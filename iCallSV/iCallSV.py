@@ -75,7 +75,7 @@ USAGE
         description=program_license,
         formatter_class=RawDescriptionHelpFormatter)
     parser.add_argument("-v", "--verbose", dest="verbose", action="store_true",
-                        default=True, help="set verbosity level [default: %(default)s]")
+                        help="set verbosity level [default: %(default)s]")
     parser.add_argument('-V', '--version', action='version', version=program_version_message)
     parser.add_argument(
         "-sc",
@@ -149,7 +149,7 @@ USAGE
     config_file = args.config_file
     config = configparser.ConfigParser(defaults={'here': here})
     config.read(args.config_file)
-    #Make output dir
+    # Make output dir
     (tag, sampleOutdirForDelly) = mad.makeOutputDir(args, "DellyDir")
     # Create Logger if verbose
     loggeroutput = sampleOutdirForDelly + "/" + args.outprefix + "_iCallSV.log"
@@ -177,7 +177,7 @@ USAGE
     # add the handlers to the logger
     logger.addHandler(fh)
     logger.addHandler(ch)
-    
+
     # Print if Verbose mode is on
     if(verbose):
         logger.info("iCallSV:Verbose mode on")

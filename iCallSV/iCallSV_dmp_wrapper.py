@@ -111,7 +111,6 @@ def main():
         "--verbose",
         action="store_true",
         dest="verbose",
-        default=True,
         help="make lots of noise [default]")
     parser.add_argument(
         "-o",
@@ -255,7 +254,7 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
             jobId = "iCallSV_" + str(count) + "_" + str(basename)
             cmdList = []
             cmd = args.python + " " + args.icsv + " -sc " + args.conf + " -bbam " + nBamFile + " -abam " + \
-                tBamFile + " -aId " + tsampleId + " -bId " + nsampleId + " -op " + tsampleId + " -o " + outdir
+                tBamFile + " -aId " + tsampleId + " -bId " + nsampleId + " -op " + tsampleId + " -o " + outdir + " -v"
             # cmd = str(cmd)
             threads = int(args.threads)
             threads = threads + 1
