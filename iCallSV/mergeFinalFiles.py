@@ -138,18 +138,26 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         chrom1 = str(record.CHROM)
         start1 = record.POS
         filter = record.FILTER
+        if(len(filter) < 1):
+            filter = None
+        else:
+            filter = filter[0]
+        preciseFlag = record.is_sv_precise
         if("END" in record.INFO):
             start2 = record.INFO['END']
         if("CHR2" in record.INFO):
             chrom2 = str(record.INFO['CHR2'])
+        if("SVTYPE" in record.INFO):
+            svtype = record.INFO['SVTYPE']
         if("SVLEN" in record.INFO):
             svlengthFromDelly = record.INFO['SVLEN']
         else:
-            svlengthFromDelly = abs(start2 - start1)
+            if(svtype == "TRA"):
+                svlengthFromDelly = None
+            else:
+                svlengthFromDelly = abs(start2 - start1)
         if("MAPQ" in record.INFO):
             mapqFromDelly = record.INFO['MAPQ']
-        if("SVTYPE" in record.INFO):
-            svtype = record.INFO['SVTYPE']
         if("PE" in record.INFO):
             peSupportFromDelly = record.INFO['PE']
         if("SR" in record.INFO):
