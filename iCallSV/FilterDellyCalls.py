@@ -54,7 +54,7 @@ def run(
         svlength,
         mapq,
         mapqHotspot,
-        caseAltFreqHotpsot,
+        caseAltFreqHotspot,
         caseTotalCountHotspot,
         controlAltFreqHotspot,
         caseAltFreq,
