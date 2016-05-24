@@ -367,7 +367,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                 else:
                     filterFlag = False
     else:
-        filterFlag = True
+        filterFlag = False
 
     if(blacklistTag):
         filterFlag = True
