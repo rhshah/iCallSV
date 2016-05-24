@@ -51,6 +51,9 @@ def run(
         svlength,
         mapq,
         mapqHotspot,
+        caseAltFreq,
+        caseTotalCount,
+        controlAltFreq,
         peSupport,
         srSupport,
         peSupportHotspot,
@@ -115,6 +118,9 @@ def run(
     thresholdVariablesList = [svlength,
                               mapq,
                               mapqHotspot,
+                              caseAltFreq,
+                              caseTotalCount,
+                              controlAltFreq,
                               peSupport,
                               srSupport,
                               peSupportHotspot,
@@ -263,6 +269,9 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     (svlength,
      mapq,
      mapqHotspot,
+     caseAltFreq,
+    caseTotalCount,
+    controlAltFreq,
      peSupport,
      srSupport,
      peSupportHotspot,
@@ -303,8 +312,8 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     # Get if its a blacklist or not
     blacklistTag = cbl.CheckIfItIsBlacklisted(chrom1, start1, chrom2, start2, blacklist, 20)
     # Get the flag for pass and fail for tumor and normal
-    casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV)
-    controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV)
+    casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTotalCount)
+    controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, controlAltFreq)
     filterFlag = False
     #print "CaseControlPassFlag:", casePassFlag, " : ", controlPassFlag
     if(casePassFlag and controlPassFlag):
@@ -377,7 +386,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     return(filterFlag)
 
 
-def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
+def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTotalCount):
     caseAltAf = 0.0
     caseCovg = 0
     caseFlag = False
@@ -399,14 +408,14 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV):
         if((float(caseDR) != 0.0) or (float(caseDV) != 0.0)):
             caseAltAf = float(caseDV) / float(int(caseDR) + int(caseDV))
 
-    if(caseAltAf >= 0.2 and caseCovg >= 10):
+    if(caseAltAf >= float(caseAltFreq) and caseCovg >= int(caseTotalCount)):
         caseFlag = True
     else:
         caseFlag = False
     return(caseFlag)
 
 
-def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
+def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, controlAltFreq):
     controlAltAf = 0.0
     controlCovg = 0
     controlFlag = False
@@ -426,7 +435,7 @@ def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV):
         if((float(controlDR) != 0.0) or (float(controlDV) != 0.0)):
             controlAltAf = float(controlDV) / float(int(controlDR) + int(controlDV))
 
-    if(controlAltAf <= 0.0):
+    if(controlAltAf <= float(controlAltFreq)):
         controlFlag = True
     else:
         controlFlag = False
