@@ -284,7 +284,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
      mapqHotspot,
      caseAltFreqHotspot,
      caseTotalCountHotspot,
-     controlAltFreqHotsot,
+     controlAltFreqHotspot,
      caseAltFreq,
      caseTotalCount,
      controlAltFreq,
