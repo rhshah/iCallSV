@@ -183,7 +183,7 @@ def run(
         chrom1 = record.CHROM
         start1 = record.POS
         filter = record.FILTER
-        if(len(filter) < 1 ):
+        if(len(filter) < 1):
             filter = None
         else:
             filter = filter[0]
@@ -198,7 +198,7 @@ def run(
         if("SVLEN" in record.INFO):
             svlengthFromDelly = record.INFO['SVLEN']
         else:
-            if(svtype is "TRA"):
+            if(svtype == "TRA"):
                 svlengthFromDelly = None
             else:
                 svlengthFromDelly = abs(start2 - start1)
@@ -257,13 +257,13 @@ def run(
                               controlRR,
                               controlRV]
         dellyVariables = ",".join(str(v) for v in dellyVariablesList)
-        #print chrom1, start1, start2, chrom2, "Coordinate"
-        #print svlengthFromDelly, mapqFromDelly, svtype, peSupportFromDelly, srSupportFromDelly, contype, "Overall"
-        #print caseDR, caseDV, caseRR, caseRV, "Case"
-        #print controlDR, controlDV, controlRR, controlRV, "Control"
+        # print chrom1, start1, start2, chrom2, "Coordinate"
+        # print svlengthFromDelly, mapqFromDelly, svtype, peSupportFromDelly, srSupportFromDelly, contype, "Overall"
+        # print caseDR, caseDV, caseRR, caseRV, "Case"
+        # print controlDR, controlDV, controlRR, controlRV, "Control"
         filterFlag = GetFilteredRecords(dellyVariables, thresholdVariables, hotspotDict, blacklist)
         if(filterFlag):
-            #print "Passs"
+            # print "Passs"
             vcf_writer.write_record(record)
     vcf_writer.close()
     if(verbose):
@@ -277,8 +277,8 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
      mapq,
      mapqHotspot,
      caseAltFreq,
-    caseTotalCount,
-    controlAltFreq,
+     caseTotalCount,
+     controlAltFreq,
      peSupport,
      srSupport,
      peSupportHotspot,
@@ -319,10 +319,23 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     # Get if its a blacklist or not
     blacklistTag = cbl.CheckIfItIsBlacklisted(chrom1, start1, chrom2, start2, blacklist, 20)
     # Get the flag for pass and fail for tumor and normal
-    casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTotalCount)
-    controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, controlAltFreq)
+    casePassFlag = GetCaseFlag(
+        caseDR,
+        caseDV,
+        preciseFlag,
+        caseRR,
+        caseRV,
+        caseAltFreq,
+        caseTotalCount)
+    controlPassFlag = GetControlFlag(
+        controlDR,
+        controlDV,
+        preciseFlag,
+        controlRR,
+        controlRV,
+        controlAltFreq)
     filterFlag = False
-    #print "CaseControlPassFlag:", casePassFlag, " : ", controlPassFlag
+    # print "CaseControlPassFlag:", casePassFlag, " : ", controlPassFlag
     if(casePassFlag and controlPassFlag):
         if(hotspotTag):
             if(filter == "PASS" and controlFT == "LowQual"):
