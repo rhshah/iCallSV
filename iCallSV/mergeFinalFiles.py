@@ -230,12 +230,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          dgv_site2
          ) = (None for i in range(18))
 
-        #skip IGR records
-        if(annoDF[annoDF['site1'].str.contains("IGR", na=False)] and annoDF[annoDF['site2'].str.contains("IGR", na=False)]):
-            continue
-        #skip records from these gene
-        if(annoDF[annoDF['gene1'].str.contains("LINC00486",na=False)] or annoDF[annoDF['gene2'].str.contains("LINC00486",na=False)]):
-            continue
+        
         annoDF[['chr1', 'chr2']] = annoDF[['chr1', 'chr2']].astype(str)
         indexList = annoDF.loc[annoDF['chr1'].isin([chrom1]) &
                                annoDF['pos1'].isin([int(start1)]) &
@@ -265,6 +260,13 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         cc_t_p = annoDF.iloc[annoIndex]['CC_Translocation_Partner']
         dgv_site1 = annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site1']
         dgv_site2 = annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site2']
+
+        #skip IGR records
+        if("IGR" in site1 and "IGR" in site2):
+            continue
+        #skip records from these gene
+        if(gene1 == "LINC00486" or gene2 == "LINC00486"):
+            continue
 
         if(confDF is None):
             confidenceScore = None
