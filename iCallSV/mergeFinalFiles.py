@@ -231,10 +231,10 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          ) = (None for i in range(18))
 
         #skip IGR records
-        if(annDF[annDF['site1'].str.contains("IGR", na=False)] and annDF[annDF['site2'].str.contains("IGR", na=False)]):
+        if(annoDF[annoDF['site1'].str.contains("IGR", na=False)] and annoDF[annoDF['site2'].str.contains("IGR", na=False)]):
             continue
         #skip records from these gene
-        if(annDF[annDF['gene1'].str.contains("LINC00486",na=False)] or annDF[annDF['gene2'].str.contains("LINC00486",na=False)]):
+        if(annoDF[annoDF['gene1'].str.contains("LINC00486",na=False)] or annoDF[annoDF['gene2'].str.contains("LINC00486",na=False)]):
             continue
         annoDF[['chr1', 'chr2']] = annoDF[['chr1', 'chr2']].astype(str)
         indexList = annoDF.loc[annoDF['chr1'].isin([chrom1]) &
