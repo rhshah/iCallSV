@@ -335,9 +335,14 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
         casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreqHotspot, caseTotalCountHotspot)
         controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, controlAltFreqHotspot)
         if(filter == "PASS" and preciseFlag == "True" and controlPassFlag):
-            filterFlag = True
-            return(filterFlag)
-        else:
+            if(svlengthFromDelly != "None"):
+                if(int(svlengthFromDelly) >= int(svlength)):
+                    filterFlag = True
+                else:
+                    filterFlag = False
+            else:
+                filterFlag = True
+        if(not filterFlag):
             if(casePassFlag and controlPassFlag):
                 if(filter == "PASS" and controlFT == "LowQual"):
                     if(svlengthFromDelly != "None"):
@@ -372,13 +377,20 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                             filterFlag = False
             else:
                 filterFlag = False
+        else:
+                filterFlag = False
     else:
         casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTotalCount)
         controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, controlAltFreq)
         if(filter == "PASS" and preciseFlag == "True" and controlPassFlag):
-            filterFlag = True
-            return(filterFlag)
-        else:
+            if(svlengthFromDelly != "None"):
+                if(int(svlengthFromDelly) >= int(svlength)):
+                    filterFlag = True
+                else:
+                    filterFlag = False
+            else:
+                filterFlag = True
+        if( not filterFlag):
             if(casePassFlag and controlPassFlag):
                 if(svlengthFromDelly != "None"):
                     # print svlengthFromDelly, svlength, mapqFromDelly, mapq,
@@ -406,6 +418,8 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                     else:
                         filterFlag = False
             else:
+                filterFlag = False
+        else:
                 filterFlag = False
     
         if(blacklistTag):
