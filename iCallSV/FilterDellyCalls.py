@@ -190,7 +190,7 @@ def run(
         start1 = record.POS
         filter = record.FILTER
         if(len(filter) < 1):
-            filter = None
+            filter = "PASS"
         else:
             filter = filter[0]
         preciseFlag = record.is_sv_precise
