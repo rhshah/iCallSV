@@ -388,40 +388,38 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
             else:
                 filterFlag = True
         if( not filterFlag):
-                if(svlengthFromDelly != "None"):
-                    # print svlengthFromDelly, svlength, mapqFromDelly, mapq,
-                    # peSupportFromDelly, peSupport, caseDV, peSupportCase, controlDV,
-                    # peSupportControl
-                    if((int(svlengthFromDelly) >= int(svlength)) and (int(mapqFromDelly) >= int(mapq)) and (int(peSupportFromDelly) >= int(peSupport)) and (int(caseDV) >= int(peSupportCase)) and (int(controlDV) <= int(peSupportControl)) and (int(controlDV) < int(caseDV))):
-                        if(preciseFlag == "True"):
-                            if((int(srSupportFromDelly) >= int(srSupport)) and (int(caseRV) >= int(srSupportCase)) and (int(controlRV) <= int(srSupportControl)) and (int(controlRV) < int(caseRV))):
-                                filterFlag = True
-                                return(filterFlag)
-                            else:
-                                filterFlag = False
-                        else:
+            if(svlengthFromDelly != "None"):
+                # print svlengthFromDelly, svlength, mapqFromDelly, mapq,
+                # peSupportFromDelly, peSupport, caseDV, peSupportCase, controlDV,
+                # peSupportControl
+                if((int(svlengthFromDelly) >= int(svlength)) and (int(mapqFromDelly) >= int(mapq)) and (int(peSupportFromDelly) >= int(peSupport)) and (int(caseDV) >= int(peSupportCase)) and (int(controlDV) <= int(peSupportControl)) and (int(controlDV) < int(caseDV))):
+                    if(preciseFlag == "True"):
+                        if((int(srSupportFromDelly) >= int(srSupport)) and (int(caseRV) >= int(srSupportCase)) and (int(controlRV) <= int(srSupportControl)) and (int(controlRV) < int(caseRV))):
                             filterFlag = True
                             return(filterFlag)
+                        else:
+                            filterFlag = False
                     else:
-                        filterFlag = False
+                        filterFlag = True
+                        return(filterFlag)
                 else:
-                    if((int(mapqFromDelly) >= int(mapq)) and (int(peSupportFromDelly) >= int(peSupport)) and (int(caseDV) >= int(peSupportCase)) and (int(controlDV) <= int(peSupportControl)) and (int(controlDV) < int(caseDV))):
-                        if(preciseFlag == "True"):
-                            if((int(srSupportFromDelly) >= int(srSupport)) and (int(caseRV) >= int(srSupportCase)) and (int(controlRV) <= int(srSupportControl)) and (int(controlRV) < int(caseRV))):
-                                filterFlag = True
-                                return(filterFlag)
-                            else:
-                                filterFlag = False
-                        else:
+                    filterFlag = False
+            else:
+                if((int(mapqFromDelly) >= int(mapq)) and (int(peSupportFromDelly) >= int(peSupport)) and (int(caseDV) >= int(peSupportCase)) and (int(controlDV) <= int(peSupportControl)) and (int(controlDV) < int(caseDV))):
+                    if(preciseFlag == "True"):
+                        if((int(srSupportFromDelly) >= int(srSupport)) and (int(caseRV) >= int(srSupportCase)) and (int(controlRV) <= int(srSupportControl)) and (int(controlRV) < int(caseRV))):
                             filterFlag = True
                             return(filterFlag)
+                        else:
+                            filterFlag = False
                     else:
-                        filterFlag = False
-            else:
-                filterFlag = False
+                        filterFlag = True
+                        return(filterFlag)
+                else:
+                    filterFlag = False
         else:
-                filterFlag = False
-    
+            filterFlag = False
+       
         if(blacklistTag):
             filterFlag = True
             return(filterFlag)

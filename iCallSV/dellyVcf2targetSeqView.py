@@ -44,10 +44,14 @@ def Convert2targetSeqView(
         (chrom1,
          start1,
          start2,
+         ciEndNeg,
+         ciEndPos
+         ciPosNeg,
+         ciPosPos,
          chrom2,
          contype,
          str1,
-         str2) = (None for i in range(7))
+         str2) = (None for i in range(11))
         chrom1 = record.CHROM
         start1 = record.POS
         if("END" in record.INFO):
@@ -57,20 +61,32 @@ def Convert2targetSeqView(
         if("CT" in record.INFO):
             contype = record.INFO['CT']
         (startCT, endCT) = contype.split("to")
+        if("CIEND" in record.INFO):
+             ciEndNeg,ciEndPos = record.INFO['CIEND']
+        if(abs(ciEndNeg) < 50):
+            ciEndNeg = 50
+        if(abs(ciEndPos) < 50):
+            ciEndNeg = 50
+        if("CIPOS" in record.INFO):
+             ciPosNeg,ciPosPos = record.INFO['CIPOS']
+        if(abs(ciPosNeg) < 50):
+            ciPosNeg = 50
+        if(abs(ciPosPos) < 50):
+            ciPosNeg = 50
         outputHandle.write(
             sampleName +
             "\t" +
             str(chrom1) +
             "\t" +
-            str(int(start1)-50) +
+            str(int(start1)-abs(int(ciPosNeg))) +
             "\t" +
-            str(int(start1)+50) +
+            str(int(start1)+int(ciPosPos)) +
             "\tFALSE\t" +
             str(chrom2) +
             "\t" +
-            str(int(start2)-50) +
+            str(int(start2)-abs(int(ciEndNeg))) +
             "\t" +
-            str(int(start2)+50) +
+            str(int(start2)+int(ciEndPos)) +
             "\tFALSE\tFailed PCR\t" +
             str(sampleBamName) +
             "\t" +
