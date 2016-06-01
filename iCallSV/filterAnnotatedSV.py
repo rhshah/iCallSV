@@ -53,15 +53,17 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile, ver
         blacklistGenes = [line.strip() for line in open(blacklistGenesFile, 'r')]
         blacklistGeneFlag = checkBlackListGene(gene1, gene2, blacklistGenes)
         # skip record occurring within intron
-        if((gene1 == gene2) and ((not igrFlag) or (not blacklistGeneFlag)) and ("Intron" in site1 and "Intron" in site2)):
+        eventInIntronFlag = False
+        if((gene1 == gene2) and ((igrFlag is False) or (blacklistGeneFlag is False)) and ("Intron" in site1 and "Intron" in site2)):
             eventInIntronFlag = checkEventInIntronFlag(gene1, gene2, site1, site2)
         else:
             pass
 
-        if(not keepGeneFlag or igrFlag or blacklistGeneFlag or eventInIntronFlag):
+        if((keepGeneFlag is False) or (igrFlag) or (blacklistGeneFlag) or (eventInIntronFlag)):
             if(verbose):
                 logger.warn(
-                    "iCallSV::FilterFinalFile: Record will be Filtered as IGR:%s, blackListGene:%s, Intronic Event:%s",
+                    "iCallSV::FilterFinalFile: Record will be Filtered as keepGeneFlag:%s, IGR:%s, blackListGene:%s, Intronic Event:%s",
+                    keepGeneFlag,
                     igrFlag,
                     blacklistGeneFlag,
                     eventInIntronFlag)
@@ -79,6 +81,8 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile, ver
     return(outputFile)
 
 # Check if the gene is a blacklist gene
+
+
 def checkGeneListToKeep(gene1, gene2, keepGenes):
     if((gene1 in keepGenes) or (gene2 in keepGenes)):
         kgFlag = True
