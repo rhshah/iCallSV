@@ -45,7 +45,7 @@ def Convert2targetSeqView(
          start1,
          start2,
          ciEndNeg,
-         ciEndPos
+         ciEndPos,
          ciPosNeg,
          ciPosPos,
          chrom2,

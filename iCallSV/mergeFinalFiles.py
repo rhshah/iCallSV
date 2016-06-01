@@ -277,13 +277,6 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         dgv_site1 = annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site1']
         dgv_site2 = annoDF.iloc[annoIndex]['DGv_Name-DGv_VarType-site2']
 
-        #skip IGR records
-        if("IGR" in site1 and "IGR" in site2):
-            continue
-        #skip records from these gene
-        if(gene1 == "LINC00486" or gene2 == "LINC00486"):
-            continue
-
         if(confDF is None):
             confidenceScore = None
         else:
@@ -328,7 +321,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         count = count + 1
 
     # Write Output
-    outFile = outDir + "/" + outputPrefix + "_final.txt"
+    outFile = outDir + "/" + outputPrefix + "_merged.txt"
     outDF.to_csv(outFile, sep='\t', index=False)
     if(verbose):
         logger.info("iCallSV::MergeFinalFile: Finished merging, Final data written in %s", outFile)
