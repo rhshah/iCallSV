@@ -453,7 +453,7 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTo
 
     if(caseAltAf >= float(caseAltFreq) and caseCovg >= int(caseTotalCount)):
         caseFlag = True
-    elif((preciseFlag == "True") and (caseRV >= 5) and (caseCovg >= int(caseTotalCount)))
+    elif((preciseFlag == "True") and (caseRV >= 5) and (caseCovg >= int(caseTotalCount))):
         caseFlag = True
     else:
         caseFlag = False

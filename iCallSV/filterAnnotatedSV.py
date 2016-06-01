@@ -17,6 +17,7 @@ import os
 import pandas as pd
 import logging
 import checkparameters as cp
+import re
 
 #Initiate logger
 logger = logging.getLogger('iCallSV.FilterDellyCalls')
@@ -51,7 +52,7 @@ def run(inputTxt,outputDir,outPrefix,blacklistGenesFile,verbose):
         
         if(igrFlag or blacklistGeneFlag or eventInIntronFlag):
             if(verbose):
-                logger.warn("iCallSV::FilterFinalFile: Record will be Filtered as IGR:%s, blackListGene:%s, Intronic Event:%s", (igrFlag,blacklistGeneFlag,eventInIntronFlag))
+                logger.warn("iCallSV::FilterFinalFile: Record will be Filtered as IGR:%s, blackListGene:%s, Intronic Event:%s", igrFlag, blacklistGeneFlag, eventInIntronFlag)
             continue
         else:
             outputDF[count] = row
