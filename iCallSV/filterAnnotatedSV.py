@@ -46,7 +46,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose):
         blacklistGenes = [line.strip() for line in open(blacklistGenesFile, 'r')]
         blacklistGeneFlag = checkBlackListGene(gene1, gene2, blacklistGenes)
         # skip record occurring within intron
-        if((gene1 == gene2) and ((not igrFlag) or (not blacklistGeneFlag)) and ("Intron" in site1 or "Intron" in site2)):
+        if((gene1 == gene2) and ((not igrFlag) or (not blacklistGeneFlag)) and ("Intron" in site1 and "Intron" in site2)):
             eventInIntronFlag = checkEventInIntronFlag(gene1, gene2, site1, site2)
         else:
             continue
