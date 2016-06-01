@@ -36,7 +36,7 @@ import Run_iAnnotateSV as annSV
 import dellyVcf2targetSeqView as dvcf2tsv
 import Run_targetSeqView as rtsv
 import mergeFinalFiles as mff
-import filterAnnotateSV as fas
+import filterAnnotatedSV as fas
 
 __all__ = []
 __version__ = 0.1
