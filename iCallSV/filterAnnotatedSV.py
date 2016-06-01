@@ -8,6 +8,7 @@ inputTxt: Filter Text File
 outputDir: Output directory
 outPrefix: Prefix of the output file
 blacklistGenesFile: List of genes that should be eliminated
+genesToKeepFile: List of genes that should be kept
 verbose: Mode
 
 ::Output::
@@ -23,7 +24,7 @@ import re
 logger = logging.getLogger('iCallSV.FilterDellyCalls')
 
 
-def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose):
+def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile, verbose):
     cp.checkFile(inputTxt)
     cp.checkDir(outputDir)
     cp.checkEmpty(outPrefix, "Prefix for the output file")
@@ -42,6 +43,12 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose):
         # skip IGR records
         if("IGR" in site1 and "IGR" in site2):
             igrFlag = True
+        else:
+            igrFlag = False
+            
+        # check records from these gene
+        keepGenes = [line.strip() for line in open(genesToKeepFile, 'r')]
+        keepGeneFlag = checkBlackListGene(gene1, gene2, keepGenes)
         # check records from these gene
         blacklistGenes = [line.strip() for line in open(blacklistGenesFile, 'r')]
         blacklistGeneFlag = checkBlackListGene(gene1, gene2, blacklistGenes)
@@ -49,9 +56,9 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose):
         if((gene1 == gene2) and ((not igrFlag) or (not blacklistGeneFlag)) and ("Intron" in site1 and "Intron" in site2)):
             eventInIntronFlag = checkEventInIntronFlag(gene1, gene2, site1, site2)
         else:
-            continue
+            pass
 
-        if(igrFlag or blacklistGeneFlag or eventInIntronFlag):
+        if(not keepGeneFlag or igrFlag or blacklistGeneFlag or eventInIntronFlag):
             if(verbose):
                 logger.warn(
                     "iCallSV::FilterFinalFile: Record will be Filtered as IGR:%s, blackListGene:%s, Intronic Event:%s",
@@ -60,7 +67,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose):
                     eventInIntronFlag)
             continue
         else:
-            outputDF[count] = row
+            outputDF.loc[count] = row
             count = count + 1
 
     outputDF.to_csv(outputFile, sep='\t', index=False)
@@ -68,18 +75,26 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose):
         logger.info(
             "iCallSV::FilterFinalFile: Finished Filtering, Final data written in %s",
             outputFile)
+
+
 # Check if the gene is a blacklist gene
+def checkGeneListToKeep(gene1, gene2, keepGenes):
+    if((gene1 in keepGenes) or (gene2 in keepGenes)):
+        kgFlag = True
+    else:
+        kgFlag = False
+    return(kgFlag)
 
-
+# Check if the gene is a blacklist gene
 def checkBlackListGene(gene1, gene2, blacklistGenes):
     if((gene1 in blacklistGenes) or (gene2 in blacklistGenes)):
         bgFlag = True
     else:
         bgFlag = False
     return(bgFlag)
+
+
 # Check if the event is in the intron only and not affecting slicing
-
-
 def checkEventInIntronFlag(gene1, gene2, site1, site2):
     if(gene1 == gene2):
         (s1A, s1B) = site1.split(":")

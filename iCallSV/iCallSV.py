@@ -280,7 +280,7 @@ USAGE
                 args.outprefix,
                 args.verbose)
             #Filter Final Results
-            finalFilterResults = fas.run(finalFile,sampleOutdirForDelly,args.outprefix,config.get("BlackListRegions", "BlackListGenes"),args.verbose)
+            finalFilterResults = fas.run(finalFile,sampleOutdirForDelly,args.outprefix,config.get("BlackListRegions", "BlackListGenes"),config.get("HotSpotRegions", "GenesToKeep"),args.verbose)
 
         else:
             if(verbose):
