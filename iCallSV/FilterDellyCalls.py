@@ -330,10 +330,23 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     # Get the flag for pass and fail for tumor and normal
     filterFlag = False
     # print "CaseControlPassFlag:", casePassFlag, " : ", controlPassFlag
-    
+
     if(hotspotTag):
-        casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreqHotspot, caseTotalCountHotspot)
-        controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, controlAltFreqHotspot)
+        casePassFlag = GetCaseFlag(
+            caseDR,
+            caseDV,
+            preciseFlag,
+            caseRR,
+            caseRV,
+            caseAltFreqHotspot,
+            caseTotalCountHotspot)
+        controlPassFlag = GetControlFlag(
+            controlDR,
+            controlDV,
+            preciseFlag,
+            controlRR,
+            controlRV,
+            controlAltFreqHotspot)
         if(filter == "PASS" and preciseFlag == "True" and controlPassFlag and casePassFlag):
             if(svlengthFromDelly != "None"):
                 if(int(svlengthFromDelly) >= int(svlength)):
@@ -343,7 +356,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                     filterFlag = False
             else:
                 filterFlag = True
-        
+
             if(not filterFlag):
                 if(svlengthFromDelly != "None"):
                     if((int(svlengthFromDelly) >= int(svlength)) and (int(mapqFromDelly) >= int(mapqHotspot)) and (int(peSupportFromDelly) >= int(peSupportHotspot)) and (int(caseDV) > int(peSupportHotspotCase)) and (int(controlDV) <= int(peSupportHotspotControl)) and (int(controlDV) < int(caseDV))):
@@ -374,10 +387,17 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
             else:
                 filterFlag = False
         else:
-                filterFlag = False
+            filterFlag = False
     else:
-        casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTotalCount)
-        controlPassFlag = GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, controlAltFreq)
+        casePassFlag = GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR,
+                                   caseRV, caseAltFreq, caseTotalCount)
+        controlPassFlag = GetControlFlag(
+            controlDR,
+            controlDV,
+            preciseFlag,
+            controlRR,
+            controlRV,
+            controlAltFreq)
         if(filter == "PASS" and preciseFlag == "True" and controlPassFlag and casePassFlag):
             if(svlengthFromDelly != "None"):
                 if(int(svlengthFromDelly) >= int(svlength)):
@@ -387,7 +407,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                     filterFlag = False
             else:
                 filterFlag = True
-        if( not filterFlag):
+        if(not filterFlag):
             if(svlengthFromDelly != "None"):
                 # print svlengthFromDelly, svlength, mapqFromDelly, mapq,
                 # peSupportFromDelly, peSupport, caseDV, peSupportCase, controlDV,
@@ -419,14 +439,14 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                     filterFlag = False
         else:
             filterFlag = False
-       
+
         if(blacklistTag):
             filterFlag = True
             return(filterFlag)
         else:
             filterFlag = filterFlag
 
-    #return(filterFlag)
+    # return(filterFlag)
 
 
 def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTotalCount):

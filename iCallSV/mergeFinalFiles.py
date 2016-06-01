@@ -184,13 +184,13 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         else:
             brktype = "IMPPRECISE"
         if("CIEND" in record.INFO):
-             ciEndNeg,ciEndPos = record.INFO['CIEND']
+            ciEndNeg, ciEndPos = record.INFO['CIEND']
         if(abs(ciEndNeg) < 50):
             ciEndNeg = 50
         if(abs(ciEndPos) < 50):
             ciEndNeg = 50
         if("CIPOS" in record.INFO):
-             ciPosNeg,ciPosPos = record.INFO['CIPOS']
+            ciPosNeg, ciPosPos = record.INFO['CIPOS']
         if(abs(ciPosNeg) < 50):
             ciPosNeg = 50
         if(abs(ciPosPos) < 50):
@@ -211,7 +211,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             caseRR = caseCalls.data.RR
         if(hasattr(caseCalls.data, "RV")):
             caseRV = caseCalls.data.RV
-        
+
         if(hasattr(controlCalls.data, "GQ")):
             controlGQ = controlCalls.data.GQ
         if(hasattr(controlCalls.data, "RC")):
@@ -246,7 +246,6 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          dgv_site2
          ) = (None for i in range(18))
 
-        
         annoDF[['chr1', 'chr2']] = annoDF[['chr1', 'chr2']].astype(str)
         indexList = annoDF.loc[annoDF['chr1'].isin([chrom1]) &
                                annoDF['pos1'].isin([int(start1)]) &
@@ -284,10 +283,10 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             confIndex = None
             confidenceScore = None
             confDF[['Chr1', 'Chr2']] = confDF[['Chr1', 'Chr2']].astype(str)
-            indexList = confDF.loc[confDF['Chr1'].isin([chrom1]) &
-                                   confDF['Start1'].isin([int(start1 - abs(ciPosNeg))]) &
-                                   confDF['Chr2'].isin([chrom2]) &
-                                   confDF['Start2'].isin([int(start2 - abs(ciEndNeg))])].index.tolist()
+            indexList = confDF.loc[
+                confDF['Chr1'].isin([chrom1]) & confDF['Start1'].isin(
+                    [int(start1 - abs(ciPosNeg))]) & confDF['Chr2'].isin([chrom2]) &
+                confDF['Start2'].isin([int(start2 - abs(ciEndNeg))])].index.tolist()
 
             if(len(indexList) > 1):
                 if(verbose):

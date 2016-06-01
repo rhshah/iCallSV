@@ -22,6 +22,7 @@ import logging
 
 logger = logging.getLogger('iCallSV.dellyVcf2targetSeqView')
 
+
 def Convert2targetSeqView(
         sampleName,
         sampleBamName,
@@ -29,7 +30,7 @@ def Convert2targetSeqView(
         vcfFile,
         outputDir,
         outputFileName):
-    
+
     logger.info("Convert2targetSeqView: Will convert vcf to targetSeqVie format")
     cp.checkFile(vcfFile)
     cp.checkDir(outputDir)
@@ -62,13 +63,13 @@ def Convert2targetSeqView(
             contype = record.INFO['CT']
         (startCT, endCT) = contype.split("to")
         if("CIEND" in record.INFO):
-             ciEndNeg,ciEndPos = record.INFO['CIEND']
+            ciEndNeg, ciEndPos = record.INFO['CIEND']
         if(abs(ciEndNeg) < 50):
             ciEndNeg = 50
         if(abs(ciEndPos) < 50):
             ciEndNeg = 50
         if("CIPOS" in record.INFO):
-             ciPosNeg,ciPosPos = record.INFO['CIPOS']
+            ciPosNeg, ciPosPos = record.INFO['CIPOS']
         if(abs(ciPosNeg) < 50):
             ciPosNeg = 50
         if(abs(ciPosPos) < 50):
@@ -78,15 +79,15 @@ def Convert2targetSeqView(
             "\t" +
             str(chrom1) +
             "\t" +
-            str(int(start1)-abs(int(ciPosNeg))) +
+            str(int(start1) - abs(int(ciPosNeg))) +
             "\t" +
-            str(int(start1)+int(ciPosPos)) +
+            str(int(start1) + int(ciPosPos)) +
             "\tFALSE\t" +
             str(chrom2) +
             "\t" +
-            str(int(start2)-abs(int(ciEndNeg))) +
+            str(int(start2) - abs(int(ciEndNeg))) +
             "\t" +
-            str(int(start2)+int(ciEndPos)) +
+            str(int(start2) + int(ciEndPos)) +
             "\tFALSE\tFailed PCR\t" +
             str(sampleBamName) +
             "\t" +

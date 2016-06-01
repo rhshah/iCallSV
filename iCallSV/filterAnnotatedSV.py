@@ -45,7 +45,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile, ver
             igrFlag = True
         else:
             igrFlag = False
-            
+
         # check records from these gene
         keepGenes = [line.strip() for line in open(genesToKeepFile, 'r')]
         keepGeneFlag = checkBlackListGene(gene1, gene2, keepGenes)
@@ -76,6 +76,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile, ver
             "iCallSV::FilterFinalFile: Finished Filtering, Final data written in %s",
             outputFile)
 
+    return(outputFile)
 
 # Check if the gene is a blacklist gene
 def checkGeneListToKeep(gene1, gene2, keepGenes):
@@ -86,6 +87,8 @@ def checkGeneListToKeep(gene1, gene2, keepGenes):
     return(kgFlag)
 
 # Check if the gene is a blacklist gene
+
+
 def checkBlackListGene(gene1, gene2, blacklistGenes):
     if((gene1 in blacklistGenes) or (gene2 in blacklistGenes)):
         bgFlag = True
