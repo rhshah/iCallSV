@@ -356,8 +356,9 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                     filterFlag = False
             else:
                 filterFlag = True
+                return(filterFlag)
 
-            if(not filterFlag):
+            if(filterFlag is False):
                 if(svlengthFromDelly != "None"):
                     if((int(svlengthFromDelly) >= int(svlength)) and (int(mapqFromDelly) >= int(mapqHotspot)) and (int(peSupportFromDelly) >= int(peSupportHotspot)) and (int(caseDV) > int(peSupportHotspotCase)) and (int(controlDV) <= int(peSupportHotspotControl)) and (int(controlDV) < int(caseDV))):
                         if(preciseFlag == "True"):
@@ -407,7 +408,8 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
                     filterFlag = False
             else:
                 filterFlag = True
-        if(not filterFlag):
+                return(filterFlag)
+        if(filterFlag is False):
             if(svlengthFromDelly != "None"):
                 # print svlengthFromDelly, svlength, mapqFromDelly, mapq,
                 # peSupportFromDelly, peSupport, caseDV, peSupportCase, controlDV,
