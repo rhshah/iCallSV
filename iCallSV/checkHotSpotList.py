@@ -32,7 +32,7 @@ def ReadHotSpotFile(HotSpotFile):
 
 # Read the hotspot dictionary and tell if the event occurs in hotspot or not
 def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
-    hotspotTag = None
+    hotspotTag = False
     chr1 = str(chr1)
     chr2 = str(chr2)
     start1 = int(start1)
@@ -109,6 +109,7 @@ def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
                     return(hotspotTag)
                 else:
                     hotspotTag = False
+    return(hotspotTag)
     
 # # Test module
 # hotspotDict = ReadHotSpotFile(
