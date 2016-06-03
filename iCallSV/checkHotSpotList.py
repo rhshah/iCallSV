@@ -17,6 +17,16 @@ import re
 
 # Read the hotspot file and make a dictionary of it
 def ReadHotSpotFile(HotSpotFile):
+    """
+    Read the ``HotSpot region file``
+
+    :class:`str`.
+
+    :param str HotSpotFile: str of file to be read.
+    :return: A dict containing hotspot regions
+    :rtype: dict
+
+    """
     hotspotDict = {}
     if os.path.isfile(HotSpotFile):
         with open(HotSpotFile, 'r') as filecontent:
@@ -32,6 +42,20 @@ def ReadHotSpotFile(HotSpotFile):
 
 # Read the hotspot dictionary and tell if the event occurs in hotspot or not
 def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
+    """
+    Check if coordinate are present in the ``hotspot region file``
+
+    :class:`str`.
+
+    :param str chr1: str of the breakpoint in first chromosome
+    :param int start1: int of the start location of the breakpoint in first chromosome
+    :param str chr2: str of the breakpoint in second chromosome
+    :param int start2: int of the start location of the breakpoint in second chromosome
+    :param dict hotspotDict: A dict containing hotspot regions
+    :return: A boolean tag indicating True or False
+    :rtype: bool
+
+    """
     hotspotTag = False
     chr1 = str(chr1)
     chr2 = str(chr2)
@@ -110,7 +134,7 @@ def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
                 else:
                     hotspotTag = False
     return(hotspotTag)
-    
+
 # # Test module
 # hotspotDict = ReadHotSpotFile(
 #     "/home/shahr2/workspace/dmp-data/mskdata/interval-lists/structuralvariants_geneInterval.txt")

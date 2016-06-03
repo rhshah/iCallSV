@@ -17,6 +17,16 @@ import os
 
 # Read the hotspot file and make a dictionary of it
 def ReadBlackListFile(BlackListFile):
+    """
+    Read the ``blacklist region file``
+
+    :class:`str`.
+
+    :param str BlackListFile: str of file to be read.
+    :return: A list containing black listed regions
+    :rtype: list
+
+    """
     blacklist = []
     if os.path.isfile(BlackListFile):
         with open(BlackListFile, 'r') as filecontent:
@@ -28,6 +38,21 @@ def ReadBlackListFile(BlackListFile):
 
 # Read the hotspot dictionary and tell if the event occurs in blacklist or not
 def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, extention):
+    """
+    Check if coordinate are present in the ``blacklist region file``
+
+    :class:`str`.
+
+    :param str chr1: str of the breakpoint in first chromosome
+    :param int start1: int of the start location of the breakpoint in first chromosome
+    :param str chr2: str of the breakpoint in second chromosome
+    :param int start2: int of the start location of the breakpoint in second chromosome
+    :param list blacklist: A list containing black listed regions
+    :param int extension: an value for search in positive and negative direction of the start1 and start2 location
+    :return: A boolean tag indicating True or False
+    :rtype: bool
+
+    """
     blacklistTag = None
     chr1 = str(chr1)
     chr2 = str(chr2)
@@ -42,16 +67,16 @@ def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, extention):
             bstart2 = int(bstart2)
             if(bchr1 == bchr2):
                 if(chr1 == bchr1):
-                    if(((start <= int(bstart1 - extention)) and (start >= int(bstart1 + extention))) 
+                    if(((start <= int(bstart1 - extention)) and (start >= int(bstart1 + extention)))
                        and ((end <= int(bstart2 - extention)) and (end <= int(bstart2 + extention)))):
-                        blacklistTag=True
+                        blacklistTag = True
                     else:
-                        blacklistTag=False
-                    if(((end <= int(bstart1 - extention)) and (end >= int(bstart1 + extention))) 
-                        and ((start <= int(bstart2 - extention)) and (start <= int(bstart2 + extention)))):
-                        blacklistTag=True
+                        blacklistTag = False
+                    if(((end <= int(bstart1 - extention)) and (end >= int(bstart1 + extention)))
+                            and ((start <= int(bstart2 - extention)) and (start <= int(bstart2 + extention)))):
+                        blacklistTag = True
                     else:
-                        blacklistTag=False
+                        blacklistTag = False
                 else:
                     continue
             else:
@@ -63,16 +88,16 @@ def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, extention):
             bstart1 = int(bstart1)
             bstart2 = int(bstart2)
             if(((chr1 == bchr1) and (chr2 == bchr2)) or ((chr1 == bchr2) and (chr2 == bchr1))):
-                if(((start1 <= int(bstart1 - extention)) and (start1 >= int(bstart1 + extention))) 
+                if(((start1 <= int(bstart1 - extention)) and (start1 >= int(bstart1 + extention)))
                    and ((start2 <= int(bstart2 - extention)) and (start2 <= int(bstart2 + extention)))):
-                    blacklistTag=True
+                    blacklistTag = True
                 else:
-                    blacklistTag=False
-                if(((start2 <= int(bstart1 - extention)) and (start2 >= int(bstart1 + extention))) 
+                    blacklistTag = False
+                if(((start2 <= int(bstart1 - extention)) and (start2 >= int(bstart1 + extention)))
                    and ((start1 <= int(bstart2 - extention)) and (start1 <= int(bstart2 + extention)))):
-                    blacklistTag=True
+                    blacklistTag = True
                 else:
-                    blacklistTag=False
+                    blacklistTag = False
             else:
                 continue
 

@@ -73,6 +73,38 @@ def run(
         peSupportHotspotControl,
         srSupportHotspotControl,
         verbose):
+    """
+    ``main:``Filter calls made by Delly which are in a VCF format
+
+    :class:`str`.
+
+    :param str inputVcf: Input VCF file name with path
+    :param str outputDir: Output directory
+    :param str controlId: Control Sample ID (Should be part of Sample Name in VCF)
+    :param str caseID: Case Sample ID (Should be part of Sample Name in VCF)
+    :param str hospotFile: List of Genes that have Hotspot Structural Variants (Tab-delimited Format without header:chr    start    end    geneName).
+    :param str blacklistFile: List of Genes that have blacklist of Structural Variants (Tab-delimited Format without header:chr    start1    chr2     start2; where chr1==chr2, end==start2).
+    :param float caseAltFreq: Alternate Allele Frequency threshold for case
+    :param int caseTotalCount: Total ReadCount threshold for case
+    :param flaot ccontrolAltFreq: Alternate Allele Frequency threshold for control
+    :param int peSupport: overall pair-end read support threshold for the event
+    :param int srSupport: overall split-reads support threshold for the event
+    :param int peSupportHotspot: overall pair-end read support threshold for the event in hot-spot region
+    :param int srSupportHotspot: overall split-reads support threshold for the event in hot-spot region
+    :param int peSupportCase: pair-end read support threshold for the event in the Case sample
+    :param int srSupportCase: split-reads support threshold for the event in the Case sample
+    :param int peSupportHotspotCase: pair-end read support threshold for the event in hot-spot region for the Case sample
+    :param int srSupportHotspotCase: split-reads support threshold for the event in hot-spot region for the Case sample
+    :param int peSupportControl: pair-end read support threshold for the event in the Control sample
+    :param int srSupportControl: split-reads support threshold for the event in the Control sample
+    :param int peSupportHotspotControl: pair-end read support threshold for the event in hot-spot region for the Control sample
+    :param int srSupportHotspotControl: split-reads support threshold for the event in hot-spot region for the Control sample
+    :param int svlength: length of the structural variants
+    :param int mapq: overall mapping quality
+    :param int mapqHotspot: mapping quality for hot-spots
+    :return: A str name of filtered vcf file
+    :rtype: str
+    """
     if(verbose):
         logger.info("FilterDellyCalls: We will now check all the input parameters")
     # Check input parameters
@@ -279,6 +311,18 @@ def run(
 
 
 def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blacklist):
+    """
+    This will ``Filter one record at a time``
+
+    :class:`str`.
+
+    :param str dellyVariables: str having all delly variables separated by ","
+    :param str thresholdVariables: str having all delly threshold variables separated by ","
+    :param dict hotspotDict: A dict containing hotspot regions
+    :param list blacklist: A list containing blacklist regions
+    :return: A boolean tag indicating True or False
+    :rtype: bool
+    """
     (svlength,
      mapq,
      mapqHotspot,
@@ -452,6 +496,21 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
 
 
 def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTotalCount):
+    """
+    This will ``check if the case sample passes or not``
+
+    :class:`str`.
+
+    :param int caseDR: int representing number of reference reads for case reported by delly
+    :param int caseDV: int representing number of variant reads for case reported by delly
+    :param str preciseFlag: str representing if an event is precise or imprecise
+    :param int caseRR: int representing number of split reference reads for case reported by delly
+    :param int caseRV: int representing number of split variant reads for case reported by delly
+    :param float caseAltFreq: float representing altratio threshold for case
+    :param int caseTotalCount: int repeseting readcount threshold for case
+    :return: A boolean tag indicating True or False
+    :rtype: bool
+    """
     caseAltAf = 0.0
     caseCovg = 0
     caseFlag = False
@@ -483,6 +542,20 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTo
 
 
 def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, controlAltFreq):
+    """
+    This will ``check if the control sample passes or not``
+
+    :class:`str`.
+
+    :param int controlDR: int representing number of reference reads for control reported by delly
+    :param int controlDV: int representing number of variant reads for control reported by delly
+    :param str preciseFlag: str representing if an event is precise or imprecise
+    :param int controlRR: int representing number of split reference reads for control reported by delly
+    :param int controlRV: int representing number of split variant reads for control reported by delly
+    :param float controlAltFreq: float representing altratio threshold for control
+    :return: A boolean tag indicating True or False
+    :rtype: bool
+    """
     controlAltAf = 0.0
     controlCovg = 0
     controlFlag = False

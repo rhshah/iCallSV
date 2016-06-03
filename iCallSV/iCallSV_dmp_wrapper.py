@@ -155,7 +155,17 @@ def main():
 
 
 def SetupRun(poolName, args):
+    """
+    This will setup the run to be analyzed.
 
+    :class:`str`.
+
+    :param str poolName: str of pool to be analyzed
+    :param Namespace args: Namespace of args to get other variables
+    :return: Multiple objects
+    :rtype: list
+
+    """
     bamlocation = args.bamLocation + "/" + poolName
     # Get the qc data location
     baseqclocation = args.qcLocation + "/" + poolName + "/*"
@@ -214,6 +224,20 @@ def SetupRun(poolName, args):
 
 
 def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
+    """
+    This will run the pool to be analyzed.
+
+    :class:`str`.
+
+    :param str titleFile: str of meta information file
+    :param str outdir: str of output directory
+    :param list HSmetricsFileList: list of picard hsmetrics files
+    :param list bamFileList: list of bam files
+    :param Namespace args: Namespace of args to get other variables
+    :return: None
+    :rtype: None
+
+    """
     # Run Preprocess
     titleFileDF = pd.read_csv(titleFile, sep='\t', header=0, keep_default_na='True')
     groupByPatientId = titleFileDF.groupby('Patient_ID')
@@ -299,6 +323,16 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
 
 
 def RunJob(cmd):
+    """
+    Given a command run the job.
+
+    :class:`str`.
+
+    :param str cmd: str of command to be run on the local machine
+    :return: None
+    :rtype: None
+
+    """
     args = shlex.split(cmd)
     proc = Popen(args)
     proc.wait()
@@ -324,6 +358,17 @@ def RunJob(cmd):
 
 
 def SelectNormal(normal, poolnormal):
+    """
+    Select the best possible normal.
+
+    :class:`str`.
+
+    :param str normal: str of match normal
+    :param str poolnormal: str of pool normal
+    :return: str with decision whether to run matched or unmatched
+    :rtype: str
+
+    """
     filesToProcess = [normal, poolnormal]
     fcount = 0
     coveragePerFile = []
@@ -373,6 +418,16 @@ def SelectNormal(normal, poolnormal):
 
 
 def getSubDirs(dirLocation):
+    """
+    Get all sub directories.
+
+    :class:`str`.
+
+    :param str dirLocation: str of directory location
+    :return: list of all sub directories
+    :rtype: list
+
+    """
     dirs = []
     for d in glob.glob(dirLocation):
         if os.path.isdir(d):
@@ -381,6 +436,17 @@ def getSubDirs(dirLocation):
 
 
 def processor(i, jobqueue):
+    """
+    Operate on a jobqueue.
+
+    :class:`str`.
+
+    :param int i: count of the job
+    :param Namespace jobqueue: Namespace for jobqueue
+    :return: None
+    :rtype: None
+
+    """
     devnull = open('/dev/null', 'w')
     if jobqueue.empty():
         print "the Queue is empty!"

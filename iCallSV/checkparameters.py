@@ -14,6 +14,16 @@ logger = logging.getLogger('iCallSV.checkparameters')
 # Check if the file exist
 
 def checkFile(fileToCheck):
+    """
+    Check `if the file exists or not``
+
+    :class:`str`.
+
+    :param str fileToCheck: Name of the file to be checked.
+    :return: None
+    :rtype: None
+
+    """
     if(os.path.isfile(fileToCheck)):
         logger.info("checkparameters:Given File: %s exists.", fileToCheck)
     else:
@@ -26,6 +36,16 @@ def checkFile(fileToCheck):
 # Check if the Directory exists
 
 def checkDir(folderToCheck):
+    """
+    Check `if the folder exists or not``
+
+    :class:`str`.
+
+    :param str folderToCheck: Name of the folder to be checked.
+    :return: None
+    :rtype: None
+
+    """
     if(os.path.isdir(folderToCheck)):
         logger.info("checkparameters:Given Directory: %s exists.", folderToCheck)
     else:
@@ -38,6 +58,17 @@ def checkDir(folderToCheck):
 # Check if the variable is and Integer
 
 def checkInt(variableToCheck, variableName):
+    """
+    Check `if the variable is int or not``
+
+    :class:`str`.
+
+    :param int variableToCheck: Check if it is int or not 
+    :param str variableName: Name of the int object to be verified
+    :return: None
+    :rtype: None
+
+    """
     if(isinstance(variableToCheck, int)):
         logger.info(
             "checkparameters: %s Variable: %d is an Integer.",
@@ -54,6 +85,17 @@ def checkInt(variableToCheck, variableName):
 # Check if the given variable is not Empty
 
 def checkEmpty(variableToCheck, variableName):
+    """
+    Check `if the variable is None or not``
+
+    :class:`str`.
+
+    :param str variableToCheck: check if str is None or not 
+    :param str variableName: Name of the None object to be verified
+    :return: None
+    :rtype: None
+
+    """
     if(variableToCheck):
         logger.info("checkparameters: %s Variable:%s is not empty.", variableName, variableToCheck)
     else:
@@ -67,6 +109,16 @@ def checkEmpty(variableToCheck, variableName):
 # Check the Delly Analysis Type is Valid or Not
 
 def checkDellyAnalysisType(varaibleToCheck):
+    """
+    Check `if the variable for Delly analysis exists or not``
+
+    :class:`str`.
+
+    :param str variableToCheck: check if str is DEL|DUP|INV|TRA 
+    :return: None
+    :rtype: None
+
+    """
     if(varaibleToCheck == "DEL" or varaibleToCheck == "DUP" or varaibleToCheck == "INV" or varaibleToCheck == "TRA"):
         logger.info("checkparameters:Given Delly Analysis Type:%s is valid.", varaibleToCheck)
     else:

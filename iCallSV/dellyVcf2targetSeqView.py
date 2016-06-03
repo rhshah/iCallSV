@@ -30,6 +30,21 @@ def Convert2targetSeqView(
         vcfFile,
         outputDir,
         outputFileName):
+    """
+    This ``converts`` the Delly Vcf file having tumor normal, to tab-delimited format for input to targetSeqView
+
+    :class:`str`.
+    
+    :param str sampleName: str for the name of the sample being analyzed
+    :param str sampleBamName: str for the pair-end reads bam file
+    :param str sampleSplitBamName: str for the split reads bam file
+    :param str vcfFile: str of vcf file to be converted
+    :param str outputDir: str for the output directory
+    :param str outputFileName: str for the output File
+    :return: A str name of tab-delimited file
+    :rtype: str
+
+    """
 
     logger.info("Convert2targetSeqView: Will convert vcf to targetSeqVie format")
     cp.checkFile(vcfFile)

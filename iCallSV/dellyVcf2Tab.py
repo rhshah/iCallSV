@@ -25,7 +25,20 @@ import logging
 
 logger = logging.getLogger('iCallSV.dellyVcf2Tab')
 
+
 def vcf2tab(vcfFile, outputDir, verbose):
+    """
+    This ``converts`` the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV
+
+    :class:`str`.
+
+    :param str vcfFile: str of vcf file to be converted
+    :param str outputDir: str for the output directory
+    :param bool verbose: a boolean
+    :return: A str name of tab-delimited file
+    :rtype: str
+
+    """
     cp.checkFile(vcfFile)
     cp.checkDir(outputDir)
     if(verbose):

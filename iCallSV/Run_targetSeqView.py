@@ -38,6 +38,24 @@ def run(
         readLength,
         outputDir,
         outsvFileName):
+    """
+    This module will run targetSeqView
+
+    :class:`str`.
+
+    :param str RLocation : Location of the R executable (>3.1.2).
+    :param str targetSeqView: Location of R script that will run tragetSeqView
+    :param int nodes : Number of parallel nodes for running targetSeqView
+    :param str bamFile : Location of the bamFile which has the  structural variant events.
+    :param str svFile : targetSeqView compatible input structural variant file.
+    :param str build : Which human reference file to be used, hg18,hg19 or hg38
+    :param int readLength : Sequencing Read Length (101)
+    :param str outputDir : Directory for output files
+    :param str outsvFile : Name of the output structural variant file that has added confidence score to it.
+    :return: str of the output file
+    :rtype: str
+
+    """
     start_time = time.time()
     logger.info(
         "We will now be running targetSeqView. Hope fully the R package targetSeqView is installed.")

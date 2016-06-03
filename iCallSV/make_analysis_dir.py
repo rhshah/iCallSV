@@ -14,6 +14,16 @@ import logging
 
 
 def makeOutputDir(args, tool):
+    """
+    This will make the output directory tree
+
+    :class:`str`.
+
+    :param Namespace args: Namespace of args to get other variables
+    :return: Multiple objects
+    :rtype: list
+
+    """
     #Get logging settings
     SampleDirName = args.caseId
     static_SV_Dir = "StructuralVariantAnalysis"

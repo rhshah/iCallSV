@@ -25,6 +25,22 @@ logger = logging.getLogger('iCallSV.launch_FilterDellyCalls')
 
 def launch_filterdellycalls_for_different_analysis_type(
         args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):
+    """
+    This will launch the filtering of delly calls in parallel.
+
+    :class:`str`.
+
+    :param Namespace args: Namespace of args to get other variables
+    :param Namespace config: configuration file passed to iCallSV
+    :param str sampleOutdirForDelly: Output directory for delly vcf files.
+    :param str del_vcf: Path to deletion based vcf file
+    :param str dup_vcf: Path to duplication based vcf file
+    :param str inv_vcf: Path to inversion based vcf file
+    :param str tra_vcf: Path to translocation based vcf file
+    :return: Multiple objects
+    :rtype: list
+
+    """
     verbose = args.verbose
     fileType = [del_vcf, dup_vcf, inv_vcf, tra_vcf]
     pool = mp.Pool(processes=4)

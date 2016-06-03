@@ -16,7 +16,20 @@ import logging
 
 logger = logging.getLogger('iCallSV.combineVCF')
 
+
 def run(vcfFiles, combinedVCF, verbose):
+    """
+    This will ``combine multiple vcf file with same headers``
+
+    :class:`str`.
+
+    :param list vcfFiles: a list of .vcf files to be combined
+    :param str combinedVCF: str for the output of combined vcf files
+    :param bool verbose: a boolean
+    :return: A str name of combined vcf file
+    :rtype: str
+
+    """
     vcf_header = vcf.Reader(filename=vcfFiles[1])
     vcf_output = vcf.Writer(open(combinedVCF, 'w'), vcf_header)
     for vcffile in vcfFiles:

@@ -1,6 +1,6 @@
 """
 Created on May 17, 2015
-Description: Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file also filters events that are only occurring in IGR regions
+Description: Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file
 @author: Ronak H Shah
 ::Input::
 aId: Sample ID for case that has the structural abberations
@@ -27,20 +27,19 @@ logger = logging.getLogger('iCallSV.mergeFinalFiles')
 
 def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     """
-    Created on May 17, 2015
-    Description: Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file
-    @author: Ronak H Shah
-    ::Input::
-    aId: Sample ID for case that has the structural abberations
-    bId: Sample ID for control
-    vcfFile: Delly filtered and merged VCF file
-    annoTab: iAnnotateSV tab-delimited file with annotations
-    confTab: targetSeqView tab-delimited file with probability score
-    outputDir: Directory to write the output file
-    outputPrefix: Output File Prefix
-    ::Output::
-    outputFile: File with following header
-    "TumorId\tNormalId\tChr1\tPos1\tChr2\tPos2\tSV_Type\tGene1\tGene2\tTranscript1\tTranscript2\tSite1Description\tSite2Description\tFusion\tProbabilityScore\tConfidence\tComments\tConnection_Type\tSV_LENGTH\tMAPQ\tPairEndReadSupport\tSplitReadSupport\tBrkptType\tConsensusSequence\tTumorReferenceCount\tTumorSplitReferenceCount\tTumorVariantCount\tTumorSplitVariantCount\tTumorReadCount\tTumorGenotypeQScore\tNormalReferenceCount\tNormalSplitReferenceCount\tNormalVariantCount\tNormalSplitVariantCount\tNormalReadCount\tNormalGenotypeQScorerepName-repClass-repFamily:-site1\trepName-repClass-repFamily:-site2\tCC_Chr_Band\tCC_Tumour_Types(Somatic)\tCC_Cancer_Syndrome\tCC_Mutation_Type\tCC_Translocation_Partner\tDGv_Name-DGv_VarType-site1\tDGv_Name-DGv_VarType-site2\n";
+    This will Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file
+
+    :class:`str`.
+
+    :param str aId: Sample ID for case that has the structural abberations
+    :param str bId: Sample ID for control
+    :param str vcfFile: Delly filtered and merged VCF file
+    :param str annoTab: iAnnotateSV tab-delimited file with annotations
+    :param str confTab: targetSeqView tab-delimited file with probability score
+    :param str outputDir: Directory to write the output file
+    :param str outputPrefix: Output File Prefix
+    :return: str of the tab-delimited file
+    :rtype: str
 
     """
     if(verbose):

@@ -33,6 +33,7 @@ from distutils.version import LooseVersion, StrictVersion
 
 logger = logging.getLogger('iCallSV.Run_Delly')
 
+
 def run(
         delly,
         version,
@@ -48,28 +49,28 @@ def run(
         verbose,
         debug):
     """
-    Created on March 17, 2015
-    Description: Runs the delly program on case and control bam file to give its results
-    @author: Ronak H Shah
-    ::Inputs::
-    delly:Path to delly executables (0.7.3 or above)
-    bcftools:Path to bcftools executables (1.3.1 or above)
-    type: What ot run in delly, DEL:Deletion, DUP: Duplication,TRA:Translocation, INV:Inversion
-    reference: Reference Genome that was used to align the reads.
-    controlBam: Path to control/normal bam file
-    caseBam: Path to case/tumor bam file
-    controlID: Id of the control/normal sample
-    caseID: Id of the case/tumor sample
-    mapq: mapping quality cutoff for delly
-    excludeRegions: Regions to be excluded for calling structural variation.
-    outputdir: directory for the output of delly
-    debug: If you just wish to test what we will do
-    ::Output::
-    VCF file having all the structural variants called
-    
+    This will Runs the delly program on case and control bam file to give its
+    results.
+
+    :class:`str`.
+
+    :param str delly:Path to delly executables (0.7.3 or above)
+    :param str bcftools:Path to bcftools executables (1.3.1 or above)
+    :param str type: What ot run in delly, DEL:Deletion, DUP: Duplication,TRA:Translocation, INV:Inversion
+    :param str reference: Reference Genome that was used to align the reads.
+    :param str controlBam: Path to control/normal bam file
+    :param str caseBam: Path to case/tumor bam file
+    :param str controlID: Id of the control/normal sample
+    :param str caseID: Id of the case/tumor sample
+    :param int mapq: mapping quality cutoff for delly
+    :param str excludeRegions: Regions to be excluded for calling structural variation.
+    :param str outputdir: directory for the output of delly
+    :param bool debug: If you just wish to test what we will do
+    :return: str of the output vcf
+    :rtype: str
+
     """
-    
-    
+
     start_time = time.time()
     if(verbose):
         logger.info("Run_Delly: We are now going to run Delly for you. It going to be exciting time.")
@@ -83,7 +84,7 @@ def run(
     cp.checkFile(controlBam)
     cp.checkFile(caseBam)
     cp.checkFile(delly)
-    cp.checkEmpty(version,"Delly Version")
+    cp.checkEmpty(version, "Delly Version")
     cp.checkFile(bcftools)
     cp.checkFile(reference)
     cp.checkFile(excludeRegions)
@@ -170,9 +171,9 @@ def run(
                 else:
                     if(verbose):
                         logger.fatal(
-                                      "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
-                                      retcode,
-                                      caseId)
+                            "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
+                            retcode,
+                            caseId)
                         sys.exit(1)
             else:
                 if(os.path.isfile(outputVcf)):
@@ -180,9 +181,9 @@ def run(
                 else:
                     if(verbose):
                         logger.fatal(
-                                      "Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s",
-                                      retcode,
-                                      caseId)
+                            "Run_Delly: Delly is either still running on local machine or it errored out with return code %d for %s",
+                            retcode,
+                            caseId)
                     sys.exit(1)
         else:
             if(verbose):

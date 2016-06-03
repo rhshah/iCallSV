@@ -29,6 +29,7 @@ import logging
 
 logger = logging.getLogger('iCallSV.Run_iAnnotateSV')
 
+
 def run(
         python,
         iAnnotateSV,
@@ -42,6 +43,26 @@ def run(
         inputTabFile,
         outputPrefix,
         outputDir):
+    """
+    This module will run iAnnotateSV package
+
+    :class:`str`.
+
+    :param str python : Location for the python executable.
+    :param str iAnnotateSV : Location of the wrapper iAnnotateSV package (iAnnotateSV.py)
+    :param str build : Which human reference file to be used, hg18,hg19 or hg38
+    :param str inputTabFile : Tab-Delimited Input FIle compatible with iAnnotateSV package.
+    :param str outputPrefix: Prefix of the output files/DIR with Annotations and images
+    :param str outputDir : Name of the output directory where the outputPrefix will be written
+    :param str uniprotFile: Location for ucsc uniprot file
+    :param str cosmicFile: Location for cosmic census file
+    :param str repeatregionFile: Location for repeat region file
+    :param str dgvFile: Location for database of Genomic Variants file
+    :return: str of the output file
+    :rtype: str
+
+    """
+
     start_time = time.time()
     cp.checkDir(outputDir)
     cp.checkFile(iAnnotateSV)

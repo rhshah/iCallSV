@@ -13,6 +13,16 @@ import logging
 logger = logging.getLogger('iCallSV.makebamindex')
 
 def MakeIndex(bamFile):
+    """
+    This will make bam index if not there for a bam file using pysam
+
+    :class:`str`.
+    
+    :param str bamFile: Path to bam file
+    :return: None
+    :rtype: None
+
+    """
     logger.info("makebamindex: Trying to make index for bam file")
     if(os.path.isfile(bamFile)):
         try:
