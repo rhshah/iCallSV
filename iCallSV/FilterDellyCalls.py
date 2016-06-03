@@ -73,8 +73,7 @@ def run(
         peSupportHotspotControl,
         srSupportHotspotControl,
         verbose):
-    """
-    ``main:``Filter calls made by Delly which are in a VCF format
+    """``main:``Filter calls made by Delly which are in a VCF format
 
     :class:`str`.
 

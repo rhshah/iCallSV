@@ -14,8 +14,7 @@ logger = logging.getLogger('iCallSV.checkparameters')
 # Check if the file exist
 
 def checkFile(fileToCheck):
-    """
-    Check `if the file exists or not``
+    """Check `if the file exists or not``
 
     :class:`str`.
 
@@ -36,8 +35,7 @@ def checkFile(fileToCheck):
 # Check if the Directory exists
 
 def checkDir(folderToCheck):
-    """
-    Check `if the folder exists or not``
+    """Check `if the folder exists or not``
 
     :class:`str`.
 
@@ -58,8 +56,7 @@ def checkDir(folderToCheck):
 # Check if the variable is and Integer
 
 def checkInt(variableToCheck, variableName):
-    """
-    Check `if the variable is int or not``
+    """Check `if the variable is int or not``
 
     :class:`str`.
 
@@ -85,8 +82,7 @@ def checkInt(variableToCheck, variableName):
 # Check if the given variable is not Empty
 
 def checkEmpty(variableToCheck, variableName):
-    """
-    Check `if the variable is None or not``
+    """Check `if the variable is None or not``
 
     :class:`str`.
 
@@ -109,8 +105,7 @@ def checkEmpty(variableToCheck, variableName):
 # Check the Delly Analysis Type is Valid or Not
 
 def checkDellyAnalysisType(varaibleToCheck):
-    """
-    Check `if the variable for Delly analysis exists or not``
+    """Check `if the variable for Delly analysis exists or not``
 
     :class:`str`.
 

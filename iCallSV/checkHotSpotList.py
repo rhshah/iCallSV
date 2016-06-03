@@ -17,8 +17,7 @@ import re
 
 # Read the hotspot file and make a dictionary of it
 def ReadHotSpotFile(HotSpotFile):
-    """
-    Read the ``HotSpot region file``
+    """Read the ``HotSpot region file``
 
     :class:`str`.
 
@@ -42,8 +41,7 @@ def ReadHotSpotFile(HotSpotFile):
 
 # Read the hotspot dictionary and tell if the event occurs in hotspot or not
 def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
-    """
-    Check if coordinate are present in the ``hotspot region file``
+    """Check if coordinate are present in the ``hotspot region file``
 
     :class:`str`.
 

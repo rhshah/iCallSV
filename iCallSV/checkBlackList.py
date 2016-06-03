@@ -17,8 +17,7 @@ import os
 
 # Read the hotspot file and make a dictionary of it
 def ReadBlackListFile(BlackListFile):
-    """
-    Read the ``blacklist region file``
+    """Read the ``blacklist region file``
 
     :class:`str`.
 
@@ -38,8 +37,7 @@ def ReadBlackListFile(BlackListFile):
 
 # Read the hotspot dictionary and tell if the event occurs in blacklist or not
 def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, extention):
-    """
-    Check if coordinate are present in the ``blacklist region file``
+    """Check if coordinate are present in the ``blacklist region file``
 
     :class:`str`.
 

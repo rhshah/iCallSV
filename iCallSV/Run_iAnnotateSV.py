@@ -43,8 +43,7 @@ def run(
         inputTabFile,
         outputPrefix,
         outputDir):
-    """
-    This module will run iAnnotateSV package
+    """This module will run iAnnotateSV package
 
     :class:`str`.
 

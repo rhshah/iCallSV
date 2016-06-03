@@ -18,12 +18,7 @@ from gridmap import Job, process_jobs
 
 
 def main():
-    """
-    Created on 05/18/2016.
-    @Description: This does the processing for all Samples in multiple pools
-    @author: Ronak H Shah
-
-    """
+    
     parser = argparse.ArgumentParser(
         prog='iCallSV_dmp_wrapper.py',
         description='Run iCallSV on selected pools using MSK data',
@@ -155,8 +150,7 @@ def main():
 
 
 def SetupRun(poolName, args):
-    """
-    This will setup the run to be analyzed.
+    """This will setup the run to be analyzed.
 
     :class:`str`.
 
@@ -224,8 +218,7 @@ def SetupRun(poolName, args):
 
 
 def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
-    """
-    This will run the pool to be analyzed.
+    """This will run the pool to be analyzed.
 
     :class:`str`.
 
@@ -323,8 +316,7 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
 
 
 def RunJob(cmd):
-    """
-    Given a command run the job.
+    """Given a command run the job.
 
     :class:`str`.
 
@@ -358,8 +350,7 @@ def RunJob(cmd):
 
 
 def SelectNormal(normal, poolnormal):
-    """
-    Select the best possible normal.
+    """Select the best possible normal.
 
     :class:`str`.
 
@@ -436,8 +427,7 @@ def getSubDirs(dirLocation):
 
 
 def processor(i, jobqueue):
-    """
-    Operate on a jobqueue.
+    """Operate on a jobqueue.
 
     :class:`str`.
 

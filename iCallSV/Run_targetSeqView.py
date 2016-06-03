@@ -38,8 +38,7 @@ def run(
         readLength,
         outputDir,
         outsvFileName):
-    """
-    This module will run targetSeqView
+    """This module will run targetSeqView
 
     :class:`str`.
 

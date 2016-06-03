@@ -25,8 +25,7 @@ logger = logging.getLogger('iCallSV.launch_FilterDellyCalls')
 
 def launch_filterdellycalls_for_different_analysis_type(
         args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):
-    """
-    This will launch the filtering of delly calls in parallel.
+    """This will launch the filtering of delly calls in parallel.
 
     :class:`str`.
 

@@ -18,8 +18,7 @@ logger = logging.getLogger('iCallSV.combineVCF')
 
 
 def run(vcfFiles, combinedVCF, verbose):
-    """
-    This will ``combine multiple vcf file with same headers``
+    """This will ``combine multiple vcf file with same headers``
 
     :class:`str`.
 
