@@ -347,7 +347,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
             controlRR,
             controlRV,
             controlAltFreqHotspot)
-        if(filter == "PASS" and preciseFlag == "True" and controlPassFlag and casePassFlag):
+        if(filter == "PASS" and controlPassFlag and casePassFlag):
             if(svlengthFromDelly != "None"):
                 if(int(svlengthFromDelly) >= int(svlength)):
                     filterFlag = True
@@ -399,7 +399,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
             controlRR,
             controlRV,
             controlAltFreq)
-        if(filter == "PASS" and preciseFlag == "True" and controlPassFlag and casePassFlag):
+        if(filter == "PASS" and controlPassFlag and casePassFlag):
             if(svlengthFromDelly != "None"):
                 if(int(svlengthFromDelly) >= int(svlength)):
                     filterFlag = True
