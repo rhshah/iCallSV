@@ -141,6 +141,8 @@ def main():
             outdir,
             "IMPACT*",
             "StructuralVariantAnalysis/DellyDir/*final.txt"))
+    df_list = []
+    full_df = pd.DataFrame()
     for filename in sorted(interesting_files):
         df_list.append(pd.read_csv(filename))
     full_df = pd.concat(df_list)
