@@ -58,6 +58,6 @@ def run(samtools, samblaster, bamFile, discordantFileName, splitFileName, output
         sys.exit()
     return(discordantFile, splitFile)
 # Test Module
-run("/dmp/resources/dev2/bin/samtools", "/dmp/resources/dev2/bin/samblaster",
-    "/dmp/hot/shahr2/IMPACT/Test/SVtest/35117191-T_bc07_IMPACTv3-CLIN-20140160_L000_mrg_cl_aln_srt_MD_IR_BR_NSORT.bam",
-    "samp.disc.sam", "samp.split.sam", "/dmp/hot/shahr2/IMPACT/Test/SVtest/")
+#run("/dmp/resources/dev2/bin/samtools", "/dmp/resources/dev2/bin/samblaster",
+#    "/dmp/hot/shahr2/IMPACT/Test/SVtest/35117191-T_bc07_IMPACTv3-CLIN-20140160_L000_mrg_cl_aln_srt_MD_IR_BR_NSORT.bam",
+#    "samp.disc.sam", "samp.split.sam", "/dmp/hot/shahr2/IMPACT/Test/SVtest/")

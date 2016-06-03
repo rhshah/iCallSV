@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iCallSV.Run_samblaster &mdash; iCallSV  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="iCallSV  documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">iCallSV  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for iCallSV.Run_samblaster</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Mar 20, 2015</span>
+<span class="sd">Description : This module will run samblaster for extracting discordant and spit reads in sam format</span>
+<span class="sd">@author: Ronak Shah</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">::Input::</span>
+<span class="sd">samtools: To stream bam to sam into samblaster</span>
+<span class="sd">samblaster: Location of the samblaster executables</span>
+<span class="sd">bamFile: ReadName sorted bamFile</span>
+<span class="sd">discordantFileName : Name of the discordant SAM file</span>
+<span class="sd">splitFileName : Name of the split SAM file</span>
+<span class="sd">outputDir : name the output directory</span>
+<span class="sd">::Output::</span>
+<span class="sd">discordantFile : SAM file containing discordant read entries</span>
+<span class="sd">splitFile : SAM file containing split read entries</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">Popen</span>
+<span class="kn">import</span> <span class="nn">shlex</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">checkparameters</span> <span class="kn">as</span> <span class="nn">cp</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="run"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.Run_samblaster.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">samtools</span><span class="p">,</span> <span class="n">samblaster</span><span class="p">,</span> <span class="n">bamFile</span><span class="p">,</span> <span class="n">discordantFileName</span><span class="p">,</span> <span class="n">splitFileName</span><span class="p">,</span> <span class="n">outputDir</span><span class="p">):</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s2">&quot;We will now run samblaster to extract from BAM file discordant and spit reads</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">myPid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+    <span class="n">today</span> <span class="o">=</span> <span class="n">day</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">checkDir</span><span class="p">(</span><span class="n">outputDir</span><span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">samblaster</span><span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">bamFile</span><span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">checkEmpty</span><span class="p">(</span><span class="n">discordantFileName</span><span class="p">,</span> <span class="s2">&quot;Name of the Discordant Read SAM File output by samblaster&quot;</span><span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">checkEmpty</span><span class="p">(</span><span class="n">splitFileName</span><span class="p">,</span> <span class="s2">&quot;Name of the split Read SAM File output by samblaster&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s2">&quot;Run_samblaster: All the input parameters look good for running samblaster</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;Run_samblaster: ProcessID:&quot;</span><span class="p">,</span> <span class="n">myPid</span><span class="p">,</span> <span class="s2">&quot; Date:&quot;</span><span class="p">,</span> <span class="n">today</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">discordantFile</span> <span class="o">=</span> <span class="n">outputDir</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">discordantFileName</span>
+    <span class="n">splitFile</span> <span class="o">=</span> <span class="n">outputDir</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">splitFileName</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="n">samtools</span> <span class="o">+</span> <span class="s2">&quot; view -h &quot;</span> <span class="o">+</span> <span class="n">bamFile</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="n">samblaster</span> <span class="o">+</span> \
+        <span class="s2">&quot; -a -e --maxSplitCount 10 -d &quot;</span> <span class="o">+</span> <span class="n">discordantFile</span> <span class="o">+</span> <span class="s2">&quot; -s &quot;</span> <span class="o">+</span> <span class="n">splitFile</span> <span class="o">+</span> <span class="s2">&quot; -o /dev/null&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;Run_samblaster: Command that will be run</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="c1">#args = shlex.split(cmd)</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">proc</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="n">retcode</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">returncode</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">retcode</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">print</span> <span class="s2">&quot;Run_samblaster: We have finished running samblaster for &quot;</span><span class="p">,</span> <span class="n">bamFile</span><span class="p">,</span> <span class="s2">&quot; using local machine.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">print</span> <span class="s2">&quot;Run_samblaster Duration:&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s2">&quot;Run_samblaster: samblaster is either still running on local machine or it errored out with return code&quot;</span><span class="p">,</span> <span class="n">retcode</span><span class="p">,</span> <span class="s2">&quot; for&quot;</span><span class="p">,</span> <span class="n">bamFile</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">discordantFile</span><span class="p">,</span> <span class="n">splitFile</span><span class="p">)</span></div>
+<span class="c1"># Test Module</span>
+<span class="c1">#run(&quot;/dmp/resources/dev2/bin/samtools&quot;, &quot;/dmp/resources/dev2/bin/samblaster&quot;,</span>
+<span class="c1">#    &quot;/dmp/hot/shahr2/IMPACT/Test/SVtest/35117191-T_bc07_IMPACTv3-CLIN-20140160_L000_mrg_cl_aln_srt_MD_IR_BR_NSORT.bam&quot;,</span>
+<span class="c1">#    &quot;samp.disc.sam&quot;, &quot;samp.split.sam&quot;, &quot;/dmp/hot/shahr2/IMPACT/Test/SVtest/&quot;)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">iCallSV  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

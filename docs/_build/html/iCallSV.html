@@ -300,8 +300,16 @@ It is a tab-delimited file with annotation in them</p>
 </dd></dl>
 
 </div>
-<div class="section" id="icallsv-run-samblaster-module">
-<h2>iCallSV.Run_samblaster module<a class="headerlink" href="#icallsv-run-samblaster-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-iCallSV.Run_samblaster">
+<span id="icallsv-run-samblaster-module"></span><h2>iCallSV.Run_samblaster module<a class="headerlink" href="#module-iCallSV.Run_samblaster" title="Permalink to this headline">¶</a></h2>
+<p>Created on Mar 20, 2015
+Description : This module will run samblaster for extracting discordant and spit reads in sam format
+&#64;author: Ronak Shah</p>
+<dl class="function">
+<dt id="iCallSV.Run_samblaster.run">
+<code class="descclassname">iCallSV.Run_samblaster.</code><code class="descname">run</code><span class="sig-paren">(</span><em>samtools</em>, <em>samblaster</em>, <em>bamFile</em>, <em>discordantFileName</em>, <em>splitFileName</em>, <em>outputDir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/Run_samblaster.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.Run_samblaster.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="module-iCallSV.Run_targetSeqView">
 <span id="icallsv-run-targetseqview-module"></span><h2>iCallSV.Run_targetSeqView module<a class="headerlink" href="#module-iCallSV.Run_targetSeqView" title="Permalink to this headline">¶</a></h2>
@@ -772,8 +780,156 @@ Filtered Output files</p>
 <p>&#64;contact:    <a class="reference external" href="mailto:rons&#46;shah&#37;&#52;&#48;gmail&#46;com">rons<span>&#46;</span>shah<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
 <p>&#64;deffield    updated: Updated</p>
 </div>
-<div class="section" id="icallsv-icallsv-dmp-wrapper-module">
-<h2>iCallSV.iCallSV_dmp_wrapper module<a class="headerlink" href="#icallsv-icallsv-dmp-wrapper-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-iCallSV.iCallSV_dmp_wrapper">
+<span id="icallsv-icallsv-dmp-wrapper-module"></span><h2>iCallSV.iCallSV_dmp_wrapper module<a class="headerlink" href="#module-iCallSV.iCallSV_dmp_wrapper" title="Permalink to this headline">¶</a></h2>
+<p>Created on 05/18/2016.</p>
+<p>&#64;Ronak Shah</p>
+<dl class="function">
+<dt id="iCallSV.iCallSV_dmp_wrapper.RunJob">
+<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">RunJob</code><span class="sig-paren">(</span><em>cmd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#RunJob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.RunJob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a command run the job.</p>
+<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cmd</strong> (<em>str</em>) &#8211; str of command to be run on the local machine</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iCallSV.iCallSV_dmp_wrapper.RunPerPool">
+<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">RunPerPool</code><span class="sig-paren">(</span><em>titleFile</em>, <em>outdir</em>, <em>HSmetricsFileList</em>, <em>bamFileList</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#RunPerPool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.RunPerPool" title="Permalink to this definition">¶</a></dt>
+<dd><p>This will run the pool to be analyzed.</p>
+<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>titleFile</strong> (<em>str</em>) &#8211; str of meta information file</li>
+<li><strong>outdir</strong> (<em>str</em>) &#8211; str of output directory</li>
+<li><strong>HSmetricsFileList</strong> (<em>list</em>) &#8211; list of picard hsmetrics files</li>
+<li><strong>bamFileList</strong> (<em>list</em>) &#8211; list of bam files</li>
+<li><strong>args</strong> (<em>Namespace</em>) &#8211; Namespace of args to get other variables</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iCallSV.iCallSV_dmp_wrapper.SelectNormal">
+<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">SelectNormal</code><span class="sig-paren">(</span><em>normal</em>, <em>poolnormal</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#SelectNormal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.SelectNormal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select the best possible normal.</p>
+<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>normal</strong> (<em>str</em>) &#8211; str of match normal</li>
+<li><strong>poolnormal</strong> (<em>str</em>) &#8211; str of pool normal</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">str with decision whether to run matched or unmatched</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iCallSV.iCallSV_dmp_wrapper.SetupRun">
+<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">SetupRun</code><span class="sig-paren">(</span><em>poolName</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#SetupRun"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.SetupRun" title="Permalink to this definition">¶</a></dt>
+<dd><p>This will setup the run to be analyzed.</p>
+<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>poolName</strong> (<em>str</em>) &#8211; str of pool to be analyzed</li>
+<li><strong>args</strong> (<em>Namespace</em>) &#8211; Namespace of args to get other variables</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Multiple objects</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iCallSV.iCallSV_dmp_wrapper.getSubDirs">
+<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">getSubDirs</code><span class="sig-paren">(</span><em>dirLocation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#getSubDirs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.getSubDirs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all sub directories.</p>
+<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dirLocation</strong> (<em>str</em>) &#8211; str of directory location</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of all sub directories</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iCallSV.iCallSV_dmp_wrapper.main">
+<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="iCallSV.iCallSV_dmp_wrapper.processor">
+<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">processor</code><span class="sig-paren">(</span><em>i</em>, <em>jobqueue</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#processor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.processor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operate on a jobqueue.</p>
+<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>i</strong> (<em>int</em>) &#8211; count of the job</li>
+<li><strong>jobqueue</strong> (<em>Namespace</em>) &#8211; Namespace for jobqueue</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 <div class="section" id="module-iCallSV.launchThreads">
 <span id="icallsv-launchthreads-module"></span><h2>iCallSV.launchThreads module<a class="headerlink" href="#module-iCallSV.launchThreads" title="Permalink to this headline">¶</a></h2>
@@ -1006,7 +1162,7 @@ Description: This module will sort bam file by name
 <li><a class="reference internal" href="#module-iCallSV.FilterDellyCalls">iCallSV.FilterDellyCalls module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.Run_Delly">iCallSV.Run_Delly module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.Run_iAnnotateSV">iCallSV.Run_iAnnotateSV module</a></li>
-<li><a class="reference internal" href="#icallsv-run-samblaster-module">iCallSV.Run_samblaster module</a></li>
+<li><a class="reference internal" href="#module-iCallSV.Run_samblaster">iCallSV.Run_samblaster module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.Run_targetSeqView">iCallSV.Run_targetSeqView module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.checkBlackList">iCallSV.checkBlackList module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.checkHotSpotList">iCallSV.checkHotSpotList module</a></li>
@@ -1016,7 +1172,7 @@ Description: This module will sort bam file by name
 <li><a class="reference internal" href="#module-iCallSV.dellyVcf2targetSeqView">iCallSV.dellyVcf2targetSeqView module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.filterAnnotatedSV">iCallSV.filterAnnotatedSV module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.iCallSV">iCallSV.iCallSV module</a></li>
-<li><a class="reference internal" href="#icallsv-icallsv-dmp-wrapper-module">iCallSV.iCallSV_dmp_wrapper module</a></li>
+<li><a class="reference internal" href="#module-iCallSV.iCallSV_dmp_wrapper">iCallSV.iCallSV_dmp_wrapper module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.launchThreads">iCallSV.launchThreads module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.launch_FilterDellyCalls">iCallSV.launch_FilterDellyCalls module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.launch_Run_Delly">iCallSV.launch_Run_Delly module</a></li>
