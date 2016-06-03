@@ -22,7 +22,7 @@ def main():
     Created on 05/18/2016.
     @Description: This does the processing for all Samples in multiple pools
     @author: Ronak H Shah
-    
+
     """
     parser = argparse.ArgumentParser(
         prog='iCallSV_dmp_wrapper.py',
@@ -134,14 +134,22 @@ def main():
                 (titleFile,
                  outdir,
                  HSmetricsFileList,
-                 bamFileList) = SetupRun(poolName,args)
+                 bamFileList) = SetupRun(poolName, args)
                 RunPerPool(
                     titleFile,
                     outdir,
                     HSmetricsFileList,
                     bamFileList,
                     args)
-
+    interesting_files = glob.glob(
+        os.path.join(
+            outdir,
+            "IMPACT*",
+            "StructuralVariantAnalysis/DellyDir/*final.txt"))
+    for filename in sorted(interesting_files):
+        df_list.append(pd.read_csv(filename))
+    full_df = pd.concat(df_list)
+    full_df.to_csv(os.path.join(outdir, 'FinalOutput.txt'), sep='\t', index=False)
     if(args.verbose):
         print "Finished the Process to Run iCallSV."
 
@@ -235,13 +243,13 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
             if(sampleClass == "Tumor"):
                 basename = sampleId
                 tBamFile = filter(idRegXcompile.match, bamFileList).pop()
-                os.symlink(tBamFile,os.path.join(outdir,os.path.basename(tBamFile)))
-                tBamFile = os.path.join(outdir,os.path.basename(tBamFile))
+                os.symlink(tBamFile, os.path.join(outdir, os.path.basename(tBamFile)))
+                tBamFile = os.path.join(outdir, os.path.basename(tBamFile))
                 tsampleId = sampleId
             if(sampleClass == "Normal"):
                 nBamFile = filter(idRegXcompile.match, bamFileList).pop()
-                os.symlink(nBamFile,os.path.join(outdir,os.path.basename(nBamFile)))
-                nBamFile = os.path.join(outdir,os.path.basename(nBamFile))
+                os.symlink(nBamFile, os.path.join(outdir, os.path.basename(nBamFile)))
+                nBamFile = os.path.join(outdir, os.path.basename(nBamFile))
                 nsampleId = sampleId
                 nHSmetricsFile = filter(idRegXcompile.match, HSmetricsFileList).pop()
                 (decision) = SelectNormal(nHSmetricsFile, poolHsmetricsFile)
