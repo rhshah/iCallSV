@@ -31,7 +31,7 @@ We require that you install:
 :pysam: `v0.8.4 <https://pypi.python.org/pypi/pysam>`_
 :pyvcf: `0.6.7 <https://pypi.python.org/pypi/PyVCF>`_
 :Delly: `v0.7.3 <https://github.com/tobiasrausch/delly>`_
-:targetSeqView: `https://github.com/Eitan177/targetSeqView`_
+:targetSeqView: `master <https://github.com/Eitan177/targetSeqView>`_
 
 Quick Usage
 ===========
