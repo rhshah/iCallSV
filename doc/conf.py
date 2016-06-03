@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # iCallSV documentation build configuration file, created by
-# sphinx-quickstart on Fri Jun  3 17:21:28 2016.
+# sphinx-quickstart on Fri Jun  3 17:29:31 2016.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
