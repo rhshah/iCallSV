@@ -34,7 +34,7 @@ import filterAnnotatedSV as fas
 __all__ = []
 __version__ = 0.1
 __date__ = '2015-03-30'
-__updated__ = '2015-12-20'
+__updated__ = '2016-06-01'
 
 
 def main(argv=None):  # IGNORE:C0111
@@ -92,7 +92,7 @@ def main(argv=None):  # IGNORE:C0111
 
     """
 
-    """Command line options."""
+    #Command line options.
 
     if argv is None:
         argv = sys.argv
