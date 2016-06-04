@@ -110,7 +110,7 @@ If you use this software in a publication, for now, please cite our website <a c
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body">7       140498077       5       175998094</td>
 </tr>
 </tbody>
 </table>
@@ -121,7 +121,9 @@ If you use this software in a publication, for now, please cite our website <a c
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><p class="first">LINC00486</p>
+<p class="last">CNOT4</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -132,7 +134,9 @@ If you use this software in a publication, for now, please cite our website <a c
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><p class="first">ALK</p>
+<p class="last">BRAF</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -140,6 +144,103 @@ If you use this software in a publication, for now, please cite our website <a c
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="configuration-file-format">
+<h1>Configuration File Format<a class="headerlink" href="#configuration-file-format" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-sh"><div class="highlight"><pre><span class="c1">#~~~Template configuration file to run iCallSV~~~#</span>
+<span class="c1">#### Path to python executable ###</span>
+<span class="o">[</span>Python<span class="o">]</span>
+PYTHON:
+<span class="c1">#### Path to R executable and R Lib ###</span>
+<span class="o">[</span>R<span class="o">]</span>
+RHOME:
+RLIB:
+<span class="c1">#### Path to delly, bcftools executables and Version of delly (supports only 0.7.3)###</span>
+<span class="o">[</span>SVcaller<span class="o">]</span>
+DELLY:
+DellyVersion:
+BCFTOOLS:
+<span class="c1">#### Path to hg19 Referece Fasta file ###</span>
+<span class="o">[</span>ReferenceFasta<span class="o">]</span>
+REFFASTA:
+<span class="c1">#### Path to file containing regions to exclude please follow Delly documentation for this ###</span>
+<span class="o">[</span>ExcludeRegion<span class="o">]</span>
+EXREGIONS:
+<span class="c1">#### Path to file containing regions to where lenient threshold will be used; and file containing genes to keep ###</span>
+<span class="o">[</span>HotSpotRegions<span class="o">]</span>
+HotspotFile:
+GenesToKeep:
+<span class="c1">#### Path to file containing regions/genes to filter ###</span>
+<span class="o">[</span>BlackListRegions<span class="o">]</span>
+BlackListFile:
+BlackListGenes:
+<span class="c1">#### Path to samtools executable ###</span>
+<span class="o">[</span>SAMTOOLS<span class="o">]</span>
+SAMTOOLS:
+<span class="c1">#### Path to iAnnotateSV.py and all its required files, please follow iAnnotateSV documentation ###</span>
+<span class="o">[</span>iAnnotateSV<span class="o">]</span>
+ANNOSV:
+GENOMEBUILD:
+DISTANCE:
+CANONICALTRANSCRIPTFILE:
+UNIPROTFILE:
+CosmicCensus:
+RepeatRegionAnnotation:
+DGvAnnotations:
+<span class="c1">#### TargetSeqView Parameters ###</span>
+<span class="o">[</span>TargetSeqView<span class="o">]</span>
+CalculateConfidenceScore:
+GENOMEBUILD:
+ReadLength:
+<span class="c1">#### Parameters to run Delly ###</span>
+<span class="o">[</span>ParametersToRunDelly<span class="o">]</span>
+MAPQ: 20
+NumberOfProcessors: 4
+<span class="o">[</span>ParametersToFilterDellyResults<span class="o">]</span>
+<span class="c1">####Case Allele Fraction Hotspot####</span>
+CaseAltFreqHotspot: 0.05
+<span class="c1">####Total Case Coverage Hotspot#####</span>
+<span class="nv">CaseCoverageHotspot</span> <span class="o">=</span> 5
+<span class="c1">####Control Allele Fraction Hotspot####</span>
+<span class="nv">ControlAltFreqHotspot</span> <span class="o">=</span> 0
+<span class="c1">####Case Allele Fraction####</span>
+CaseAltFreq: 0.08
+<span class="c1">####Total Case Coverage#####</span>
+<span class="nv">CaseCoverage</span> <span class="o">=</span> 8
+<span class="c1">####Control Allele Fraction####</span>
+<span class="nv">ControlAltFreq</span> <span class="o">=</span> 0
+<span class="c1">###Overall Supporting Read-pairs ###</span>
+OverallSupportingReads: 5
+<span class="c1">###Overall Supporting Read-pairs Hotspot ###</span>
+OverallSupportingReadsHotspot: 3
+<span class="c1">###Overall Supporting splitreads ###</span>
+OverallSupportingSplitReads: 0
+<span class="c1">###Overall Supporting splitreads Hotspot ###</span>
+OverallSupportingSplitReadsHotspot: 0
+<span class="c1">###Case Supporting Read-pairs ###</span>
+CaseSupportingReads: 2
+<span class="c1">###Case Supporting splitreads ###</span>
+CaseSupportingSplitReads: 0
+<span class="c1">###Case Supporting Read-pairs Hotspot ###</span>
+CaseSupportingReadsHotspot: 1
+<span class="c1">###Case Supporting splitreads Hotspot ###</span>
+CaseSupportingSplitReadsHotspot: 0
+<span class="c1">###Control Supporting Read-pairs ###</span>
+ControlSupportingReads: 5
+<span class="c1">###Control Supporting Read-pairs Hotspot ###</span>
+ControlSupportingReadsHotspot: 5
+<span class="c1">###Control Supporting splitreads ###</span>
+ControlSupportingSplitReads: 5
+<span class="c1">###Control Supporting splitreads Hotspot ###</span>
+ControlSupportingSplitReadsHotspot: 5
+<span class="c1">###Length of Structural Variant###</span>
+LengthOfSV: 500
+<span class="c1">###Overall Mapping Quality Threshold###</span>
+OverallMapq: 20
+<span class="c1">###Overall Mapping Quality Threshold Hotspot###</span>
+OverallMapqHotspot: 5
+</pre></div>
+</div>
 </div>
 <div class="section" id="quick-usage">
 <h1>Quick Usage<a class="headerlink" href="#quick-usage" title="Permalink to this headline">¶</a></h1>
@@ -1410,6 +1511,7 @@ Description: This module will be launching functions as threads
 <li><a class="reference internal" href="#citation">Citation</a></li>
 <li><a class="reference internal" href="#required-packages">Required Packages</a></li>
 <li><a class="reference internal" href="#required-data-files">Required Data Files</a></li>
+<li><a class="reference internal" href="#configuration-file-format">Configuration File Format</a></li>
 <li><a class="reference internal" href="#quick-usage">Quick Usage</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-iCallSV.FilterDellyCalls">iCallSV.FilterDellyCalls module</a><ul>

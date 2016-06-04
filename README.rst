@@ -41,7 +41,6 @@ This files are given in the ``data`` folder inside iCallSV, they are uploaded us
 
 	:Example:
 	
-	.. code-block:: sh
 		7	140498077	5	175998094
 		
 
@@ -49,8 +48,8 @@ This files are given in the ``data`` folder inside iCallSV, they are uploaded us
 
 	:Example:
 	
-	.. code-block:: sh
 		LINC00486
+		
 		CNOT4
 		
 		
@@ -58,9 +57,109 @@ This files are given in the ``data`` folder inside iCallSV, they are uploaded us
 	
 	:Example:
 	
-	.. code-block:: sh
 		ALK
+		
 		BRAF
+		
+
+Configuration File Format
+=========================
+
+.. code-block:: ini
+	
+	#~~~Template configuration file to run iCallSV~~~#
+	#### Path to python executable ###
+	[Python]
+	PYTHON:
+	#### Path to R executable and R Lib ###
+	[R]
+	RHOME: 
+	RLIB: 
+	#### Path to delly, bcftools executables and Version of delly (supports only 0.7.3)###
+	[SVcaller]
+	DELLY:
+	DellyVersion:
+	BCFTOOLS:
+	#### Path to hg19 Referece Fasta file ###
+	[ReferenceFasta]
+	REFFASTA:
+	#### Path to file containing regions to exclude please follow Delly documentation for this ###
+	[ExcludeRegion]
+	EXREGIONS:
+	#### Path to file containing regions to where lenient threshold will be used; and file containing genes to keep ###
+	[HotSpotRegions]
+	HotspotFile:
+	GenesToKeep:
+	#### Path to file containing regions/genes to filter ###
+	[BlackListRegions]
+	BlackListFile:
+	BlackListGenes:
+	#### Path to samtools executable ###
+	[SAMTOOLS]
+	SAMTOOLS:
+	#### Path to iAnnotateSV.py and all its required files, please follow iAnnotateSV documentation ###
+	[iAnnotateSV]
+	ANNOSV:
+	GENOMEBUILD:
+	DISTANCE:
+	CANONICALTRANSCRIPTFILE:
+	UNIPROTFILE:
+	CosmicCensus:
+	RepeatRegionAnnotation:
+	DGvAnnotations:
+	#### TargetSeqView Parameters ###
+	[TargetSeqView]
+	CalculateConfidenceScore:
+	GENOMEBUILD:
+	ReadLength:
+	#### Parameters to run Delly ###
+	[ParametersToRunDelly]
+	MAPQ: 20
+	NumberOfProcessors: 4
+	[ParametersToFilterDellyResults]
+	####Case Allele Fraction Hotspot####
+	CaseAltFreqHotspot: 0.05
+	####Total Case Coverage Hotspot#####
+	CaseCoverageHotspot = 5
+	####Control Allele Fraction Hotspot####
+	ControlAltFreqHotspot = 0
+	####Case Allele Fraction####
+	CaseAltFreq: 0.08
+	####Total Case Coverage#####
+	CaseCoverage = 8
+	####Control Allele Fraction####
+	ControlAltFreq = 0
+	###Overall Supporting Read-pairs ###
+	OverallSupportingReads: 5
+	###Overall Supporting Read-pairs Hotspot ###
+	OverallSupportingReadsHotspot: 3
+	###Overall Supporting splitreads ###
+	OverallSupportingSplitReads: 0
+	###Overall Supporting splitreads Hotspot ###
+	OverallSupportingSplitReadsHotspot: 0
+	###Case Supporting Read-pairs ###
+	CaseSupportingReads: 2
+	###Case Supporting splitreads ###
+	CaseSupportingSplitReads: 0
+	###Case Supporting Read-pairs Hotspot ###
+	CaseSupportingReadsHotspot: 1
+	###Case Supporting splitreads Hotspot ###
+	CaseSupportingSplitReadsHotspot: 0
+	###Control Supporting Read-pairs ###
+	ControlSupportingReads: 5
+	###Control Supporting Read-pairs Hotspot ###
+	ControlSupportingReadsHotspot: 5
+	###Control Supporting splitreads ###
+	ControlSupportingSplitReads: 5
+	###Control Supporting splitreads Hotspot ###
+	ControlSupportingSplitReadsHotspot: 5
+	###Length of Structural Variant###
+	LengthOfSV: 500
+	###Overall Mapping Quality Threshold###
+	OverallMapq: 20
+	###Overall Mapping Quality Threshold Hotspot###
+	OverallMapqHotspot: 5
+	
 
 
 Quick Usage
