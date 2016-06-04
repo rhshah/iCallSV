@@ -66,13 +66,12 @@
 
 <span class="c1"># Read the hotspot file and make a dictionary of it</span>
 <div class="viewcode-block" id="ReadBlackListFile"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkBlackList.ReadBlackListFile">[docs]</a><span class="k">def</span> <span class="nf">ReadBlackListFile</span><span class="p">(</span><span class="n">BlackListFile</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Read the ``blacklist region file``</span>
-
-<span class="sd">    :class:`str`.</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read the ``blacklist region file``</span>
 
 <span class="sd">    :param str BlackListFile: str of file to be read.</span>
-<span class="sd">    :return: A list containing black listed regions</span>
-<span class="sd">    :rtype: list</span>
+<span class="sd">    :return: A list containing black listed regions.</span>
+<span class="sd">    :rtype: list.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">blacklist</span> <span class="o">=</span> <span class="p">[]</span>
@@ -86,7 +85,8 @@
 
 <span class="c1"># Read the hotspot dictionary and tell if the event occurs in blacklist or not</span>
 <div class="viewcode-block" id="CheckIfItIsBlacklisted"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkBlackList.CheckIfItIsBlacklisted">[docs]</a><span class="k">def</span> <span class="nf">CheckIfItIsBlacklisted</span><span class="p">(</span><span class="n">chr1</span><span class="p">,</span> <span class="n">start1</span><span class="p">,</span> <span class="n">chr2</span><span class="p">,</span> <span class="n">start2</span><span class="p">,</span> <span class="n">blacklist</span><span class="p">,</span> <span class="n">extention</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check if coordinate are present in the ``blacklist region file``</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if coordinate are present in the ``blacklist region file``</span>
 
 <span class="sd">    :class:`str`.</span>
 
