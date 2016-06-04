@@ -9,7 +9,6 @@ iCallSV
 :copyright:  (c) 2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
 :license:    Apache License 2.0
 :contact:    rons.shah@gmail.com
-:deffield    updated: Updated
 
 """
 
@@ -39,15 +38,13 @@ __updated__ = '2015-12-20'
 
 
 def main(argv=None):  # IGNORE:C0111
-    
     """
-    Command Line Usage 
-    
-    
+    Command Line Usage.
+
     .. code-block:: sh
-    
+
     > python iCallSV.py -h
-    
+
     usage: iCallSV.py [-h] [-v] [-V] -sc config.ini -abam caseBAMFile.bam -bbam
                       controlBAMFile.bam -aId caseID -bId controlID -o
                       /somepath/output -op TumorID
@@ -86,16 +83,15 @@ def main(argv=None):  # IGNORE:C0111
       -op TumorID, --outPrefix TumorID
                             Id of the Tumor bam file which will be used as the
                             prefix for output files
-    
-    
+
+
     :Example:
     .. code-block:: sh
 
     python iCallSV.py -sc /path/to/template.ini -abam /path/to/casebamFile -bbam /path/to/controlbamFile -aId caseID -bId controlId -o /path/to/output/directory -op prefix_for_the_output_files
 
-
     """
-    
+
     """Command line options."""
 
     if argv is None:

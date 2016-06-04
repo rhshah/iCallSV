@@ -30,6 +30,38 @@ We require that you install:
 :pyvcf: `0.6.7 <https://pypi.python.org/pypi/PyVCF>`_
 :Delly: `v0.7.3 <https://github.com/tobiasrausch/delly>`_
 :targetSeqView: `master <https://github.com/Eitan177/targetSeqView>`_
+:iAnnotateSV: `v1.0.5 <https://github.com/rhshah/iAnnotateSV/tree/1.0.5>`_
+
+Required Data Files
+===================
+
+This files are given in the ``data`` folder inside iCallSV, they are uploaded using `git-lfs <https://git-lfs.github.com/>`_ and need to be downloaded with `git-lfs <https://git-lfs.github.com/>`_
+
+:blacklistRegionsFile: Tab-delimited file wihout header having black listed regions.
+
+	:Example:
+	
+	.. code-block:: sh
+		7	140498077	5	175998094
+		
+
+:blacklistGenes: Gene listed one per line wihout header that are to be removed 
+
+	:Example:
+	
+	.. code-block:: sh
+		LINC00486
+		CNOT4
+		
+		
+:genesToInclude: Gene listed one per line wihout header that are to be kept
+	
+	:Example:
+	
+	.. code-block:: sh
+		ALK
+		BRAF
+
 
 Quick Usage
 ===========

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>iCallSV package &mdash; iCallSV  documentation</title>
+    <title>iCallSV: Structural Aberration Detection from NGS datasets &mdash; iCallSV  documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -48,10 +48,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="icallsv-package">
-<h1>iCallSV package<a class="headerlink" href="#icallsv-package" title="Permalink to this headline">¶</a></h1>
-</div>
-<div class="section" id="icallsv-structural-aberration-detection-from-ngs-datasets">
+  <div class="section" id="icallsv-structural-aberration-detection-from-ngs-datasets">
 <h1>iCallSV: Structural Aberration Detection from NGS datasets<a class="headerlink" href="#icallsv-structural-aberration-detection-from-ngs-datasets" title="Permalink to this headline">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -94,6 +91,52 @@ If you use this software in a publication, for now, please cite our website <a c
 <tr class="field-odd field"><th class="field-name">Delly:</th><td class="field-body"><a class="reference external" href="https://github.com/tobiasrausch/delly">v0.7.3</a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">targetSeqView:</th><td class="field-body"><a class="reference external" href="https://github.com/Eitan177/targetSeqView">master</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">iAnnotateSV:</th><td class="field-body"><a class="reference external" href="https://github.com/rhshah/iAnnotateSV/tree/1.0.5">v1.0.5</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="required-data-files">
+<h1>Required Data Files<a class="headerlink" href="#required-data-files" title="Permalink to this headline">¶</a></h1>
+<p>This files are given in the <code class="docutils literal"><span class="pre">data</span></code> folder inside iCallSV, they are uploaded using <a class="reference external" href="https://git-lfs.github.com/">git-lfs</a> and need to be downloaded with <a class="reference external" href="https://git-lfs.github.com/">git-lfs</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">blacklistRegionsFile:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first">Tab-delimited file wihout header having black listed regions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">blacklistGenes:</th><td class="field-body"><p class="first">Gene listed one per line wihout header that are to be removed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">genesToInclude:</th><td class="field-body"><p class="first">Gene listed one per line wihout header that are to be kept</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
 </tr>
 </tbody>
 </table>
@@ -246,7 +289,7 @@ optional arguments:
 <dl class="function">
 <dt id="iCallSV.FilterDellyCalls.run">
 <code class="descclassname">iCallSV.FilterDellyCalls.</code><code class="descname">run</code><span class="sig-paren">(</span><em>inputVcf</em>, <em>outputDir</em>, <em>controlId</em>, <em>caseID</em>, <em>hotspotFile</em>, <em>blacklistFile</em>, <em>svlength</em>, <em>mapq</em>, <em>mapqHotspot</em>, <em>caseAltFreqHotspot</em>, <em>caseTotalCountHotspot</em>, <em>controlAltFreqHotspot</em>, <em>caseAltFreq</em>, <em>caseTotalCount</em>, <em>controlAltFreq</em>, <em>peSupport</em>, <em>srSupport</em>, <em>peSupportHotspot</em>, <em>srSupportHotspot</em>, <em>peSupportCase</em>, <em>srSupportCase</em>, <em>peSupportHotspotCase</em>, <em>srSupportHotspotCase</em>, <em>peSupportControl</em>, <em>srSupportControl</em>, <em>peSupportHotspotControl</em>, <em>srSupportHotspotControl</em>, <em>verbose</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/FilterDellyCalls.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.FilterDellyCalls.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><a href="#id2"><span class="problematic" id="id3">``</span></a>main:<a href="#id4"><span class="problematic" id="id5">``</span></a>Filter calls made by Delly which are in a VCF format</p>
+<dd><p><a href="#id3"><span class="problematic" id="id4">``</span></a>main:<a href="#id5"><span class="problematic" id="id6">``</span></a>Filter calls made by Delly which are in a VCF format</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -901,8 +944,8 @@ results.</p>
 </div>
 <div class="section" id="module-iCallSV.iCallSV">
 <span id="icallsv-icallsv-module"></span><h2>iCallSV.iCallSV module<a class="headerlink" href="#module-iCallSV.iCallSV" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id6">
-<h3>iCallSV<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>iCallSV<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -921,11 +964,7 @@ results.</p>
 <tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first">Apache License 2.0</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">contact:</th><td class="field-body"><p class="first"><a class="reference external" href="mailto:rons&#46;shah&#37;&#52;&#48;gmail&#46;com">rons<span>&#46;</span>shah<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">deffield    updated:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">Updated</p>
+<tr class="field-odd field"><th class="field-name">contact:</th><td class="field-body"><p class="first last"><a class="reference external" href="mailto:rons&#46;shah&#37;&#52;&#48;gmail&#46;com">rons<span>&#46;</span>shah<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
 </td>
 </tr>
 </tbody>
@@ -1367,10 +1406,10 @@ Description: This module will be launching functions as threads
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">iCallSV package</a></li>
-<li><a class="reference internal" href="#icallsv-structural-aberration-detection-from-ngs-datasets">iCallSV: Structural Aberration Detection from NGS datasets</a></li>
+<li><a class="reference internal" href="#">iCallSV: Structural Aberration Detection from NGS datasets</a></li>
 <li><a class="reference internal" href="#citation">Citation</a></li>
 <li><a class="reference internal" href="#required-packages">Required Packages</a></li>
+<li><a class="reference internal" href="#required-data-files">Required Data Files</a></li>
 <li><a class="reference internal" href="#quick-usage">Quick Usage</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-iCallSV.FilterDellyCalls">iCallSV.FilterDellyCalls module</a><ul>
@@ -1422,7 +1461,7 @@ Description: This module will be launching functions as threads
 </ul>
 </li>
 <li><a class="reference internal" href="#module-iCallSV.iCallSV">iCallSV.iCallSV module</a><ul>
-<li><a class="reference internal" href="#id6">iCallSV</a></li>
+<li><a class="reference internal" href="#id7">iCallSV</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-iCallSV.iCallSV_dmp_wrapper">iCallSV.iCallSV_dmp_wrapper module</a><ul>
