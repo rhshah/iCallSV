@@ -48,6 +48,12 @@
             
   <h1>Source code for iCallSV.FilterDellyCalls</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">FilterDellyCalls</span>
+<span class="sd">~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: This module will filter calls made by Delly which are in a VCF format</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on Mar 17, 2015</span>
 <span class="sd">Description: This module will filter calls made by Delly which are in a VCF format</span>
 <span class="sd">@author: Ronak H Shah</span>
@@ -80,7 +86,7 @@
 
 <span class="sd">::Output::</span>
 <span class="sd">Filtered VCF files</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">vcf</span>
@@ -124,7 +130,6 @@
         <span class="n">verbose</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;``main:``Filter calls made by Delly which are in a VCF format</span>
 
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param str inputVcf: Input VCF file name with path</span>
 <span class="sd">    :param str outputDir: Output directory</span>
@@ -362,14 +367,13 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This will ``Filter one record at a time``</span>
 
-<span class="sd">    :class:`str`.</span>
-
 <span class="sd">    :param str dellyVariables: str having all delly variables separated by &quot;,&quot;</span>
 <span class="sd">    :param str thresholdVariables: str having all delly threshold variables separated by &quot;,&quot;</span>
 <span class="sd">    :param dict hotspotDict: A dict containing hotspot regions</span>
 <span class="sd">    :param list blacklist: A list containing blacklist regions</span>
 <span class="sd">    :return: A boolean tag indicating True or False</span>
 <span class="sd">    :rtype: bool</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="p">(</span><span class="n">svlength</span><span class="p">,</span>
      <span class="n">mapq</span><span class="p">,</span>
@@ -547,8 +551,6 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This will ``check if the case sample passes or not``</span>
 
-<span class="sd">    :class:`str`.</span>
-
 <span class="sd">    :param int caseDR: int representing number of reference reads for case reported by delly</span>
 <span class="sd">    :param int caseDV: int representing number of variant reads for case reported by delly</span>
 <span class="sd">    :param str preciseFlag: str representing if an event is precise or imprecise</span>
@@ -558,6 +560,7 @@
 <span class="sd">    :param int caseTotalCount: int repeseting readcount threshold for case</span>
 <span class="sd">    :return: A boolean tag indicating True or False</span>
 <span class="sd">    :rtype: bool</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">caseAltAf</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">caseCovg</span> <span class="o">=</span> <span class="mi">0</span>
@@ -593,8 +596,6 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This will ``check if the control sample passes or not``</span>
 
-<span class="sd">    :class:`str`.</span>
-
 <span class="sd">    :param int controlDR: int representing number of reference reads for control reported by delly</span>
 <span class="sd">    :param int controlDV: int representing number of variant reads for control reported by delly</span>
 <span class="sd">    :param str preciseFlag: str representing if an event is precise or imprecise</span>
@@ -603,6 +604,7 @@
 <span class="sd">    :param float controlAltFreq: float representing altratio threshold for control</span>
 <span class="sd">    :return: A boolean tag indicating True or False</span>
 <span class="sd">    :rtype: bool</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">controlAltAf</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">controlCovg</span> <span class="o">=</span> <span class="mi">0</span>
@@ -628,31 +630,6 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">controlFlag</span> <span class="o">=</span> <span class="bp">False</span>
     <span class="k">return</span><span class="p">(</span><span class="n">controlFlag</span><span class="p">)</span></div>
-
-<span class="c1"># # Test the module</span>
-<span class="c1"># run(</span>
-<span class="c1">#     inputVcf=&quot;/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/s-EV-crc-001-M2_del.vcf&quot;,</span>
-<span class="c1">#     outputDir=&quot;/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/&quot;,</span>
-<span class="c1">#     controlId=&quot;s-EV-crc-001-N2&quot;,</span>
-<span class="c1">#     caseID=&quot;s-EV-crc-001-M2&quot;,</span>
-<span class="c1">#     hotspotFile=&quot;/ifs/depot/resources/dmp/data/mskdata/interval-lists/VERSIONS/cv5/structuralvariants_geneInterval.txt&quot;,</span>
-<span class="c1">#     blacklistFile = &quot;/home/shahr2/git/iCallSV/iCallSV/data/blacklist.txt&quot;,</span>
-<span class="c1">#     svlength=500,</span>
-<span class="c1">#     mapq=20,</span>
-<span class="c1">#     mapqHotspot=5,</span>
-<span class="c1">#     peSupport=5,</span>
-<span class="c1">#     srSupport=0,</span>
-<span class="c1">#     peSupportHotspot=3,</span>
-<span class="c1">#     srSupportHotspot=0,</span>
-<span class="c1">#     peSupportCase=1,</span>
-<span class="c1">#     srSupportCase=0,</span>
-<span class="c1">#     peSupportHotspotCase=0,</span>
-<span class="c1">#     srSupportHotspotCase=0,</span>
-<span class="c1">#     peSupportControl=5,</span>
-<span class="c1">#     srSupportControl=5,</span>
-<span class="c1">#     peSupportHotspotControl=5,</span>
-<span class="c1">#     srSupportHotspotControl=5,</span>
-<span class="c1">#     verbose=True)</span>
 </pre></div>
 
           </div>

@@ -48,11 +48,15 @@
             
   <h1>Source code for iCallSV.launch_FilterDellyCalls</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">launch_FilterDellyCalls</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: This module will filter delly results and create filtered delly vcf files</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on November 20, 2015</span>
 <span class="sd">Description: This module will filter delly results and create filtered delly vcf files</span>
 <span class="sd">@author: Ronak H Shah</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">::Inputs::</span>
 <span class="sd">args: Arguments passed to iCallSV</span>
 <span class="sd">config: configuration file passed to iCallSV</span>
@@ -62,7 +66,7 @@
 <span class="sd">inv_vcf: Path to inversion based vcf file</span>
 <span class="sd">tra_vcf: Path to translocation based vcf file</span>
 <span class="sd">ins_vcf: Path to insertion based vcf file</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -74,9 +78,8 @@
 
 <div class="viewcode-block" id="launch_filterdellycalls_for_different_analysis_type"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.launch_FilterDellyCalls.launch_filterdellycalls_for_different_analysis_type">[docs]</a><span class="k">def</span> <span class="nf">launch_filterdellycalls_for_different_analysis_type</span><span class="p">(</span>
         <span class="n">args</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">sampleOutdirForDelly</span><span class="p">,</span> <span class="n">del_vcf</span><span class="p">,</span> <span class="n">dup_vcf</span><span class="p">,</span> <span class="n">inv_vcf</span><span class="p">,</span> <span class="n">tra_vcf</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This will launch the filtering of delly calls in parallel.</span>
-
-<span class="sd">    :class:`str`.</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This will launch the filtering of delly calls in parallel.</span>
 
 <span class="sd">    :param Namespace args: Namespace of args to get other variables</span>
 <span class="sd">    :param Namespace config: configuration file passed to iCallSV</span>

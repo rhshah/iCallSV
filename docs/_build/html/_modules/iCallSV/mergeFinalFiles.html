@@ -48,6 +48,12 @@
             
   <h1>Source code for iCallSV.mergeFinalFiles</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">mergeFinalFiles</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on May 17, 2015</span>
 <span class="sd">Description: Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file</span>
 <span class="sd">@author: Ronak H Shah</span>
@@ -62,7 +68,7 @@
 <span class="sd">::Output::</span>
 <span class="sd">outputFile: File with following header</span>
 <span class="sd">&quot;TumorId\tNormalId\tChr1\tPos1\tChr2\tPos2\tSV_Type\tGene1\tGene2\tTranscript1\tTranscript2\tSite1Description\tSite2Description\tFusion\tProbabilityScore\tConfidence\tComments\tConnection_Type\tSV_LENGTH\tMAPQ\tPairEndReadSupport\tSplitReadSupport\tBrkptType\tConsensusSequence\tTumorVariantCount\tTumorSplitVariantCount\tTumorReadCount\tTumorGenotypeQScore\tNormalVariantCount\tNormalSplitVariantCount\tNormalReadCount\tNormalGenotypeQScorerepName-repClass-repFamily:-site1\trepName-repClass-repFamily:-site2\tCC_Chr_Band\tCC_Tumour_Types(Somatic)\tCC_Cancer_Syndrome\tCC_Mutation_Type\tCC_Translocation_Partner\tDGv_Name-DGv_VarType-site1\tDGv_Name-DGv_VarType-site2\n&quot;;</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -77,8 +83,6 @@
 <div class="viewcode-block" id="run"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.mergeFinalFiles.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">aId</span><span class="p">,</span> <span class="n">bId</span><span class="p">,</span> <span class="n">vcfFile</span><span class="p">,</span> <span class="n">annoTab</span><span class="p">,</span> <span class="n">confTab</span><span class="p">,</span> <span class="n">outDir</span><span class="p">,</span> <span class="n">outputPrefix</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This will Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file</span>
-
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param str aId: Sample ID for case that has the structural abberations</span>
 <span class="sd">    :param str bId: Sample ID for control</span>

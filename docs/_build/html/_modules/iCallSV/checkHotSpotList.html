@@ -48,27 +48,32 @@
             
   <h1>Source code for iCallSV.checkHotSpotList</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">checkHotSpotList</span>
+<span class="sd">~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: This module will read the hotspot file and tell if it is a hotspot or not</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on Mar 17, 2015</span>
 <span class="sd">Description: This module will read the hotspot file and tell if it is a hotspot or not</span>
 <span class="sd">@author: Ronak H Shah</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">::Inputs::</span>
 <span class="sd">HotSpotFile: List of Genes that have Hotspot Structural Variants (Tab-delimited Format without header:chr    start    end    geneName).</span>
 <span class="sd">chr1: Chromosome location for 1st breakpoint</span>
 <span class="sd">start1: Start location of the breakpoint</span>
 <span class="sd">chr2: Chromosome location for 2nd breakpoint</span>
 <span class="sd">start2: Start Location of the second breakpoint</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
 
 <span class="c1"># Read the hotspot file and make a dictionary of it</span>
 <div class="viewcode-block" id="ReadHotSpotFile"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkHotSpotList.ReadHotSpotFile">[docs]</a><span class="k">def</span> <span class="nf">ReadHotSpotFile</span><span class="p">(</span><span class="n">HotSpotFile</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Read the ``HotSpot region file``</span>
-
-<span class="sd">    :class:`str`.</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read the ``HotSpot region file``</span>
 
 <span class="sd">    :param str HotSpotFile: str of file to be read.</span>
 <span class="sd">    :return: A dict containing hotspot regions</span>
@@ -90,9 +95,8 @@
 
 <span class="c1"># Read the hotspot dictionary and tell if the event occurs in hotspot or not</span>
 <div class="viewcode-block" id="CheckIfItIsHotspot"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkHotSpotList.CheckIfItIsHotspot">[docs]</a><span class="k">def</span> <span class="nf">CheckIfItIsHotspot</span><span class="p">(</span><span class="n">chr1</span><span class="p">,</span> <span class="n">start1</span><span class="p">,</span> <span class="n">chr2</span><span class="p">,</span> <span class="n">start2</span><span class="p">,</span> <span class="n">hotspotDict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check if coordinate are present in the ``hotspot region file``</span>
-
-<span class="sd">    :class:`str`.</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if coordinate are present in the ``hotspot region file``</span>
 
 <span class="sd">    :param str chr1: str of the breakpoint in first chromosome</span>
 <span class="sd">    :param int start1: int of the start location of the breakpoint in first chromosome</span>
@@ -181,12 +185,6 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">hotspotTag</span> <span class="o">=</span> <span class="bp">False</span>
     <span class="k">return</span><span class="p">(</span><span class="n">hotspotTag</span><span class="p">)</span></div>
-
-<span class="c1"># # Test module</span>
-<span class="c1"># hotspotDict = ReadHotSpotFile(</span>
-<span class="c1">#     &quot;/home/shahr2/workspace/dmp-data/mskdata/interval-lists/structuralvariants_geneInterval.txt&quot;)</span>
-<span class="c1"># hotspotTag = CheckIfItIsHotspot(2, 29417089, 2, 30143125, hotspotDict)</span>
-<span class="c1"># print hotspotTag</span>
 </pre></div>
 
           </div>

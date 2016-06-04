@@ -55,41 +55,20 @@
 </div>
 <div class="section" id="module-iCallSV.FilterDellyCalls">
 <span id="icallsv-filterdellycalls-module"></span><h2>iCallSV.FilterDellyCalls module<a class="headerlink" href="#module-iCallSV.FilterDellyCalls" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 17, 2015
-Description: This module will filter calls made by Delly which are in a VCF format
-&#64;author: Ronak H Shah</p>
-<p>::Inputs::
-inputVcf: Input VCF file name with path
-outputDir: Output directory
-controlId: Control Sample ID (Should be part of Sample Name in VCF)
-caseID: Case Sample ID (Should be part of Sample Name in VCF)
-hospotFile: List of Genes that have Hotspot Structural Variants (Tab-delimited Format without header:chr    start    end    geneName).
-blacklistFile: List of Genes that have blacklist of Structural Variants (Tab-delimited Format without header:chr    start1    chr2     start2; where chr1==chr2, end==start2).
-caseAltFreq: Alternate Allele Frequency threshold for case
-caseTotalCount: Total ReadCount threshold for case
-ccontrolAltFreq: Alternate Allele Frequency threshold for control
-peSupport: overall pair-end read support threshold for the event
-srSupport: overall split-reads support threshold for the event
-peSupportHotspot: overall pair-end read support threshold for the event in hot-spot region
-srSupportHotspot: overall split-reads support threshold for the event in hot-spot region
-peSupportCase: pair-end read support threshold for the event in the Case sample
-srSupportCase: split-reads support threshold for the event in the Case sample
-peSupportHotspotCase: pair-end read support threshold for the event in hot-spot region for the Case sample
-srSupportHotspotCase: split-reads support threshold for the event in hot-spot region for the Case sample
-peSupportControl: pair-end read support threshold for the event in the Control sample
-srSupportControl: split-reads support threshold for the event in the Control sample
-peSupportHotspotControl: pair-end read support threshold for the event in hot-spot region for the Control sample
-srSupportHotspotControl: split-reads support threshold for the event in hot-spot region for the Control sample
-svlength: length of the structural variants
-mapq: overall mapping quality
-mapqHotspot: mapping quality for hot-spots</p>
-<p>::Output::
-Filtered VCF files</p>
+<div class="section" id="filterdellycalls">
+<h3>FilterDellyCalls<a class="headerlink" href="#filterdellycalls" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will filter calls made by Delly which are in a VCF format</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.FilterDellyCalls.GetCaseFlag">
 <code class="descclassname">iCallSV.FilterDellyCalls.</code><code class="descname">GetCaseFlag</code><span class="sig-paren">(</span><em>caseDR</em>, <em>caseDV</em>, <em>preciseFlag</em>, <em>caseRR</em>, <em>caseRV</em>, <em>caseAltFreq</em>, <em>caseTotalCount</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/FilterDellyCalls.html#GetCaseFlag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.FilterDellyCalls.GetCaseFlag" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will <code class="docutils literal"><span class="pre">check</span> <span class="pre">if</span> <span class="pre">the</span> <span class="pre">case</span> <span class="pre">sample</span> <span class="pre">passes</span> <span class="pre">or</span> <span class="pre">not</span></code></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -119,7 +98,6 @@ Filtered VCF files</p>
 <dt id="iCallSV.FilterDellyCalls.GetControlFlag">
 <code class="descclassname">iCallSV.FilterDellyCalls.</code><code class="descname">GetControlFlag</code><span class="sig-paren">(</span><em>controlDR</em>, <em>controlDV</em>, <em>preciseFlag</em>, <em>controlRR</em>, <em>controlRV</em>, <em>controlAltFreq</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/FilterDellyCalls.html#GetControlFlag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.FilterDellyCalls.GetControlFlag" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will <code class="docutils literal"><span class="pre">check</span> <span class="pre">if</span> <span class="pre">the</span> <span class="pre">control</span> <span class="pre">sample</span> <span class="pre">passes</span> <span class="pre">or</span> <span class="pre">not</span></code></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -148,7 +126,6 @@ Filtered VCF files</p>
 <dt id="iCallSV.FilterDellyCalls.GetFilteredRecords">
 <code class="descclassname">iCallSV.FilterDellyCalls.</code><code class="descname">GetFilteredRecords</code><span class="sig-paren">(</span><em>dellyVarialbles</em>, <em>thresholdVariables</em>, <em>hotspotDict</em>, <em>blacklist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/FilterDellyCalls.html#GetFilteredRecords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.FilterDellyCalls.GetFilteredRecords" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will <code class="docutils literal"><span class="pre">Filter</span> <span class="pre">one</span> <span class="pre">record</span> <span class="pre">at</span> <span class="pre">a</span> <span class="pre">time</span></code></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -175,7 +152,6 @@ Filtered VCF files</p>
 <dt id="iCallSV.FilterDellyCalls.run">
 <code class="descclassname">iCallSV.FilterDellyCalls.</code><code class="descname">run</code><span class="sig-paren">(</span><em>inputVcf</em>, <em>outputDir</em>, <em>controlId</em>, <em>caseID</em>, <em>hotspotFile</em>, <em>blacklistFile</em>, <em>svlength</em>, <em>mapq</em>, <em>mapqHotspot</em>, <em>caseAltFreqHotspot</em>, <em>caseTotalCountHotspot</em>, <em>controlAltFreqHotspot</em>, <em>caseAltFreq</em>, <em>caseTotalCount</em>, <em>controlAltFreq</em>, <em>peSupport</em>, <em>srSupport</em>, <em>peSupportHotspot</em>, <em>srSupportHotspot</em>, <em>peSupportCase</em>, <em>srSupportCase</em>, <em>peSupportHotspotCase</em>, <em>srSupportHotspotCase</em>, <em>peSupportControl</em>, <em>srSupportControl</em>, <em>peSupportHotspotControl</em>, <em>srSupportHotspotControl</em>, <em>verbose</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/FilterDellyCalls.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.FilterDellyCalls.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><a href="#id1"><span class="problematic" id="id2">``</span></a>main:<a href="#id3"><span class="problematic" id="id4">``</span></a>Filter calls made by Delly which are in a VCF format</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -219,32 +195,24 @@ Filtered VCF files</p>
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.Run_Delly">
 <span id="icallsv-run-delly-module"></span><h2>iCallSV.Run_Delly module<a class="headerlink" href="#module-iCallSV.Run_Delly" title="Permalink to this headline">¶</a></h2>
-<p>Created on March 17, 2015
-Description: Runs the delly program on case and control bam file to give its results
-&#64;author: Ronak H Shah
-::Inputs::
-delly:Path to delly executables (0.7.3 or above)
-bcftools:Path to bcftools executables (1.3.1 or above)
-type: What ot run in delly, DEL:Deletion, DUP: Duplication,TRA:Translocation, INV:Inversion
-reference: Reference Genome that was used to align the reads.
-controlBam: Path to control/normal bam file
-caseBam: Path to case/tumor bam file
-controlID: Id of the control/normal sample
-caseID: Id of the case/tumor sample
-mapq: mapping quality cutoff for delly
-excludeRegions: Regions to be excluded for calling structural variation.
-outputdir: directory for the output of delly
-debug: If you just wish to test what we will do
-::Output::
-VCF file having all the structural variants called</p>
+<div class="section" id="run-delly">
+<h3>Run_Delly<a class="headerlink" href="#run-delly" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Runs the delly program on case and control bam file to give its results</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.Run_Delly.run">
 <code class="descclassname">iCallSV.Run_Delly.</code><code class="descname">run</code><span class="sig-paren">(</span><em>delly</em>, <em>version</em>, <em>bcftools</em>, <em>analysisType</em>, <em>reference</em>, <em>controlBam</em>, <em>caseBam</em>, <em>caseId</em>, <em>mapq</em>, <em>excludeRegions</em>, <em>outputdir</em>, <em>verbose</em>, <em>debug</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/Run_Delly.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.Run_Delly.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will Runs the delly program on case and control bam file to give its
 results.</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <p>:param str delly:Path to delly executables (0.7.3 or above)
 :param str bcftools:Path to bcftools executables (1.3.1 or above)
 :param str type: What ot run in delly, DEL:Deletion, DUP: Duplication,TRA:Translocation, INV:Inversion
@@ -262,29 +230,23 @@ results.</p>
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.Run_iAnnotateSV">
 <span id="icallsv-run-iannotatesv-module"></span><h2>iCallSV.Run_iAnnotateSV module<a class="headerlink" href="#module-iCallSV.Run_iAnnotateSV" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 18, 2015
-Description: This module will run iAnnotateSV package
-&#64;author: Ronak H Shah</p>
-<p>::Input::
-python : Location for the python executable.
-iAnnotateSV : Location of the wrapper iAnnotateSV package (iAnnotateSV.py)
-build : Which human reference file to be used, hg18,hg19 or hg38
-inputTabFile : Tab-Delimited Input FIle compatible with iAnnotateSV package.
-outputPrefix: Prefix of the output files/DIR with Annotations and images
-outputDir : Name of the output directory where the outputPrefix will be written
-uniprotFile: Location for ucsc uniprot file
-cosmicFile: Location for cosmic census file
-repeatregionFile: Location for repeat region file
-dgvFile: Location for database of Genomic Variants file
-::Output::
-It is a tab-delimited file with annotation in them</p>
+<div class="section" id="run-iannotate">
+<h3>Run_iAnnotate<a class="headerlink" href="#run-iannotate" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will run iAnnotateSV package</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.Run_iAnnotateSV.run">
 <code class="descclassname">iCallSV.Run_iAnnotateSV.</code><code class="descname">run</code><span class="sig-paren">(</span><em>python</em>, <em>iAnnotateSV</em>, <em>build</em>, <em>distance</em>, <em>canonicalTranscriptFile</em>, <em>uniprotFile</em>, <em>cosmicFile</em>, <em>repeatregionFile</em>, <em>dgvFile</em>, <em>inputTabFile</em>, <em>outputPrefix</em>, <em>outputDir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/Run_iAnnotateSV.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.Run_iAnnotateSV.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>This module will run iAnnotateSV package</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<dd><p>This module will run iAnnotateSV package.</p>
 <p>:param str python : Location for the python executable.
 :param str iAnnotateSV : Location of the wrapper iAnnotateSV package (iAnnotateSV.py)
 :param str build : Which human reference file to be used, hg18,hg19 or hg38
@@ -300,27 +262,35 @@ It is a tab-delimited file with annotation in them</p>
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.Run_samblaster">
 <span id="icallsv-run-samblaster-module"></span><h2>iCallSV.Run_samblaster module<a class="headerlink" href="#module-iCallSV.Run_samblaster" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 20, 2015
-Description : This module will run samblaster for extracting discordant and spit reads in sam format
-&#64;author: Ronak Shah</p>
+<div class="section" id="run-samblaster">
+<h3>Run_samblaster<a class="headerlink" href="#run-samblaster" title="Permalink to this headline">¶</a></h3>
+<p>:Description : This module will run samblaster for extracting discordant and spit reads in sam format</p>
 <dl class="function">
 <dt id="iCallSV.Run_samblaster.run">
 <code class="descclassname">iCallSV.Run_samblaster.</code><code class="descname">run</code><span class="sig-paren">(</span><em>samtools</em>, <em>samblaster</em>, <em>bamFile</em>, <em>discordantFileName</em>, <em>splitFileName</em>, <em>outputDir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/Run_samblaster.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.Run_samblaster.run" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.Run_targetSeqView">
 <span id="icallsv-run-targetseqview-module"></span><h2>iCallSV.Run_targetSeqView module<a class="headerlink" href="#module-iCallSV.Run_targetSeqView" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 19, 2015
-Description: This module will run targetSeqView
-&#64;author: Ronak H Shah</p>
+<div class="section" id="run-targetseqview">
+<h3>Run_targetSeqView<a class="headerlink" href="#run-targetseqview" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will run targetSeqView</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.Run_targetSeqView.run">
 <code class="descclassname">iCallSV.Run_targetSeqView.</code><code class="descname">run</code><span class="sig-paren">(</span><em>RLocation</em>, <em>targetSeqView</em>, <em>nodes</em>, <em>bamFilePath</em>, <em>svFile</em>, <em>build</em>, <em>readLength</em>, <em>outputDir</em>, <em>outsvFileName</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/Run_targetSeqView.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.Run_targetSeqView.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>This module will run targetSeqView</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<dd><p>This module will run targetSeqView.</p>
 <p>:param str RLocation : Location of the R executable (&gt;3.1.2).
 :param str targetSeqView: Location of R script that will run tragetSeqView
 :param int nodes : Number of parallel nodes for running targetSeqView
@@ -335,16 +305,23 @@ Description: This module will run targetSeqView
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.checkBlackList">
 <span id="icallsv-checkblacklist-module"></span><h2>iCallSV.checkBlackList module<a class="headerlink" href="#module-iCallSV.checkBlackList" title="Permalink to this headline">¶</a></h2>
-<p>Created on Nov 20, 2015
-Description: This module will read the Black List file and tell if and event is blacklisted or not
-&#64;author: Ronak H Shah</p>
+<div class="section" id="checkblacklist">
+<h3>checkBlackList<a class="headerlink" href="#checkblacklist" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will read the Black List file and tell if and event is blacklisted or not</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.checkBlackList.CheckIfItIsBlacklisted">
 <code class="descclassname">iCallSV.checkBlackList.</code><code class="descname">CheckIfItIsBlacklisted</code><span class="sig-paren">(</span><em>chr1</em>, <em>start1</em>, <em>chr2</em>, <em>start2</em>, <em>blacklist</em>, <em>extention</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/checkBlackList.html#CheckIfItIsBlacklisted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.checkBlackList.CheckIfItIsBlacklisted" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if coordinate are present in the <code class="docutils literal"><span class="pre">blacklist</span> <span class="pre">region</span> <span class="pre">file</span></code></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -388,16 +365,23 @@ Description: This module will read the Black List file and tell if and event is 
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.checkHotSpotList">
 <span id="icallsv-checkhotspotlist-module"></span><h2>iCallSV.checkHotSpotList module<a class="headerlink" href="#module-iCallSV.checkHotSpotList" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 17, 2015
-Description: This module will read the hotspot file and tell if it is a hotspot or not
-&#64;author: Ronak H Shah</p>
+<div class="section" id="checkhotspotlist">
+<h3>checkHotSpotList<a class="headerlink" href="#checkhotspotlist" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will read the hotspot file and tell if it is a hotspot or not</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.checkHotSpotList.CheckIfItIsHotspot">
 <code class="descclassname">iCallSV.checkHotSpotList.</code><code class="descname">CheckIfItIsHotspot</code><span class="sig-paren">(</span><em>chr1</em>, <em>start1</em>, <em>chr2</em>, <em>start2</em>, <em>hotspotDict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/checkHotSpotList.html#CheckIfItIsHotspot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.checkHotSpotList.CheckIfItIsHotspot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if coordinate are present in the <code class="docutils literal"><span class="pre">hotspot</span> <span class="pre">region</span> <span class="pre">file</span></code></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -425,7 +409,6 @@ Description: This module will read the hotspot file and tell if it is a hotspot 
 <dt id="iCallSV.checkHotSpotList.ReadHotSpotFile">
 <code class="descclassname">iCallSV.checkHotSpotList.</code><code class="descname">ReadHotSpotFile</code><span class="sig-paren">(</span><em>HotSpotFile</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/checkHotSpotList.html#ReadHotSpotFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.checkHotSpotList.ReadHotSpotFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the <code class="docutils literal"><span class="pre">HotSpot</span> <span class="pre">region</span> <span class="pre">file</span></code></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -441,16 +424,23 @@ Description: This module will read the hotspot file and tell if it is a hotspot 
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.checkparameters">
 <span id="icallsv-checkparameters-module"></span><h2>iCallSV.checkparameters module<a class="headerlink" href="#module-iCallSV.checkparameters" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 16, 2015
-Description: This modules checks the parameters for various type of inputs.
-&#64;author: Ronak H Shah</p>
+<div class="section" id="checkparameters">
+<h3>checkparameters<a class="headerlink" href="#checkparameters" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This modules checks the parameters for various type of inputs.</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.checkparameters.checkDellyAnalysisType">
 <code class="descclassname">iCallSV.checkparameters.</code><code class="descname">checkDellyAnalysisType</code><span class="sig-paren">(</span><em>varaibleToCheck</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/checkparameters.html#checkDellyAnalysisType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.checkparameters.checkDellyAnalysisType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check <cite>if the variable for Delly analysis exists or not`</cite></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -488,7 +478,6 @@ Description: This modules checks the parameters for various type of inputs.
 <dt id="iCallSV.checkparameters.checkEmpty">
 <code class="descclassname">iCallSV.checkparameters.</code><code class="descname">checkEmpty</code><span class="sig-paren">(</span><em>variableToCheck</em>, <em>variableName</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/checkparameters.html#checkEmpty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.checkparameters.checkEmpty" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check <cite>if the variable is None or not`</cite></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -513,7 +502,6 @@ Description: This modules checks the parameters for various type of inputs.
 <dt id="iCallSV.checkparameters.checkFile">
 <code class="descclassname">iCallSV.checkparameters.</code><code class="descname">checkFile</code><span class="sig-paren">(</span><em>fileToCheck</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/checkparameters.html#checkFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.checkparameters.checkFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check <cite>if the file exists or not`</cite></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -532,7 +520,6 @@ Description: This modules checks the parameters for various type of inputs.
 <dt id="iCallSV.checkparameters.checkInt">
 <code class="descclassname">iCallSV.checkparameters.</code><code class="descname">checkInt</code><span class="sig-paren">(</span><em>variableToCheck</em>, <em>variableName</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/checkparameters.html#checkInt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.checkparameters.checkInt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check <cite>if the variable is int or not`</cite></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -554,16 +541,23 @@ Description: This modules checks the parameters for various type of inputs.
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.combineVCF">
 <span id="icallsv-combinevcf-module"></span><h2>iCallSV.combineVCF module<a class="headerlink" href="#module-iCallSV.combineVCF" title="Permalink to this headline">¶</a></h2>
-<p>Created on December 18, 2015
-Description: This module will combine multiple vcf file with same headers
-&#64;author: Ronak H Shah</p>
+<div class="section" id="combinevcf">
+<h3>combineVCF<a class="headerlink" href="#combinevcf" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will combine multiple vcf file with same headers</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.combineVCF.run">
 <code class="descclassname">iCallSV.combineVCF.</code><code class="descname">run</code><span class="sig-paren">(</span><em>vcfFiles</em>, <em>combinedVCF</em>, <em>verbose</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/combineVCF.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.combineVCF.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will <code class="docutils literal"><span class="pre">combine</span> <span class="pre">multiple</span> <span class="pre">vcf</span> <span class="pre">file</span> <span class="pre">with</span> <span class="pre">same</span> <span class="pre">headers</span></code></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -586,16 +580,23 @@ Description: This module will combine multiple vcf file with same headers
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.dellyVcf2Tab">
 <span id="icallsv-dellyvcf2tab-module"></span><h2>iCallSV.dellyVcf2Tab module<a class="headerlink" href="#module-iCallSV.dellyVcf2Tab" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 18, 2015
-Description: This module converts the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV
-&#64;author: Ronak H Shah</p>
+<div class="section" id="dellyvcf2tab">
+<h3>dellyVcf2Tab<a class="headerlink" href="#dellyvcf2tab" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module converts the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.dellyVcf2Tab.vcf2tab">
 <code class="descclassname">iCallSV.dellyVcf2Tab.</code><code class="descname">vcf2tab</code><span class="sig-paren">(</span><em>vcfFile</em>, <em>outputDir</em>, <em>verbose</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/dellyVcf2Tab.html#vcf2tab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.dellyVcf2Tab.vcf2tab" title="Permalink to this definition">¶</a></dt>
 <dd><p>This <code class="docutils literal"><span class="pre">converts</span></code> the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -618,28 +619,23 @@ Description: This module converts the Delly Vcf file having tumor normal, to tab
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.dellyVcf2targetSeqView">
 <span id="icallsv-dellyvcf2targetseqview-module"></span><h2>iCallSV.dellyVcf2targetSeqView module<a class="headerlink" href="#module-iCallSV.dellyVcf2targetSeqView" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 19, 2015
-Description: Convert VCF to targetSeqView
-#Example:
-SampleDesc    Chr1    Start1    End1    LeftSideSegDup    Chr2    Start2    End2    RightSideSeqDup    ValidationStatus    Sample    SplitsSample
-Ramos    15    22462315    22462465    TRUE    14    106467050    106467150    TRUE    Failed PCR    1320KB0009MultipleAlnsort.bam    1320KB0009.bam
-::Input::
-sampleName: Name of the sample that has the structural abberations
-sampleBamName: Name of the bam file.
-sampleSplitBaName: Name of the split bam file (Use bam file if you dont have split bam file)
-vcfFile: Input Delly VCF file for the conversion
-outputDir: Directory to write the output file
-outputFileName: Name of the output File
-::Output::
-outputFile: TargetSeqView format text file for a given vcf file.
-&#64;author: Ronak H Shah</p>
+<div class="section" id="dellyvcf2targetseqview">
+<h3>dellyVcf2targetSeqView<a class="headerlink" href="#dellyvcf2targetseqview" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Convert VCF to targetSeqView</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.dellyVcf2targetSeqView.Convert2targetSeqView">
 <code class="descclassname">iCallSV.dellyVcf2targetSeqView.</code><code class="descname">Convert2targetSeqView</code><span class="sig-paren">(</span><em>sampleName</em>, <em>sampleBamName</em>, <em>sampleSplitBamName</em>, <em>vcfFile</em>, <em>outputDir</em>, <em>outputFileName</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/dellyVcf2targetSeqView.html#Convert2targetSeqView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.dellyVcf2targetSeqView.Convert2targetSeqView" title="Permalink to this definition">¶</a></dt>
 <dd><p>This <code class="docutils literal"><span class="pre">converts</span></code> the Delly Vcf file having tumor normal, to tab-delimited format for input to targetSeqView</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -665,25 +661,23 @@ outputFile: TargetSeqView format text file for a given vcf file.
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.filterAnnotatedSV">
 <span id="icallsv-filterannotatedsv-module"></span><h2>iCallSV.filterAnnotatedSV module<a class="headerlink" href="#module-iCallSV.filterAnnotatedSV" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 17, 2015
-Description: This module will filter calls from the merged file
-&#64;author: Ronak H Shah</p>
-<p>::Inputs::
-inputTxt: Filter Text File
-outputDir: Output directory
-outPrefix: Prefix of the output file
-blacklistGenesFile: List of genes that should be eliminated
-genesToKeepFile: List of genes that should be kept
-verbose: Mode</p>
-<p>::Output::
-Filtered Output files</p>
+<div class="section" id="filterannotatedsv">
+<h3>filterAnnotatedSV<a class="headerlink" href="#filterannotatedsv" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will filter calls from the merged file</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.filterAnnotatedSV.checkBlackListGene">
 <code class="descclassname">iCallSV.filterAnnotatedSV.</code><code class="descname">checkBlackListGene</code><span class="sig-paren">(</span><em>gene1</em>, <em>gene2</em>, <em>blacklistGenes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/filterAnnotatedSV.html#checkBlackListGene"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.filterAnnotatedSV.checkBlackListGene" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will <code class="docutils literal"><span class="pre">check</span> <span class="pre">for</span> <span class="pre">blacklisted</span> <span class="pre">genes</span></code></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -709,8 +703,8 @@ Filtered Output files</p>
 <dl class="function">
 <dt id="iCallSV.filterAnnotatedSV.checkEventInIntronFlag">
 <code class="descclassname">iCallSV.filterAnnotatedSV.</code><code class="descname">checkEventInIntronFlag</code><span class="sig-paren">(</span><em>gene1</em>, <em>gene2</em>, <em>site1</em>, <em>site2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/filterAnnotatedSV.html#checkEventInIntronFlag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.filterAnnotatedSV.checkEventInIntronFlag" title="Permalink to this definition">¶</a></dt>
-<dd><p>This will <code class="docutils literal"><span class="pre">Check</span> <span class="pre">if</span> <span class="pre">the</span> <span class="pre">event</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">intron</span> <span class="pre">only</span> <span class="pre">and</span> <span class="pre">not</span> <span class="pre">affecting</span> <span class="pre">splicing</span></code></p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<dd><p>This will <code class="docutils literal"><span class="pre">Check</span> <span class="pre">if</span> <span class="pre">the</span> <span class="pre">event</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">intron</span> <span class="pre">only</span> <span class="pre">and</span> <span class="pre">not</span> <span class="pre">affecting</span>
+<span class="pre">splicing</span></code></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -741,8 +735,7 @@ Filtered Output files</p>
 <dl class="function">
 <dt id="iCallSV.filterAnnotatedSV.run">
 <code class="descclassname">iCallSV.filterAnnotatedSV.</code><code class="descname">run</code><span class="sig-paren">(</span><em>inputTxt</em>, <em>outputDir</em>, <em>outPrefix</em>, <em>blacklistGenesFile</em>, <em>genesToKeepFile</em>, <em>verbose</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/filterAnnotatedSV.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.filterAnnotatedSV.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>This will <code class="docutils literal"><span class="pre">filter</span> <span class="pre">sv</span> <span class="pre">calls</span></code> from the final merged file</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<dd><p>This will <code class="docutils literal"><span class="pre">filter</span> <span class="pre">sv</span> <span class="pre">calls</span></code> from the final merged file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -768,26 +761,45 @@ Filtered Output files</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-iCallSV.iCallSV">
-<span id="icallsv-icallsv-module"></span><h2>iCallSV.iCallSV module<a class="headerlink" href="#module-iCallSV.iCallSV" title="Permalink to this headline">¶</a></h2>
-<p>iCallSV.iCallSV &#8211; wrapper to run iCallSV package</p>
-<p>iCallSV.iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina</p>
-<p>It defines classes_and_methods</p>
-<p>&#64;author:     Ronak H Shah</p>
-<p>&#64;copyright:  2015-2016 Ronak H Shah. All rights reserved.</p>
-<p>&#64;license:    Apache License 2.0</p>
-<p>&#64;contact:    <a class="reference external" href="mailto:rons&#46;shah&#37;&#52;&#48;gmail&#46;com">rons<span>&#46;</span>shah<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
-<p>&#64;deffield    updated: Updated</p>
+</div>
+<div class="section" id="icallsv-icallsv-module">
+<h2>iCallSV.iCallSV module<a class="headerlink" href="#icallsv-icallsv-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-iCallSV.iCallSV_dmp_wrapper">
 <span id="icallsv-icallsv-dmp-wrapper-module"></span><h2>iCallSV.iCallSV_dmp_wrapper module<a class="headerlink" href="#module-iCallSV.iCallSV_dmp_wrapper" title="Permalink to this headline">¶</a></h2>
-<p>Created on 05/18/2016.</p>
-<p>&#64;Ronak Shah</p>
+<div class="section" id="icallsv-dmp-wrapper">
+<h3>iCallSV_dmp_wrapper<a class="headerlink" href="#icallsv-dmp-wrapper" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">iCallSV is a wrapper to run the iCallSV package on MSKCC data</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">author:</th><td class="field-body"><p class="first">Ronak H Shah</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first">Apache License 2.0</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">contact:</th><td class="field-body"><p class="first"><a class="reference external" href="mailto:rons&#46;shah&#37;&#52;&#48;gmail&#46;com">rons<span>&#46;</span>shah<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">deffield    updated:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">Updated</p>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.iCallSV_dmp_wrapper.RunJob">
 <code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">RunJob</code><span class="sig-paren">(</span><em>cmd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#RunJob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.RunJob" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a command run the job.</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -806,7 +818,6 @@ Filtered Output files</p>
 <dt id="iCallSV.iCallSV_dmp_wrapper.RunPerPool">
 <code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">RunPerPool</code><span class="sig-paren">(</span><em>titleFile</em>, <em>outdir</em>, <em>HSmetricsFileList</em>, <em>bamFileList</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#RunPerPool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.RunPerPool" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will run the pool to be analyzed.</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -834,7 +845,6 @@ Filtered Output files</p>
 <dt id="iCallSV.iCallSV_dmp_wrapper.SelectNormal">
 <code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">SelectNormal</code><span class="sig-paren">(</span><em>normal</em>, <em>poolnormal</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#SelectNormal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.SelectNormal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Select the best possible normal.</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -859,7 +869,6 @@ Filtered Output files</p>
 <dt id="iCallSV.iCallSV_dmp_wrapper.SetupRun">
 <code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">SetupRun</code><span class="sig-paren">(</span><em>poolName</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#SetupRun"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.SetupRun" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will setup the run to be analyzed.</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -884,7 +893,6 @@ Filtered Output files</p>
 <dt id="iCallSV.iCallSV_dmp_wrapper.getSubDirs">
 <code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">getSubDirs</code><span class="sig-paren">(</span><em>dirLocation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#getSubDirs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.getSubDirs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get all sub directories.</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -908,7 +916,6 @@ Filtered Output files</p>
 <dt id="iCallSV.iCallSV_dmp_wrapper.processor">
 <code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">processor</code><span class="sig-paren">(</span><em>i</em>, <em>jobqueue</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#processor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Operate on a jobqueue.</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -929,6 +936,7 @@ Filtered Output files</p>
 </table>
 </dd></dl>
 
+</div>
 </div>
 <div class="section" id="module-iCallSV.launchThreads">
 <span id="icallsv-launchthreads-module"></span><h2>iCallSV.launchThreads module<a class="headerlink" href="#module-iCallSV.launchThreads" title="Permalink to this headline">¶</a></h2>
@@ -954,14 +962,20 @@ Description: This module will be launching functions as threads
 </div>
 <div class="section" id="module-iCallSV.launch_FilterDellyCalls">
 <span id="icallsv-launch-filterdellycalls-module"></span><h2>iCallSV.launch_FilterDellyCalls module<a class="headerlink" href="#module-iCallSV.launch_FilterDellyCalls" title="Permalink to this headline">¶</a></h2>
-<p>Created on November 20, 2015
-Description: This module will filter delly results and create filtered delly vcf files
-&#64;author: Ronak H Shah</p>
+<div class="section" id="launch-filterdellycalls">
+<h3>launch_FilterDellyCalls<a class="headerlink" href="#launch-filterdellycalls" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will filter delly results and create filtered delly vcf files</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.launch_FilterDellyCalls.launch_filterdellycalls_for_different_analysis_type">
 <code class="descclassname">iCallSV.launch_FilterDellyCalls.</code><code class="descname">launch_filterdellycalls_for_different_analysis_type</code><span class="sig-paren">(</span><em>args</em>, <em>config</em>, <em>sampleOutdirForDelly</em>, <em>del_vcf</em>, <em>dup_vcf</em>, <em>inv_vcf</em>, <em>tra_vcf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/launch_FilterDellyCalls.html#launch_filterdellycalls_for_different_analysis_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.launch_FilterDellyCalls.launch_filterdellycalls_for_different_analysis_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will launch the filtering of delly calls in parallel.</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -988,20 +1002,23 @@ Description: This module will filter delly results and create filtered delly vcf
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.launch_Run_Delly">
 <span id="icallsv-launch-run-delly-module"></span><h2>iCallSV.launch_Run_Delly module<a class="headerlink" href="#module-iCallSV.launch_Run_Delly" title="Permalink to this headline">¶</a></h2>
-<p>Created on November 19, 2015
-Description: This module will be launching delly using Run_Delly
-&#64;author: Ronak H Shah
-::Inputs::
-args: Arguments passed to iCallSV
-config: configuration file passed to iCallSV
-sampleOutdirForDelly: Output directory for delly vcf files.</p>
+<div class="section" id="launch-run-delly">
+<h3>launch_Run_Delly<a class="headerlink" href="#launch-run-delly" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will be launching delly using Run_Delly</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.launch_Run_Delly.launch_delly_for_different_analysis_type">
 <code class="descclassname">iCallSV.launch_Run_Delly.</code><code class="descname">launch_delly_for_different_analysis_type</code><span class="sig-paren">(</span><em>args</em>, <em>config</em>, <em>sampleOutdirForDelly</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/launch_Run_Delly.html#launch_delly_for_different_analysis_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.launch_Run_Delly.launch_delly_for_different_analysis_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will launch delly calls in parallel.</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1024,16 +1041,23 @@ sampleOutdirForDelly: Output directory for delly vcf files.</p>
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.make_analysis_dir">
 <span id="icallsv-make-analysis-dir-module"></span><h2>iCallSV.make_analysis_dir module<a class="headerlink" href="#module-iCallSV.make_analysis_dir" title="Permalink to this headline">¶</a></h2>
-<p>Created on November 19, 2015
-Description: This module will make directory structure for running analysis
-&#64;author: Ronak H Shah</p>
+<div class="section" id="make-analysis-dir">
+<h3>make_analysis_dir<a class="headerlink" href="#make-analysis-dir" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will make directory structure for running analysis</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.make_analysis_dir.makeOutputDir">
 <code class="descclassname">iCallSV.make_analysis_dir.</code><code class="descname">makeOutputDir</code><span class="sig-paren">(</span><em>args</em>, <em>tool</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/make_analysis_dir.html#makeOutputDir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.make_analysis_dir.makeOutputDir" title="Permalink to this definition">¶</a></dt>
-<dd><p>This will make the output directory tree</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<dd><p>This will make the output directory tree.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1049,15 +1073,23 @@ Description: This module will make directory structure for running analysis
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.makebamindex">
 <span id="icallsv-makebamindex-module"></span><h2>iCallSV.makebamindex module<a class="headerlink" href="#module-iCallSV.makebamindex" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 16, 2015.</p>
-<p>&#64;author: Ronak H Shah</p>
+<div class="section" id="makebamindex">
+<h3>makebamindex<a class="headerlink" href="#makebamindex" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Use PySAM to make bam index</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.makebamindex.MakeIndex">
 <code class="descclassname">iCallSV.makebamindex.</code><code class="descname">MakeIndex</code><span class="sig-paren">(</span><em>bamFile</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/makebamindex.html#MakeIndex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.makebamindex.MakeIndex" title="Permalink to this definition">¶</a></dt>
-<dd><p>This will make bam index if not there for a bam file using pysam</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
+<dd><p>This will make bam index if not there for a bam file using pysam.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1073,28 +1105,23 @@ Description: This module will make directory structure for running analysis
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.mergeFinalFiles">
 <span id="icallsv-mergefinalfiles-module"></span><h2>iCallSV.mergeFinalFiles module<a class="headerlink" href="#module-iCallSV.mergeFinalFiles" title="Permalink to this headline">¶</a></h2>
-<p>Created on May 17, 2015
-Description: Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file
-&#64;author: Ronak H Shah
-::Input::
-aId: Sample ID for case that has the structural abberations
-bId: Sample ID for control
-vcfFile: Delly filtered and merged VCF file
-annoTab: iAnnotateSV tab-delimited file with annotations
-confTab: targetSeqView tab-delimited file with probability score
-outputDir: Directory to write the output file
-outputPrefix: Output File Prefix
-::Output::
-outputFile: File with following header
-&#8220;TumorId        NormalId        Chr1    Pos1    Chr2    Pos2    SV_Type Gene1   Gene2   Transcript1     Transcript2     Site1Description        Site2Description        Fusion  ProbabilityScore        Confidence      Comments        Connection_Type SV_LENGTH       MAPQ    PairEndReadSupport      SplitReadSupport        BrkptType       ConsensusSequence       TumorVariantCount       TumorSplitVariantCount  TumorReadCount  TumorGenotypeQScore     NormalVariantCount      NormalSplitVariantCount NormalReadCount NormalGenotypeQScorerepName-repClass-repFamily:-site1   repName-repClass-repFamily:-site2       CC_Chr_Band     CC_Tumour_Types(Somatic)        CC_Cancer_Syndrome      CC_Mutation_Type        CC_Translocation_Partner        DGv_Name-DGv_VarType-site1      DGv_Name-DGv_VarType-site2
-&#8221;;</p>
+<div class="section" id="mergefinalfiles">
+<h3>mergeFinalFiles<a class="headerlink" href="#mergefinalfiles" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.mergeFinalFiles.run">
 <code class="descclassname">iCallSV.mergeFinalFiles.</code><code class="descname">run</code><span class="sig-paren">(</span><em>aId</em>, <em>bId</em>, <em>vcfFile</em>, <em>annoTab</em>, <em>confTab</em>, <em>outDir</em>, <em>outputPrefix</em>, <em>verbose</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/mergeFinalFiles.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.mergeFinalFiles.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file</p>
-<p><code class="xref py py-class docutils literal"><span class="pre">str</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1121,27 +1148,44 @@ outputFile: File with following header
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.sortbamByCoordinate">
 <span id="icallsv-sortbambycoordinate-module"></span><h2>iCallSV.sortbamByCoordinate module<a class="headerlink" href="#module-iCallSV.sortbamByCoordinate" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 19, 2015
-Description: This module will sort bam file by coordinate
-&#64;author: Ronak H Shah</p>
+<div class="section" id="sortbambycoordinate">
+<h3>sortbamByCoordinate<a class="headerlink" href="#sortbambycoordinate" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will sort bam file by coordinate</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.sortbamByCoordinate.sortBam">
 <code class="descclassname">iCallSV.sortbamByCoordinate.</code><code class="descname">sortBam</code><span class="sig-paren">(</span><em>inputBam</em>, <em>outputBamName</em>, <em>outputDir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/sortbamByCoordinate.html#sortBam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.sortbamByCoordinate.sortBam" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-iCallSV.sortbamByReadName">
 <span id="icallsv-sortbambyreadname-module"></span><h2>iCallSV.sortbamByReadName module<a class="headerlink" href="#module-iCallSV.sortbamByReadName" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mar 18, 2015
-Description: This module will sort bam file by name
-&#64;author: Ronak H Shah</p>
+<div class="section" id="sortbambyreadname">
+<h3>sortbamByReadName<a class="headerlink" href="#sortbambyreadname" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">This module will sort bam file by name</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="iCallSV.sortbamByReadName.sortBam">
 <code class="descclassname">iCallSV.sortbamByReadName.</code><code class="descname">sortBam</code><span class="sig-paren">(</span><em>inputBam</em>, <em>outputBamName</em>, <em>outputDir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/sortbamByReadName.html#sortBam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.sortbamByReadName.sortBam" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</div>
 </div>
 <div class="section" id="module-iCallSV">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-iCallSV" title="Permalink to this headline">¶</a></h2>
@@ -1158,28 +1202,88 @@ Description: This module will sort bam file by name
   <ul>
 <li><a class="reference internal" href="#">iCallSV package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-iCallSV.FilterDellyCalls">iCallSV.FilterDellyCalls module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.Run_Delly">iCallSV.Run_Delly module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.Run_iAnnotateSV">iCallSV.Run_iAnnotateSV module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.Run_samblaster">iCallSV.Run_samblaster module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.Run_targetSeqView">iCallSV.Run_targetSeqView module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.checkBlackList">iCallSV.checkBlackList module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.checkHotSpotList">iCallSV.checkHotSpotList module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.checkparameters">iCallSV.checkparameters module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.combineVCF">iCallSV.combineVCF module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.dellyVcf2Tab">iCallSV.dellyVcf2Tab module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.dellyVcf2targetSeqView">iCallSV.dellyVcf2targetSeqView module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.filterAnnotatedSV">iCallSV.filterAnnotatedSV module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.iCallSV">iCallSV.iCallSV module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.iCallSV_dmp_wrapper">iCallSV.iCallSV_dmp_wrapper module</a></li>
+<li><a class="reference internal" href="#module-iCallSV.FilterDellyCalls">iCallSV.FilterDellyCalls module</a><ul>
+<li><a class="reference internal" href="#filterdellycalls">FilterDellyCalls</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.Run_Delly">iCallSV.Run_Delly module</a><ul>
+<li><a class="reference internal" href="#run-delly">Run_Delly</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.Run_iAnnotateSV">iCallSV.Run_iAnnotateSV module</a><ul>
+<li><a class="reference internal" href="#run-iannotate">Run_iAnnotate</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.Run_samblaster">iCallSV.Run_samblaster module</a><ul>
+<li><a class="reference internal" href="#run-samblaster">Run_samblaster</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.Run_targetSeqView">iCallSV.Run_targetSeqView module</a><ul>
+<li><a class="reference internal" href="#run-targetseqview">Run_targetSeqView</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.checkBlackList">iCallSV.checkBlackList module</a><ul>
+<li><a class="reference internal" href="#checkblacklist">checkBlackList</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.checkHotSpotList">iCallSV.checkHotSpotList module</a><ul>
+<li><a class="reference internal" href="#checkhotspotlist">checkHotSpotList</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.checkparameters">iCallSV.checkparameters module</a><ul>
+<li><a class="reference internal" href="#checkparameters">checkparameters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.combineVCF">iCallSV.combineVCF module</a><ul>
+<li><a class="reference internal" href="#combinevcf">combineVCF</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.dellyVcf2Tab">iCallSV.dellyVcf2Tab module</a><ul>
+<li><a class="reference internal" href="#dellyvcf2tab">dellyVcf2Tab</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.dellyVcf2targetSeqView">iCallSV.dellyVcf2targetSeqView module</a><ul>
+<li><a class="reference internal" href="#dellyvcf2targetseqview">dellyVcf2targetSeqView</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.filterAnnotatedSV">iCallSV.filterAnnotatedSV module</a><ul>
+<li><a class="reference internal" href="#filterannotatedsv">filterAnnotatedSV</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#icallsv-icallsv-module">iCallSV.iCallSV module</a></li>
+<li><a class="reference internal" href="#module-iCallSV.iCallSV_dmp_wrapper">iCallSV.iCallSV_dmp_wrapper module</a><ul>
+<li><a class="reference internal" href="#icallsv-dmp-wrapper">iCallSV_dmp_wrapper</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-iCallSV.launchThreads">iCallSV.launchThreads module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.launch_FilterDellyCalls">iCallSV.launch_FilterDellyCalls module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.launch_Run_Delly">iCallSV.launch_Run_Delly module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.make_analysis_dir">iCallSV.make_analysis_dir module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.makebamindex">iCallSV.makebamindex module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.mergeFinalFiles">iCallSV.mergeFinalFiles module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.sortbamByCoordinate">iCallSV.sortbamByCoordinate module</a></li>
-<li><a class="reference internal" href="#module-iCallSV.sortbamByReadName">iCallSV.sortbamByReadName module</a></li>
+<li><a class="reference internal" href="#module-iCallSV.launch_FilterDellyCalls">iCallSV.launch_FilterDellyCalls module</a><ul>
+<li><a class="reference internal" href="#launch-filterdellycalls">launch_FilterDellyCalls</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.launch_Run_Delly">iCallSV.launch_Run_Delly module</a><ul>
+<li><a class="reference internal" href="#launch-run-delly">launch_Run_Delly</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.make_analysis_dir">iCallSV.make_analysis_dir module</a><ul>
+<li><a class="reference internal" href="#make-analysis-dir">make_analysis_dir</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.makebamindex">iCallSV.makebamindex module</a><ul>
+<li><a class="reference internal" href="#makebamindex">makebamindex</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.mergeFinalFiles">iCallSV.mergeFinalFiles module</a><ul>
+<li><a class="reference internal" href="#mergefinalfiles">mergeFinalFiles</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.sortbamByCoordinate">iCallSV.sortbamByCoordinate module</a><ul>
+<li><a class="reference internal" href="#sortbambycoordinate">sortbamByCoordinate</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iCallSV.sortbamByReadName">iCallSV.sortbamByReadName module</a><ul>
+<li><a class="reference internal" href="#sortbambyreadname">sortbamByReadName</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-iCallSV">Module contents</a></li>
 </ul>
 </li>

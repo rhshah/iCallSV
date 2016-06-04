@@ -48,11 +48,19 @@
             
   <h1>Source code for iCallSV.iCallSV_dmp_wrapper</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Created on 05/18/2016.</span>
+<span class="sd">iCallSV_dmp_wrapper</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~</span>
 
-<span class="sd">@Ronak Shah</span>
+<span class="sd">:Description: iCallSV is a wrapper to run the iCallSV package on MSKCC data</span>
+<span class="sd">:author:     Ronak H Shah</span>
+<span class="sd">:copyright:  (c) 2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.</span>
+<span class="sd">:license:    Apache License 2.0</span>
+<span class="sd">:contact:    rons.shah@gmail.com</span>
+<span class="sd">:deffield    updated: Updated</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
+
+
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -203,7 +211,6 @@
 <div class="viewcode-block" id="SetupRun"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.iCallSV_dmp_wrapper.SetupRun">[docs]</a><span class="k">def</span> <span class="nf">SetupRun</span><span class="p">(</span><span class="n">poolName</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This will setup the run to be analyzed.</span>
 
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param str poolName: str of pool to be analyzed</span>
 <span class="sd">    :param Namespace args: Namespace of args to get other variables</span>
@@ -271,7 +278,6 @@
 <div class="viewcode-block" id="RunPerPool"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.iCallSV_dmp_wrapper.RunPerPool">[docs]</a><span class="k">def</span> <span class="nf">RunPerPool</span><span class="p">(</span><span class="n">titleFile</span><span class="p">,</span> <span class="n">outdir</span><span class="p">,</span> <span class="n">HSmetricsFileList</span><span class="p">,</span> <span class="n">bamFileList</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This will run the pool to be analyzed.</span>
 
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param str titleFile: str of meta information file</span>
 <span class="sd">    :param str outdir: str of output directory</span>
@@ -369,7 +375,6 @@
 <div class="viewcode-block" id="RunJob"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.iCallSV_dmp_wrapper.RunJob">[docs]</a><span class="k">def</span> <span class="nf">RunJob</span><span class="p">(</span><span class="n">cmd</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Given a command run the job.</span>
 
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param str cmd: str of command to be run on the local machine</span>
 <span class="sd">    :return: None</span>
@@ -402,8 +407,6 @@
 
 <div class="viewcode-block" id="SelectNormal"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.iCallSV_dmp_wrapper.SelectNormal">[docs]</a><span class="k">def</span> <span class="nf">SelectNormal</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="n">poolnormal</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Select the best possible normal.</span>
-
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param str normal: str of match normal</span>
 <span class="sd">    :param str poolnormal: str of pool normal</span>
@@ -463,7 +466,6 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all sub directories.</span>
 
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param str dirLocation: str of directory location</span>
 <span class="sd">    :return: list of all sub directories</span>
@@ -480,7 +482,6 @@
 <div class="viewcode-block" id="processor"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.iCallSV_dmp_wrapper.processor">[docs]</a><span class="k">def</span> <span class="nf">processor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">jobqueue</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Operate on a jobqueue.</span>
 
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param int i: count of the job</span>
 <span class="sd">    :param Namespace jobqueue: Namespace for jobqueue</span>

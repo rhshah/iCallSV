@@ -1,22 +1,29 @@
 """
+checkparameters
+~~~~~~~~~~~~~~~
+
+:Description: This modules checks the parameters for various type of inputs.
+
+"""
+'''
 Created on Mar 16, 2015
 Description: This modules checks the parameters for various type of inputs.
 @author: Ronak H Shah
-"""
+'''
 
 import os
 import sys
 import logging
 
-#initiate Logger
+# initiate Logger
 logger = logging.getLogger('iCallSV.checkparameters')
 
 # Check if the file exist
 
-def checkFile(fileToCheck):
-    """Check `if the file exists or not``
 
-    :class:`str`.
+def checkFile(fileToCheck):
+    """
+    Check `if the file exists or not``
 
     :param str fileToCheck: Name of the file to be checked.
     :return: None
@@ -35,7 +42,8 @@ def checkFile(fileToCheck):
 # Check if the Directory exists
 
 def checkDir(folderToCheck):
-    """Check `if the folder exists or not``
+    """
+    Check `if the folder exists or not``
 
     :class:`str`.
 
@@ -56,11 +64,10 @@ def checkDir(folderToCheck):
 # Check if the variable is and Integer
 
 def checkInt(variableToCheck, variableName):
-    """Check `if the variable is int or not``
+    """
+    Check `if the variable is int or not``
 
-    :class:`str`.
-
-    :param int variableToCheck: Check if it is int or not 
+    :param int variableToCheck: Check if it is int or not
     :param str variableName: Name of the int object to be verified
     :return: None
     :rtype: None
@@ -82,11 +89,10 @@ def checkInt(variableToCheck, variableName):
 # Check if the given variable is not Empty
 
 def checkEmpty(variableToCheck, variableName):
-    """Check `if the variable is None or not``
+    """
+    Check `if the variable is None or not``
 
-    :class:`str`.
-
-    :param str variableToCheck: check if str is None or not 
+    :param str variableToCheck: check if str is None or not
     :param str variableName: Name of the None object to be verified
     :return: None
     :rtype: None
@@ -105,11 +111,10 @@ def checkEmpty(variableToCheck, variableName):
 # Check the Delly Analysis Type is Valid or Not
 
 def checkDellyAnalysisType(varaibleToCheck):
-    """Check `if the variable for Delly analysis exists or not``
+    """
+    Check `if the variable for Delly analysis exists or not``
 
-    :class:`str`.
-
-    :param str variableToCheck: check if str is DEL|DUP|INV|TRA 
+    :param str variableToCheck: check if str is DEL|DUP|INV|TRA
     :return: None
     :rtype: None
 

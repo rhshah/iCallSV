@@ -1,4 +1,12 @@
 """
+dellyVcf2targetSeqView
+~~~~~~~~~~~~~~~~~~~~~~
+
+:Description: Convert VCF to targetSeqView
+
+"""
+
+'''
 Created on Mar 19, 2015
 Description: Convert VCF to targetSeqView
 #Example:
@@ -14,7 +22,7 @@ outputFileName: Name of the output File
 ::Output::
 outputFile: TargetSeqView format text file for a given vcf file.
 @author: Ronak H Shah
-"""
+'''
 
 import vcf
 import checkparameters as cp
@@ -32,8 +40,7 @@ def Convert2targetSeqView(
         outputFileName):
     """This ``converts`` the Delly Vcf file having tumor normal, to tab-delimited format for input to targetSeqView
 
-    :class:`str`.
-    
+
     :param str sampleName: str for the name of the sample being analyzed
     :param str sampleBamName: str for the pair-end reads bam file
     :param str sampleSplitBamName: str for the split reads bam file
@@ -111,4 +118,3 @@ def Convert2targetSeqView(
     logger.info("Convert2targetSeqView: Finished conversion of Vcf file to targetSeqView file format.")
     logger.info("Convert2targetSeqView: Output can be found: %s", outputFile)
     return(outputFile)
-# Test module

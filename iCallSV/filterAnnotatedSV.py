@@ -1,4 +1,11 @@
 """
+filterAnnotatedSV
+~~~~~~~~~~~~~~~~~
+
+:Description: This module will filter calls from the merged file
+"""
+
+'''
 Created on Mar 17, 2015
 Description: This module will filter calls from the merged file
 @author: Ronak H Shah
@@ -13,7 +20,7 @@ verbose: Mode
 
 ::Output::
 Filtered Output files
-"""
+'''
 import os
 import pandas as pd
 import logging
@@ -25,9 +32,8 @@ logger = logging.getLogger('iCallSV.FilterDellyCalls')
 
 
 def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile, verbose):
-    """This will ``filter sv calls`` from the final merged file
-
-    :class:`str`.
+    """
+    This will ``filter sv calls`` from the final merged file.
 
     :param str inputTxt: str for the txt file to be filtered
     :param str outputDir: str for the output directory
@@ -108,9 +114,8 @@ def checkGeneListToKeep(gene1, gene2, keepGenes):
 
 
 def checkBlackListGene(gene1, gene2, blacklistGenes):
-    """This will ``check for blacklisted genes`` 
-
-    :class:`str`.
+    """
+    This will ``check for blacklisted genes``
 
     :param str gene1: str for the name of gene at breakpoint 1
     :param str gene2: str for the name of gene at breakpoint 2
@@ -129,9 +134,10 @@ def checkBlackListGene(gene1, gene2, blacklistGenes):
 
 # Check if the event is in the intron only and not affecting splicing
 def checkEventInIntronFlag(gene1, gene2, site1, site2):
-    """This will ``Check if the event is in the intron only and not affecting splicing`` 
+    """
+    This will ``Check if the event is in the intron only and not affecting
+    splicing``
 
-    :class:`str`.
 
     :param str gene1: str for the name of gene at breakpoint 1
     :param str gene2: str for the name of gene at breakpoint 2

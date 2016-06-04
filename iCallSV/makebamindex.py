@@ -1,7 +1,8 @@
 """
-Created on Mar 16, 2015.
+makebamindex
+~~~~~~~~~~~~
 
-@author: Ronak H Shah
+:Description: Use PySAM to make bam index
 
 """
 # Use PySAM to make bam index
@@ -12,12 +13,11 @@ import logging
 
 logger = logging.getLogger('iCallSV.makebamindex')
 
+
 def MakeIndex(bamFile):
     """
-    This will make bam index if not there for a bam file using pysam
+    This will make bam index if not there for a bam file using pysam.
 
-    :class:`str`.
-    
     :param str bamFile: Path to bam file
     :return: None
     :rtype: None
@@ -36,5 +36,3 @@ def MakeIndex(bamFile):
     else:
         logger.info("Bam File %s does not exists", bamFile)
         sys.exit()
-
-# MakeIndex('/home/shahr2/M15-2555.recal.bam')

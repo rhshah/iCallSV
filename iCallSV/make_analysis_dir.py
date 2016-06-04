@@ -1,12 +1,17 @@
 """
+make_analysis_dir
+~~~~~~~~~~~~~~~~~
+
+:Description: This module will make directory structure for running analysis
+
+"""
+'''
 Created on November 19, 2015
 Description: This module will make directory structure for running analysis
 @author: Ronak H Shah
-"""
-"""
 ::Inputs::
 args: Arguments passed to iCallSV
-"""
+'''
 
 import os
 import re
@@ -15,16 +20,14 @@ import logging
 
 def makeOutputDir(args, tool):
     """
-    This will make the output directory tree
-
-    :class:`str`.
+    This will make the output directory tree.
 
     :param Namespace args: Namespace of args to get other variables
     :return: Multiple objects
     :rtype: list
 
     """
-    #Get logging settings
+    # Get logging settings
     SampleDirName = args.caseId
     static_SV_Dir = "StructuralVariantAnalysis"
     static_tool_Dir = tool

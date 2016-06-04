@@ -1,9 +1,14 @@
 """
+Run_targetSeqView
+~~~~~~~~~~~~~~~~~
+
+:Description: This module will run targetSeqView
+"""
+
+'''
 Created on Mar 19, 2015
 Description: This module will run targetSeqView
 @author: Ronak H Shah
-"""
-"""
 ::Input::
 RLocation : Location of the R executable (>3.1.2).
 targetSeqView: Location of R script that will run tragetSeqView
@@ -16,7 +21,7 @@ outputDir : Directory for output files
 outsvFile : Name of the output structural variant file that has added confidence score to it.
 ::Output::
 Tab-delimited File with added confidence score and Image of each SV
-"""
+'''
 
 import os
 import sys
@@ -28,6 +33,7 @@ import logging
 
 logger = logging.getLogger('iCallSV.Run_targetSeqView')
 
+
 def run(
         RLocation,
         targetSeqView,
@@ -38,9 +44,8 @@ def run(
         readLength,
         outputDir,
         outsvFileName):
-    """This module will run targetSeqView
-
-    :class:`str`.
+    """
+    This module will run targetSeqView.
 
     :param str RLocation : Location of the R executable (>3.1.2).
     :param str targetSeqView: Location of R script that will run tragetSeqView
@@ -97,9 +102,3 @@ def run(
             svFile)
         sys.exit()
     return(outputFile)
-# # Test module
-# run("/home/shahr2/.Renv/versions/3.1.2/bin/R",
-#     "/home/shahr2/workspace/iCallSV/iCallSV/R/Rscripts/calculateConfidenceScore.R", 5,
-#     "/home/shahr2/.Renv/versions/3.1.2/lib64/R/library/targetSeqView/extdata",
-#     "/home/shahr2/.Renv/versions/3.1.2/lib64/R/library/targetSeqView/extdata/targetCaptureSVs.txt",
-#     "hg19", 100, "/dmp/hot/shahr2/IMPACT/Test/SVtest/", "testTargetSeqView.txt")

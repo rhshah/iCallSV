@@ -48,6 +48,14 @@
             
   <h1>Source code for iCallSV.dellyVcf2targetSeqView</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">dellyVcf2targetSeqView</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: Convert VCF to targetSeqView</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on Mar 19, 2015</span>
 <span class="sd">Description: Convert VCF to targetSeqView</span>
 <span class="sd">#Example:</span>
@@ -63,7 +71,7 @@
 <span class="sd">::Output::</span>
 <span class="sd">outputFile: TargetSeqView format text file for a given vcf file.</span>
 <span class="sd">@author: Ronak H Shah</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">vcf</span>
 <span class="kn">import</span> <span class="nn">checkparameters</span> <span class="kn">as</span> <span class="nn">cp</span>
@@ -81,8 +89,7 @@
         <span class="n">outputFileName</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This ``converts`` the Delly Vcf file having tumor normal, to tab-delimited format for input to targetSeqView</span>
 
-<span class="sd">    :class:`str`.</span>
-<span class="sd">    </span>
+
 <span class="sd">    :param str sampleName: str for the name of the sample being analyzed</span>
 <span class="sd">    :param str sampleBamName: str for the pair-end reads bam file</span>
 <span class="sd">    :param str sampleSplitBamName: str for the split reads bam file</span>
@@ -160,7 +167,6 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Convert2targetSeqView: Finished conversion of Vcf file to targetSeqView file format.&quot;</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Convert2targetSeqView: Output can be found: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">outputFile</span><span class="p">)</span>
     <span class="k">return</span><span class="p">(</span><span class="n">outputFile</span><span class="p">)</span></div>
-<span class="c1"># Test module</span>
 </pre></div>
 
           </div>

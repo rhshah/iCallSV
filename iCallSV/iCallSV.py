@@ -1,21 +1,15 @@
 #!/usr/local/bin/python2.7
 # encoding: utf-8
 """
-iCallSV.iCallSV -- wrapper to run iCallSV package
+iCallSV
+~~~~~~~
 
-iCallSV.iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina
-
-It defines classes_and_methods
-
-@author:     Ronak H Shah
-
-@copyright:  2015-2016 Ronak H Shah. All rights reserved.
-
-@license:    Apache License 2.0
-
-@contact:    rons.shah@gmail.com
-
-@deffield    updated: Updated
+:Description: iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina
+:author:     Ronak H Shah
+:copyright:  (c) 2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
+:license:    Apache License 2.0
+:contact:    rons.shah@gmail.com
+:deffield    updated: Updated
 
 """
 
@@ -39,7 +33,7 @@ import mergeFinalFiles as mff
 import filterAnnotatedSV as fas
 
 __all__ = []
-__version__ = 0.1
+__version__ = 0.0.1
 __date__ = '2015-03-30'
 __updated__ = '2015-12-20'
 

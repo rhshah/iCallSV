@@ -1,25 +1,30 @@
 """
+checkHotSpotList
+~~~~~~~~~~~~~~~~
+
+:Description: This module will read the hotspot file and tell if it is a hotspot or not
+
+"""
+
+'''
 Created on Mar 17, 2015
 Description: This module will read the hotspot file and tell if it is a hotspot or not
 @author: Ronak H Shah
-"""
-"""
 ::Inputs::
 HotSpotFile: List of Genes that have Hotspot Structural Variants (Tab-delimited Format without header:chr    start    end    geneName).
 chr1: Chromosome location for 1st breakpoint
 start1: Start location of the breakpoint
 chr2: Chromosome location for 2nd breakpoint
 start2: Start Location of the second breakpoint
-"""
+'''
 import os
 import re
 
 
 # Read the hotspot file and make a dictionary of it
 def ReadHotSpotFile(HotSpotFile):
-    """Read the ``HotSpot region file``
-
-    :class:`str`.
+    """
+    Read the ``HotSpot region file``
 
     :param str HotSpotFile: str of file to be read.
     :return: A dict containing hotspot regions
@@ -41,9 +46,8 @@ def ReadHotSpotFile(HotSpotFile):
 
 # Read the hotspot dictionary and tell if the event occurs in hotspot or not
 def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
-    """Check if coordinate are present in the ``hotspot region file``
-
-    :class:`str`.
+    """
+    Check if coordinate are present in the ``hotspot region file``
 
     :param str chr1: str of the breakpoint in first chromosome
     :param int start1: int of the start location of the breakpoint in first chromosome
@@ -132,9 +136,3 @@ def CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict):
                 else:
                     hotspotTag = False
     return(hotspotTag)
-
-# # Test module
-# hotspotDict = ReadHotSpotFile(
-#     "/home/shahr2/workspace/dmp-data/mskdata/interval-lists/structuralvariants_geneInterval.txt")
-# hotspotTag = CheckIfItIsHotspot(2, 29417089, 2, 30143125, hotspotDict)
-# print hotspotTag

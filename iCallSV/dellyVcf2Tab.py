@@ -1,9 +1,14 @@
 """
+dellyVcf2Tab
+~~~~~~~~~~~~
+
+:Description: This module converts the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV
+
+"""
+'''
 Created on Mar 18, 2015
 Description: This module converts the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV
 @author: Ronak H Shah
-"""
-"""
 ::Input::
 vcfFile: Input vcf file to convert
 outputFileName: Name of the output file
@@ -16,7 +21,7 @@ str1: Its the read direction for the first break point [0=top/plus/reference, 1=
 chr2: Its the chromosome name for second break point [1,2,3,4,5,6,7 etc..],
 pos2: Its the chromosome loaction for second break point [1-based],
 str2: Its the read direction for the second break point [0=top/plus/reference, 1=bottom/minus/complement],
-"""
+'''
 
 import os
 import vcf
@@ -29,7 +34,6 @@ logger = logging.getLogger('iCallSV.dellyVcf2Tab')
 def vcf2tab(vcfFile, outputDir, verbose):
     """This ``converts`` the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV
 
-    :class:`str`.
 
     :param str vcfFile: str of vcf file to be converted
     :param str outputDir: str for the output directory
@@ -99,6 +103,3 @@ def vcf2tab(vcfFile, outputDir, verbose):
         logger.info("dellyVcf2Tab: Finished conversion of Vcf file to tab-delimited file")
         logger.info("dellyVcf2Tab: Output can be found: %s", outputFile)
     return(outputFile)
-
-# Test Module
-#vcf2tab("/dmp/hot/shahr2/IMPACT/Test/SVtest//35462375-T_bc44_jmp.stdfilter.vcf","35462375-T_bc44_jmp.stdfilter.tab" ,"/dmp/hot/shahr2/IMPACT/Test/SVtest/" )

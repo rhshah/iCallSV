@@ -1,4 +1,10 @@
 """
+mergeFinalFiles
+~~~~~~~~~~~~~~~
+
+:Description: Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file
+"""
+'''
 Created on May 17, 2015
 Description: Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file
 @author: Ronak H Shah
@@ -13,7 +19,7 @@ outputPrefix: Output File Prefix
 ::Output::
 outputFile: File with following header
 "TumorId\tNormalId\tChr1\tPos1\tChr2\tPos2\tSV_Type\tGene1\tGene2\tTranscript1\tTranscript2\tSite1Description\tSite2Description\tFusion\tProbabilityScore\tConfidence\tComments\tConnection_Type\tSV_LENGTH\tMAPQ\tPairEndReadSupport\tSplitReadSupport\tBrkptType\tConsensusSequence\tTumorVariantCount\tTumorSplitVariantCount\tTumorReadCount\tTumorGenotypeQScore\tNormalVariantCount\tNormalSplitVariantCount\tNormalReadCount\tNormalGenotypeQScorerepName-repClass-repFamily:-site1\trepName-repClass-repFamily:-site2\tCC_Chr_Band\tCC_Tumour_Types(Somatic)\tCC_Cancer_Syndrome\tCC_Mutation_Type\tCC_Translocation_Partner\tDGv_Name-DGv_VarType-site1\tDGv_Name-DGv_VarType-site2\n";
-"""
+'''
 import sys
 import os
 import logging
@@ -28,8 +34,6 @@ logger = logging.getLogger('iCallSV.mergeFinalFiles')
 def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     """
     This will Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file
-
-    :class:`str`.
 
     :param str aId: Sample ID for case that has the structural abberations
     :param str bId: Sample ID for control

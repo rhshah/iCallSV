@@ -48,14 +48,19 @@
             
   <h1>Source code for iCallSV.make_analysis_dir</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">make_analysis_dir</span>
+<span class="sd">~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: This module will make directory structure for running analysis</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on November 19, 2015</span>
 <span class="sd">Description: This module will make directory structure for running analysis</span>
 <span class="sd">@author: Ronak H Shah</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">::Inputs::</span>
 <span class="sd">args: Arguments passed to iCallSV</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -64,16 +69,14 @@
 
 <div class="viewcode-block" id="makeOutputDir"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.make_analysis_dir.makeOutputDir">[docs]</a><span class="k">def</span> <span class="nf">makeOutputDir</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">tool</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This will make the output directory tree</span>
-
-<span class="sd">    :class:`str`.</span>
+<span class="sd">    This will make the output directory tree.</span>
 
 <span class="sd">    :param Namespace args: Namespace of args to get other variables</span>
 <span class="sd">    :return: Multiple objects</span>
 <span class="sd">    :rtype: list</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#Get logging settings</span>
+    <span class="c1"># Get logging settings</span>
     <span class="n">SampleDirName</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">caseId</span>
     <span class="n">static_SV_Dir</span> <span class="o">=</span> <span class="s2">&quot;StructuralVariantAnalysis&quot;</span>
     <span class="n">static_tool_Dir</span> <span class="o">=</span> <span class="n">tool</span>

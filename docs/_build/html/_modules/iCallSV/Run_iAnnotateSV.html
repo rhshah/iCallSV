@@ -48,6 +48,13 @@
             
   <h1>Source code for iCallSV.Run_iAnnotateSV</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Run_iAnnotate</span>
+<span class="sd">~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: This module will run iAnnotateSV package</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on Mar 18, 2015</span>
 <span class="sd">Description: This module will run iAnnotateSV package</span>
 <span class="sd">@author: Ronak H Shah</span>
@@ -65,7 +72,7 @@
 <span class="sd">dgvFile: Location for database of Genomic Variants file</span>
 <span class="sd">::Output::</span>
 <span class="sd">It is a tab-delimited file with annotation in them</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -92,9 +99,8 @@
         <span class="n">inputTabFile</span><span class="p">,</span>
         <span class="n">outputPrefix</span><span class="p">,</span>
         <span class="n">outputDir</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This module will run iAnnotateSV package</span>
-
-<span class="sd">    :class:`str`.</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This module will run iAnnotateSV package.</span>
 
 <span class="sd">    :param str python : Location for the python executable.</span>
 <span class="sd">    :param str iAnnotateSV : Location of the wrapper iAnnotateSV package (iAnnotateSV.py)</span>
@@ -153,12 +159,6 @@
             <span class="n">inputTabFile</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
     <span class="k">return</span><span class="p">(</span><span class="n">outputFile</span><span class="p">)</span></div>
-<span class="c1"># # test moudule</span>
-<span class="c1"># run(&quot;/dmp/resources/prod/tools/system/python/production/bin/python&quot;,</span>
-<span class="c1">#     &quot;/home/shahr2/workspace/iAnnotateSV/iAnnotateSV/iAnnotateSV.py&quot;, &quot;hg19&quot;, 3000,</span>
-<span class="c1">#     &quot;/home/shahr2/workspace/iAnnotateSV/iAnnotateSV/data/canonicalInfo/cannonical_transcripts_cv5.txt&quot;,</span>
-<span class="c1">#     &quot;/dmp/hot/shahr2/IMPACT/Test/SVtest//35462375-T_bc44_jmp.stdfilter.tab&quot;,</span>
-<span class="c1">#     &quot;35462375-T_bc44_jmp.stdfilter.anno.tab&quot;, &quot;/dmp/hot/shahr2/IMPACT/Test/SVtest/&quot;)</span>
 </pre></div>
 
           </div>

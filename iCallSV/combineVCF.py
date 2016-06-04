@@ -1,16 +1,22 @@
 """
+combineVCF
+~~~~~~~~~~
+
+:Description: This module will combine multiple vcf file with same headers
+
+"""
+
+'''
 Created on December 18, 2015
 Description: This module will combine multiple vcf file with same headers
 @author: Ronak H Shah
-"""
-"""
 ::Input::
 vcfFiles : List of VCF Files to combine in list data structure
 mergedVCF: Name of the combined vcf to output
 
 ::Output::
 It is a merged vcf file
-"""
+'''
 import vcf
 import logging
 
@@ -18,9 +24,8 @@ logger = logging.getLogger('iCallSV.combineVCF')
 
 
 def run(vcfFiles, combinedVCF, verbose):
-    """This will ``combine multiple vcf file with same headers``
-
-    :class:`str`.
+    """
+    This will ``combine multiple vcf file with same headers``
 
     :param list vcfFiles: a list of .vcf files to be combined
     :param str combinedVCF: str for the output of combined vcf files

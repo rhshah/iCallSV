@@ -1,4 +1,10 @@
 """
+FilterDellyCalls
+~~~~~~~~~~~~~~~~
+
+:Description: This module will filter calls made by Delly which are in a VCF format
+"""
+'''
 Created on Mar 17, 2015
 Description: This module will filter calls made by Delly which are in a VCF format
 @author: Ronak H Shah
@@ -31,7 +37,7 @@ mapqHotspot: mapping quality for hot-spots
 
 ::Output::
 Filtered VCF files
-"""
+'''
 import os
 import sys
 import vcf
@@ -75,7 +81,6 @@ def run(
         verbose):
     """``main:``Filter calls made by Delly which are in a VCF format
 
-    :class:`str`.
 
     :param str inputVcf: Input VCF file name with path
     :param str outputDir: Output directory
@@ -313,14 +318,13 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
     """
     This will ``Filter one record at a time``
 
-    :class:`str`.
-
     :param str dellyVariables: str having all delly variables separated by ","
     :param str thresholdVariables: str having all delly threshold variables separated by ","
     :param dict hotspotDict: A dict containing hotspot regions
     :param list blacklist: A list containing blacklist regions
     :return: A boolean tag indicating True or False
     :rtype: bool
+
     """
     (svlength,
      mapq,
@@ -498,8 +502,6 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTo
     """
     This will ``check if the case sample passes or not``
 
-    :class:`str`.
-
     :param int caseDR: int representing number of reference reads for case reported by delly
     :param int caseDV: int representing number of variant reads for case reported by delly
     :param str preciseFlag: str representing if an event is precise or imprecise
@@ -509,6 +511,7 @@ def GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTo
     :param int caseTotalCount: int repeseting readcount threshold for case
     :return: A boolean tag indicating True or False
     :rtype: bool
+
     """
     caseAltAf = 0.0
     caseCovg = 0
@@ -544,8 +547,6 @@ def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, cont
     """
     This will ``check if the control sample passes or not``
 
-    :class:`str`.
-
     :param int controlDR: int representing number of reference reads for control reported by delly
     :param int controlDV: int representing number of variant reads for control reported by delly
     :param str preciseFlag: str representing if an event is precise or imprecise
@@ -554,6 +555,7 @@ def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, cont
     :param float controlAltFreq: float representing altratio threshold for control
     :return: A boolean tag indicating True or False
     :rtype: bool
+
     """
     controlAltAf = 0.0
     controlCovg = 0
@@ -579,28 +581,3 @@ def GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, cont
     else:
         controlFlag = False
     return(controlFlag)
-
-# # Test the module
-# run(
-#     inputVcf="/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/s-EV-crc-001-M2_del.vcf",
-#     outputDir="/ifs/e63data/bergerm1/Analysis/Projects/Test/Ronak/Test/iCallSV/StructuralVariantAnalysis/DellyDir/s-EV-crc-001-M2/",
-#     controlId="s-EV-crc-001-N2",
-#     caseID="s-EV-crc-001-M2",
-#     hotspotFile="/ifs/depot/resources/dmp/data/mskdata/interval-lists/VERSIONS/cv5/structuralvariants_geneInterval.txt",
-#     blacklistFile = "/home/shahr2/git/iCallSV/iCallSV/data/blacklist.txt",
-#     svlength=500,
-#     mapq=20,
-#     mapqHotspot=5,
-#     peSupport=5,
-#     srSupport=0,
-#     peSupportHotspot=3,
-#     srSupportHotspot=0,
-#     peSupportCase=1,
-#     srSupportCase=0,
-#     peSupportHotspotCase=0,
-#     srSupportHotspotCase=0,
-#     peSupportControl=5,
-#     srSupportControl=5,
-#     peSupportHotspotControl=5,
-#     srSupportHotspotControl=5,
-#     verbose=True)

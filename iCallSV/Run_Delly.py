@@ -1,4 +1,11 @@
 """
+Run_Delly
+~~~~~~~~~
+
+:Description: Runs the delly program on case and control bam file to give its results
+
+"""
+'''
 Created on March 17, 2015
 Description: Runs the delly program on case and control bam file to give its results
 @author: Ronak H Shah
@@ -17,7 +24,7 @@ outputdir: directory for the output of delly
 debug: If you just wish to test what we will do
 ::Output::
 VCF file having all the structural variants called
-"""
+'''
 
 import os
 import sys
@@ -51,8 +58,6 @@ def run(
     """
     This will Runs the delly program on case and control bam file to give its
     results.
-
-    :class:`str`.
 
     :param str delly:Path to delly executables (0.7.3 or above)
     :param str bcftools:Path to bcftools executables (1.3.1 or above)
@@ -193,7 +198,3 @@ def run(
                     caseId)
             sys.exit(1)
     return(outputVcf)
-
-
-# Testing the module
-# run("/dmp/resources/dev2/bin/delly","/dmp/resources/dev2/bin/bcftools", "TRA", "/dmp/data/pubdata/hg-fasta/production/Homo_sapiens_assembly19.fasta", "/dmp/hot/shahr2/IMPACT/Test/SVtest/35462375-N_bc45_IMPACTv5-CLIN-20150050_L000_mrg_cl_aln_srt_MD_IR_BR.bam", "/dmp/hot/shahr2/IMPACT/Test/SVtest/35462375-T_bc44_IMPACTv5-CLIN-20150050_L000_mrg_cl_aln_srt_MD_IR_BR.bam","35462375-T", 20, "/dmp/data/mskdata/sv-files/production/human.hg19.excl.tsv", "/dmp/hot/shahr2/IMPACT/Test/SVtest/", False)

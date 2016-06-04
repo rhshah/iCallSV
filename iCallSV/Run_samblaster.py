@@ -1,9 +1,14 @@
 """
+Run_samblaster
+~~~~~~~~~~~~~~
+
+:Description : This module will run samblaster for extracting discordant and spit reads in sam format
+
+"""
+'''
 Created on Mar 20, 2015
 Description : This module will run samblaster for extracting discordant and spit reads in sam format
 @author: Ronak Shah
-"""
-"""
 ::Input::
 samtools: To stream bam to sam into samblaster
 samblaster: Location of the samblaster executables
@@ -14,7 +19,7 @@ outputDir : name the output directory
 ::Output::
 discordantFile : SAM file containing discordant read entries
 splitFile : SAM file containing split read entries
-"""
+'''
 
 import os
 import sys
@@ -57,7 +62,3 @@ def run(samtools, samblaster, bamFile, discordantFileName, splitFileName, output
         print "Run_samblaster: samblaster is either still running on local machine or it errored out with return code", retcode, " for", bamFile, "\n"
         sys.exit()
     return(discordantFile, splitFile)
-# Test Module
-#run("/dmp/resources/dev2/bin/samtools", "/dmp/resources/dev2/bin/samblaster",
-#    "/dmp/hot/shahr2/IMPACT/Test/SVtest/35117191-T_bc07_IMPACTv3-CLIN-20140160_L000_mrg_cl_aln_srt_MD_IR_BR_NSORT.bam",
-#    "samp.disc.sam", "samp.split.sam", "/dmp/hot/shahr2/IMPACT/Test/SVtest/")

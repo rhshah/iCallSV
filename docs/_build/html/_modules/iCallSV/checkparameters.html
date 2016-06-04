@@ -48,24 +48,31 @@
             
   <h1>Source code for iCallSV.checkparameters</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">checkparameters</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: This modules checks the parameters for various type of inputs.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on Mar 16, 2015</span>
 <span class="sd">Description: This modules checks the parameters for various type of inputs.</span>
 <span class="sd">@author: Ronak H Shah</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="c1">#initiate Logger</span>
+<span class="c1"># initiate Logger</span>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;iCallSV.checkparameters&#39;</span><span class="p">)</span>
 
 <span class="c1"># Check if the file exist</span>
 
-<div class="viewcode-block" id="checkFile"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkparameters.checkFile">[docs]</a><span class="k">def</span> <span class="nf">checkFile</span><span class="p">(</span><span class="n">fileToCheck</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check `if the file exists or not``</span>
 
-<span class="sd">    :class:`str`.</span>
+<div class="viewcode-block" id="checkFile"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkparameters.checkFile">[docs]</a><span class="k">def</span> <span class="nf">checkFile</span><span class="p">(</span><span class="n">fileToCheck</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check `if the file exists or not``</span>
 
 <span class="sd">    :param str fileToCheck: Name of the file to be checked.</span>
 <span class="sd">    :return: None</span>
@@ -84,7 +91,8 @@
 <span class="c1"># Check if the Directory exists</span>
 
 <div class="viewcode-block" id="checkDir"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkparameters.checkDir">[docs]</a><span class="k">def</span> <span class="nf">checkDir</span><span class="p">(</span><span class="n">folderToCheck</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check `if the folder exists or not``</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check `if the folder exists or not``</span>
 
 <span class="sd">    :class:`str`.</span>
 
@@ -105,11 +113,10 @@
 <span class="c1"># Check if the variable is and Integer</span>
 
 <div class="viewcode-block" id="checkInt"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkparameters.checkInt">[docs]</a><span class="k">def</span> <span class="nf">checkInt</span><span class="p">(</span><span class="n">variableToCheck</span><span class="p">,</span> <span class="n">variableName</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check `if the variable is int or not``</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check `if the variable is int or not``</span>
 
-<span class="sd">    :class:`str`.</span>
-
-<span class="sd">    :param int variableToCheck: Check if it is int or not </span>
+<span class="sd">    :param int variableToCheck: Check if it is int or not</span>
 <span class="sd">    :param str variableName: Name of the int object to be verified</span>
 <span class="sd">    :return: None</span>
 <span class="sd">    :rtype: None</span>
@@ -131,11 +138,10 @@
 <span class="c1"># Check if the given variable is not Empty</span>
 
 <div class="viewcode-block" id="checkEmpty"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkparameters.checkEmpty">[docs]</a><span class="k">def</span> <span class="nf">checkEmpty</span><span class="p">(</span><span class="n">variableToCheck</span><span class="p">,</span> <span class="n">variableName</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check `if the variable is None or not``</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check `if the variable is None or not``</span>
 
-<span class="sd">    :class:`str`.</span>
-
-<span class="sd">    :param str variableToCheck: check if str is None or not </span>
+<span class="sd">    :param str variableToCheck: check if str is None or not</span>
 <span class="sd">    :param str variableName: Name of the None object to be verified</span>
 <span class="sd">    :return: None</span>
 <span class="sd">    :rtype: None</span>
@@ -154,11 +160,10 @@
 <span class="c1"># Check the Delly Analysis Type is Valid or Not</span>
 
 <div class="viewcode-block" id="checkDellyAnalysisType"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkparameters.checkDellyAnalysisType">[docs]</a><span class="k">def</span> <span class="nf">checkDellyAnalysisType</span><span class="p">(</span><span class="n">varaibleToCheck</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check `if the variable for Delly analysis exists or not``</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check `if the variable for Delly analysis exists or not``</span>
 
-<span class="sd">    :class:`str`.</span>
-
-<span class="sd">    :param str variableToCheck: check if str is DEL|DUP|INV|TRA </span>
+<span class="sd">    :param str variableToCheck: check if str is DEL|DUP|INV|TRA</span>
 <span class="sd">    :return: None</span>
 <span class="sd">    :rtype: None</span>
 

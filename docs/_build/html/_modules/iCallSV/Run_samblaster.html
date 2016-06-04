@@ -48,11 +48,16 @@
             
   <h1>Source code for iCallSV.Run_samblaster</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Run_samblaster</span>
+<span class="sd">~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description : This module will run samblaster for extracting discordant and spit reads in sam format</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on Mar 20, 2015</span>
 <span class="sd">Description : This module will run samblaster for extracting discordant and spit reads in sam format</span>
 <span class="sd">@author: Ronak Shah</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">::Input::</span>
 <span class="sd">samtools: To stream bam to sam into samblaster</span>
 <span class="sd">samblaster: Location of the samblaster executables</span>
@@ -63,7 +68,7 @@
 <span class="sd">::Output::</span>
 <span class="sd">discordantFile : SAM file containing discordant read entries</span>
 <span class="sd">splitFile : SAM file containing split read entries</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -106,10 +111,6 @@
         <span class="k">print</span> <span class="s2">&quot;Run_samblaster: samblaster is either still running on local machine or it errored out with return code&quot;</span><span class="p">,</span> <span class="n">retcode</span><span class="p">,</span> <span class="s2">&quot; for&quot;</span><span class="p">,</span> <span class="n">bamFile</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
     <span class="k">return</span><span class="p">(</span><span class="n">discordantFile</span><span class="p">,</span> <span class="n">splitFile</span><span class="p">)</span></div>
-<span class="c1"># Test Module</span>
-<span class="c1">#run(&quot;/dmp/resources/dev2/bin/samtools&quot;, &quot;/dmp/resources/dev2/bin/samblaster&quot;,</span>
-<span class="c1">#    &quot;/dmp/hot/shahr2/IMPACT/Test/SVtest/35117191-T_bc07_IMPACTv3-CLIN-20140160_L000_mrg_cl_aln_srt_MD_IR_BR_NSORT.bam&quot;,</span>
-<span class="c1">#    &quot;samp.disc.sam&quot;, &quot;samp.split.sam&quot;, &quot;/dmp/hot/shahr2/IMPACT/Test/SVtest/&quot;)</span>
 </pre></div>
 
           </div>

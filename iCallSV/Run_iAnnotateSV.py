@@ -1,4 +1,11 @@
 """
+Run_iAnnotate
+~~~~~~~~~~~~~
+
+:Description: This module will run iAnnotateSV package
+
+"""
+'''
 Created on Mar 18, 2015
 Description: This module will run iAnnotateSV package
 @author: Ronak H Shah
@@ -16,7 +23,7 @@ repeatregionFile: Location for repeat region file
 dgvFile: Location for database of Genomic Variants file
 ::Output::
 It is a tab-delimited file with annotation in them
-"""
+'''
 
 import os
 import sys
@@ -43,9 +50,8 @@ def run(
         inputTabFile,
         outputPrefix,
         outputDir):
-    """This module will run iAnnotateSV package
-
-    :class:`str`.
+    """
+    This module will run iAnnotateSV package.
 
     :param str python : Location for the python executable.
     :param str iAnnotateSV : Location of the wrapper iAnnotateSV package (iAnnotateSV.py)
@@ -104,9 +110,3 @@ def run(
             inputTabFile)
         sys.exit()
     return(outputFile)
-# # test moudule
-# run("/dmp/resources/prod/tools/system/python/production/bin/python",
-#     "/home/shahr2/workspace/iAnnotateSV/iAnnotateSV/iAnnotateSV.py", "hg19", 3000,
-#     "/home/shahr2/workspace/iAnnotateSV/iAnnotateSV/data/canonicalInfo/cannonical_transcripts_cv5.txt",
-#     "/dmp/hot/shahr2/IMPACT/Test/SVtest//35462375-T_bc44_jmp.stdfilter.tab",
-#     "35462375-T_bc44_jmp.stdfilter.anno.tab", "/dmp/hot/shahr2/IMPACT/Test/SVtest/")

@@ -48,10 +48,16 @@
             
   <h1>Source code for iCallSV.sortbamByCoordinate</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">sortbamByCoordinate</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: This module will sort bam file by coordinate</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on Mar 19, 2015</span>
 <span class="sd">Description: This module will sort bam file by coordinate</span>
 <span class="sd">@author: Ronak H Shah</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -60,6 +66,7 @@
 
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;iCallSV.sortbamByCoordinate&#39;</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="sortBam"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.sortbamByCoordinate.sortBam">[docs]</a><span class="k">def</span> <span class="nf">sortBam</span><span class="p">(</span><span class="n">inputBam</span><span class="p">,</span> <span class="n">outputBamName</span><span class="p">,</span> <span class="n">outputDir</span><span class="p">):</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;sortbamByCoordinate: Trying to sort BAM file by Coordinate&quot;</span><span class="p">)</span>
@@ -84,8 +91,6 @@
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;sortbamByCoordinate: Finished sorting BAM file by Coordinate.&quot;</span><span class="p">)</span>
     <span class="k">return</span><span class="p">(</span><span class="n">outputFile</span><span class="p">)</span></div>
-
-<span class="c1">#sortBam(&#39;/home/shahr2/M15-2555.recal.bam&#39;, &quot;M15-2555.recal.NSORT&quot;,&quot;/home/shahr2/&quot;)</span>
 </pre></div>
 
           </div>

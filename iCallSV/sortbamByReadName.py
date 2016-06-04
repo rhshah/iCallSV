@@ -1,8 +1,14 @@
 """
+sortbamByReadName
+~~~~~~~~~~~~~~~~~
+
+:Description: This module will sort bam file by name
+"""
+'''
 Created on Mar 18, 2015
 Description: This module will sort bam file by name
 @author: Ronak H Shah
-"""
+'''
 
 import os
 import sys
@@ -10,6 +16,7 @@ import pysam
 import logging
 
 logger = logging.getLogger('iCallSV.sortbamByReadName')
+
 
 def sortBam(inputBam, outputBamName, outputDir):
     logger.info("sortbamByReadName: Trying to sort BAM file by Read Name")
@@ -34,5 +41,3 @@ def sortBam(inputBam, outputBamName, outputDir):
         sys.exit()
     logger.info("sortbamByReadName: Finished sorting BAM file by Read Name.")
     return(outputFile)
-
-#sortBam('/home/shahr2/M15-2555.recal.bam', "M15-2555.recal.NSORT","/home/shahr2/")

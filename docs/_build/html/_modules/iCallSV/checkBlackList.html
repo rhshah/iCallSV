@@ -48,11 +48,15 @@
             
   <h1>Source code for iCallSV.checkBlackList</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">checkBlackList</span>
+<span class="sd">~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: This module will read the Black List file and tell if and event is blacklisted or not</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on Nov 20, 2015</span>
-<span class="sd">Description: This module will read the Black List file and tell if and event is blacklisted or not</span>
 <span class="sd">@author: Ronak H Shah</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">::Inputs::</span>
 <span class="sd">BlackListFile: List of Position that have Black List Structural Variants (Tab-delimited Format without header:chr1    start1    end1	chr2    start2    end2).</span>
 <span class="sd">chr1: Chromosome location for 1st breakpoint</span>
@@ -60,7 +64,7 @@
 <span class="sd">chr2: Chromosome location for 2nd breakpoint</span>
 <span class="sd">start2: Start Location of the second breakpoint</span>
 <span class="sd">extention: How much should the intervals be extended in positive and negative directions</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 
@@ -87,8 +91,6 @@
 <div class="viewcode-block" id="CheckIfItIsBlacklisted"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.checkBlackList.CheckIfItIsBlacklisted">[docs]</a><span class="k">def</span> <span class="nf">CheckIfItIsBlacklisted</span><span class="p">(</span><span class="n">chr1</span><span class="p">,</span> <span class="n">start1</span><span class="p">,</span> <span class="n">chr2</span><span class="p">,</span> <span class="n">start2</span><span class="p">,</span> <span class="n">blacklist</span><span class="p">,</span> <span class="n">extention</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Check if coordinate are present in the ``blacklist region file``</span>
-
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param str chr1: str of the breakpoint in first chromosome</span>
 <span class="sd">    :param int start1: int of the start location of the breakpoint in first chromosome</span>

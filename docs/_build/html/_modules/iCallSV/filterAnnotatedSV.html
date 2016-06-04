@@ -48,6 +48,13 @@
             
   <h1>Source code for iCallSV.filterAnnotatedSV</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">filterAnnotatedSV</span>
+<span class="sd">~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: This module will filter calls from the merged file</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on Mar 17, 2015</span>
 <span class="sd">Description: This module will filter calls from the merged file</span>
 <span class="sd">@author: Ronak H Shah</span>
@@ -62,7 +69,7 @@
 
 <span class="sd">::Output::</span>
 <span class="sd">Filtered Output files</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -74,9 +81,8 @@
 
 
 <div class="viewcode-block" id="run"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.filterAnnotatedSV.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">inputTxt</span><span class="p">,</span> <span class="n">outputDir</span><span class="p">,</span> <span class="n">outPrefix</span><span class="p">,</span> <span class="n">blacklistGenesFile</span><span class="p">,</span> <span class="n">genesToKeepFile</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This will ``filter sv calls`` from the final merged file</span>
-
-<span class="sd">    :class:`str`.</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This will ``filter sv calls`` from the final merged file.</span>
 
 <span class="sd">    :param str inputTxt: str for the txt file to be filtered</span>
 <span class="sd">    :param str outputDir: str for the output directory</span>
@@ -157,9 +163,8 @@
 
 
 <div class="viewcode-block" id="checkBlackListGene"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.filterAnnotatedSV.checkBlackListGene">[docs]</a><span class="k">def</span> <span class="nf">checkBlackListGene</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">blacklistGenes</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This will ``check for blacklisted genes`` </span>
-
-<span class="sd">    :class:`str`.</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This will ``check for blacklisted genes``</span>
 
 <span class="sd">    :param str gene1: str for the name of gene at breakpoint 1</span>
 <span class="sd">    :param str gene2: str for the name of gene at breakpoint 2</span>
@@ -178,9 +183,10 @@
 
 <span class="c1"># Check if the event is in the intron only and not affecting splicing</span>
 <div class="viewcode-block" id="checkEventInIntronFlag"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.filterAnnotatedSV.checkEventInIntronFlag">[docs]</a><span class="k">def</span> <span class="nf">checkEventInIntronFlag</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">site1</span><span class="p">,</span> <span class="n">site2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This will ``Check if the event is in the intron only and not affecting splicing`` </span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This will ``Check if the event is in the intron only and not affecting</span>
+<span class="sd">    splicing``</span>
 
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param str gene1: str for the name of gene at breakpoint 1</span>
 <span class="sd">    :param str gene2: str for the name of gene at breakpoint 2</span>

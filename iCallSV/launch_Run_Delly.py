@@ -1,4 +1,11 @@
 """
+launch_Run_Delly
+~~~~~~~~~~~~~~~~
+
+:Description: This module will be launching delly using Run_Delly
+"""
+
+'''
 Created on November 19, 2015
 Description: This module will be launching delly using Run_Delly
 @author: Ronak H Shah
@@ -6,7 +13,7 @@ Description: This module will be launching delly using Run_Delly
 args: Arguments passed to iCallSV
 config: configuration file passed to iCallSV
 sampleOutdirForDelly: Output directory for delly vcf files.
-"""
+'''
 import os
 import logging
 import Run_Delly as rd
@@ -19,8 +26,6 @@ logger = logging.getLogger('iCallSV.launch_Run_Delly')
 def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly):
     """
     This will launch delly calls in parallel.
-
-    :class:`str`.
 
     :param Namespace args: Namespace of args to get other variables
     :param Namespace config: configuration file passed to iCallSV

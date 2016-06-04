@@ -1,9 +1,17 @@
 """
-Created on 05/18/2016.
+iCallSV_dmp_wrapper
+~~~~~~~~~~~~~~~~~~~
 
-@Ronak Shah
+:Description: iCallSV is a wrapper to run the iCallSV package on MSKCC data
+:author:     Ronak H Shah
+:copyright:  (c) 2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
+:license:    Apache License 2.0
+:contact:    rons.shah@gmail.com
+:deffield    updated: Updated
 
 """
+
+
 import argparse
 import os
 import sys
@@ -154,7 +162,6 @@ def main():
 def SetupRun(poolName, args):
     """This will setup the run to be analyzed.
 
-    :class:`str`.
 
     :param str poolName: str of pool to be analyzed
     :param Namespace args: Namespace of args to get other variables
@@ -222,7 +229,6 @@ def SetupRun(poolName, args):
 def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
     """This will run the pool to be analyzed.
 
-    :class:`str`.
 
     :param str titleFile: str of meta information file
     :param str outdir: str of output directory
@@ -320,7 +326,6 @@ def RunPerPool(titleFile, outdir, HSmetricsFileList, bamFileList, args):
 def RunJob(cmd):
     """Given a command run the job.
 
-    :class:`str`.
 
     :param str cmd: str of command to be run on the local machine
     :return: None
@@ -353,8 +358,6 @@ def RunJob(cmd):
 
 def SelectNormal(normal, poolnormal):
     """Select the best possible normal.
-
-    :class:`str`.
 
     :param str normal: str of match normal
     :param str poolnormal: str of pool normal
@@ -414,7 +417,6 @@ def getSubDirs(dirLocation):
     """
     Get all sub directories.
 
-    :class:`str`.
 
     :param str dirLocation: str of directory location
     :return: list of all sub directories
@@ -431,7 +433,6 @@ def getSubDirs(dirLocation):
 def processor(i, jobqueue):
     """Operate on a jobqueue.
 
-    :class:`str`.
 
     :param int i: count of the job
     :param Namespace jobqueue: Namespace for jobqueue

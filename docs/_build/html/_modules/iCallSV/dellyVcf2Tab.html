@@ -48,11 +48,16 @@
             
   <h1>Source code for iCallSV.dellyVcf2Tab</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">dellyVcf2Tab</span>
+<span class="sd">~~~~~~~~~~~~</span>
+
+<span class="sd">:Description: This module converts the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Created on Mar 18, 2015</span>
 <span class="sd">Description: This module converts the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV</span>
 <span class="sd">@author: Ronak H Shah</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">::Input::</span>
 <span class="sd">vcfFile: Input vcf file to convert</span>
 <span class="sd">outputFileName: Name of the output file</span>
@@ -65,7 +70,7 @@
 <span class="sd">chr2: Its the chromosome name for second break point [1,2,3,4,5,6,7 etc..],</span>
 <span class="sd">pos2: Its the chromosome loaction for second break point [1-based],</span>
 <span class="sd">str2: Its the read direction for the second break point [0=top/plus/reference, 1=bottom/minus/complement],</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">vcf</span>
@@ -78,7 +83,6 @@
 <div class="viewcode-block" id="vcf2tab"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.dellyVcf2Tab.vcf2tab">[docs]</a><span class="k">def</span> <span class="nf">vcf2tab</span><span class="p">(</span><span class="n">vcfFile</span><span class="p">,</span> <span class="n">outputDir</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This ``converts`` the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV</span>
 
-<span class="sd">    :class:`str`.</span>
 
 <span class="sd">    :param str vcfFile: str of vcf file to be converted</span>
 <span class="sd">    :param str outputDir: str for the output directory</span>
@@ -148,9 +152,6 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;dellyVcf2Tab: Finished conversion of Vcf file to tab-delimited file&quot;</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;dellyVcf2Tab: Output can be found: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">outputFile</span><span class="p">)</span>
     <span class="k">return</span><span class="p">(</span><span class="n">outputFile</span><span class="p">)</span></div>
-
-<span class="c1"># Test Module</span>
-<span class="c1">#vcf2tab(&quot;/dmp/hot/shahr2/IMPACT/Test/SVtest//35462375-T_bc44_jmp.stdfilter.vcf&quot;,&quot;35462375-T_bc44_jmp.stdfilter.tab&quot; ,&quot;/dmp/hot/shahr2/IMPACT/Test/SVtest/&quot; )</span>
 </pre></div>
 
           </div>

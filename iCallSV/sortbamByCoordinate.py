@@ -1,8 +1,14 @@
 """
+sortbamByCoordinate
+~~~~~~~~~~~~~~~~~~~
+
+:Description: This module will sort bam file by coordinate
+"""
+'''
 Created on Mar 19, 2015
 Description: This module will sort bam file by coordinate
 @author: Ronak H Shah
-"""
+'''
 
 import os
 import sys
@@ -11,6 +17,7 @@ import logging
 
 
 logger = logging.getLogger('iCallSV.sortbamByCoordinate')
+
 
 def sortBam(inputBam, outputBamName, outputDir):
     logger.info("sortbamByCoordinate: Trying to sort BAM file by Coordinate")
@@ -35,5 +42,3 @@ def sortBam(inputBam, outputBamName, outputDir):
         sys.exit()
     logger.info("sortbamByCoordinate: Finished sorting BAM file by Coordinate.")
     return(outputFile)
-
-#sortBam('/home/shahr2/M15-2555.recal.bam', "M15-2555.recal.NSORT","/home/shahr2/")

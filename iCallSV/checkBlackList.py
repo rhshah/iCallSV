@@ -1,9 +1,13 @@
 """
+checkBlackList
+~~~~~~~~~~~~~~
+
+:Description: This module will read the Black List file and tell if and event is blacklisted or not
+
+"""
+'''
 Created on Nov 20, 2015
-Description: This module will read the Black List file and tell if and event is blacklisted or not
 @author: Ronak H Shah
-"""
-"""
 ::Inputs::
 BlackListFile: List of Position that have Black List Structural Variants (Tab-delimited Format without header:chr1    start1    end1	chr2    start2    end2).
 chr1: Chromosome location for 1st breakpoint
@@ -11,7 +15,7 @@ start1: Start location of the 1st breakpoint
 chr2: Chromosome location for 2nd breakpoint
 start2: Start Location of the second breakpoint
 extention: How much should the intervals be extended in positive and negative directions
-"""
+'''
 import os
 
 
@@ -38,8 +42,6 @@ def ReadBlackListFile(BlackListFile):
 def CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, extention):
     """
     Check if coordinate are present in the ``blacklist region file``
-
-    :class:`str`.
 
     :param str chr1: str of the breakpoint in first chromosome
     :param int start1: int of the start location of the breakpoint in first chromosome
