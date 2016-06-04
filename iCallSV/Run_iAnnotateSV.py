@@ -53,12 +53,12 @@ def run(
     """
     This module will run iAnnotateSV package.
 
-    :param str python : Location for the python executable.
-    :param str iAnnotateSV : Location of the wrapper iAnnotateSV package (iAnnotateSV.py)
-    :param str build : Which human reference file to be used, hg18,hg19 or hg38
-    :param str inputTabFile : Tab-Delimited Input FIle compatible with iAnnotateSV package.
+    :param str python: Location for the python executable.
+    :param str iAnnotateSV: Location of the wrapper iAnnotateSV package (iAnnotateSV.py)
+    :param str build: Which human reference file to be used, hg18,hg19 or hg38
+    :param str inputTabFile: Tab-Delimited Input FIle compatible with iAnnotateSV package.
     :param str outputPrefix: Prefix of the output files/DIR with Annotations and images
-    :param str outputDir : Name of the output directory where the outputPrefix will be written
+    :param str outputDir: Name of the output directory where the outputPrefix will be written
     :param str uniprotFile: Location for ucsc uniprot file
     :param str cosmicFile: Location for cosmic census file
     :param str repeatregionFile: Location for repeat region file

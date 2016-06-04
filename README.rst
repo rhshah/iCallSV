@@ -1,5 +1,3 @@
-Note:This Is Work In Progress. Use this at your own RISK.
-
 iCallSV: Structural Aberration Detection from NGS datasets
 ================================================================
 
