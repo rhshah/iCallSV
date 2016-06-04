@@ -118,47 +118,47 @@ Configuration File Format
 	MAPQ: 20
 	NumberOfProcessors: 4
 	[ParametersToFilterDellyResults]
-	####Case Allele Fraction Hotspot####
+	####Case Allele Fraction Hotspot ###
 	CaseAltFreqHotspot: 0.05
-	####Total Case Coverage Hotspot#####
+	####Total Case Coverage Hotspot ###
 	CaseCoverageHotspot = 5
-	####Control Allele Fraction Hotspot####
+	####Control Allele Fraction Hotspot###
 	ControlAltFreqHotspot = 0
-	####Case Allele Fraction####
+	#### Case Allele Fraction ###
 	CaseAltFreq: 0.08
-	####Total Case Coverage#####
+	#### Total Case Coverage ###
 	CaseCoverage = 8
-	####Control Allele Fraction####
+	#### Control Allele Fraction ###
 	ControlAltFreq = 0
-	###Overall Supporting Read-pairs ###
+	### Overall Supporting Read-pairs ###
 	OverallSupportingReads: 5
-	###Overall Supporting Read-pairs Hotspot ###
+	### Overall Supporting Read-pairs Hotspot ###
 	OverallSupportingReadsHotspot: 3
-	###Overall Supporting splitreads ###
+	### Overall Supporting splitreads ###
 	OverallSupportingSplitReads: 0
-	###Overall Supporting splitreads Hotspot ###
+	### Overall Supporting splitreads Hotspot ###
 	OverallSupportingSplitReadsHotspot: 0
-	###Case Supporting Read-pairs ###
+	### Case Supporting Read-pairs ###
 	CaseSupportingReads: 2
-	###Case Supporting splitreads ###
+	### Case Supporting splitreads ###
 	CaseSupportingSplitReads: 0
-	###Case Supporting Read-pairs Hotspot ###
+	### Case Supporting Read-pairs Hotspot ###
 	CaseSupportingReadsHotspot: 1
-	###Case Supporting splitreads Hotspot ###
+	### Case Supporting splitreads Hotspot ###
 	CaseSupportingSplitReadsHotspot: 0
-	###Control Supporting Read-pairs ###
+	### Control Supporting Read-pairs ###
 	ControlSupportingReads: 5
-	###Control Supporting Read-pairs Hotspot ###
+	### Control Supporting Read-pairs Hotspot ###
 	ControlSupportingReadsHotspot: 5
-	###Control Supporting splitreads ###
+	### Control Supporting splitreads ###
 	ControlSupportingSplitReads: 5
-	###Control Supporting splitreads Hotspot ###
+	### Control Supporting splitreads Hotspot ###
 	ControlSupportingSplitReadsHotspot: 5
-	###Length of Structural Variant###
+	### Length of Structural Variant ###
 	LengthOfSV: 500
-	###Overall Mapping Quality Threshold###
+	### Overall Mapping Quality Threshold###
 	OverallMapq: 20
-	###Overall Mapping Quality Threshold Hotspot###
+	### Overall Mapping Quality Threshold Hotspot ###
 	OverallMapqHotspot: 5
 	
 	
