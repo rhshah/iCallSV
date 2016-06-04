@@ -4,6 +4,7 @@ iCallSV: Structural Aberration Detection from NGS datasets
 :Author: Ronak H Shah
 :Contact: rons.shah@gmail.com
 :Source code: http://github.com/rhshah/iCallSV
+:Wiki: http://icallsv.readthedocs.io/en/latest/
 :License: `Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>`_
 
 .. image:: https://landscape.io/github/rhshah/iCallSV/master/landscape.svg?style=flat
