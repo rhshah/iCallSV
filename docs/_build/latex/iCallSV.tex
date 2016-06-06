@@ -133,20 +133,257 @@
 \tableofcontents
 \phantomsection\label{index::doc}
 
+\begin{quote}\begin{description}
+\item[{Author}] \leavevmode
+Ronak H Shah
+
+\item[{Contact}] \leavevmode
+\href{mailto:rons.shah@gmail.com}{rons.shah@gmail.com}
+
+\item[{Source code}] \leavevmode
+\href{http://github.com/rhshah/iCallSV}{http://github.com/rhshah/iCallSV}
+
+\item[{Wiki}] \leavevmode
+\href{http://icallsv.readthedocs.io/en/latest/}{http://icallsv.readthedocs.io/en/latest/}
+
+\item[{License}] \leavevmode
+\href{http://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}
+
+\end{description}\end{quote}
+\href{https://landscape.io/github/rhshah/iCallSV/master}{}
+iCallSV is a Python library and command-line software toolkit to call structural aberrations from Next Generation DNA sequencing data. Behind the scenes it uses Delly2 to do structural variant calling. It is designed for use with hybrid capture, including both whole-exome and custom target panels, and
+short-read sequencing platforms such as Illumina.
+
+
+\chapter{Citation}
+\label{index:citation}\label{index:icallsv-structural-aberration-detection-from-ngs-datasets}
+We are in the process of publishing a manuscript describing iCallSV as part of the Structural Variant Detection framework.
+If you use this software in a publication, for now, please cite our website \href{http://github.com/rhshah/iCallSV}{iCallSV}.
 
 Contents:
 
 
-\chapter{iCallSV package}
-\label{iCallSV:welcome-to-icallsv-s-documentation}\label{iCallSV::doc}\label{iCallSV:icallsv-package}
+\section{iCallSV: Structural Aberration Detection from NGS datasets}
+\label{iCallSV::doc}\label{iCallSV:icallsv-structural-aberration-detection-from-ngs-datasets}
+
+\section{Required Packages}
+\label{iCallSV:required-packages}
+We require that you install:
+\begin{quote}\begin{description}
+\item[{pandas}] \leavevmode
+\href{http://pandas.pydata.org/}{v0.16.2}
+
+\item[{biopython}] \leavevmode
+\href{http://biopython.org/wiki/Main\_Page}{v1.65}
+
+\item[{pysam}] \leavevmode
+\href{https://pypi.python.org/pypi/pysam}{v0.8.4}
+
+\item[{pyvcf}] \leavevmode
+\href{https://pypi.python.org/pypi/PyVCF}{0.6.7}
+
+\item[{Delly}] \leavevmode
+\href{https://github.com/tobiasrausch/delly}{v0.7.3}
+
+\item[{targetSeqView}] \leavevmode
+\href{https://github.com/Eitan177/targetSeqView}{master}
+
+\item[{iAnnotateSV}] \leavevmode
+\href{https://github.com/rhshah/iAnnotateSV/tree/1.0.5}{v1.0.5}
+
+\end{description}\end{quote}
+
+
+\section{Required Data Files}
+\label{iCallSV:required-data-files}
+This files are given in the \code{data} folder inside iCallSV, they are uploaded using \href{https://git-lfs.github.com/}{git-lfs} and need to be downloaded with \href{https://git-lfs.github.com/}{git-lfs}
+\begin{quote}\begin{description}
+\item[{blacklistRegionsFile}] \leavevmode
+Tab-delimited file wihout header having black listed regions.
+\begin{quote}\begin{description}
+\item[{Example}] \leavevmode
+7       140498077       5       175998094
+
+\end{description}\end{quote}
+
+\item[{blacklistGenes}] \leavevmode
+Gene listed one per line wihout header that are to be removed
+\begin{quote}\begin{description}
+\item[{Example}] \leavevmode
+LINC00486
+
+CNOT4
+
+\end{description}\end{quote}
+
+\item[{genesToInclude}] \leavevmode
+Gene listed one per line wihout header that are to be kept
+\begin{quote}\begin{description}
+\item[{Example}] \leavevmode
+ALK
+
+BRAF
+
+\end{description}\end{quote}
+
+\end{description}\end{quote}
+
+
+\section{Configuration File Format}
+\label{iCallSV:configuration-file-format}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZsh{}\PYGZti{}\PYGZti{}\PYGZti{}Template configuration file to run iCallSV\PYGZti{}\PYGZti{}\PYGZti{}\PYGZsh{}
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to python executable \PYGZsh{}\PYGZsh{}\PYGZsh{}
+[Python]
+PYTHON:
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to R executable and R Lib \PYGZsh{}\PYGZsh{}\PYGZsh{}
+[R]
+RHOME:
+RLIB:
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to delly, bcftools executables and Version of delly (supports only 0.7.3)\PYGZsh{}\PYGZsh{}\PYGZsh{}
+[SVcaller]
+DELLY:
+DellyVersion:
+BCFTOOLS:
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to hg19 Referece Fasta file \PYGZsh{}\PYGZsh{}\PYGZsh{}
+[ReferenceFasta]
+REFFASTA:
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to file containing regions to exclude please follow Delly documentation for this \PYGZsh{}\PYGZsh{}\PYGZsh{}
+[ExcludeRegion]
+EXREGIONS:
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to file containing regions to where lenient threshold will be used; and file containing genes to keep \PYGZsh{}\PYGZsh{}\PYGZsh{}
+[HotSpotRegions]
+HotspotFile:
+GenesToKeep:
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to file containing regions/genes to filter \PYGZsh{}\PYGZsh{}\PYGZsh{}
+[BlackListRegions]
+BlackListFile:
+BlackListGenes:
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to samtools executable \PYGZsh{}\PYGZsh{}\PYGZsh{}
+[SAMTOOLS]
+SAMTOOLS:
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to iAnnotateSV.py and all its required files, please follow iAnnotateSV documentation \PYGZsh{}\PYGZsh{}\PYGZsh{}
+[iAnnotateSV]
+ANNOSV:
+GENOMEBUILD:
+DISTANCE:
+CANONICALTRANSCRIPTFILE:
+UNIPROTFILE:
+CosmicCensus:
+RepeatRegionAnnotation:
+DGvAnnotations:
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} TargetSeqView Parameters \PYGZsh{}\PYGZsh{}\PYGZsh{}
+[TargetSeqView]
+CalculateConfidenceScore:
+GENOMEBUILD:
+ReadLength:
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Parameters to run Delly \PYGZsh{}\PYGZsh{}\PYGZsh{}
+[ParametersToRunDelly]
+MAPQ: 20
+NumberOfProcessors: 4
+[ParametersToFilterDellyResults]
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Allele Fraction Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
+CaseAltFreqHotspot: 0.05
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Total Case Coverage Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
+CaseCoverageHotspot = 5
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Allele Fraction Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
+ControlAltFreqHotspot = 0
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Allele Fraction\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
+CaseAltFreq: 0.08
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Total Case Coverage\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
+CaseCoverage = 8
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Allele Fraction\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
+ControlAltFreq = 0
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting Read\PYGZhy{}pairs \PYGZsh{}\PYGZsh{}\PYGZsh{}
+OverallSupportingReads: 5
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting Read\PYGZhy{}pairs Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
+OverallSupportingReadsHotspot: 3
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting splitreads \PYGZsh{}\PYGZsh{}\PYGZsh{}
+OverallSupportingSplitReads: 0
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting splitreads Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
+OverallSupportingSplitReadsHotspot: 0
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting Read\PYGZhy{}pairs \PYGZsh{}\PYGZsh{}\PYGZsh{}
+CaseSupportingReads: 2
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting splitreads \PYGZsh{}\PYGZsh{}\PYGZsh{}
+CaseSupportingSplitReads: 0
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting Read\PYGZhy{}pairs Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
+CaseSupportingReadsHotspot: 1
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting splitreads Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
+CaseSupportingSplitReadsHotspot: 0
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting Read\PYGZhy{}pairs \PYGZsh{}\PYGZsh{}\PYGZsh{}
+ControlSupportingReads: 5
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting Read\PYGZhy{}pairs Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
+ControlSupportingReadsHotspot: 5
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting splitreads \PYGZsh{}\PYGZsh{}\PYGZsh{}
+ControlSupportingSplitReads: 5
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting splitreads Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
+ControlSupportingSplitReadsHotspot: 5
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Length of Structural Variant\PYGZsh{}\PYGZsh{}\PYGZsh{}
+LengthOfSV: 500
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Mapping Quality Threshold\PYGZsh{}\PYGZsh{}\PYGZsh{}
+OverallMapq: 20
+\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Mapping Quality Threshold Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}
+OverallMapqHotspot: 5
+\end{Verbatim}
+
+
+\section{Quick Usage}
+\label{iCallSV:quick-usage}
+\begin{Verbatim}[commandchars=\\\{\}]
+python iCallSV.py \PYGZhy{}sc /path/to/template.ini \PYGZhy{}abam /path/to/casebamFile \PYGZhy{}bbam /path/to/controlbamFile \PYGZhy{}aId caseID \PYGZhy{}bId controlId \PYGZhy{}o /path/to/output/directory \PYGZhy{}op prefix\PYGZus{}for\PYGZus{}the\PYGZus{}output\PYGZus{}files
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZgt{} python iCallSV.py \PYGZhy{}h
+
+usage: iCallSV.py [\PYGZhy{}h] [\PYGZhy{}v] [\PYGZhy{}V] \PYGZhy{}sc config.ini \PYGZhy{}abam caseBAMFile.bam \PYGZhy{}bbam
+                  controlBAMFile.bam \PYGZhy{}aId caseID \PYGZhy{}bId controlID \PYGZhy{}o
+                  /somepath/output \PYGZhy{}op TumorID
+
+iCallSV.iCallSV \PYGZhy{}\PYGZhy{} wrapper to run iCallSV package
+
+  Created by Ronak H Shah on 2015\PYGZhy{}03\PYGZhy{}30.
+  Copyright 2015\PYGZhy{}2016 Ronak H Shah. All rights reserved.
+
+  Licensed under the Apache License 2.0
+  http://www.apache.org/licenses/LICENSE\PYGZhy{}2.0
+
+  Distributed on an \PYGZdq{}AS IS\PYGZdq{} basis without warranties
+  or conditions of any kind, either express or implied.
+
+USAGE
+
+optional arguments:
+  \PYGZhy{}h, \PYGZhy{}\PYGZhy{}help            show this help message and exit
+  \PYGZhy{}v, \PYGZhy{}\PYGZhy{}verbose         set verbosity level [default: True]
+  \PYGZhy{}V, \PYGZhy{}\PYGZhy{}version         show program\PYGZsq{}s version number and exit
+  \PYGZhy{}sc config.ini, \PYGZhy{}\PYGZhy{}svConfig config.ini
+                        Full path to the structural variant configuration
+  \PYGZhy{}abam caseBAMFile.bam, \PYGZhy{}\PYGZhy{}caseBam caseBAMFile.bam
+                        Full path to the case bam file
+  \PYGZhy{}bbam controlBAMFile.bam, \PYGZhy{}\PYGZhy{}controlBam controlBAMFile.bam
+                        Full path to the control bam file
+  \PYGZhy{}aId caseID, \PYGZhy{}\PYGZhy{}caseId caseID
+                        Id of the case to be analyzed, this will be the sub\PYGZhy{}
+                        folder
+  \PYGZhy{}bId controlID, \PYGZhy{}\PYGZhy{}controlId controlID
+                        Id of the control to be used, this will be used for
+                        filtering variants
+  \PYGZhy{}o /somepath/output, \PYGZhy{}\PYGZhy{}outDir /somepath/output
+                        Full Path to the output dir.
+  \PYGZhy{}op TumorID, \PYGZhy{}\PYGZhy{}outPrefix TumorID
+                        Id of the Tumor bam file which will be used as the
+                        prefix for output files
+\end{Verbatim}
+
 
 \section{Submodules}
 \label{iCallSV:submodules}
 
-\section{iCallSV.FilterDellyCalls module}
+\subsection{iCallSV.FilterDellyCalls module}
 \label{iCallSV:icallsv-filterdellycalls-module}\label{iCallSV:module-iCallSV.FilterDellyCalls}\index{iCallSV.FilterDellyCalls (module)}
 
-\subsection{FilterDellyCalls}
+\subsubsection{FilterDellyCalls}
 \label{iCallSV:filterdellycalls}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will filter calls made by Delly which are in a VCF format
@@ -353,10 +590,10 @@ str
 
 
 
-\section{iCallSV.Run\_Delly module}
+\subsection{iCallSV.Run\_Delly module}
 \label{iCallSV:module-iCallSV.Run_Delly}\label{iCallSV:icallsv-run-delly-module}\index{iCallSV.Run\_Delly (module)}
 
-\subsection{Run\_Delly}
+\subsubsection{Run\_Delly}
 \label{iCallSV:run-delly}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 Runs the delly program on case and control bam file to give its results
@@ -420,10 +657,10 @@ str
 
 
 
-\section{iCallSV.Run\_iAnnotateSV module}
+\subsection{iCallSV.Run\_iAnnotateSV module}
 \label{iCallSV:icallsv-run-iannotatesv-module}\label{iCallSV:module-iCallSV.Run_iAnnotateSV}\index{iCallSV.Run\_iAnnotateSV (module)}
 
-\subsection{Run\_iAnnotate}
+\subsubsection{Run\_iAnnotate}
 \label{iCallSV:run-iannotate}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will run iAnnotateSV package
@@ -480,10 +717,10 @@ str
 
 
 
-\section{iCallSV.Run\_samblaster module}
+\subsection{iCallSV.Run\_samblaster module}
 \label{iCallSV:icallsv-run-samblaster-module}\label{iCallSV:module-iCallSV.Run_samblaster}\index{iCallSV.Run\_samblaster (module)}
 
-\subsection{Run\_samblaster}
+\subsubsection{Run\_samblaster}
 \label{iCallSV:run-samblaster}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will run samblaster for extracting discordant and spit reads in sam format
@@ -497,10 +734,10 @@ This module will run samblaster for extracting discordant and spit reads in sam 
 
 
 
-\section{iCallSV.Run\_targetSeqView module}
+\subsection{iCallSV.Run\_targetSeqView module}
 \label{iCallSV:module-iCallSV.Run_targetSeqView}\label{iCallSV:icallsv-run-targetseqview-module}\index{iCallSV.Run\_targetSeqView (module)}
 
-\subsection{Run\_targetSeqView}
+\subsubsection{Run\_targetSeqView}
 \label{iCallSV:run-targetseqview}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will run targetSeqView
@@ -554,10 +791,10 @@ str
 
 
 
-\section{iCallSV.checkBlackList module}
+\subsection{iCallSV.checkBlackList module}
 \label{iCallSV:icallsv-checkblacklist-module}\label{iCallSV:module-iCallSV.checkBlackList}\index{iCallSV.checkBlackList (module)}
 
-\subsection{checkBlackList}
+\subsubsection{checkBlackList}
 \label{iCallSV:checkblacklist}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will read the Black List file and tell if and event is blacklisted or not
@@ -621,10 +858,10 @@ list.
 
 
 
-\section{iCallSV.checkHotSpotList module}
+\subsection{iCallSV.checkHotSpotList module}
 \label{iCallSV:icallsv-checkhotspotlist-module}\label{iCallSV:module-iCallSV.checkHotSpotList}\index{iCallSV.checkHotSpotList (module)}
 
-\subsection{checkHotSpotList}
+\subsubsection{checkHotSpotList}
 \label{iCallSV:checkhotspotlist}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will read the hotspot file and tell if it is a hotspot or not
@@ -685,10 +922,10 @@ dict
 
 
 
-\section{iCallSV.checkparameters module}
+\subsection{iCallSV.checkparameters module}
 \label{iCallSV:icallsv-checkparameters-module}\label{iCallSV:module-iCallSV.checkparameters}\index{iCallSV.checkparameters (module)}
 
-\subsection{checkparameters}
+\subsubsection{checkparameters}
 \label{iCallSV:checkparameters}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This modules checks the parameters for various type of inputs.
@@ -805,10 +1042,10 @@ None
 
 
 
-\section{iCallSV.combineVCF module}
+\subsection{iCallSV.combineVCF module}
 \label{iCallSV:module-iCallSV.combineVCF}\label{iCallSV:icallsv-combinevcf-module}\index{iCallSV.combineVCF (module)}
 
-\subsection{combineVCF}
+\subsubsection{combineVCF}
 \label{iCallSV:combinevcf}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will combine multiple vcf file with same headers
@@ -844,10 +1081,10 @@ str
 
 
 
-\section{iCallSV.dellyVcf2Tab module}
+\subsection{iCallSV.dellyVcf2Tab module}
 \label{iCallSV:module-iCallSV.dellyVcf2Tab}\label{iCallSV:icallsv-dellyvcf2tab-module}\index{iCallSV.dellyVcf2Tab (module)}
 
-\subsection{dellyVcf2Tab}
+\subsubsection{dellyVcf2Tab}
 \label{iCallSV:dellyvcf2tab}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module converts the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV
@@ -883,10 +1120,10 @@ str
 
 
 
-\section{iCallSV.dellyVcf2targetSeqView module}
+\subsection{iCallSV.dellyVcf2targetSeqView module}
 \label{iCallSV:module-iCallSV.dellyVcf2targetSeqView}\label{iCallSV:icallsv-dellyvcf2targetseqview-module}\index{iCallSV.dellyVcf2targetSeqView (module)}
 
-\subsection{dellyVcf2targetSeqView}
+\subsubsection{dellyVcf2targetSeqView}
 \label{iCallSV:dellyvcf2targetseqview}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 Convert VCF to targetSeqView
@@ -931,10 +1168,10 @@ str
 
 
 
-\section{iCallSV.filterAnnotatedSV module}
+\subsection{iCallSV.filterAnnotatedSV module}
 \label{iCallSV:icallsv-filterannotatedsv-module}\label{iCallSV:module-iCallSV.filterAnnotatedSV}\index{iCallSV.filterAnnotatedSV (module)}
 
-\subsection{filterAnnotatedSV}
+\subsubsection{filterAnnotatedSV}
 \label{iCallSV:filterannotatedsv}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will filter calls from the merged file
@@ -1048,10 +1285,10 @@ str
 
 
 
-\section{iCallSV.iCallSV module}
+\subsection{iCallSV.iCallSV module}
 \label{iCallSV:icallsv-icallsv-module}\label{iCallSV:module-iCallSV.iCallSV}\index{iCallSV.iCallSV (module)}
 
-\subsection{iCallSV}
+\subsubsection{iCallSV}
 \label{iCallSV:icallsv}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina
@@ -1075,10 +1312,10 @@ Apache License 2.0
 \end{description}\end{quote}
 
 
-\section{iCallSV.iCallSV\_dmp\_wrapper module}
+\subsection{iCallSV.iCallSV\_dmp\_wrapper module}
 \label{iCallSV:icallsv-icallsv-dmp-wrapper-module}\label{iCallSV:module-iCallSV.iCallSV_dmp_wrapper}\index{iCallSV.iCallSV\_dmp\_wrapper (module)}
 
-\subsection{iCallSV\_dmp\_wrapper}
+\subsubsection{iCallSV\_dmp\_wrapper}
 \label{iCallSV:icallsv-dmp-wrapper}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 iCallSV is a wrapper to run the iCallSV package on MSKCC data
@@ -1258,7 +1495,7 @@ None
 
 
 
-\section{iCallSV.launchThreads module}
+\subsection{iCallSV.launchThreads module}
 \label{iCallSV:icallsv-launchthreads-module}\label{iCallSV:module-iCallSV.launchThreads}\index{iCallSV.launchThreads (module)}
 Created on December 21, 2015
 Description: This module will be launching functions as threads
@@ -1285,10 +1522,10 @@ Bases: \code{threading.Thread}
 
 
 
-\section{iCallSV.launch\_FilterDellyCalls module}
+\subsection{iCallSV.launch\_FilterDellyCalls module}
 \label{iCallSV:module-iCallSV.launch_FilterDellyCalls}\label{iCallSV:icallsv-launch-filterdellycalls-module}\index{iCallSV.launch\_FilterDellyCalls (module)}
 
-\subsection{launch\_FilterDellyCalls}
+\subsubsection{launch\_FilterDellyCalls}
 \label{iCallSV:launch-filterdellycalls}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will filter delly results and create filtered delly vcf files
@@ -1336,10 +1573,10 @@ list
 
 
 
-\section{iCallSV.launch\_Run\_Delly module}
+\subsection{iCallSV.launch\_Run\_Delly module}
 \label{iCallSV:module-iCallSV.launch_Run_Delly}\label{iCallSV:icallsv-launch-run-delly-module}\index{iCallSV.launch\_Run\_Delly (module)}
 
-\subsection{launch\_Run\_Delly}
+\subsubsection{launch\_Run\_Delly}
 \label{iCallSV:launch-run-delly}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will be launching delly using Run\_Delly
@@ -1375,10 +1612,10 @@ list
 
 
 
-\section{iCallSV.make\_analysis\_dir module}
+\subsection{iCallSV.make\_analysis\_dir module}
 \label{iCallSV:module-iCallSV.make_analysis_dir}\label{iCallSV:icallsv-make-analysis-dir-module}\index{iCallSV.make\_analysis\_dir (module)}
 
-\subsection{make\_analysis\_dir}
+\subsubsection{make\_analysis\_dir}
 \label{iCallSV:make-analysis-dir}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will make directory structure for running analysis
@@ -1405,10 +1642,10 @@ list
 
 
 
-\section{iCallSV.makebamindex module}
+\subsection{iCallSV.makebamindex module}
 \label{iCallSV:module-iCallSV.makebamindex}\label{iCallSV:icallsv-makebamindex-module}\index{iCallSV.makebamindex (module)}
 
-\subsection{makebamindex}
+\subsubsection{makebamindex}
 \label{iCallSV:makebamindex}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 Use PySAM to make bam index
@@ -1435,10 +1672,10 @@ None
 
 
 
-\section{iCallSV.mergeFinalFiles module}
+\subsection{iCallSV.mergeFinalFiles module}
 \label{iCallSV:module-iCallSV.mergeFinalFiles}\label{iCallSV:icallsv-mergefinalfiles-module}\index{iCallSV.mergeFinalFiles (module)}
 
-\subsection{mergeFinalFiles}
+\subsubsection{mergeFinalFiles}
 \label{iCallSV:mergefinalfiles}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single tab-delimited file
@@ -1486,10 +1723,10 @@ str
 
 
 
-\section{iCallSV.sortbamByCoordinate module}
+\subsection{iCallSV.sortbamByCoordinate module}
 \label{iCallSV:module-iCallSV.sortbamByCoordinate}\label{iCallSV:icallsv-sortbambycoordinate-module}\index{iCallSV.sortbamByCoordinate (module)}
 
-\subsection{sortbamByCoordinate}
+\subsubsection{sortbamByCoordinate}
 \label{iCallSV:sortbambycoordinate}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will sort bam file by coordinate
@@ -1503,10 +1740,10 @@ This module will sort bam file by coordinate
 
 
 
-\section{iCallSV.sortbamByReadName module}
+\subsection{iCallSV.sortbamByReadName module}
 \label{iCallSV:module-iCallSV.sortbamByReadName}\label{iCallSV:icallsv-sortbambyreadname-module}\index{iCallSV.sortbamByReadName (module)}
 
-\subsection{sortbamByReadName}
+\subsubsection{sortbamByReadName}
 \label{iCallSV:sortbambyreadname}\begin{quote}\begin{description}
 \item[{Description}] \leavevmode
 This module will sort bam file by name
@@ -1520,7 +1757,7 @@ This module will sort bam file by name
 
 
 
-\section{Module contents}
+\subsection{Module contents}
 \label{iCallSV:module-contents}\label{iCallSV:module-iCallSV}\index{iCallSV (module)}
 
 \chapter{Indices and tables}

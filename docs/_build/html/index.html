@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to iCallSV’s documentation! &mdash; iCallSV  documentation</title>
+    <title>iCallSV: Structural Aberration Detection from NGS datasets &mdash; iCallSV  documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="iCallSV  documentation" href="#" />
-    <link rel="next" title="iCallSV package" href="iCallSV.html" /> 
+    <link rel="next" title="iCallSV: Structural Aberration Detection from NGS datasets" href="iCallSV.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,7 +37,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="iCallSV.html" title="iCallSV package"
+          <a href="iCallSV.html" title="iCallSV: Structural Aberration Detection from NGS datasets"
              accesskey="N">next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">iCallSV  documentation</a> &raquo;</li> 
       </ul>
@@ -48,13 +48,41 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-icallsv-s-documentation">
-<h1>Welcome to iCallSV&#8217;s documentation!<a class="headerlink" href="#welcome-to-icallsv-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="icallsv-structural-aberration-detection-from-ngs-datasets">
+<h1>iCallSV: Structural Aberration Detection from NGS datasets<a class="headerlink" href="#icallsv-structural-aberration-detection-from-ngs-datasets" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Ronak H Shah</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Contact:</th><td class="field-body"><a class="reference external" href="mailto:rons&#46;shah&#37;&#52;&#48;gmail&#46;com">rons<span>&#46;</span>shah<span>&#64;</span>gmail<span>&#46;</span>com</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Source code:</th><td class="field-body"><a class="reference external" href="http://github.com/rhshah/iCallSV">http://github.com/rhshah/iCallSV</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Wiki:</th><td class="field-body"><a class="reference external" href="http://icallsv.readthedocs.io/en/latest/">http://icallsv.readthedocs.io/en/latest/</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">License:</th><td class="field-body"><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a></td>
+</tr>
+</tbody>
+</table>
+<a class="reference external image-reference" href="https://landscape.io/github/rhshah/iCallSV/master"><img alt="Code Health" src="https://landscape.io/github/rhshah/iCallSV/master/landscape.svg?style=flat" /></a>
+<p>iCallSV is a Python library and command-line software toolkit to call structural aberrations from Next Generation DNA sequencing data. Behind the scenes it uses Delly2 to do structural variant calling. It is designed for use with hybrid capture, including both whole-exome and custom target panels, and
+short-read sequencing platforms such as Illumina.</p>
+</div>
+<div class="section" id="citation">
+<h1>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h1>
+<p>We are in the process of publishing a manuscript describing iCallSV as part of the Structural Variant Detection framework.
+If you use this software in a publication, for now, please cite our website <a class="reference external" href="http://github.com/rhshah/iCallSV">iCallSV</a>.</p>
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="iCallSV.html">iCallSV package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="iCallSV.html#submodules">Submodules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iCallSV.html">iCallSV: Structural Aberration Detection from NGS datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iCallSV.html#required-packages">Required Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iCallSV.html#required-data-files">Required Data Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iCallSV.html#configuration-file-format">Configuration File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iCallSV.html#quick-usage">Quick Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iCallSV.html#submodules">Submodules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="iCallSV.html#module-iCallSV.FilterDellyCalls">iCallSV.FilterDellyCalls module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="iCallSV.html#filterdellycalls">FilterDellyCalls</a></li>
 </ul>
@@ -163,13 +191,14 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to iCallSV&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#">iCallSV: Structural Aberration Detection from NGS datasets</a></li>
+<li><a class="reference internal" href="#citation">Citation</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
   <h4>Next topic</h4>
   <p class="topless"><a href="iCallSV.html"
-                        title="next chapter">iCallSV package</a></p>
+                        title="next chapter">iCallSV: Structural Aberration Detection from NGS datasets</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -204,7 +233,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="iCallSV.html" title="iCallSV package"
+          <a href="iCallSV.html" title="iCallSV: Structural Aberration Detection from NGS datasets"
              >next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">iCallSV  documentation</a> &raquo;</li> 
       </ul>

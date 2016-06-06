@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>iCallSV package &mdash; iCallSV  documentation</title>
+    <title>iCallSV: Structural Aberration Detection from NGS datasets &mdash; iCallSV  documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="iCallSV  documentation" href="index.html" />
-    <link rel="prev" title="Welcome to iCallSV’s documentation!" href="index.html" /> 
+    <link rel="prev" title="iCallSV: Structural Aberration Detection from NGS datasets" href="index.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,7 +37,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to iCallSV’s documentation!"
+          <a href="index.html" title="iCallSV: Structural Aberration Detection from NGS datasets"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">iCallSV  documentation</a> &raquo;</li> 
       </ul>
@@ -48,11 +48,228 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="icallsv-package">
-<h1>iCallSV package<a class="headerlink" href="#icallsv-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="icallsv-structural-aberration-detection-from-ngs-datasets">
+<h1>iCallSV: Structural Aberration Detection from NGS datasets<a class="headerlink" href="#icallsv-structural-aberration-detection-from-ngs-datasets" title="Permalink to this headline">¶</a></h1>
 </div>
+<div class="section" id="required-packages">
+<h1>Required Packages<a class="headerlink" href="#required-packages" title="Permalink to this headline">¶</a></h1>
+<p>We require that you install:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">pandas:</th><td class="field-body"><a class="reference external" href="http://pandas.pydata.org/">v0.16.2</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">biopython:</th><td class="field-body"><a class="reference external" href="http://biopython.org/wiki/Main_Page">v1.65</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">pysam:</th><td class="field-body"><a class="reference external" href="https://pypi.python.org/pypi/pysam">v0.8.4</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">pyvcf:</th><td class="field-body"><a class="reference external" href="https://pypi.python.org/pypi/PyVCF">0.6.7</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Delly:</th><td class="field-body"><a class="reference external" href="https://github.com/tobiasrausch/delly">v0.7.3</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">targetSeqView:</th><td class="field-body"><a class="reference external" href="https://github.com/Eitan177/targetSeqView">master</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">iAnnotateSV:</th><td class="field-body"><a class="reference external" href="https://github.com/rhshah/iAnnotateSV/tree/1.0.5">v1.0.5</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="required-data-files">
+<h1>Required Data Files<a class="headerlink" href="#required-data-files" title="Permalink to this headline">¶</a></h1>
+<p>This files are given in the <code class="docutils literal"><span class="pre">data</span></code> folder inside iCallSV, they are uploaded using <a class="reference external" href="https://git-lfs.github.com/">git-lfs</a> and need to be downloaded with <a class="reference external" href="https://git-lfs.github.com/">git-lfs</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">blacklistRegionsFile:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first">Tab-delimited file wihout header having black listed regions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body">7       140498077       5       175998094</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">blacklistGenes:</th><td class="field-body"><p class="first">Gene listed one per line wihout header that are to be removed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><p class="first">LINC00486</p>
+<p class="last">CNOT4</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">genesToInclude:</th><td class="field-body"><p class="first">Gene listed one per line wihout header that are to be kept</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><p class="first">ALK</p>
+<p class="last">BRAF</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="configuration-file-format">
+<h1>Configuration File Format<a class="headerlink" href="#configuration-file-format" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ini"><div class="highlight"><pre>#~~~Template configuration file to run iCallSV~~~#
+#### Path to python executable ###
+[Python]
+PYTHON:
+#### Path to R executable and R Lib ###
+[R]
+RHOME:
+RLIB:
+#### Path to delly, bcftools executables and Version of delly (supports only 0.7.3)###
+[SVcaller]
+DELLY:
+DellyVersion:
+BCFTOOLS:
+#### Path to hg19 Referece Fasta file ###
+[ReferenceFasta]
+REFFASTA:
+#### Path to file containing regions to exclude please follow Delly documentation for this ###
+[ExcludeRegion]
+EXREGIONS:
+#### Path to file containing regions to where lenient threshold will be used; and file containing genes to keep ###
+[HotSpotRegions]
+HotspotFile:
+GenesToKeep:
+#### Path to file containing regions/genes to filter ###
+[BlackListRegions]
+BlackListFile:
+BlackListGenes:
+#### Path to samtools executable ###
+[SAMTOOLS]
+SAMTOOLS:
+#### Path to iAnnotateSV.py and all its required files, please follow iAnnotateSV documentation ###
+[iAnnotateSV]
+ANNOSV:
+GENOMEBUILD:
+DISTANCE:
+CANONICALTRANSCRIPTFILE:
+UNIPROTFILE:
+CosmicCensus:
+RepeatRegionAnnotation:
+DGvAnnotations:
+#### TargetSeqView Parameters ###
+[TargetSeqView]
+CalculateConfidenceScore:
+GENOMEBUILD:
+ReadLength:
+#### Parameters to run Delly ###
+[ParametersToRunDelly]
+MAPQ: 20
+NumberOfProcessors: 4
+[ParametersToFilterDellyResults]
+####Case Allele Fraction Hotspot####
+CaseAltFreqHotspot: 0.05
+####Total Case Coverage Hotspot#####
+CaseCoverageHotspot = 5
+####Control Allele Fraction Hotspot####
+ControlAltFreqHotspot = 0
+####Case Allele Fraction####
+CaseAltFreq: 0.08
+####Total Case Coverage#####
+CaseCoverage = 8
+####Control Allele Fraction####
+ControlAltFreq = 0
+###Overall Supporting Read-pairs ###
+OverallSupportingReads: 5
+###Overall Supporting Read-pairs Hotspot ###
+OverallSupportingReadsHotspot: 3
+###Overall Supporting splitreads ###
+OverallSupportingSplitReads: 0
+###Overall Supporting splitreads Hotspot ###
+OverallSupportingSplitReadsHotspot: 0
+###Case Supporting Read-pairs ###
+CaseSupportingReads: 2
+###Case Supporting splitreads ###
+CaseSupportingSplitReads: 0
+###Case Supporting Read-pairs Hotspot ###
+CaseSupportingReadsHotspot: 1
+###Case Supporting splitreads Hotspot ###
+CaseSupportingSplitReadsHotspot: 0
+###Control Supporting Read-pairs ###
+ControlSupportingReads: 5
+###Control Supporting Read-pairs Hotspot ###
+ControlSupportingReadsHotspot: 5
+###Control Supporting splitreads ###
+ControlSupportingSplitReads: 5
+###Control Supporting splitreads Hotspot ###
+ControlSupportingSplitReadsHotspot: 5
+###Length of Structural Variant###
+LengthOfSV: 500
+###Overall Mapping Quality Threshold###
+OverallMapq: 20
+###Overall Mapping Quality Threshold Hotspot###
+OverallMapqHotspot: 5
+</pre></div>
+</div>
+</div>
+<div class="section" id="quick-usage">
+<h1>Quick Usage<a class="headerlink" href="#quick-usage" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-sh"><div class="highlight"><pre>python iCallSV.py -sc /path/to/template.ini -abam /path/to/casebamFile -bbam /path/to/controlbamFile -aId caseID -bId controlId -o /path/to/output/directory -op prefix_for_the_output_files
+</pre></div>
+</div>
+<div class="highlight-sh"><div class="highlight"><pre>&gt; python iCallSV.py -h
+
+usage: iCallSV.py [-h] [-v] [-V] -sc config.ini -abam caseBAMFile.bam -bbam
+                  controlBAMFile.bam -aId caseID -bId controlID -o
+                  /somepath/output -op TumorID
+
+iCallSV.iCallSV -- wrapper to run iCallSV package
+
+  Created by Ronak H Shah on 2015-03-30.
+  Copyright 2015-2016 Ronak H Shah. All rights reserved.
+
+  Licensed under the Apache License 2.0
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Distributed on an &quot;AS IS&quot; basis without warranties
+  or conditions of any kind, either express or implied.
+
+USAGE
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --verbose         set verbosity level [default: True]
+  -V, --version         show program&#39;s version number and exit
+  -sc config.ini, --svConfig config.ini
+                        Full path to the structural variant configuration
+  -abam caseBAMFile.bam, --caseBam caseBAMFile.bam
+                        Full path to the case bam file
+  -bbam controlBAMFile.bam, --controlBam controlBAMFile.bam
+                        Full path to the control bam file
+  -aId caseID, --caseId caseID
+                        Id of the case to be analyzed, this will be the sub-
+                        folder
+  -bId controlID, --controlId controlID
+                        Id of the control to be used, this will be used for
+                        filtering variants
+  -o /somepath/output, --outDir /somepath/output
+                        Full Path to the output dir.
+  -op TumorID, --outPrefix TumorID
+                        Id of the Tumor bam file which will be used as the
+                        prefix for output files
+</pre></div>
+</div>
+</div>
+<div class="section" id="submodules">
+<h1>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-iCallSV.FilterDellyCalls">
 <span id="icallsv-filterdellycalls-module"></span><h2>iCallSV.FilterDellyCalls module<a class="headerlink" href="#module-iCallSV.FilterDellyCalls" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="filterdellycalls">
@@ -151,7 +368,7 @@
 <dl class="function">
 <dt id="iCallSV.FilterDellyCalls.run">
 <code class="descclassname">iCallSV.FilterDellyCalls.</code><code class="descname">run</code><span class="sig-paren">(</span><em>inputVcf</em>, <em>outputDir</em>, <em>controlId</em>, <em>caseID</em>, <em>hotspotFile</em>, <em>blacklistFile</em>, <em>svlength</em>, <em>mapq</em>, <em>mapqHotspot</em>, <em>caseAltFreqHotspot</em>, <em>caseTotalCountHotspot</em>, <em>controlAltFreqHotspot</em>, <em>caseAltFreq</em>, <em>caseTotalCount</em>, <em>controlAltFreq</em>, <em>peSupport</em>, <em>srSupport</em>, <em>peSupportHotspot</em>, <em>srSupportHotspot</em>, <em>peSupportCase</em>, <em>srSupportCase</em>, <em>peSupportHotspotCase</em>, <em>srSupportHotspotCase</em>, <em>peSupportControl</em>, <em>srSupportControl</em>, <em>peSupportHotspotControl</em>, <em>srSupportHotspotControl</em>, <em>verbose</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/FilterDellyCalls.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.FilterDellyCalls.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><a href="#id1"><span class="problematic" id="id2">``</span></a>main:<a href="#id3"><span class="problematic" id="id4">``</span></a>Filter calls made by Delly which are in a VCF format</p>
+<dd><p><a href="#id3"><span class="problematic" id="id4">``</span></a>main:<a href="#id5"><span class="problematic" id="id6">``</span></a>Filter calls made by Delly which are in a VCF format</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1275,8 +1492,12 @@ Description: This module will be launching functions as threads
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">iCallSV package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#">iCallSV: Structural Aberration Detection from NGS datasets</a></li>
+<li><a class="reference internal" href="#required-packages">Required Packages</a></li>
+<li><a class="reference internal" href="#required-data-files">Required Data Files</a></li>
+<li><a class="reference internal" href="#configuration-file-format">Configuration File Format</a></li>
+<li><a class="reference internal" href="#quick-usage">Quick Usage</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a><ul>
 <li><a class="reference internal" href="#module-iCallSV.FilterDellyCalls">iCallSV.FilterDellyCalls module</a><ul>
 <li><a class="reference internal" href="#filterdellycalls">FilterDellyCalls</a></li>
 </ul>
@@ -1369,7 +1590,7 @@ Description: This module will be launching functions as threads
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to iCallSV&#8217;s documentation!</a></p>
+                        title="previous chapter">iCallSV: Structural Aberration Detection from NGS datasets</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -1404,7 +1625,7 @@ Description: This module will be launching functions as threads
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to iCallSV’s documentation!"
+          <a href="index.html" title="iCallSV: Structural Aberration Detection from NGS datasets"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">iCallSV  documentation</a> &raquo;</li> 
       </ul>
