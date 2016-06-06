@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # iCallSV documentation build configuration file, created by
-# sphinx-quickstart on Fri Jun  3 18:31:41 2016.
+# sphinx-quickstart on Mon Jun  6 11:08:33 2016.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -14,6 +14,7 @@
 
 import sys
 import os
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -28,11 +29,9 @@ sys.path.insert(0, os.path.abspath('../../iCallSV'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-	'sphinx.ext.autodoc',
-    	'sphinx.ext.todo',
-    	'sphinx.ext.viewcode',
-    	'sphinx.ext.coverage',
-	'sphinx.ext.napoleon'
+    'sphinx.ext.autodoc',
+    'sphinx.ext.todo',
+    'sphinx.ext.viewcode',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

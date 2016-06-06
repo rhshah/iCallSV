@@ -80,7 +80,7 @@
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;iCallSV.FilterDellyCalls&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="run"><a class="viewcode-back" href="../../source/iCallSV.html#iCallSV.filterAnnotatedSV.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">inputTxt</span><span class="p">,</span> <span class="n">outputDir</span><span class="p">,</span> <span class="n">outPrefix</span><span class="p">,</span> <span class="n">blacklistGenesFile</span><span class="p">,</span> <span class="n">genesToKeepFile</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
+<div class="viewcode-block" id="run"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.filterAnnotatedSV.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">inputTxt</span><span class="p">,</span> <span class="n">outputDir</span><span class="p">,</span> <span class="n">outPrefix</span><span class="p">,</span> <span class="n">blacklistGenesFile</span><span class="p">,</span> <span class="n">genesToKeepFile</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This will ``filter sv calls`` from the final merged file.</span>
 
@@ -152,7 +152,7 @@
 <span class="c1"># Check if the gene is a blacklist gene</span>
 
 
-<div class="viewcode-block" id="checkGeneListToKeep"><a class="viewcode-back" href="../../source/iCallSV.html#iCallSV.filterAnnotatedSV.checkGeneListToKeep">[docs]</a><span class="k">def</span> <span class="nf">checkGeneListToKeep</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">keepGenes</span><span class="p">):</span>
+<div class="viewcode-block" id="checkGeneListToKeep"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.filterAnnotatedSV.checkGeneListToKeep">[docs]</a><span class="k">def</span> <span class="nf">checkGeneListToKeep</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">keepGenes</span><span class="p">):</span>
     <span class="k">if</span><span class="p">((</span><span class="n">gene1</span> <span class="ow">in</span> <span class="n">keepGenes</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">gene2</span> <span class="ow">in</span> <span class="n">keepGenes</span><span class="p">)):</span>
         <span class="n">kgFlag</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="k">else</span><span class="p">:</span>
@@ -162,7 +162,7 @@
 <span class="c1"># Check if the gene is a blacklist gene</span>
 
 
-<div class="viewcode-block" id="checkBlackListGene"><a class="viewcode-back" href="../../source/iCallSV.html#iCallSV.filterAnnotatedSV.checkBlackListGene">[docs]</a><span class="k">def</span> <span class="nf">checkBlackListGene</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">blacklistGenes</span><span class="p">):</span>
+<div class="viewcode-block" id="checkBlackListGene"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.filterAnnotatedSV.checkBlackListGene">[docs]</a><span class="k">def</span> <span class="nf">checkBlackListGene</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">blacklistGenes</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This will ``check for blacklisted genes``</span>
 
@@ -182,7 +182,7 @@
 
 
 <span class="c1"># Check if the event is in the intron only and not affecting splicing</span>
-<div class="viewcode-block" id="checkEventInIntronFlag"><a class="viewcode-back" href="../../source/iCallSV.html#iCallSV.filterAnnotatedSV.checkEventInIntronFlag">[docs]</a><span class="k">def</span> <span class="nf">checkEventInIntronFlag</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">site1</span><span class="p">,</span> <span class="n">site2</span><span class="p">):</span>
+<div class="viewcode-block" id="checkEventInIntronFlag"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.filterAnnotatedSV.checkEventInIntronFlag">[docs]</a><span class="k">def</span> <span class="nf">checkEventInIntronFlag</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">site1</span><span class="p">,</span> <span class="n">site2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This will ``Check if the event is in the intron only and not affecting</span>
 <span class="sd">    splicing``</span>
