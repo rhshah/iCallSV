@@ -36,16 +36,17 @@ We require that you install:
 Required Data Files
 ===================
 
-This files are given in the ``data`` folder inside iCallSV, they are uploaded using `git-lfs <https://git-lfs.github.com/>`_ and need to be downloaded with `git-lfs <https://git-lfs.github.com/>`_
+This files are given in the ``data`` folder inside iCallSV.
 
-:blacklistRegionsFile: Tab-delimited file wihout header having black listed regions.
+
+:BlackListFile:: (blacklist.txt) Tab-delimited file wihout header having black listed regions in order chromosome 1, breakpoint 1, chromosome 2, breakpoint 2 
 
 	:Example:
 	
 		7	140498077	5	175998094
 		
 
-:blacklistGenes: Gene listed one per line wihout header that are to be removed 
+:BlackListGenes: (blacklistgenes.txt) Gene listed one per line wihout header that are to be removed 
 
 	:Example:
 	
@@ -53,8 +54,13 @@ This files are given in the ``data`` folder inside iCallSV, they are uploaded us
 		
 		CNOT4
 		
-		
-:genesToInclude: Gene listed one per line wihout header that are to be kept
+:HotspotFile: (hotspotgenes.txt) Tab-delimited file wihout header having hotspot regions in order chromosome, start, end, name 
+	
+	:Example:
+	
+		2	29416089	30143525	ALK
+
+:GenesToKeep: (genesToInclude.txt) Gene listed one per line wihout header that are to be kept
 	
 	:Example:
 	

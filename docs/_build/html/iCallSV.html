@@ -77,14 +77,10 @@
 </div>
 <div class="section" id="required-data-files">
 <h1>Required Data Files<a class="headerlink" href="#required-data-files" title="Permalink to this headline">¶</a></h1>
-<p>This files are given in the <code class="docutils literal"><span class="pre">data</span></code> folder inside iCallSV, they are uploaded using <a class="reference external" href="https://git-lfs.github.com/">git-lfs</a> and need to be downloaded with <a class="reference external" href="https://git-lfs.github.com/">git-lfs</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">blacklistRegionsFile:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first">Tab-delimited file wihout header having black listed regions.</p>
-<table class="docutils field-list" frame="void" rules="none">
+<p>This files are given in the <code class="docutils literal"><span class="pre">data</span></code> folder inside iCallSV.</p>
+<p>:BlackListFile:: (blacklist.txt) Tab-delimited file wihout header having black listed regions in order chromosome 1, breakpoint 1, chromosome 2, breakpoint 2</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
@@ -92,9 +88,12 @@
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">blacklistGenes:</th><td class="field-body"><p class="first">Gene listed one per line wihout header that are to be removed</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">BlackListGenes:</th><td class="field-body"><p class="first">(blacklistgenes.txt) Gene listed one per line wihout header that are to be removed</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -107,7 +106,18 @@
 </table>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">genesToInclude:</th><td class="field-body"><p class="first">Gene listed one per line wihout header that are to be kept</p>
+<tr class="field-even field"><th class="field-name">HotspotFile:</th><td class="field-body"><p class="first">(hotspotgenes.txt) Tab-delimited file wihout header having hotspot regions in order chromosome, start, end, name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body">2       29416089        30143525        ALK</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">GenesToKeep:</th><td class="field-body"><p class="first">(genesToInclude.txt) Gene listed one per line wihout header that are to be kept</p>
 <table class="last docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -368,7 +378,7 @@ optional arguments:
 <dl class="function">
 <dt id="iCallSV.FilterDellyCalls.run">
 <code class="descclassname">iCallSV.FilterDellyCalls.</code><code class="descname">run</code><span class="sig-paren">(</span><em>inputVcf</em>, <em>outputDir</em>, <em>controlId</em>, <em>caseID</em>, <em>hotspotFile</em>, <em>blacklistFile</em>, <em>svlength</em>, <em>mapq</em>, <em>mapqHotspot</em>, <em>caseAltFreqHotspot</em>, <em>caseTotalCountHotspot</em>, <em>controlAltFreqHotspot</em>, <em>caseAltFreq</em>, <em>caseTotalCount</em>, <em>controlAltFreq</em>, <em>peSupport</em>, <em>srSupport</em>, <em>peSupportHotspot</em>, <em>srSupportHotspot</em>, <em>peSupportCase</em>, <em>srSupportCase</em>, <em>peSupportHotspotCase</em>, <em>srSupportHotspotCase</em>, <em>peSupportControl</em>, <em>srSupportControl</em>, <em>peSupportHotspotControl</em>, <em>srSupportHotspotControl</em>, <em>verbose</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/FilterDellyCalls.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.FilterDellyCalls.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><a href="#id3"><span class="problematic" id="id4">``</span></a>main:<a href="#id5"><span class="problematic" id="id6">``</span></a>Filter calls made by Delly which are in a VCF format</p>
+<dd><p><a href="#id2"><span class="problematic" id="id3">``</span></a>main:<a href="#id4"><span class="problematic" id="id5">``</span></a>Filter calls made by Delly which are in a VCF format</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

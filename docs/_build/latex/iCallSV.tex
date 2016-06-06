@@ -196,18 +196,19 @@ We require that you install:
 
 \section{Required Data Files}
 \label{iCallSV:required-data-files}
-This files are given in the \code{data} folder inside iCallSV, they are uploaded using \href{https://git-lfs.github.com/}{git-lfs} and need to be downloaded with \href{https://git-lfs.github.com/}{git-lfs}
-\begin{quote}\begin{description}
-\item[{blacklistRegionsFile}] \leavevmode
-Tab-delimited file wihout header having black listed regions.
+This files are given in the \code{data} folder inside iCallSV.
+
+:BlackListFile:: (blacklist.txt) Tab-delimited file wihout header having black listed regions in order chromosome 1, breakpoint 1, chromosome 2, breakpoint 2
+\begin{quote}
 \begin{quote}\begin{description}
 \item[{Example}] \leavevmode
 7       140498077       5       175998094
 
 \end{description}\end{quote}
-
-\item[{blacklistGenes}] \leavevmode
-Gene listed one per line wihout header that are to be removed
+\end{quote}
+\begin{quote}\begin{description}
+\item[{BlackListGenes}] \leavevmode
+(blacklistgenes.txt) Gene listed one per line wihout header that are to be removed
 \begin{quote}\begin{description}
 \item[{Example}] \leavevmode
 LINC00486
@@ -216,8 +217,16 @@ CNOT4
 
 \end{description}\end{quote}
 
-\item[{genesToInclude}] \leavevmode
-Gene listed one per line wihout header that are to be kept
+\item[{HotspotFile}] \leavevmode
+(hotspotgenes.txt) Tab-delimited file wihout header having hotspot regions in order chromosome, start, end, name
+\begin{quote}\begin{description}
+\item[{Example}] \leavevmode
+2       29416089        30143525        ALK
+
+\end{description}\end{quote}
+
+\item[{GenesToKeep}] \leavevmode
+(genesToInclude.txt) Gene listed one per line wihout header that are to be kept
 \begin{quote}\begin{description}
 \item[{Example}] \leavevmode
 ALK
