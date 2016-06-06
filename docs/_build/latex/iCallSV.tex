@@ -197,16 +197,19 @@ We require that you install:
 \section{Required Data Files}
 \label{iCallSV:required-data-files}
 This files are given in the \code{data} folder inside iCallSV.
-
-:BlackListFile:: (blacklist.txt) Tab-delimited file wihout header having black listed regions in order chromosome 1, breakpoint 1, chromosome 2, breakpoint 2
+\begin{quote}\begin{description}
+\item[{BlackListFile}] \leavevmode
+(blacklist.txt) Tab-delimited file wihout header having black listed regions in order:
 \begin{quote}
+
+\textbf{chromosome 1, breakpoint 1, chromosome 2, breakpoint 2}
+\end{quote}
 \begin{quote}\begin{description}
 \item[{Example}] \leavevmode
 7       140498077       5       175998094
 
 \end{description}\end{quote}
-\end{quote}
-\begin{quote}\begin{description}
+
 \item[{BlackListGenes}] \leavevmode
 (blacklistgenes.txt) Gene listed one per line wihout header that are to be removed
 \begin{quote}\begin{description}
@@ -218,7 +221,11 @@ CNOT4
 \end{description}\end{quote}
 
 \item[{HotspotFile}] \leavevmode
-(hotspotgenes.txt) Tab-delimited file wihout header having hotspot regions in order chromosome, start, end, name
+(hotspotgenes.txt) Tab-delimited file wihout header having hotspot regions in order:
+\begin{quote}
+
+\textbf{chromosome, start, end, name}
+\end{quote}
 \begin{quote}\begin{description}
 \item[{Example}] \leavevmode
 2       29416089        30143525        ALK

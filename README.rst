@@ -39,7 +39,10 @@ Required Data Files
 This files are given in the ``data`` folder inside iCallSV.
 
 
-:BlackListFile:: (blacklist.txt) Tab-delimited file wihout header having black listed regions in order chromosome 1, breakpoint 1, chromosome 2, breakpoint 2 
+:BlackListFile: (blacklist.txt) Tab-delimited file wihout header having black listed regions in order:
+				
+				**chromosome 1, breakpoint 1, chromosome 2, breakpoint 2**
+				
 
 	:Example:
 	
@@ -54,7 +57,9 @@ This files are given in the ``data`` folder inside iCallSV.
 		
 		CNOT4
 		
-:HotspotFile: (hotspotgenes.txt) Tab-delimited file wihout header having hotspot regions in order chromosome, start, end, name 
+:HotspotFile: (hotspotgenes.txt) Tab-delimited file wihout header having hotspot regions in order:
+			  
+			  **chromosome, start, end, name**
 	
 	:Example:
 	
