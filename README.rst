@@ -228,4 +228,42 @@ Quick Usage
 	  -op TumorID, --outPrefix TumorID
 	                        Id of the Tumor bam file which will be used as the
 	                        prefix for output files
+
+
+Utilities
+=========
+**This is only for MSK-IMPACT internal samples**
+
+.. code-block:: sh
+	
+	> python iCallSV_dmp_wrapper.py -h
+	
+	usage: iCallSV_dmp_wrapper.py [options]
+
+	Run iCallSV on selected pools using MSK data
+
+	optional arguments:
+	  -h, --help            show this help message and exit
+	  -fl folders.fof, --folderList folders.fof
+	                        Full path folders file of files.
+	  -qc /some/path/qcLocation, --qcLocation /some/path/qcLocation
+	                        Full path qc files.
+	  -b /some/path/bamlocation, --bamLocation /some/path/bamlocation
+	                        Full path bam files.
+	  -P /somepath/python, --python /somepath/python
+	                        Full path Pyhton executables.
+	  -icsv /somepath/iCallSV.py, --iCallSV /somepath/iCallSV.py
+	                        Full path iCallSV.py executables.
+	  -conf /somepath/template.ini, --iCallSVconf /somepath/template.ini
+	                        Full path configuration file to run iCallSV
+	  -q all.q or clin.q, --queue all.q or clin.q
+	                        Name of the SGE queue
+	  -qsub /somepath/qsub, --qsubPath /somepath/qsub
+	                        Full Path to the qsub executables of SGE.
+	  -t 5, --threads 5     Number of Threads to be used to run iCallSV
+	  -v, --verbose         make lots of noise [default]
+	  -o /somepath/output, --outDir /somepath/output
+	                        Full Path to the output dir.
+	
+	
 	

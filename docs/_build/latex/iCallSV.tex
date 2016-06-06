@@ -393,6 +393,42 @@ optional arguments:
 \end{Verbatim}
 
 
+\section{Utilities}
+\label{iCallSV:utilities}
+\textbf{This is only for MSK-IMPACT internal samples}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZgt{} python iCallSV\PYGZus{}dmp\PYGZus{}wrapper.py \PYGZhy{}h
+
+usage: iCallSV\PYGZus{}dmp\PYGZus{}wrapper.py \PYG{o}{[}options\PYG{o}{]}
+
+Run iCallSV on selected pools using MSK data
+
+optional arguments:
+  \PYGZhy{}h, \PYGZhy{}\PYGZhy{}help            show this \PYG{n+nb}{help} message and \PYG{n+nb}{exit}
+  \PYGZhy{}fl folders.fof, \PYGZhy{}\PYGZhy{}folderList folders.fof
+                        Full path folders file of files.
+  \PYGZhy{}qc /some/path/qcLocation, \PYGZhy{}\PYGZhy{}qcLocation /some/path/qcLocation
+                        Full path qc files.
+  \PYGZhy{}b /some/path/bamlocation, \PYGZhy{}\PYGZhy{}bamLocation /some/path/bamlocation
+                        Full path bam files.
+  \PYGZhy{}P /somepath/python, \PYGZhy{}\PYGZhy{}python /somepath/python
+                        Full path Pyhton executables.
+  \PYGZhy{}icsv /somepath/iCallSV.py, \PYGZhy{}\PYGZhy{}iCallSV /somepath/iCallSV.py
+                        Full path iCallSV.py executables.
+  \PYGZhy{}conf /somepath/template.ini, \PYGZhy{}\PYGZhy{}iCallSVconf /somepath/template.ini
+                        Full path configuration file to run iCallSV
+  \PYGZhy{}q all.q or clin.q, \PYGZhy{}\PYGZhy{}queue all.q or clin.q
+                        Name of the SGE queue
+  \PYGZhy{}qsub /somepath/qsub, \PYGZhy{}\PYGZhy{}qsubPath /somepath/qsub
+                        Full Path to the qsub executables of SGE.
+  \PYGZhy{}t 5, \PYGZhy{}\PYGZhy{}threads \PYG{l+m}{5}     Number of Threads to be used to run iCallSV
+  \PYGZhy{}v, \PYGZhy{}\PYGZhy{}verbose         make lots of noise \PYG{o}{[}default\PYG{o}{]}
+  \PYGZhy{}o /somepath/output, \PYGZhy{}\PYGZhy{}outDir /somepath/output
+                        Full Path to the output dir.
+\end{Verbatim}
+
+
 \section{Submodules}
 \label{iCallSV:submodules}
 

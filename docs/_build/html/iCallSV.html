@@ -284,6 +284,40 @@ optional arguments:
 </pre></div>
 </div>
 </div>
+<div class="section" id="utilities">
+<h1>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
+<p><strong>This is only for MSK-IMPACT internal samples</strong></p>
+<div class="highlight-sh"><div class="highlight"><pre>&gt; python iCallSV_dmp_wrapper.py -h
+
+usage: iCallSV_dmp_wrapper.py <span class="o">[</span>options<span class="o">]</span>
+
+Run iCallSV on selected pools using MSK data
+
+optional arguments:
+  -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+  -fl folders.fof, --folderList folders.fof
+                        Full path folders file of files.
+  -qc /some/path/qcLocation, --qcLocation /some/path/qcLocation
+                        Full path qc files.
+  -b /some/path/bamlocation, --bamLocation /some/path/bamlocation
+                        Full path bam files.
+  -P /somepath/python, --python /somepath/python
+                        Full path Pyhton executables.
+  -icsv /somepath/iCallSV.py, --iCallSV /somepath/iCallSV.py
+                        Full path iCallSV.py executables.
+  -conf /somepath/template.ini, --iCallSVconf /somepath/template.ini
+                        Full path configuration file to run iCallSV
+  -q all.q or clin.q, --queue all.q or clin.q
+                        Name of the SGE queue
+  -qsub /somepath/qsub, --qsubPath /somepath/qsub
+                        Full Path to the qsub executables of SGE.
+  -t 5, --threads <span class="m">5</span>     Number of Threads to be used to run iCallSV
+  -v, --verbose         make lots of noise <span class="o">[</span>default<span class="o">]</span>
+  -o /somepath/output, --outDir /somepath/output
+                        Full Path to the output dir.
+</pre></div>
+</div>
+</div>
 <div class="section" id="submodules">
 <h1>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-iCallSV.FilterDellyCalls">
@@ -1513,6 +1547,7 @@ Description: This module will be launching functions as threads
 <li><a class="reference internal" href="#required-data-files">Required Data Files</a></li>
 <li><a class="reference internal" href="#configuration-file-format">Configuration File Format</a></li>
 <li><a class="reference internal" href="#quick-usage">Quick Usage</a></li>
+<li><a class="reference internal" href="#utilities">Utilities</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a><ul>
 <li><a class="reference internal" href="#module-iCallSV.FilterDellyCalls">iCallSV.FilterDellyCalls module</a><ul>
 <li><a class="reference internal" href="#filterdellycalls">FilterDellyCalls</a></li>
