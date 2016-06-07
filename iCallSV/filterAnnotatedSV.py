@@ -15,8 +15,8 @@ inputTxt: Filter Text File
 outputDir: Output directory
 outPrefix: Prefix of the output file
 blacklistGenesFile: List of genes that should be eliminated
-genesToKeepFile: List of genes that should be kept
 verbose: Mode
+genesToKeepFile: List of genes that should be kept
 
 ::Output::
 Filtered Output files
@@ -31,7 +31,7 @@ import re
 logger = logging.getLogger('iCallSV.FilterDellyCalls')
 
 
-def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile=None, verbose):
+def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose,genesToKeepFile=None):
     """
     This will ``filter sv calls`` from the final merged file.
 
@@ -39,8 +39,8 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile=None
     :param str outputDir: str for the output directory
     :param str outputPrefix: str prefix for the output File
     :param str blacklistGenesFile: str for the txt file containing blacklisted genes
-    :param str genesToKeepFile: str for the txt file containing genes to keep
     :param bool verbose: a boolean
+    :param str genesToKeepFile: str for the txt file containing genes to keep
     :return: A str name of final sv file
     :rtype: str
 

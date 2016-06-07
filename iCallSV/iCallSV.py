@@ -92,7 +92,7 @@ def main(argv=None):  # IGNORE:C0111
 
     """
 
-    #Command line options.
+    # Command line options.
 
     if argv is None:
         argv = sys.argv
@@ -329,8 +329,8 @@ USAGE
             # Filter Final Results
             finalFilterResults = fas.run(
                 finalFile, sampleOutdirForDelly, args.outprefix, config.get(
-                    "BlackListRegions", "BlackListGenes"), config.get(
-                    "HotSpotRegions", "GenesToKeep"), args.verbose)
+                    "BlackListRegions", "BlackListGenes"), args.verbose, config.get(
+                    "HotSpotRegions", "GenesToKeep"))
 
         else:
             if(verbose):
