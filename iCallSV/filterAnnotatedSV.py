@@ -46,8 +46,13 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile, ver
 
     """
     cp.checkFile(inputTxt)
+    cp.checkFile(blacklistGenesFile)
     cp.checkDir(outputDir)
     cp.checkEmpty(outPrefix, "Prefix for the output file")
+    if(os.path.isfile(genesToKeepFile)):
+        keepGenes = [line.strip() for line in open(genesToKeepFile, 'r')]
+    else:
+        keepGenes = None
     inputDF = pd.read_csv(inputTxt, sep="\t", header=0, keep_default_na='True')
     outputDF = pd.DataFrame(columns=inputDF.columns)
     outputFile = os.path.join(outputDir, outPrefix + "_final.txt")
@@ -67,8 +72,10 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile, ver
             igrFlag = False
 
         # check records from these gene
-        keepGenes = [line.strip() for line in open(genesToKeepFile, 'r')]
-        keepGeneFlag = checkBlackListGene(gene1, gene2, keepGenes)
+        if(keepGenes):
+            keepGeneFlag = checkBlackListGene(gene1, gene2, keepGenes)
+        else:
+            keepGeneFlag = True
         # check records from these gene
         blacklistGenes = [line.strip() for line in open(blacklistGenesFile, 'r')]
         blacklistGeneFlag = checkBlackListGene(gene1, gene2, blacklistGenes)
