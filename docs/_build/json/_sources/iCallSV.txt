@@ -57,7 +57,7 @@ This files are given in the ``data`` folder inside iCallSV.
 Configuration File Format
 =========================
 
-.. code-block:: ini
+.. code-block:: sh
 	
 	#~~~Template configuration file to run iCallSV~~~#
 	#### Path to python executable ###
@@ -116,9 +116,9 @@ Configuration File Format
 	####Control Allele Fraction Hotspot####
 	ControlAltFreqHotspot = 0
 	####Case Allele Fraction####
-	CaseAltFreq: 0.08
+	CaseAltFreq: 0.10
 	####Total Case Coverage#####
-	CaseCoverage = 8
+	CaseCoverage = 10
 	####Control Allele Fraction####
 	ControlAltFreq = 0
 	###Overall Supporting Read-pairs ###
@@ -138,13 +138,13 @@ Configuration File Format
 	###Case Supporting splitreads Hotspot ###
 	CaseSupportingSplitReadsHotspot: 0
 	###Control Supporting Read-pairs ###
-	ControlSupportingReads: 5
+	ControlSupportingReads: 3
 	###Control Supporting Read-pairs Hotspot ###
-	ControlSupportingReadsHotspot: 5
+	ControlSupportingReadsHotspot: 3
 	###Control Supporting splitreads ###
-	ControlSupportingSplitReads: 5
+	ControlSupportingSplitReads: 3
 	###Control Supporting splitreads Hotspot ###
-	ControlSupportingSplitReadsHotspot: 5
+	ControlSupportingSplitReadsHotspot: 3
 	###Length of Structural Variant###
 	LengthOfSV: 500
 	###Overall Mapping Quality Threshold###
@@ -162,9 +162,10 @@ Quick Usage
 	python iCallSV.py -sc /path/to/template.ini -abam /path/to/casebamFile -bbam /path/to/controlbamFile -aId caseID -bId controlId -o /path/to/output/directory -op prefix_for_the_output_files
 
 
+
 .. code-block:: sh
 	
-	> python iCallSV.py -h
+	python iCallSV.py -h
 	
 	usage: iCallSV.py [-h] [-v] [-V] -sc config.ini -abam caseBAMFile.bam -bbam
 	                  controlBAMFile.bam -aId caseID -bId controlID -o
@@ -207,11 +208,15 @@ Quick Usage
 							
 Utilities
 =========
+
+Running iCallSV on MSK-IMPACT Pools
+-----------------------------------
+
 **This is only for MSK-IMPACT internal samples**
 
 .. code-block:: sh
 	
-	> python iCallSV_dmp_wrapper.py -h
+	python iCallSV_dmp_wrapper.py -h
 	
 	usage: iCallSV_dmp_wrapper.py [options]
 
@@ -239,11 +244,39 @@ Utilities
 	  -v, --verbose         make lots of noise [default]
 	  -o /somepath/output, --outDir /somepath/output
 	                        Full Path to the output dir.
-							
 
+
+
+Taking the iCallSV and chechking for processed transcript/cDNA in samples
+-------------------------------------------------------------------------
+
+.. code-block:: sh
+	
+	python check_cDNA_contamination.py -h
+	usage: check_cDNA_contamination.py [options]
+
+	Calculate cDNA contamination per sample based of the Structural Variants
+	Pipeline result
+
+	optional arguments:
+	  -h, --help            show this help message and exit
+	  -v, --verbose         make lots of noise [default]
+	  -s SVfile.txt, --svFile SVfile.txt
+	                        Location of the structural variant file to be used
+	  -o cDNA_contamination, --outputFileName cDNA_contamination
+	                        Full path name for the output file
+							
 Submodules
 ==========
 
+iCallSV.iCallSV module
+----------------------
+
+.. automodule:: iCallSV.iCallSV
+    :members:
+    :undoc-members:
+    :show-inheritance:
+	
 iCallSV.FilterDellyCalls module
 -------------------------------
 
@@ -340,18 +373,19 @@ iCallSV.filterAnnotatedSV module
     :undoc-members:
     :show-inheritance:
 
-iCallSV.iCallSV module
-----------------------
 
-.. automodule:: iCallSV.iCallSV
+iCallSV.utilities.iCallSV_dmp_wrapper module
+--------------------------------------------
+
+.. automodule:: iCallSV.utilities.iCallSV_dmp_wrapper
     :members:
     :undoc-members:
     :show-inheritance:
 
-iCallSV.iCallSV_dmp_wrapper module
-----------------------------------
+iCallSV.utilities.check_cDNA_contamination module
+-------------------------------------------------
 
-.. automodule:: iCallSV.iCallSV_dmp_wrapper
+.. automodule:: iCallSV.utilities.check_cDNA_contamination
     :members:
     :undoc-members:
     :show-inheritance:

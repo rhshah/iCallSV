@@ -141,38 +141,38 @@
 </div>
 <div class="section" id="configuration-file-format">
 <h1>Configuration File Format<a class="headerlink" href="#configuration-file-format" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-ini"><div class="highlight"><pre>#~~~Template configuration file to run iCallSV~~~#
-#### Path to python executable ###
-[Python]
+<div class="highlight-sh"><div class="highlight"><pre><span class="c1">#~~~Template configuration file to run iCallSV~~~#</span>
+<span class="c1">#### Path to python executable ###</span>
+<span class="o">[</span>Python<span class="o">]</span>
 PYTHON:
-#### Path to R executable and R Lib ###
-[R]
+<span class="c1">#### Path to R executable and R Lib ###</span>
+<span class="o">[</span>R<span class="o">]</span>
 RHOME:
 RLIB:
-#### Path to delly, bcftools executables and Version of delly (supports only 0.7.3)###
-[SVcaller]
+<span class="c1">#### Path to delly, bcftools executables and Version of delly (supports only 0.7.3)###</span>
+<span class="o">[</span>SVcaller<span class="o">]</span>
 DELLY:
 DellyVersion:
 BCFTOOLS:
-#### Path to hg19 Referece Fasta file ###
-[ReferenceFasta]
+<span class="c1">#### Path to hg19 Referece Fasta file ###</span>
+<span class="o">[</span>ReferenceFasta<span class="o">]</span>
 REFFASTA:
-#### Path to file containing regions to exclude please follow Delly documentation for this ###
-[ExcludeRegion]
+<span class="c1">#### Path to file containing regions to exclude please follow Delly documentation for this ###</span>
+<span class="o">[</span>ExcludeRegion<span class="o">]</span>
 EXREGIONS:
-#### Path to file containing regions to where lenient threshold will be used; and file containing genes to keep ###
-[HotSpotRegions]
+<span class="c1">#### Path to file containing regions to where lenient threshold will be used; and file containing genes to keep ###</span>
+<span class="o">[</span>HotSpotRegions<span class="o">]</span>
 HotspotFile:
 GenesToKeep:
-#### Path to file containing regions/genes to filter ###
-[BlackListRegions]
+<span class="c1">#### Path to file containing regions/genes to filter ###</span>
+<span class="o">[</span>BlackListRegions<span class="o">]</span>
 BlackListFile:
 BlackListGenes:
-#### Path to samtools executable ###
-[SAMTOOLS]
+<span class="c1">#### Path to samtools executable ###</span>
+<span class="o">[</span>SAMTOOLS<span class="o">]</span>
 SAMTOOLS:
-#### Path to iAnnotateSV.py and all its required files, please follow iAnnotateSV documentation ###
-[iAnnotateSV]
+<span class="c1">#### Path to iAnnotateSV.py and all its required files, please follow iAnnotateSV documentation ###</span>
+<span class="o">[</span>iAnnotateSV<span class="o">]</span>
 ANNOSV:
 GENOMEBUILD:
 DISTANCE:
@@ -181,57 +181,57 @@ UNIPROTFILE:
 CosmicCensus:
 RepeatRegionAnnotation:
 DGvAnnotations:
-#### TargetSeqView Parameters ###
-[TargetSeqView]
+<span class="c1">#### TargetSeqView Parameters ###</span>
+<span class="o">[</span>TargetSeqView<span class="o">]</span>
 CalculateConfidenceScore:
 GENOMEBUILD:
 ReadLength:
-#### Parameters to run Delly ###
-[ParametersToRunDelly]
+<span class="c1">#### Parameters to run Delly ###</span>
+<span class="o">[</span>ParametersToRunDelly<span class="o">]</span>
 MAPQ: 20
 NumberOfProcessors: 4
-[ParametersToFilterDellyResults]
-####Case Allele Fraction Hotspot####
+<span class="o">[</span>ParametersToFilterDellyResults<span class="o">]</span>
+<span class="c1">####Case Allele Fraction Hotspot####</span>
 CaseAltFreqHotspot: 0.05
-####Total Case Coverage Hotspot#####
-CaseCoverageHotspot = 5
-####Control Allele Fraction Hotspot####
-ControlAltFreqHotspot = 0
-####Case Allele Fraction####
-CaseAltFreq: 0.08
-####Total Case Coverage#####
-CaseCoverage = 8
-####Control Allele Fraction####
-ControlAltFreq = 0
-###Overall Supporting Read-pairs ###
+<span class="c1">####Total Case Coverage Hotspot#####</span>
+<span class="nv">CaseCoverageHotspot</span> <span class="o">=</span> 5
+<span class="c1">####Control Allele Fraction Hotspot####</span>
+<span class="nv">ControlAltFreqHotspot</span> <span class="o">=</span> 0
+<span class="c1">####Case Allele Fraction####</span>
+CaseAltFreq: 0.10
+<span class="c1">####Total Case Coverage#####</span>
+<span class="nv">CaseCoverage</span> <span class="o">=</span> 10
+<span class="c1">####Control Allele Fraction####</span>
+<span class="nv">ControlAltFreq</span> <span class="o">=</span> 0
+<span class="c1">###Overall Supporting Read-pairs ###</span>
 OverallSupportingReads: 5
-###Overall Supporting Read-pairs Hotspot ###
+<span class="c1">###Overall Supporting Read-pairs Hotspot ###</span>
 OverallSupportingReadsHotspot: 3
-###Overall Supporting splitreads ###
+<span class="c1">###Overall Supporting splitreads ###</span>
 OverallSupportingSplitReads: 0
-###Overall Supporting splitreads Hotspot ###
+<span class="c1">###Overall Supporting splitreads Hotspot ###</span>
 OverallSupportingSplitReadsHotspot: 0
-###Case Supporting Read-pairs ###
+<span class="c1">###Case Supporting Read-pairs ###</span>
 CaseSupportingReads: 2
-###Case Supporting splitreads ###
+<span class="c1">###Case Supporting splitreads ###</span>
 CaseSupportingSplitReads: 0
-###Case Supporting Read-pairs Hotspot ###
+<span class="c1">###Case Supporting Read-pairs Hotspot ###</span>
 CaseSupportingReadsHotspot: 1
-###Case Supporting splitreads Hotspot ###
+<span class="c1">###Case Supporting splitreads Hotspot ###</span>
 CaseSupportingSplitReadsHotspot: 0
-###Control Supporting Read-pairs ###
-ControlSupportingReads: 5
-###Control Supporting Read-pairs Hotspot ###
-ControlSupportingReadsHotspot: 5
-###Control Supporting splitreads ###
-ControlSupportingSplitReads: 5
-###Control Supporting splitreads Hotspot ###
-ControlSupportingSplitReadsHotspot: 5
-###Length of Structural Variant###
+<span class="c1">###Control Supporting Read-pairs ###</span>
+ControlSupportingReads: 3
+<span class="c1">###Control Supporting Read-pairs Hotspot ###</span>
+ControlSupportingReadsHotspot: 3
+<span class="c1">###Control Supporting splitreads ###</span>
+ControlSupportingSplitReads: 3
+<span class="c1">###Control Supporting splitreads Hotspot ###</span>
+ControlSupportingSplitReadsHotspot: 3
+<span class="c1">###Length of Structural Variant###</span>
 LengthOfSV: 500
-###Overall Mapping Quality Threshold###
+<span class="c1">###Overall Mapping Quality Threshold###</span>
 OverallMapq: 20
-###Overall Mapping Quality Threshold Hotspot###
+<span class="c1">###Overall Mapping Quality Threshold Hotspot###</span>
 OverallMapqHotspot: 5
 </pre></div>
 </div>
@@ -241,7 +241,7 @@ OverallMapqHotspot: 5
 <div class="highlight-sh"><div class="highlight"><pre>python iCallSV.py -sc /path/to/template.ini -abam /path/to/casebamFile -bbam /path/to/controlbamFile -aId caseID -bId controlId -o /path/to/output/directory -op prefix_for_the_output_files
 </pre></div>
 </div>
-<div class="highlight-sh"><div class="highlight"><pre>&gt; python iCallSV.py -h
+<div class="highlight-sh"><div class="highlight"><pre>python iCallSV.py -h
 
 usage: iCallSV.py [-h] [-v] [-V] -sc config.ini -abam caseBAMFile.bam -bbam
                   controlBAMFile.bam -aId caseID -bId controlID -o
@@ -286,8 +286,10 @@ optional arguments:
 </div>
 <div class="section" id="utilities">
 <h1>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-icallsv-on-msk-impact-pools">
+<h2>Running iCallSV on MSK-IMPACT Pools<a class="headerlink" href="#running-icallsv-on-msk-impact-pools" title="Permalink to this headline">¶</a></h2>
 <p><strong>This is only for MSK-IMPACT internal samples</strong></p>
-<div class="highlight-sh"><div class="highlight"><pre>&gt; python iCallSV_dmp_wrapper.py -h
+<div class="highlight-sh"><div class="highlight"><pre>python iCallSV_dmp_wrapper.py -h
 
 usage: iCallSV_dmp_wrapper.py <span class="o">[</span>options<span class="o">]</span>
 
@@ -318,8 +320,56 @@ optional arguments:
 </pre></div>
 </div>
 </div>
+<div class="section" id="taking-the-icallsv-and-chechking-for-processed-transcript-cdna-in-samples">
+<h2>Taking the iCallSV and chechking for processed transcript/cDNA in samples<a class="headerlink" href="#taking-the-icallsv-and-chechking-for-processed-transcript-cdna-in-samples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-sh"><div class="highlight"><pre>python check_cDNA_contamination.py -h
+usage: check_cDNA_contamination.py <span class="o">[</span>options<span class="o">]</span>
+
+Calculate cDNA contamination per sample based of the Structural Variants
+Pipeline result
+
+optional arguments:
+  -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+  -v, --verbose         make lots of noise <span class="o">[</span>default<span class="o">]</span>
+  -s SVfile.txt, --svFile SVfile.txt
+                        Location of the structural variant file to be used
+  -o cDNA_contamination, --outputFileName cDNA_contamination
+                        Full path name <span class="k">for</span> the output file
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="submodules">
 <h1>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-iCallSV.iCallSV">
+<span id="icallsv-icallsv-module"></span><h2>iCallSV.iCallSV module<a class="headerlink" href="#module-iCallSV.iCallSV" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="icallsv">
+<h3>iCallSV<a class="headerlink" href="#icallsv" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">author:</th><td class="field-body"><p class="first">Ronak H Shah</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first">Apache License 2.0</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">contact:</th><td class="field-body"><p class="first last"><a class="reference external" href="mailto:rons&#46;shah&#37;&#52;&#48;gmail&#46;com">rons<span>&#46;</span>shah<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="section" id="module-iCallSV.FilterDellyCalls">
 <span id="icallsv-filterdellycalls-module"></span><h2>iCallSV.FilterDellyCalls module<a class="headerlink" href="#module-iCallSV.FilterDellyCalls" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="filterdellycalls">
@@ -1078,207 +1128,11 @@ results.</p>
 
 </div>
 </div>
-<div class="section" id="module-iCallSV.iCallSV">
-<span id="icallsv-icallsv-module"></span><h2>iCallSV.iCallSV module<a class="headerlink" href="#module-iCallSV.iCallSV" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="icallsv">
-<h3>iCallSV<a class="headerlink" href="#icallsv" title="Permalink to this headline">¶</a></h3>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">author:</th><td class="field-body"><p class="first">Ronak H Shah</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
-<li>2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.</li>
-</ol>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first">Apache License 2.0</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">contact:</th><td class="field-body"><p class="first last"><a class="reference external" href="mailto:rons&#46;shah&#37;&#52;&#48;gmail&#46;com">rons<span>&#46;</span>shah<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+<div class="section" id="icallsv-utilities-icallsv-dmp-wrapper-module">
+<h2>iCallSV.utilities.iCallSV_dmp_wrapper module<a class="headerlink" href="#icallsv-utilities-icallsv-dmp-wrapper-module" title="Permalink to this headline">¶</a></h2>
 </div>
-</div>
-<div class="section" id="module-iCallSV.iCallSV_dmp_wrapper">
-<span id="icallsv-icallsv-dmp-wrapper-module"></span><h2>iCallSV.iCallSV_dmp_wrapper module<a class="headerlink" href="#module-iCallSV.iCallSV_dmp_wrapper" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="icallsv-dmp-wrapper">
-<h3>iCallSV_dmp_wrapper<a class="headerlink" href="#icallsv-dmp-wrapper" title="Permalink to this headline">¶</a></h3>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">iCallSV is a wrapper to run the iCallSV package on MSKCC data</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">author:</th><td class="field-body"><p class="first">Ronak H Shah</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
-<li>2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.</li>
-</ol>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first">Apache License 2.0</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">contact:</th><td class="field-body"><p class="first"><a class="reference external" href="mailto:rons&#46;shah&#37;&#52;&#48;gmail&#46;com">rons<span>&#46;</span>shah<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">deffield    updated:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">Updated</p>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="function">
-<dt id="iCallSV.iCallSV_dmp_wrapper.RunJob">
-<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">RunJob</code><span class="sig-paren">(</span><em>cmd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#RunJob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.RunJob" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a command run the job.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cmd</strong> (<em>str</em>) &#8211; str of command to be run on the local machine</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="iCallSV.iCallSV_dmp_wrapper.RunPerPool">
-<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">RunPerPool</code><span class="sig-paren">(</span><em>titleFile</em>, <em>outdir</em>, <em>HSmetricsFileList</em>, <em>bamFileList</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#RunPerPool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.RunPerPool" title="Permalink to this definition">¶</a></dt>
-<dd><p>This will run the pool to be analyzed.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>titleFile</strong> (<em>str</em>) &#8211; str of meta information file</li>
-<li><strong>outdir</strong> (<em>str</em>) &#8211; str of output directory</li>
-<li><strong>HSmetricsFileList</strong> (<em>list</em>) &#8211; list of picard hsmetrics files</li>
-<li><strong>bamFileList</strong> (<em>list</em>) &#8211; list of bam files</li>
-<li><strong>args</strong> (<em>Namespace</em>) &#8211; Namespace of args to get other variables</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="iCallSV.iCallSV_dmp_wrapper.SelectNormal">
-<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">SelectNormal</code><span class="sig-paren">(</span><em>normal</em>, <em>poolnormal</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#SelectNormal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.SelectNormal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Select the best possible normal.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>normal</strong> (<em>str</em>) &#8211; str of match normal</li>
-<li><strong>poolnormal</strong> (<em>str</em>) &#8211; str of pool normal</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">str with decision whether to run matched or unmatched</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="iCallSV.iCallSV_dmp_wrapper.SetupRun">
-<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">SetupRun</code><span class="sig-paren">(</span><em>poolName</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#SetupRun"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.SetupRun" title="Permalink to this definition">¶</a></dt>
-<dd><p>This will setup the run to be analyzed.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>poolName</strong> (<em>str</em>) &#8211; str of pool to be analyzed</li>
-<li><strong>args</strong> (<em>Namespace</em>) &#8211; Namespace of args to get other variables</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Multiple objects</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="iCallSV.iCallSV_dmp_wrapper.getSubDirs">
-<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">getSubDirs</code><span class="sig-paren">(</span><em>dirLocation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#getSubDirs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.getSubDirs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get all sub directories.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dirLocation</strong> (<em>str</em>) &#8211; str of directory location</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of all sub directories</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="iCallSV.iCallSV_dmp_wrapper.main">
-<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.main" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="iCallSV.iCallSV_dmp_wrapper.processor">
-<code class="descclassname">iCallSV.iCallSV_dmp_wrapper.</code><code class="descname">processor</code><span class="sig-paren">(</span><em>i</em>, <em>jobqueue</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/iCallSV_dmp_wrapper.html#processor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.iCallSV_dmp_wrapper.processor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operate on a jobqueue.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>i</strong> (<em>int</em>) &#8211; count of the job</li>
-<li><strong>jobqueue</strong> (<em>Namespace</em>) &#8211; Namespace for jobqueue</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
+<div class="section" id="icallsv-utilities-check-cdna-contamination-module">
+<h2>iCallSV.utilities.check_cDNA_contamination module<a class="headerlink" href="#icallsv-utilities-check-cdna-contamination-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-iCallSV.launchThreads">
 <span id="icallsv-launchthreads-module"></span><h2>iCallSV.launchThreads module<a class="headerlink" href="#module-iCallSV.launchThreads" title="Permalink to this headline">¶</a></h2>
@@ -1547,8 +1401,16 @@ Description: This module will be launching functions as threads
 <li><a class="reference internal" href="#required-data-files">Required Data Files</a></li>
 <li><a class="reference internal" href="#configuration-file-format">Configuration File Format</a></li>
 <li><a class="reference internal" href="#quick-usage">Quick Usage</a></li>
-<li><a class="reference internal" href="#utilities">Utilities</a></li>
+<li><a class="reference internal" href="#utilities">Utilities</a><ul>
+<li><a class="reference internal" href="#running-icallsv-on-msk-impact-pools">Running iCallSV on MSK-IMPACT Pools</a></li>
+<li><a class="reference internal" href="#taking-the-icallsv-and-chechking-for-processed-transcript-cdna-in-samples">Taking the iCallSV and chechking for processed transcript/cDNA in samples</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li><a class="reference internal" href="#module-iCallSV.iCallSV">iCallSV.iCallSV module</a><ul>
+<li><a class="reference internal" href="#icallsv">iCallSV</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-iCallSV.FilterDellyCalls">iCallSV.FilterDellyCalls module</a><ul>
 <li><a class="reference internal" href="#filterdellycalls">FilterDellyCalls</a></li>
 </ul>
@@ -1597,14 +1459,8 @@ Description: This module will be launching functions as threads
 <li><a class="reference internal" href="#filterannotatedsv">filterAnnotatedSV</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-iCallSV.iCallSV">iCallSV.iCallSV module</a><ul>
-<li><a class="reference internal" href="#icallsv">iCallSV</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-iCallSV.iCallSV_dmp_wrapper">iCallSV.iCallSV_dmp_wrapper module</a><ul>
-<li><a class="reference internal" href="#icallsv-dmp-wrapper">iCallSV_dmp_wrapper</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#icallsv-utilities-icallsv-dmp-wrapper-module">iCallSV.utilities.iCallSV_dmp_wrapper module</a></li>
+<li><a class="reference internal" href="#icallsv-utilities-check-cdna-contamination-module">iCallSV.utilities.check_cDNA_contamination module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.launchThreads">iCallSV.launchThreads module</a></li>
 <li><a class="reference internal" href="#module-iCallSV.launch_FilterDellyCalls">iCallSV.launch_FilterDellyCalls module</a><ul>
 <li><a class="reference internal" href="#launch-filterdellycalls">launch_FilterDellyCalls</a></li>

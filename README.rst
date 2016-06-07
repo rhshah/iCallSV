@@ -140,9 +140,9 @@ Configuration File Format
 	####Control Allele Fraction Hotspot####
 	ControlAltFreqHotspot = 0
 	####Case Allele Fraction####
-	CaseAltFreq: 0.08
+	CaseAltFreq: 0.10
 	####Total Case Coverage#####
-	CaseCoverage = 8
+	CaseCoverage = 10
 	####Control Allele Fraction####
 	ControlAltFreq = 0
 	###Overall Supporting Read-pairs ###
@@ -162,13 +162,13 @@ Configuration File Format
 	###Case Supporting splitreads Hotspot ###
 	CaseSupportingSplitReadsHotspot: 0
 	###Control Supporting Read-pairs ###
-	ControlSupportingReads: 5
+	ControlSupportingReads: 3
 	###Control Supporting Read-pairs Hotspot ###
-	ControlSupportingReadsHotspot: 5
+	ControlSupportingReadsHotspot: 3
 	###Control Supporting splitreads ###
-	ControlSupportingSplitReads: 5
+	ControlSupportingSplitReads: 3
 	###Control Supporting splitreads Hotspot ###
-	ControlSupportingSplitReadsHotspot: 5
+	ControlSupportingSplitReadsHotspot: 3
 	###Length of Structural Variant###
 	LengthOfSV: 500
 	###Overall Mapping Quality Threshold###
@@ -232,6 +232,10 @@ Quick Usage
 
 Utilities
 =========
+
+Running iCallSV on MSK-IMPACT Pools
+-----------------------------------
+
 **This is only for MSK-IMPACT internal samples**
 
 .. code-block:: sh
@@ -264,6 +268,28 @@ Utilities
 	  -v, --verbose         make lots of noise [default]
 	  -o /somepath/output, --outDir /somepath/output
 	                        Full Path to the output dir.
+
+
+
+Taking the iCallSV and chechking for processed transcript/cDNA in samples
+-------------------------------------------------------------------------
+
+.. code-block:: sh
 	
+	> python check_cDNA_contamination.py -h
+	usage: check_cDNA_contamination.py [options]
+
+	Calculate cDNA contamination per sample based of the Structural Variants
+	Pipeline result
+
+	optional arguments:
+	  -h, --help            show this help message and exit
+	  -v, --verbose         make lots of noise [default]
+	  -s SVfile.txt, --svFile SVfile.txt
+	                        Location of the structural variant file to be used
+	  -o cDNA_contamination, --outputFileName cDNA_contamination
+	                        Full path name for the output file
+	
+
 	
 	

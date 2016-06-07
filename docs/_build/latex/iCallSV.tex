@@ -21,7 +21,7 @@
 
 
 \title{iCallSV Documentation}
-\date{June 06, 2016}
+\date{June 07, 2016}
 \release{}
 \author{Author}
 \newcommand{\sphinxlogo}{}
@@ -248,38 +248,38 @@ BRAF
 \section{Configuration File Format}
 \label{iCallSV:configuration-file-format}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYGZsh{}\PYGZti{}\PYGZti{}\PYGZti{}Template configuration file to run iCallSV\PYGZti{}\PYGZti{}\PYGZti{}\PYGZsh{}
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to python executable \PYGZsh{}\PYGZsh{}\PYGZsh{}
-[Python]
+\PYG{c+c1}{\PYGZsh{}\PYGZti{}\PYGZti{}\PYGZti{}Template configuration file to run iCallSV\PYGZti{}\PYGZti{}\PYGZti{}\PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to python executable \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}Python\PYG{o}{]}
 PYTHON:
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to R executable and R Lib \PYGZsh{}\PYGZsh{}\PYGZsh{}
-[R]
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to R executable and R Lib \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}R\PYG{o}{]}
 RHOME:
 RLIB:
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to delly, bcftools executables and Version of delly (supports only 0.7.3)\PYGZsh{}\PYGZsh{}\PYGZsh{}
-[SVcaller]
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to delly, bcftools executables and Version of delly (supports only 0.7.3)\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}SVcaller\PYG{o}{]}
 DELLY:
 DellyVersion:
 BCFTOOLS:
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to hg19 Referece Fasta file \PYGZsh{}\PYGZsh{}\PYGZsh{}
-[ReferenceFasta]
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to hg19 Referece Fasta file \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}ReferenceFasta\PYG{o}{]}
 REFFASTA:
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to file containing regions to exclude please follow Delly documentation for this \PYGZsh{}\PYGZsh{}\PYGZsh{}
-[ExcludeRegion]
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to file containing regions to exclude please follow Delly documentation for this \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}ExcludeRegion\PYG{o}{]}
 EXREGIONS:
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to file containing regions to where lenient threshold will be used; and file containing genes to keep \PYGZsh{}\PYGZsh{}\PYGZsh{}
-[HotSpotRegions]
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to file containing regions to where lenient threshold will be used; and file containing genes to keep \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}HotSpotRegions\PYG{o}{]}
 HotspotFile:
 GenesToKeep:
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to file containing regions/genes to filter \PYGZsh{}\PYGZsh{}\PYGZsh{}
-[BlackListRegions]
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to file containing regions/genes to filter \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}BlackListRegions\PYG{o}{]}
 BlackListFile:
 BlackListGenes:
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to samtools executable \PYGZsh{}\PYGZsh{}\PYGZsh{}
-[SAMTOOLS]
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to samtools executable \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}SAMTOOLS\PYG{o}{]}
 SAMTOOLS:
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to iAnnotateSV.py and all its required files, please follow iAnnotateSV documentation \PYGZsh{}\PYGZsh{}\PYGZsh{}
-[iAnnotateSV]
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Path to iAnnotateSV.py and all its required files, please follow iAnnotateSV documentation \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}iAnnotateSV\PYG{o}{]}
 ANNOSV:
 GENOMEBUILD:
 DISTANCE:
@@ -288,57 +288,57 @@ UNIPROTFILE:
 CosmicCensus:
 RepeatRegionAnnotation:
 DGvAnnotations:
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} TargetSeqView Parameters \PYGZsh{}\PYGZsh{}\PYGZsh{}
-[TargetSeqView]
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} TargetSeqView Parameters \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}TargetSeqView\PYG{o}{]}
 CalculateConfidenceScore:
 GENOMEBUILD:
 ReadLength:
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Parameters to run Delly \PYGZsh{}\PYGZsh{}\PYGZsh{}
-[ParametersToRunDelly]
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Parameters to run Delly \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{o}{[}ParametersToRunDelly\PYG{o}{]}
 MAPQ: 20
 NumberOfProcessors: 4
-[ParametersToFilterDellyResults]
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Allele Fraction Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{o}{[}ParametersToFilterDellyResults\PYG{o}{]}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Allele Fraction Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
 CaseAltFreqHotspot: 0.05
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Total Case Coverage Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
-CaseCoverageHotspot = 5
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Allele Fraction Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
-ControlAltFreqHotspot = 0
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Allele Fraction\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
-CaseAltFreq: 0.08
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Total Case Coverage\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
-CaseCoverage = 8
-\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Allele Fraction\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
-ControlAltFreq = 0
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting Read\PYGZhy{}pairs \PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Total Case Coverage Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{n+nv}{CaseCoverageHotspot} \PYG{o}{=} 5
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Allele Fraction Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{n+nv}{ControlAltFreqHotspot} \PYG{o}{=} 0
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Allele Fraction\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+CaseAltFreq: 0.10
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Total Case Coverage\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{n+nv}{CaseCoverage} \PYG{o}{=} 10
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Allele Fraction\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{n+nv}{ControlAltFreq} \PYG{o}{=} 0
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting Read\PYGZhy{}pairs \PYGZsh{}\PYGZsh{}\PYGZsh{}}
 OverallSupportingReads: 5
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting Read\PYGZhy{}pairs Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting Read\PYGZhy{}pairs Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}}
 OverallSupportingReadsHotspot: 3
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting splitreads \PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting splitreads \PYGZsh{}\PYGZsh{}\PYGZsh{}}
 OverallSupportingSplitReads: 0
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting splitreads Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Supporting splitreads Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}}
 OverallSupportingSplitReadsHotspot: 0
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting Read\PYGZhy{}pairs \PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting Read\PYGZhy{}pairs \PYGZsh{}\PYGZsh{}\PYGZsh{}}
 CaseSupportingReads: 2
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting splitreads \PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting splitreads \PYGZsh{}\PYGZsh{}\PYGZsh{}}
 CaseSupportingSplitReads: 0
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting Read\PYGZhy{}pairs Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting Read\PYGZhy{}pairs Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}}
 CaseSupportingReadsHotspot: 1
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting splitreads Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Case Supporting splitreads Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}}
 CaseSupportingSplitReadsHotspot: 0
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting Read\PYGZhy{}pairs \PYGZsh{}\PYGZsh{}\PYGZsh{}
-ControlSupportingReads: 5
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting Read\PYGZhy{}pairs Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
-ControlSupportingReadsHotspot: 5
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting splitreads \PYGZsh{}\PYGZsh{}\PYGZsh{}
-ControlSupportingSplitReads: 5
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting splitreads Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}
-ControlSupportingSplitReadsHotspot: 5
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Length of Structural Variant\PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting Read\PYGZhy{}pairs \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+ControlSupportingReads: 3
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting Read\PYGZhy{}pairs Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+ControlSupportingReadsHotspot: 3
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting splitreads \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+ControlSupportingSplitReads: 3
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Control Supporting splitreads Hotspot \PYGZsh{}\PYGZsh{}\PYGZsh{}}
+ControlSupportingSplitReadsHotspot: 3
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Length of Structural Variant\PYGZsh{}\PYGZsh{}\PYGZsh{}}
 LengthOfSV: 500
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Mapping Quality Threshold\PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Mapping Quality Threshold\PYGZsh{}\PYGZsh{}\PYGZsh{}}
 OverallMapq: 20
-\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Mapping Quality Threshold Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}Overall Mapping Quality Threshold Hotspot\PYGZsh{}\PYGZsh{}\PYGZsh{}}
 OverallMapqHotspot: 5
 \end{Verbatim}
 
@@ -350,7 +350,7 @@ python iCallSV.py \PYGZhy{}sc /path/to/template.ini \PYGZhy{}abam /path/to/caseb
 \end{Verbatim}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYGZgt{} python iCallSV.py \PYGZhy{}h
+python iCallSV.py \PYGZhy{}h
 
 usage: iCallSV.py [\PYGZhy{}h] [\PYGZhy{}v] [\PYGZhy{}V] \PYGZhy{}sc config.ini \PYGZhy{}abam caseBAMFile.bam \PYGZhy{}bbam
                   controlBAMFile.bam \PYGZhy{}aId caseID \PYGZhy{}bId controlID \PYGZhy{}o
@@ -395,10 +395,13 @@ optional arguments:
 
 \section{Utilities}
 \label{iCallSV:utilities}
+
+\subsection{Running iCallSV on MSK-IMPACT Pools}
+\label{iCallSV:running-icallsv-on-msk-impact-pools}
 \textbf{This is only for MSK-IMPACT internal samples}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYGZgt{} python iCallSV\PYGZus{}dmp\PYGZus{}wrapper.py \PYGZhy{}h
+python iCallSV\PYGZus{}dmp\PYGZus{}wrapper.py \PYGZhy{}h
 
 usage: iCallSV\PYGZus{}dmp\PYGZus{}wrapper.py \PYG{o}{[}options\PYG{o}{]}
 
@@ -429,8 +432,54 @@ optional arguments:
 \end{Verbatim}
 
 
+\subsection{Taking the iCallSV and chechking for processed transcript/cDNA in samples}
+\label{iCallSV:taking-the-icallsv-and-chechking-for-processed-transcript-cdna-in-samples}
+\begin{Verbatim}[commandchars=\\\{\}]
+python check\PYGZus{}cDNA\PYGZus{}contamination.py \PYGZhy{}h
+usage: check\PYGZus{}cDNA\PYGZus{}contamination.py \PYG{o}{[}options\PYG{o}{]}
+
+Calculate cDNA contamination per sample based of the Structural Variants
+Pipeline result
+
+optional arguments:
+  \PYGZhy{}h, \PYGZhy{}\PYGZhy{}help            show this \PYG{n+nb}{help} message and \PYG{n+nb}{exit}
+  \PYGZhy{}v, \PYGZhy{}\PYGZhy{}verbose         make lots of noise \PYG{o}{[}default\PYG{o}{]}
+  \PYGZhy{}s SVfile.txt, \PYGZhy{}\PYGZhy{}svFile SVfile.txt
+                        Location of the structural variant file to be used
+  \PYGZhy{}o cDNA\PYGZus{}contamination, \PYGZhy{}\PYGZhy{}outputFileName cDNA\PYGZus{}contamination
+                        Full path name \PYG{k}{for} the output file
+\end{Verbatim}
+
+
 \section{Submodules}
 \label{iCallSV:submodules}
+
+\subsection{iCallSV.iCallSV module}
+\label{iCallSV:icallsv-icallsv-module}\label{iCallSV:module-iCallSV.iCallSV}\index{iCallSV.iCallSV (module)}
+
+\subsubsection{iCallSV}
+\label{iCallSV:icallsv}\begin{quote}\begin{description}
+\item[{Description}] \leavevmode
+iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina
+
+\item[{author}] \leavevmode
+Ronak H Shah
+
+\item[{copyright}] \leavevmode\begin{enumerate}
+\setcounter{enumi}{2}
+\item {} 
+2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
+
+\end{enumerate}
+
+\item[{license}] \leavevmode
+Apache License 2.0
+
+\item[{contact}] \leavevmode
+\href{mailto:rons.shah@gmail.com}{rons.shah@gmail.com}
+
+\end{description}\end{quote}
+
 
 \subsection{iCallSV.FilterDellyCalls module}
 \label{iCallSV:icallsv-filterdellycalls-module}\label{iCallSV:module-iCallSV.FilterDellyCalls}\index{iCallSV.FilterDellyCalls (module)}
@@ -1337,215 +1386,11 @@ str
 
 
 
-\subsection{iCallSV.iCallSV module}
-\label{iCallSV:icallsv-icallsv-module}\label{iCallSV:module-iCallSV.iCallSV}\index{iCallSV.iCallSV (module)}
-
-\subsubsection{iCallSV}
-\label{iCallSV:icallsv}\begin{quote}\begin{description}
-\item[{Description}] \leavevmode
-iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina
-
-\item[{author}] \leavevmode
-Ronak H Shah
-
-\item[{copyright}] \leavevmode\begin{enumerate}
-\setcounter{enumi}{2}
-\item {} 
-2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
-
-\end{enumerate}
-
-\item[{license}] \leavevmode
-Apache License 2.0
-
-\item[{contact}] \leavevmode
-\href{mailto:rons.shah@gmail.com}{rons.shah@gmail.com}
-
-\end{description}\end{quote}
-
-
-\subsection{iCallSV.iCallSV\_dmp\_wrapper module}
-\label{iCallSV:icallsv-icallsv-dmp-wrapper-module}\label{iCallSV:module-iCallSV.iCallSV_dmp_wrapper}\index{iCallSV.iCallSV\_dmp\_wrapper (module)}
-
-\subsubsection{iCallSV\_dmp\_wrapper}
-\label{iCallSV:icallsv-dmp-wrapper}\begin{quote}\begin{description}
-\item[{Description}] \leavevmode
-iCallSV is a wrapper to run the iCallSV package on MSKCC data
-
-\item[{author}] \leavevmode
-Ronak H Shah
-
-\item[{copyright}] \leavevmode\begin{enumerate}
-\setcounter{enumi}{2}
-\item {} 
-2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
-
-\end{enumerate}
-
-\item[{license}] \leavevmode
-Apache License 2.0
-
-\item[{contact}] \leavevmode
-\href{mailto:rons.shah@gmail.com}{rons.shah@gmail.com}
-
-\item[{deffield    updated}] \leavevmode
-Updated
-
-\end{description}\end{quote}
-\index{RunJob() (in module iCallSV.iCallSV\_dmp\_wrapper)}
-
-\begin{fulllineitems}
-\phantomsection\label{iCallSV:iCallSV.iCallSV_dmp_wrapper.RunJob}\pysiglinewithargsret{\code{iCallSV.iCallSV\_dmp\_wrapper.}\bfcode{RunJob}}{\emph{cmd}}{}
-Given a command run the job.
-\begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode
-\textbf{\texttt{cmd}} (\emph{\texttt{str}}) -- str of command to be run on the local machine
-
-\item[{Returns}] \leavevmode
-None
-
-\item[{Return type}] \leavevmode
-None
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{RunPerPool() (in module iCallSV.iCallSV\_dmp\_wrapper)}
-
-\begin{fulllineitems}
-\phantomsection\label{iCallSV:iCallSV.iCallSV_dmp_wrapper.RunPerPool}\pysiglinewithargsret{\code{iCallSV.iCallSV\_dmp\_wrapper.}\bfcode{RunPerPool}}{\emph{titleFile}, \emph{outdir}, \emph{HSmetricsFileList}, \emph{bamFileList}, \emph{args}}{}
-This will run the pool to be analyzed.
-\begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
-\item {} 
-\textbf{\texttt{titleFile}} (\emph{\texttt{str}}) -- str of meta information file
-
-\item {} 
-\textbf{\texttt{outdir}} (\emph{\texttt{str}}) -- str of output directory
-
-\item {} 
-\textbf{\texttt{HSmetricsFileList}} (\emph{\texttt{list}}) -- list of picard hsmetrics files
-
-\item {} 
-\textbf{\texttt{bamFileList}} (\emph{\texttt{list}}) -- list of bam files
-
-\item {} 
-\textbf{\texttt{args}} (\emph{\texttt{Namespace}}) -- Namespace of args to get other variables
-
-\end{itemize}
-
-\item[{Returns}] \leavevmode
-None
-
-\item[{Return type}] \leavevmode
-None
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{SelectNormal() (in module iCallSV.iCallSV\_dmp\_wrapper)}
-
-\begin{fulllineitems}
-\phantomsection\label{iCallSV:iCallSV.iCallSV_dmp_wrapper.SelectNormal}\pysiglinewithargsret{\code{iCallSV.iCallSV\_dmp\_wrapper.}\bfcode{SelectNormal}}{\emph{normal}, \emph{poolnormal}}{}
-Select the best possible normal.
-\begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
-\item {} 
-\textbf{\texttt{normal}} (\emph{\texttt{str}}) -- str of match normal
-
-\item {} 
-\textbf{\texttt{poolnormal}} (\emph{\texttt{str}}) -- str of pool normal
-
-\end{itemize}
-
-\item[{Returns}] \leavevmode
-str with decision whether to run matched or unmatched
-
-\item[{Return type}] \leavevmode
-str
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{SetupRun() (in module iCallSV.iCallSV\_dmp\_wrapper)}
-
-\begin{fulllineitems}
-\phantomsection\label{iCallSV:iCallSV.iCallSV_dmp_wrapper.SetupRun}\pysiglinewithargsret{\code{iCallSV.iCallSV\_dmp\_wrapper.}\bfcode{SetupRun}}{\emph{poolName}, \emph{args}}{}
-This will setup the run to be analyzed.
-\begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
-\item {} 
-\textbf{\texttt{poolName}} (\emph{\texttt{str}}) -- str of pool to be analyzed
-
-\item {} 
-\textbf{\texttt{args}} (\emph{\texttt{Namespace}}) -- Namespace of args to get other variables
-
-\end{itemize}
-
-\item[{Returns}] \leavevmode
-Multiple objects
-
-\item[{Return type}] \leavevmode
-list
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{getSubDirs() (in module iCallSV.iCallSV\_dmp\_wrapper)}
-
-\begin{fulllineitems}
-\phantomsection\label{iCallSV:iCallSV.iCallSV_dmp_wrapper.getSubDirs}\pysiglinewithargsret{\code{iCallSV.iCallSV\_dmp\_wrapper.}\bfcode{getSubDirs}}{\emph{dirLocation}}{}
-Get all sub directories.
-\begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode
-\textbf{\texttt{dirLocation}} (\emph{\texttt{str}}) -- str of directory location
-
-\item[{Returns}] \leavevmode
-list of all sub directories
-
-\item[{Return type}] \leavevmode
-list
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{main() (in module iCallSV.iCallSV\_dmp\_wrapper)}
-
-\begin{fulllineitems}
-\phantomsection\label{iCallSV:iCallSV.iCallSV_dmp_wrapper.main}\pysiglinewithargsret{\code{iCallSV.iCallSV\_dmp\_wrapper.}\bfcode{main}}{}{}
-\end{fulllineitems}
-
-\index{processor() (in module iCallSV.iCallSV\_dmp\_wrapper)}
-
-\begin{fulllineitems}
-\phantomsection\label{iCallSV:iCallSV.iCallSV_dmp_wrapper.processor}\pysiglinewithargsret{\code{iCallSV.iCallSV\_dmp\_wrapper.}\bfcode{processor}}{\emph{i}, \emph{jobqueue}}{}
-Operate on a jobqueue.
-\begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
-\item {} 
-\textbf{\texttt{i}} (\emph{\texttt{int}}) -- count of the job
-
-\item {} 
-\textbf{\texttt{jobqueue}} (\emph{\texttt{Namespace}}) -- Namespace for jobqueue
-
-\end{itemize}
-
-\item[{Returns}] \leavevmode
-None
-
-\item[{Return type}] \leavevmode
-None
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-
+\subsection{iCallSV.utilities.iCallSV\_dmp\_wrapper module}
+\label{iCallSV:icallsv-utilities-icallsv-dmp-wrapper-module}
+
+\subsection{iCallSV.utilities.check\_cDNA\_contamination module}
+\label{iCallSV:icallsv-utilities-check-cdna-contamination-module}
 
 \subsection{iCallSV.launchThreads module}
 \label{iCallSV:icallsv-launchthreads-module}\label{iCallSV:module-iCallSV.launchThreads}\index{iCallSV.launchThreads (module)}
@@ -1840,7 +1685,6 @@ This module will sort bam file by name
 \item {\texttt{iCallSV.filterAnnotatedSV}}, \pageref{iCallSV:module-iCallSV.filterAnnotatedSV}
 \item {\texttt{iCallSV.FilterDellyCalls}}, \pageref{iCallSV:module-iCallSV.FilterDellyCalls}
 \item {\texttt{iCallSV.iCallSV}}, \pageref{iCallSV:module-iCallSV.iCallSV}
-\item {\texttt{iCallSV.iCallSV\_dmp\_wrapper}}, \pageref{iCallSV:module-iCallSV.iCallSV_dmp_wrapper}
 \item {\texttt{iCallSV.launch\_FilterDellyCalls}}, \pageref{iCallSV:module-iCallSV.launch_FilterDellyCalls}
 \item {\texttt{iCallSV.launch\_Run\_Delly}}, \pageref{iCallSV:module-iCallSV.launch_Run_Delly}
 \item {\texttt{iCallSV.launchThreads}}, \pageref{iCallSV:module-iCallSV.launchThreads}
