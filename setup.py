@@ -31,7 +31,7 @@ setup(
     long_description=long_description,
     include_package_data=True,
     url='https://github.com/rhshah/iCallSV',
-    download_url='https://github.com/rhshah/iCallSV/tarball/0.0.2',
+    download_url='https://github.com/rhshah/iCallSV/tarball/0.0.3',
     author=iAnnotateSV.__author__,
     author_email='rons.shah@gmail.com',
     license=iAnnotateSV.__license__,
