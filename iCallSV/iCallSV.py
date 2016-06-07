@@ -32,7 +32,7 @@ import mergeFinalFiles as mff
 import filterAnnotatedSV as fas
 
 __all__ = []
-__version__ = 0.1
+__version__ = 0.2
 __date__ = '2015-03-30'
 __updated__ = '2016-06-01'
 
