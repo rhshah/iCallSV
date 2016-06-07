@@ -1,6 +1,16 @@
 iCallSV: Structural Aberration Detection from NGS datasets
 ================================================================
 
+Note
+====
+
+For some reason docstrings is not shown by `Read The Docs <https:read-the-docs.readthedocs.io>`_
+
+So please use these url from `Github <https:github.com>`_ with `Html Preview <https://htmlpreview.github.io/>`_ for each module information:
+
+`Per Module Info <https://htmlpreview.github.io/?https://raw.githubusercontent.com/rhshah/iCallSV/master/docs/_build/html/iCallSV.html>`_ 
+
+
 Required Packages
 =================
 We require that you install:
