@@ -31,7 +31,7 @@ import re
 logger = logging.getLogger('iCallSV.FilterDellyCalls')
 
 
-def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile, verbose):
+def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, genesToKeepFile=None, verbose):
     """
     This will ``filter sv calls`` from the final merged file.
 
