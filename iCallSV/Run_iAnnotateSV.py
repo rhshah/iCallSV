@@ -45,6 +45,7 @@ def run(
         canonicalTranscriptFile,
         uniprotFile,
         cosmicFile,
+        cosmicCountsFile,
         repeatregionFile,
         dgvFile,
         inputTabFile,
@@ -61,6 +62,7 @@ def run(
     :param str outputDir: Name of the output directory where the outputPrefix will be written
     :param str uniprotFile: Location for ucsc uniprot file
     :param str cosmicFile: Location for cosmic census file
+    :param str cosmicCountsFile: Location for cosmic fusion counts file
     :param str repeatregionFile: Location for repeat region file
     :param str dgvFile: Location for database of Genomic Variants file
     :return: str of the output file
@@ -78,6 +80,7 @@ def run(
     cp.checkFile(canonicalTranscriptFile)
     cp.checkFile(uniprotFile)
     cp.checkFile(cosmicFile)
+    cp.checkFile(cosmicCountsFile)
     cp.checkFile(repeatregionFile)
     cp.checkFile(dgvFile)
     logger.info("Run_iAnnotateSV: All input parameters look good. Lets run the package.")
@@ -87,7 +90,7 @@ def run(
     logger.info("Run_iAnnotateSV: ProcessID:%s, Date:%s", myPid, today)
     outputFile = outputDir + "/" + outputPrefix + "_Annotated.txt"
     cmd = python + " " + iAnnotateSV + " -r " + build + " -i " + inputTabFile + " -o " + outputDir + " -ofp " + outputPrefix + " -d " + str(
-        distance) + " -c " + canonicalTranscriptFile + " -rr " + repeatregionFile + " -cc " + cosmicFile + " -dgv " + dgvFile + " -v -p -u " + uniprotFile
+        distance) + " -c " + canonicalTranscriptFile + " -rr " + repeatregionFile + " -cc " + cosmicFile + " -cct " + cosmicCountsFile + " -dgv " + dgvFile + " -v -p -u " + uniprotFile
     args = shlex.split(cmd)
     logger.info("Run_iAnnotateSV: Command that will be run: %s", cmd)
     # Remove if the file exists

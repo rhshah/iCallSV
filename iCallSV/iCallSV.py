@@ -295,6 +295,7 @@ USAGE
                 config.get("iAnnotateSV", "CANONICALTRANSCRIPTFILE"),
                 config.get("iAnnotateSV", "UNIPROTFILE"),
                 config.get("iAnnotateSV", "CosmicCensus"),
+                config.get("iAnnotateSV", "CosmicFusionCounts"),
                 config.get("iAnnotateSV", "RepeatRegionAnnotation"),
                 config.get("iAnnotateSV", "DGvAnnotations"),
                 combinedTAB, combinedAnnPrefix, sampleOutdirForDelly)
