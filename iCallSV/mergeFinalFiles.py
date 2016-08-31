@@ -249,7 +249,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          cc_t_p,
          dgv_site1,
          dgv_site2
-         ) = (None for i in range(18))
+         ) = (None for i in range(19))
 
         annoDF[['chr1', 'chr2']] = annoDF[['chr1', 'chr2']].astype(str)
         indexList = annoDF.loc[annoDF['chr1'].isin([chrom1]) &
