@@ -19,9 +19,9 @@ We require that you install:
 :biopython: `v1.65 <http://biopython.org/wiki/Main_Page>`_
 :pysam: `v0.8.4 <https://pypi.python.org/pypi/pysam>`_
 :pyvcf: `0.6.7 <https://pypi.python.org/pypi/PyVCF>`_
-:Delly: `v0.7.3 <https://github.com/tobiasrausch/delly>`_
+:Delly: `v0.7.5 <https://github.com/tobiasrausch/delly>`_
 :targetSeqView: `master <https://github.com/Eitan177/targetSeqView>`_
-:iAnnotateSV: `v1.0.5 <https://github.com/rhshah/iAnnotateSV/tree/1.0.5>`_
+:iAnnotateSV: `v1.0.6 <https://github.com/rhshah/iAnnotateSV/tree/1.0.5>`_
 
 Required Data Files
 ===================
