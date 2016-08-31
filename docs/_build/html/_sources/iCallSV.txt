@@ -107,6 +107,7 @@ Configuration File Format
 	CANONICALTRANSCRIPTFILE:
 	UNIPROTFILE:
 	CosmicCensus:
+	CosmicFusionCounts:
 	RepeatRegionAnnotation:
 	DGvAnnotations:
 	#### TargetSeqView Parameters ###
