@@ -91,6 +91,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             "NormalSplitVariantCount",
             "NormalReadCount",
             "NormalGenotypeQScore",
+            "Cosmic_Fusion_Counts",
             "repName-repClass-repFamily:-site1",
             "repName-repClass-repFamily:-site2",
             "CC_Chr_Band",
@@ -238,6 +239,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          site1,
          site2,
          fusion,
+         cosmic_fusion_counts,
          rr_site1,
          rr_site2,
          cc_chr_band,
@@ -271,6 +273,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         fusion = annoDF.iloc[annoIndex]['fusion']
         rr_site1 = annoDF.iloc[annoIndex]['repName-repClass-repFamily:-site1']
         rr_site2 = annoDF.iloc[annoIndex]['repName-repClass-repFamily:-site2']
+        cosmic_fusion_counts = str(annoDF.iloc[annoIndex]['Cosmic_Fusion_Counts'])
         cc_chr_band = annoDF.iloc[annoIndex]['CC_Chr_Band']
         cc_t_t = annoDF.iloc[annoIndex]['CC_Tumour_Types(Somatic)']
         cc_c_s = annoDF.iloc[annoIndex]['CC_Cancer_Syndrome']
@@ -310,14 +313,14 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                    "TumorVariantCount", "TumorSplitVariantCount", "TumorReadCount",
                    "TumorGenotypeQScore", "NormalReferenceCount", "NormalSplitReferenceCount",
                    "NormalVariantCount", "NormalSplitVariantCount", "NormalReadCount",
-                   "NormalGenotypeQScore", "repName-repClass-repFamily:-site1",
+                   "NormalGenotypeQScore", "Cosmic_Fusion_Counts", "repName-repClass-repFamily:-site1",
                    "repName-repClass-repFamily:-site2", "CC_Chr_Band", "CC_Tumour_Types(Somatic)",
                    "CC_Cancer_Syndrome", "CC_Mutation_Type", "CC_Translocation_Partner",
                    "DGv_Name-DGv_VarType-site1", "DGv_Name-DGv_VarType-site2"]] = [aId, bId, chrom1,
                                                                                    start1, chrom2, start2, svtype, gene1, gene2, transcript1, transcript2, site1, site2,
                                                                                    fusion, confidenceScore, None, None, contype, svlengthFromDelly, mapqFromDelly,
                                                                                    peSupportFromDelly, srSupportFromDelly, brktype, conseq, caseDR, caseRR, caseDV, caseRV,
-                                                                                   caseRC, caseGQ, controlDR, controlRR, controlDV, controlRV, controlRC, controlGQ,
+                                                                                   caseRC, caseGQ, controlDR, controlRR, controlDV, controlRV, controlRC, controlGQ, cosmic_fusion_counts,
                                                                                    rr_site1, rr_site2, cc_chr_band, cc_t_t, cc_c_s, cc_m_t, cc_t_p, dgv_site1, dgv_site2]
 
         count = count + 1
