@@ -1,6 +1,16 @@
 iCallSV: Structural Aberration Detection from NGS datasets
 ================================================================
 
+Note
+====
+
+For some reason docstrings is not shown by `Read The Docs <https:read-the-docs.readthedocs.io>`_
+
+So please use these url from `Github <https:github.com>`_ with `Html Preview <https://htmlpreview.github.io/>`_ for each module information:
+
+`Per Module Info <https://htmlpreview.github.io/?https://raw.githubusercontent.com/rhshah/iCallSV/master/docs/_build/html/iCallSV.html>`_ 
+
+
 Required Packages
 =================
 We require that you install:
@@ -9,9 +19,9 @@ We require that you install:
 :biopython: `v1.65 <http://biopython.org/wiki/Main_Page>`_
 :pysam: `v0.8.4 <https://pypi.python.org/pypi/pysam>`_
 :pyvcf: `0.6.7 <https://pypi.python.org/pypi/PyVCF>`_
-:Delly: `v0.7.3 <https://github.com/tobiasrausch/delly>`_
+:Delly: `v0.7.5 <https://github.com/tobiasrausch/delly>`_
 :targetSeqView: `master <https://github.com/Eitan177/targetSeqView>`_
-:iAnnotateSV: `v1.0.5 <https://github.com/rhshah/iAnnotateSV/tree/1.0.5>`_
+:iAnnotateSV: `v1.0.6 <https://github.com/rhshah/iAnnotateSV/tree/1.0.5>`_
 
 Required Data Files
 ===================

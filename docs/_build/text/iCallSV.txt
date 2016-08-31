@@ -1,0 +1,1246 @@
+
+iCallSV: Structural Aberration Detection from NGS datasets
+**********************************************************
+
+
+Note
+****
+
+For some reason docstrings is not shown by Read The Docs
+
+So please use these url from Github with Html Preview for each module
+information:
+
+Per Module Info
+
+
+Required Packages
+*****************
+
+We require that you install:
+
+pandas:
+   v0.16.2
+
+biopython:
+   v1.65
+
+pysam:
+   v0.8.4
+
+pyvcf:
+   0.6.7
+
+Delly:
+   v0.7.5
+
+targetSeqView:
+   master
+
+iAnnotateSV:
+   v1.0.6
+
+
+Required Data Files
+*******************
+
+This files are given in the "data" folder inside iCallSV.
+
+BlackListFile:
+   (blacklist.txt) Tab-delimited file wihout header having black
+   listed regions in order:
+
+      **chromosome 1, breakpoint 1, chromosome 2, breakpoint 2**
+
+   Example:
+      7       140498077       5       175998094
+
+BlackListGenes:
+   (blacklistgenes.txt) Gene listed one per line wihout header that
+   are to be removed
+
+   Example:
+      LINC00486
+
+      CNOT4
+
+HotspotFile:
+   (hotspotgenes.txt) Tab-delimited file wihout header having hotspot
+   regions in order:
+
+      **chromosome, start, end, name**
+
+   Example:
+      2       29416089        30143525        ALK
+
+GenesToKeep:
+   (genesToInclude.txt) Gene listed one per line wihout header that
+   are to be kept
+
+   Example:
+      ALK
+
+      BRAF
+
+
+Configuration File Format
+*************************
+
+   #~~~Template configuration file to run iCallSV~~~#
+   #### Path to python executable ###
+   [Python]
+   PYTHON:
+   #### Path to R executable and R Lib ###
+   [R]
+   RHOME:
+   RLIB:
+   #### Path to delly, bcftools executables and Version of delly (supports only 0.7.3)###
+   [SVcaller]
+   DELLY:
+   DellyVersion:
+   BCFTOOLS:
+   #### Path to hg19 Referece Fasta file ###
+   [ReferenceFasta]
+   REFFASTA:
+   #### Path to file containing regions to exclude please follow Delly documentation for this ###
+   [ExcludeRegion]
+   EXREGIONS:
+   #### Path to file containing regions to where lenient threshold will be used; and file containing genes to keep ###
+   [HotSpotRegions]
+   HotspotFile:
+   GenesToKeep:
+   #### Path to file containing regions/genes to filter ###
+   [BlackListRegions]
+   BlackListFile:
+   BlackListGenes:
+   #### Path to samtools executable ###
+   [SAMTOOLS]
+   SAMTOOLS:
+   #### Path to iAnnotateSV.py and all its required files, please follow iAnnotateSV documentation ###
+   [iAnnotateSV]
+   ANNOSV:
+   GENOMEBUILD:
+   DISTANCE:
+   CANONICALTRANSCRIPTFILE:
+   UNIPROTFILE:
+   CosmicCensus:
+   RepeatRegionAnnotation:
+   DGvAnnotations:
+   #### TargetSeqView Parameters ###
+   [TargetSeqView]
+   CalculateConfidenceScore:
+   GENOMEBUILD:
+   ReadLength:
+   #### Parameters to run Delly ###
+   [ParametersToRunDelly]
+   MAPQ: 20
+   NumberOfProcessors: 4
+   [ParametersToFilterDellyResults]
+   ####Case Allele Fraction Hotspot####
+   CaseAltFreqHotspot: 0.05
+   ####Total Case Coverage Hotspot#####
+   CaseCoverageHotspot = 5
+   ####Control Allele Fraction Hotspot####
+   ControlAltFreqHotspot = 0
+   ####Case Allele Fraction####
+   CaseAltFreq: 0.10
+   ####Total Case Coverage#####
+   CaseCoverage = 10
+   ####Control Allele Fraction####
+   ControlAltFreq = 0
+   ###Overall Supporting Read-pairs ###
+   OverallSupportingReads: 5
+   ###Overall Supporting Read-pairs Hotspot ###
+   OverallSupportingReadsHotspot: 3
+   ###Overall Supporting splitreads ###
+   OverallSupportingSplitReads: 0
+   ###Overall Supporting splitreads Hotspot ###
+   OverallSupportingSplitReadsHotspot: 0
+   ###Case Supporting Read-pairs ###
+   CaseSupportingReads: 2
+   ###Case Supporting splitreads ###
+   CaseSupportingSplitReads: 0
+   ###Case Supporting Read-pairs Hotspot ###
+   CaseSupportingReadsHotspot: 1
+   ###Case Supporting splitreads Hotspot ###
+   CaseSupportingSplitReadsHotspot: 0
+   ###Control Supporting Read-pairs ###
+   ControlSupportingReads: 3
+   ###Control Supporting Read-pairs Hotspot ###
+   ControlSupportingReadsHotspot: 3
+   ###Control Supporting splitreads ###
+   ControlSupportingSplitReads: 3
+   ###Control Supporting splitreads Hotspot ###
+   ControlSupportingSplitReadsHotspot: 3
+   ###Length of Structural Variant###
+   LengthOfSV: 500
+   ###Overall Mapping Quality Threshold###
+   OverallMapq: 20
+   ###Overall Mapping Quality Threshold Hotspot###
+   OverallMapqHotspot: 5
+
+
+Quick Usage
+***********
+
+   python iCallSV.py -sc /path/to/template.ini -abam /path/to/casebamFile -bbam /path/to/controlbamFile -aId caseID -bId controlId -o /path/to/output/directory -op prefix_for_the_output_files
+
+   python iCallSV.py -h
+
+   usage: iCallSV.py [-h] [-v] [-V] -sc config.ini -abam caseBAMFile.bam -bbam
+                     controlBAMFile.bam -aId caseID -bId controlID -o
+                     /somepath/output -op TumorID
+
+   iCallSV.iCallSV -- wrapper to run iCallSV package
+
+     Created by Ronak H Shah on 2015-03-30.
+     Copyright 2015-2016 Ronak H Shah. All rights reserved.
+
+     Licensed under the Apache License 2.0
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Distributed on an "AS IS" basis without warranties
+     or conditions of any kind, either express or implied.
+
+   USAGE
+
+   optional arguments:
+     -h, --help            show this help message and exit
+     -v, --verbose         set verbosity level [default: True]
+     -V, --version         show program's version number and exit
+     -sc config.ini, --svConfig config.ini
+                           Full path to the structural variant configuration
+     -abam caseBAMFile.bam, --caseBam caseBAMFile.bam
+                           Full path to the case bam file
+     -bbam controlBAMFile.bam, --controlBam controlBAMFile.bam
+                           Full path to the control bam file
+     -aId caseID, --caseId caseID
+                           Id of the case to be analyzed, this will be the sub-
+                           folder
+     -bId controlID, --controlId controlID
+                           Id of the control to be used, this will be used for
+                           filtering variants
+     -o /somepath/output, --outDir /somepath/output
+                           Full Path to the output dir.
+     -op TumorID, --outPrefix TumorID
+                           Id of the Tumor bam file which will be used as the
+                           prefix for output files
+
+
+Utilities
+*********
+
+
+Running iCallSV on MSK-IMPACT Pools
+===================================
+
+**This is only for MSK-IMPACT internal samples**
+
+   python iCallSV_dmp_wrapper.py -h
+
+   usage: iCallSV_dmp_wrapper.py [options]
+
+   Run iCallSV on selected pools using MSK data
+
+   optional arguments:
+     -h, --help            show this help message and exit
+     -fl folders.fof, --folderList folders.fof
+                           Full path folders file of files.
+     -qc /some/path/qcLocation, --qcLocation /some/path/qcLocation
+                           Full path qc files.
+     -b /some/path/bamlocation, --bamLocation /some/path/bamlocation
+                           Full path bam files.
+     -P /somepath/python, --python /somepath/python
+                           Full path Pyhton executables.
+     -icsv /somepath/iCallSV.py, --iCallSV /somepath/iCallSV.py
+                           Full path iCallSV.py executables.
+     -conf /somepath/template.ini, --iCallSVconf /somepath/template.ini
+                           Full path configuration file to run iCallSV
+     -q all.q or clin.q, --queue all.q or clin.q
+                           Name of the SGE queue
+     -qsub /somepath/qsub, --qsubPath /somepath/qsub
+                           Full Path to the qsub executables of SGE.
+     -t 5, --threads 5     Number of Threads to be used to run iCallSV
+     -v, --verbose         make lots of noise [default]
+     -o /somepath/output, --outDir /somepath/output
+                           Full Path to the output dir.
+
+
+Taking the iCallSV and chechking for processed transcript/cDNA in samples
+=========================================================================
+
+   python check_cDNA_contamination.py -h
+   usage: check_cDNA_contamination.py [options]
+
+   Calculate cDNA contamination per sample based of the Structural Variants
+   Pipeline result
+
+   optional arguments:
+     -h, --help            show this help message and exit
+     -v, --verbose         make lots of noise [default]
+     -s SVfile.txt, --svFile SVfile.txt
+                           Location of the structural variant file to be used
+     -o cDNA_contamination, --outputFileName cDNA_contamination
+                           Full path name for the output file
+
+
+Submodules
+**********
+
+
+iCallSV.iCallSV module
+======================
+
+
+iCallSV
+-------
+
+Description:
+   iCallSV is a wrapper to the iCallSV package which facilitates
+   calling structural variants from Next Generation Sequencing methods
+   such as Illumina
+
+author:
+   Ronak H Shah
+
+copyright:
+   3. 2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer
+      Center. All rights reserved.
+
+license:
+   Apache License 2.0
+
+contact:
+   rons.shah@gmail.com
+
+
+iCallSV.FilterDellyCalls module
+===============================
+
+
+FilterDellyCalls
+----------------
+
+Description:
+   This module will filter calls made by Delly which are in a VCF
+   format
+
+iCallSV.FilterDellyCalls.GetCaseFlag(caseDR, caseDV, preciseFlag, caseRR, caseRV, caseAltFreq, caseTotalCount)
+
+   This will "check if the case sample passes or not"
+
+   Parameters:
+      * **caseDR** (*int*) -- int representing number of reference
+        reads for case reported by delly
+
+      * **caseDV** (*int*) -- int representing number of variant
+        reads for case reported by delly
+
+      * **preciseFlag** (*str*) -- str representing if an event is
+        precise or imprecise
+
+      * **caseRR** (*int*) -- int representing number of split
+        reference reads for case reported by delly
+
+      * **caseRV** (*int*) -- int representing number of split
+        variant reads for case reported by delly
+
+      * **caseAltFreq** (*float*) -- float representing altratio
+        threshold for case
+
+      * **caseTotalCount** (*int*) -- int repeseting readcount
+        threshold for case
+
+   Returns:
+      A boolean tag indicating True or False
+
+   Return type:
+      bool
+
+iCallSV.FilterDellyCalls.GetControlFlag(controlDR, controlDV, preciseFlag, controlRR, controlRV, controlAltFreq)
+
+   This will "check if the control sample passes or not"
+
+   Parameters:
+      * **controlDR** (*int*) -- int representing number of
+        reference reads for control reported by delly
+
+      * **controlDV** (*int*) -- int representing number of variant
+        reads for control reported by delly
+
+      * **preciseFlag** (*str*) -- str representing if an event is
+        precise or imprecise
+
+      * **controlRR** (*int*) -- int representing number of split
+        reference reads for control reported by delly
+
+      * **controlRV** (*int*) -- int representing number of split
+        variant reads for control reported by delly
+
+      * **controlAltFreq** (*float*) -- float representing altratio
+        threshold for control
+
+   Returns:
+      A boolean tag indicating True or False
+
+   Return type:
+      bool
+
+iCallSV.FilterDellyCalls.GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blacklist)
+
+   This will "Filter one record at a time"
+
+   Parameters:
+      * **dellyVariables** (*str*) -- str having all delly variables
+        separated by ","
+
+      * **thresholdVariables** (*str*) -- str having all delly
+        threshold variables separated by ","
+
+      * **hotspotDict** (*dict*) -- A dict containing hotspot
+        regions
+
+      * **blacklist** (*list*) -- A list containing blacklist
+        regions
+
+   Returns:
+      A boolean tag indicating True or False
+
+   Return type:
+      bool
+
+iCallSV.FilterDellyCalls.run(inputVcf, outputDir, controlId, caseID, hotspotFile, blacklistFile, svlength, mapq, mapqHotspot, caseAltFreqHotspot, caseTotalCountHotspot, controlAltFreqHotspot, caseAltFreq, caseTotalCount, controlAltFreq, peSupport, srSupport, peSupportHotspot, srSupportHotspot, peSupportCase, srSupportCase, peSupportHotspotCase, srSupportHotspotCase, peSupportControl, srSupportControl, peSupportHotspotControl, srSupportHotspotControl, verbose)
+
+   >>``<<main:>>``<<Filter calls made by Delly which are in a VCF
+   format
+
+   Parameters:
+      * **inputVcf** (*str*) -- Input VCF file name with path
+
+      * **outputDir** (*str*) -- Output directory
+
+      * **controlId** (*str*) -- Control Sample ID (Should be part
+        of Sample Name in VCF)
+
+      * **caseID** (*str*) -- Case Sample ID (Should be part of
+        Sample Name in VCF)
+
+      * **hospotFile** (*str*) -- List of Genes that have Hotspot
+        Structural Variants (Tab-delimited Format without header:chr
+        start    end    geneName).
+
+      * **blacklistFile** (*str*) -- List of Genes that have
+        blacklist of Structural Variants (Tab-delimited Format without
+        header:chr    start1    chr2     start2; where chr1==chr2,
+        end==start2).
+
+      * **caseAltFreq** (*float*) -- Alternate Allele Frequency
+        threshold for case
+
+      * **caseTotalCount** (*int*) -- Total ReadCount threshold for
+        case
+
+      * **ccontrolAltFreq** (*flaot*) -- Alternate Allele Frequency
+        threshold for control
+
+      * **peSupport** (*int*) -- overall pair-end read support
+        threshold for the event
+
+      * **srSupport** (*int*) -- overall split-reads support
+        threshold for the event
+
+      * **peSupportHotspot** (*int*) -- overall pair-end read
+        support threshold for the event in hot-spot region
+
+      * **srSupportHotspot** (*int*) -- overall split-reads support
+        threshold for the event in hot-spot region
+
+      * **peSupportCase** (*int*) -- pair-end read support threshold
+        for the event in the Case sample
+
+      * **srSupportCase** (*int*) -- split-reads support threshold
+        for the event in the Case sample
+
+      * **peSupportHotspotCase** (*int*) -- pair-end read support
+        threshold for the event in hot-spot region for the Case sample
+
+      * **srSupportHotspotCase** (*int*) -- split-reads support
+        threshold for the event in hot-spot region for the Case sample
+
+      * **peSupportControl** (*int*) -- pair-end read support
+        threshold for the event in the Control sample
+
+      * **srSupportControl** (*int*) -- split-reads support
+        threshold for the event in the Control sample
+
+      * **peSupportHotspotControl** (*int*) -- pair-end read support
+        threshold for the event in hot-spot region for the Control
+        sample
+
+      * **srSupportHotspotControl** (*int*) -- split-reads support
+        threshold for the event in hot-spot region for the Control
+        sample
+
+      * **svlength** (*int*) -- length of the structural variants
+
+      * **mapq** (*int*) -- overall mapping quality
+
+      * **mapqHotspot** (*int*) -- mapping quality for hot-spots
+
+   Returns:
+      A str name of filtered vcf file
+
+   Return type:
+      str
+
+
+iCallSV.Run_Delly module
+========================
+
+
+Run_Delly
+---------
+
+Description:
+   Runs the delly program on case and control bam file to give its
+   results
+
+iCallSV.Run_Delly.run(delly, version, bcftools, analysisType, reference, controlBam, caseBam, caseId, mapq, excludeRegions, outputdir, verbose, debug)
+
+   This will Runs the delly program on case and control bam file to
+   give its results.
+
+   Parameters:
+      * **delly** (*str*) -- Path to delly executables (0.7.3 or
+        above)
+
+      * **bcftools** (*str*) -- Path to bcftools executables (1.3.1
+        or above)
+
+      * **type** (*str*) -- What ot run in delly, DEL:Deletion, DUP:
+        Duplication,TRA:Translocation, INV:Inversion
+
+      * **reference** (*str*) -- Reference Genome that was used to
+        align the reads.
+
+      * **controlBam** (*str*) -- Path to control/normal bam file
+
+      * **caseBam** (*str*) -- Path to case/tumor bam file
+
+      * **controlID** (*str*) -- Id of the control/normal sample
+
+      * **caseID** (*str*) -- Id of the case/tumor sample
+
+      * **mapq** (*int*) -- mapping quality cutoff for delly
+
+      * **excludeRegions** (*str*) -- Regions to be excluded for
+        calling structural variation.
+
+      * **outputdir** (*str*) -- directory for the output of delly
+
+      * **debug** (*bool*) -- If you just wish to test what we will
+        do
+
+   Returns:
+      str of the output vcf
+
+   Return type:
+      str
+
+
+iCallSV.Run_iAnnotateSV module
+==============================
+
+
+Run_iAnnotate
+-------------
+
+Description:
+   This module will run iAnnotateSV package
+
+iCallSV.Run_iAnnotateSV.run(python, iAnnotateSV, build, distance, canonicalTranscriptFile, uniprotFile, cosmicFile, cosmicCountsFile, repeatregionFile, dgvFile, inputTabFile, outputPrefix, outputDir)
+
+   This module will run iAnnotateSV package.
+
+   Parameters:
+      * **python** (*str*) -- Location for the python executable.
+
+      * **iAnnotateSV** (*str*) -- Location of the wrapper
+        iAnnotateSV package (iAnnotateSV.py)
+
+      * **build** (*str*) -- Which human reference file to be used,
+        hg18,hg19 or hg38
+
+      * **inputTabFile** (*str*) -- Tab-Delimited Input FIle
+        compatible with iAnnotateSV package.
+
+      * **outputPrefix** (*str*) -- Prefix of the output files/DIR
+        with Annotations and images
+
+      * **outputDir** (*str*) -- Name of the output directory where
+        the outputPrefix will be written
+
+      * **uniprotFile** (*str*) -- Location for ucsc uniprot file
+
+      * **cosmicFile** (*str*) -- Location for cosmic census file
+
+      * **cosmicCountsFile** (*str*) -- Location for cosmic fusion
+        counts file
+
+      * **repeatregionFile** (*str*) -- Location for repeat region
+        file
+
+      * **dgvFile** (*str*) -- Location for database of Genomic
+        Variants file
+
+   Returns:
+      str of the output file
+
+   Return type:
+      str
+
+
+iCallSV.Run_samblaster module
+=============================
+
+
+Run_samblaster
+--------------
+
+Description:
+   This module will run samblaster for extracting discordant and spit
+   reads in sam format
+
+iCallSV.Run_samblaster.run(samtools, samblaster, bamFile, discordantFileName, splitFileName, outputDir)
+
+
+iCallSV.Run_targetSeqView module
+================================
+
+
+Run_targetSeqView
+-----------------
+
+Description:
+   This module will run targetSeqView
+
+iCallSV.Run_targetSeqView.run(RLocation, targetSeqView, nodes, bamFilePath, svFile, build, readLength, outputDir, outsvFileName)
+
+   This module will run targetSeqView.
+
+   Parameters:
+      * **RLocation** (*str*) -- Location of the R executable
+        (>3.1.2).
+
+      * **targetSeqView** (*str*) -- Location of R script that will
+        run tragetSeqView
+
+      * **nodes** (*int*) -- Number of parallel nodes for running
+        targetSeqView
+
+      * **bamFile** (*str*) -- Location of the bamFile which has the
+        structural variant events.
+
+      * **svFile** (*str*) -- targetSeqView compatible input
+        structural variant file.
+
+      * **build** (*str*) -- Which human reference file to be used,
+        hg18,hg19 or hg38
+
+      * **readLength** (*int*) -- Sequencing Read Length (101)
+
+      * **outputDir** (*str*) -- Directory for output files
+
+      * **outsvFile** (*str*) -- Name of the output structural
+        variant file that has added confidence score to it.
+
+   Returns:
+      str of the output file
+
+   Return type:
+      str
+
+
+iCallSV.checkBlackList module
+=============================
+
+
+checkBlackList
+--------------
+
+Description:
+   This module will read the Black List file and tell if and event is
+   blacklisted or not
+
+iCallSV.checkBlackList.CheckIfItIsBlacklisted(chr1, start1, chr2, start2, blacklist, extention)
+
+   Check if coordinate are present in the "blacklist region file"
+
+   Parameters:
+      * **chr1** (*str*) -- str of the breakpoint in first
+        chromosome
+
+      * **start1** (*int*) -- int of the start location of the
+        breakpoint in first chromosome
+
+      * **chr2** (*str*) -- str of the breakpoint in second
+        chromosome
+
+      * **start2** (*int*) -- int of the start location of the
+        breakpoint in second chromosome
+
+      * **blacklist** (*list*) -- A list containing black listed
+        regions
+
+      * **extension** (*int*) -- an value for search in positive and
+        negative direction of the start1 and start2 location
+
+   Returns:
+      A boolean tag indicating True or False
+
+   Return type:
+      bool
+
+iCallSV.checkBlackList.ReadBlackListFile(BlackListFile)
+
+   Read the "blacklist region file"
+
+   Parameters:
+      **BlackListFile** (*str*) -- str of file to be read.
+
+   Returns:
+      A list containing black listed regions.
+
+   Return type:
+      list.
+
+
+iCallSV.checkHotSpotList module
+===============================
+
+
+checkHotSpotList
+----------------
+
+Description:
+   This module will read the hotspot file and tell if it is a hotspot
+   or not
+
+iCallSV.checkHotSpotList.CheckIfItIsHotspot(chr1, start1, chr2, start2, hotspotDict)
+
+   Check if coordinate are present in the "hotspot region file"
+
+   Parameters:
+      * **chr1** (*str*) -- str of the breakpoint in first
+        chromosome
+
+      * **start1** (*int*) -- int of the start location of the
+        breakpoint in first chromosome
+
+      * **chr2** (*str*) -- str of the breakpoint in second
+        chromosome
+
+      * **start2** (*int*) -- int of the start location of the
+        breakpoint in second chromosome
+
+      * **hotspotDict** (*dict*) -- A dict containing hotspot
+        regions
+
+   Returns:
+      A boolean tag indicating True or False
+
+   Return type:
+      bool
+
+iCallSV.checkHotSpotList.ReadHotSpotFile(HotSpotFile)
+
+   Read the "HotSpot region file"
+
+   Parameters:
+      **HotSpotFile** (*str*) -- str of file to be read.
+
+   Returns:
+      A dict containing hotspot regions
+
+   Return type:
+      dict
+
+
+iCallSV.checkparameters module
+==============================
+
+
+checkparameters
+---------------
+
+Description:
+   This modules checks the parameters for various type of inputs.
+
+iCallSV.checkparameters.checkDellyAnalysisType(varaibleToCheck)
+
+   Check *if the variable for Delly analysis exists or not`*
+
+   Parameters:
+      **variableToCheck** (*str*) -- check if str is DEL|DUP|INV|TRA
+
+   Returns:
+      None
+
+   Return type:
+      None
+
+iCallSV.checkparameters.checkDir(folderToCheck)
+
+   Check *if the folder exists or not`*
+
+   "str".
+
+   Parameters:
+      **folderToCheck** (*str*) -- Name of the folder to be checked.
+
+   Returns:
+      None
+
+   Return type:
+      None
+
+iCallSV.checkparameters.checkEmpty(variableToCheck, variableName)
+
+   Check *if the variable is None or not`*
+
+   Parameters:
+      * **variableToCheck** (*str*) -- check if str is None or not
+
+      * **variableName** (*str*) -- Name of the None object to be
+        verified
+
+   Returns:
+      None
+
+   Return type:
+      None
+
+iCallSV.checkparameters.checkFile(fileToCheck)
+
+   Check *if the file exists or not`*
+
+   Parameters:
+      **fileToCheck** (*str*) -- Name of the file to be checked.
+
+   Returns:
+      None
+
+   Return type:
+      None
+
+iCallSV.checkparameters.checkInt(variableToCheck, variableName)
+
+   Check *if the variable is int or not`*
+
+   Parameters:
+      * **variableToCheck** (*int*) -- Check if it is int or not
+
+      * **variableName** (*str*) -- Name of the int object to be
+        verified
+
+   Returns:
+      None
+
+   Return type:
+      None
+
+
+iCallSV.combineVCF module
+=========================
+
+
+combineVCF
+----------
+
+Description:
+   This module will combine multiple vcf file with same headers
+
+iCallSV.combineVCF.run(vcfFiles, combinedVCF, verbose)
+
+   This will "combine multiple vcf file with same headers"
+
+   Parameters:
+      * **vcfFiles** (*list*) -- a list of .vcf files to be combined
+
+      * **combinedVCF** (*str*) -- str for the output of combined
+        vcf files
+
+      * **verbose** (*bool*) -- a boolean
+
+   Returns:
+      A str name of combined vcf file
+
+   Return type:
+      str
+
+
+iCallSV.dellyVcf2Tab module
+===========================
+
+
+dellyVcf2Tab
+------------
+
+Description:
+   This module converts the Delly Vcf file having tumor normal, to
+   tab-delimited format for input to iAnnotateSV
+
+iCallSV.dellyVcf2Tab.vcf2tab(vcfFile, outputDir, verbose)
+
+   This "converts" the Delly Vcf file having tumor normal, to tab-
+   delimited format for input to iAnnotateSV
+
+   Parameters:
+      * **vcfFile** (*str*) -- str of vcf file to be converted
+
+      * **outputDir** (*str*) -- str for the output directory
+
+      * **verbose** (*bool*) -- a boolean
+
+   Returns:
+      A str name of tab-delimited file
+
+   Return type:
+      str
+
+
+iCallSV.dellyVcf2targetSeqView module
+=====================================
+
+
+dellyVcf2targetSeqView
+----------------------
+
+Description:
+   Convert VCF to targetSeqView
+
+iCallSV.dellyVcf2targetSeqView.Convert2targetSeqView(sampleName, sampleBamName, sampleSplitBamName, vcfFile, outputDir, outputFileName)
+
+   This "converts" the Delly Vcf file having tumor normal, to tab-
+   delimited format for input to targetSeqView
+
+   Parameters:
+      * **sampleName** (*str*) -- str for the name of the sample
+        being analyzed
+
+      * **sampleBamName** (*str*) -- str for the pair-end reads bam
+        file
+
+      * **sampleSplitBamName** (*str*) -- str for the split reads
+        bam file
+
+      * **vcfFile** (*str*) -- str of vcf file to be converted
+
+      * **outputDir** (*str*) -- str for the output directory
+
+      * **outputFileName** (*str*) -- str for the output File
+
+   Returns:
+      A str name of tab-delimited file
+
+   Return type:
+      str
+
+
+iCallSV.filterAnnotatedSV module
+================================
+
+
+filterAnnotatedSV
+-----------------
+
+Description:
+   This module will filter calls from the merged file
+
+iCallSV.filterAnnotatedSV.checkBlackListGene(gene1, gene2, blacklistGenes)
+
+   This will "check for blacklisted genes"
+
+   Parameters:
+      * **gene1** (*str*) -- str for the name of gene at breakpoint
+        1
+
+      * **gene2** (*str*) -- str for the name of gene at breakpoint
+        2
+
+      * **blacklistGenes** (*list*) -- list containing blacklisted
+        genes
+
+      * **genesToKeepFile** (*str*) -- str for the txt file
+        containing genes to keep
+
+   Returns:
+      A boolean tag indicating True or False
+
+   Return type:
+      bool
+
+iCallSV.filterAnnotatedSV.checkEventInIntronFlag(gene1, gene2, site1, site2)
+
+   This will "Check if the event is in the intron only and not
+   affecting splicing"
+
+   Parameters:
+      * **gene1** (*str*) -- str for the name of gene at breakpoint
+        1
+
+      * **gene2** (*str*) -- str for the name of gene at breakpoint
+        2
+
+      * **site1** (*str*) -- str for the description of site in
+        breakpoint 1
+
+      * **site2** (*str*) -- str for the description of site in
+        breakpoint 2
+
+   Returns:
+      A boolean tag indicating True or False
+
+   Return type:
+      bool
+
+iCallSV.filterAnnotatedSV.checkGeneListToKeep(gene1, gene2, keepGenes)
+
+iCallSV.filterAnnotatedSV.run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeepFile=None)
+
+   This will "filter sv calls" from the final merged file.
+
+   Parameters:
+      * **inputTxt** (*str*) -- str for the txt file to be filtered
+
+      * **outputDir** (*str*) -- str for the output directory
+
+      * **outputPrefix** (*str*) -- str prefix for the output File
+
+      * **blacklistGenesFile** (*str*) -- str for the txt file
+        containing blacklisted genes
+
+      * **verbose** (*bool*) -- a boolean
+
+      * **genesToKeepFile** (*str*) -- str for the txt file
+        containing genes to keep
+
+   Returns:
+      A str name of final sv file
+
+   Return type:
+      str
+
+
+iCallSV.utilities.iCallSV_dmp_wrapper module
+============================================
+
+
+iCallSV.utilities.check_cDNA_contamination module
+=================================================
+
+
+iCallSV.launchThreads module
+============================
+
+Created on December 21, 2015 Description: This module will be
+launching functions as threads @author: Ronak H Shah
+
+class iCallSV.launchThreads.myThread(threadID, name, counter)
+
+   Bases: "threading.Thread"
+
+   run()
+
+iCallSV.launchThreads.print_time(threadName, delay, counter)
+
+
+iCallSV.launch_FilterDellyCalls module
+======================================
+
+
+launch_FilterDellyCalls
+-----------------------
+
+Description:
+   This module will filter delly results and create filtered delly vcf
+   files
+
+iCallSV.launch_FilterDellyCalls.launch_filterdellycalls_for_different_analysis_type(args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf)
+
+   This will launch the filtering of delly calls in parallel.
+
+   Parameters:
+      * **args** (*Namespace*) -- Namespace of args to get other
+        variables
+
+      * **config** (*Namespace*) -- configuration file passed to
+        iCallSV
+
+      * **sampleOutdirForDelly** (*str*) -- Output directory for
+        delly vcf files.
+
+      * **del_vcf** (*str*) -- Path to deletion based vcf file
+
+      * **dup_vcf** (*str*) -- Path to duplication based vcf file
+
+      * **inv_vcf** (*str*) -- Path to inversion based vcf file
+
+      * **tra_vcf** (*str*) -- Path to translocation based vcf file
+
+   Returns:
+      Multiple objects
+
+   Return type:
+      list
+
+
+iCallSV.launch_Run_Delly module
+===============================
+
+
+launch_Run_Delly
+----------------
+
+Description:
+   This module will be launching delly using Run_Delly
+
+iCallSV.launch_Run_Delly.launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly)
+
+   This will launch delly calls in parallel.
+
+   Parameters:
+      * **args** (*Namespace*) -- Namespace of args to get other
+        variables
+
+      * **config** (*Namespace*) -- configuration file passed to
+        iCallSV
+
+      * **sampleOutdirForDelly** (*str*) -- Output directory for
+        delly vcf files.
+
+   Returns:
+      Multiple objects
+
+   Return type:
+      list
+
+
+iCallSV.make_analysis_dir module
+================================
+
+
+make_analysis_dir
+-----------------
+
+Description:
+   This module will make directory structure for running analysis
+
+iCallSV.make_analysis_dir.makeOutputDir(args, tool)
+
+   This will make the output directory tree.
+
+   Parameters:
+      **args** (*Namespace*) -- Namespace of args to get other
+      variables
+
+   Returns:
+      Multiple objects
+
+   Return type:
+      list
+
+
+iCallSV.makebamindex module
+===========================
+
+
+makebamindex
+------------
+
+Description:
+   Use PySAM to make bam index
+
+iCallSV.makebamindex.MakeIndex(bamFile)
+
+   This will make bam index if not there for a bam file using pysam.
+
+   Parameters:
+      **bamFile** (*str*) -- Path to bam file
+
+   Returns:
+      None
+
+   Return type:
+      None
+
+
+iCallSV.mergeFinalFiles module
+==============================
+
+
+mergeFinalFiles
+---------------
+
+Description:
+   Merge VCF, iAnnotateSV tab and targetSeqView tab file into a single
+   tab-delimited file
+
+iCallSV.mergeFinalFiles.run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose)
+
+   This will Merge VCF, iAnnotateSV tab and targetSeqView tab file
+   into a single tab-delimited file
+
+   Parameters:
+      * **aId** (*str*) -- Sample ID for case that has the
+        structural abberations
+
+      * **bId** (*str*) -- Sample ID for control
+
+      * **vcfFile** (*str*) -- Delly filtered and merged VCF file
+
+      * **annoTab** (*str*) -- iAnnotateSV tab-delimited file with
+        annotations
+
+      * **confTab** (*str*) -- targetSeqView tab-delimited file with
+        probability score
+
+      * **outputDir** (*str*) -- Directory to write the output file
+
+      * **outputPrefix** (*str*) -- Output File Prefix
+
+   Returns:
+      str of the tab-delimited file
+
+   Return type:
+      str
+
+
+iCallSV.sortbamByCoordinate module
+==================================
+
+
+sortbamByCoordinate
+-------------------
+
+Description:
+   This module will sort bam file by coordinate
+
+iCallSV.sortbamByCoordinate.sortBam(inputBam, outputBamName, outputDir)
+
+
+iCallSV.sortbamByReadName module
+================================
+
+
+sortbamByReadName
+-----------------
+
+Description:
+   This module will sort bam file by name
+
+iCallSV.sortbamByReadName.sortBam(inputBam, outputBamName, outputDir)
+
+
+Module contents
+===============

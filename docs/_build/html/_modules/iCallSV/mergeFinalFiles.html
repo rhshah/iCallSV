@@ -47,7 +47,7 @@
           <div class="body" role="main">
             
   <h1>Source code for iCallSV.mergeFinalFiles</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">mergeFinalFiles</span>
 <span class="sd">~~~~~~~~~~~~~~~</span>
 
@@ -140,6 +140,7 @@
             <span class="s2">&quot;NormalSplitVariantCount&quot;</span><span class="p">,</span>
             <span class="s2">&quot;NormalReadCount&quot;</span><span class="p">,</span>
             <span class="s2">&quot;NormalGenotypeQScore&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Cosmic_Fusion_Counts&quot;</span><span class="p">,</span>
             <span class="s2">&quot;repName-repClass-repFamily:-site1&quot;</span><span class="p">,</span>
             <span class="s2">&quot;repName-repClass-repFamily:-site2&quot;</span><span class="p">,</span>
             <span class="s2">&quot;CC_Chr_Band&quot;</span><span class="p">,</span>
@@ -287,6 +288,7 @@
          <span class="n">site1</span><span class="p">,</span>
          <span class="n">site2</span><span class="p">,</span>
          <span class="n">fusion</span><span class="p">,</span>
+         <span class="n">cosmic_fusion_counts</span><span class="p">,</span>
          <span class="n">rr_site1</span><span class="p">,</span>
          <span class="n">rr_site2</span><span class="p">,</span>
          <span class="n">cc_chr_band</span><span class="p">,</span>
@@ -296,7 +298,7 @@
          <span class="n">cc_t_p</span><span class="p">,</span>
          <span class="n">dgv_site1</span><span class="p">,</span>
          <span class="n">dgv_site2</span>
-         <span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="bp">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">18</span><span class="p">))</span>
+         <span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="bp">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">19</span><span class="p">))</span>
 
         <span class="n">annoDF</span><span class="p">[[</span><span class="s1">&#39;chr1&#39;</span><span class="p">,</span> <span class="s1">&#39;chr2&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">annoDF</span><span class="p">[[</span><span class="s1">&#39;chr1&#39;</span><span class="p">,</span> <span class="s1">&#39;chr2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
         <span class="n">indexList</span> <span class="o">=</span> <span class="n">annoDF</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">annoDF</span><span class="p">[</span><span class="s1">&#39;chr1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">chrom1</span><span class="p">])</span> <span class="o">&amp;</span>
@@ -320,6 +322,7 @@
         <span class="n">fusion</span> <span class="o">=</span> <span class="n">annoDF</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">annoIndex</span><span class="p">][</span><span class="s1">&#39;fusion&#39;</span><span class="p">]</span>
         <span class="n">rr_site1</span> <span class="o">=</span> <span class="n">annoDF</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">annoIndex</span><span class="p">][</span><span class="s1">&#39;repName-repClass-repFamily:-site1&#39;</span><span class="p">]</span>
         <span class="n">rr_site2</span> <span class="o">=</span> <span class="n">annoDF</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">annoIndex</span><span class="p">][</span><span class="s1">&#39;repName-repClass-repFamily:-site2&#39;</span><span class="p">]</span>
+        <span class="n">cosmic_fusion_counts</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">annoDF</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">annoIndex</span><span class="p">][</span><span class="s1">&#39;Cosmic_Fusion_Counts&#39;</span><span class="p">])</span>
         <span class="n">cc_chr_band</span> <span class="o">=</span> <span class="n">annoDF</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">annoIndex</span><span class="p">][</span><span class="s1">&#39;CC_Chr_Band&#39;</span><span class="p">]</span>
         <span class="n">cc_t_t</span> <span class="o">=</span> <span class="n">annoDF</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">annoIndex</span><span class="p">][</span><span class="s1">&#39;CC_Tumour_Types(Somatic)&#39;</span><span class="p">]</span>
         <span class="n">cc_c_s</span> <span class="o">=</span> <span class="n">annoDF</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">annoIndex</span><span class="p">][</span><span class="s1">&#39;CC_Cancer_Syndrome&#39;</span><span class="p">]</span>
@@ -359,14 +362,14 @@
                    <span class="s2">&quot;TumorVariantCount&quot;</span><span class="p">,</span> <span class="s2">&quot;TumorSplitVariantCount&quot;</span><span class="p">,</span> <span class="s2">&quot;TumorReadCount&quot;</span><span class="p">,</span>
                    <span class="s2">&quot;TumorGenotypeQScore&quot;</span><span class="p">,</span> <span class="s2">&quot;NormalReferenceCount&quot;</span><span class="p">,</span> <span class="s2">&quot;NormalSplitReferenceCount&quot;</span><span class="p">,</span>
                    <span class="s2">&quot;NormalVariantCount&quot;</span><span class="p">,</span> <span class="s2">&quot;NormalSplitVariantCount&quot;</span><span class="p">,</span> <span class="s2">&quot;NormalReadCount&quot;</span><span class="p">,</span>
-                   <span class="s2">&quot;NormalGenotypeQScore&quot;</span><span class="p">,</span> <span class="s2">&quot;repName-repClass-repFamily:-site1&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;NormalGenotypeQScore&quot;</span><span class="p">,</span> <span class="s2">&quot;Cosmic_Fusion_Counts&quot;</span><span class="p">,</span> <span class="s2">&quot;repName-repClass-repFamily:-site1&quot;</span><span class="p">,</span>
                    <span class="s2">&quot;repName-repClass-repFamily:-site2&quot;</span><span class="p">,</span> <span class="s2">&quot;CC_Chr_Band&quot;</span><span class="p">,</span> <span class="s2">&quot;CC_Tumour_Types(Somatic)&quot;</span><span class="p">,</span>
                    <span class="s2">&quot;CC_Cancer_Syndrome&quot;</span><span class="p">,</span> <span class="s2">&quot;CC_Mutation_Type&quot;</span><span class="p">,</span> <span class="s2">&quot;CC_Translocation_Partner&quot;</span><span class="p">,</span>
                    <span class="s2">&quot;DGv_Name-DGv_VarType-site1&quot;</span><span class="p">,</span> <span class="s2">&quot;DGv_Name-DGv_VarType-site2&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">aId</span><span class="p">,</span> <span class="n">bId</span><span class="p">,</span> <span class="n">chrom1</span><span class="p">,</span>
                                                                                    <span class="n">start1</span><span class="p">,</span> <span class="n">chrom2</span><span class="p">,</span> <span class="n">start2</span><span class="p">,</span> <span class="n">svtype</span><span class="p">,</span> <span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">transcript1</span><span class="p">,</span> <span class="n">transcript2</span><span class="p">,</span> <span class="n">site1</span><span class="p">,</span> <span class="n">site2</span><span class="p">,</span>
                                                                                    <span class="n">fusion</span><span class="p">,</span> <span class="n">confidenceScore</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">contype</span><span class="p">,</span> <span class="n">svlengthFromDelly</span><span class="p">,</span> <span class="n">mapqFromDelly</span><span class="p">,</span>
                                                                                    <span class="n">peSupportFromDelly</span><span class="p">,</span> <span class="n">srSupportFromDelly</span><span class="p">,</span> <span class="n">brktype</span><span class="p">,</span> <span class="n">conseq</span><span class="p">,</span> <span class="n">caseDR</span><span class="p">,</span> <span class="n">caseRR</span><span class="p">,</span> <span class="n">caseDV</span><span class="p">,</span> <span class="n">caseRV</span><span class="p">,</span>
-                                                                                   <span class="n">caseRC</span><span class="p">,</span> <span class="n">caseGQ</span><span class="p">,</span> <span class="n">controlDR</span><span class="p">,</span> <span class="n">controlRR</span><span class="p">,</span> <span class="n">controlDV</span><span class="p">,</span> <span class="n">controlRV</span><span class="p">,</span> <span class="n">controlRC</span><span class="p">,</span> <span class="n">controlGQ</span><span class="p">,</span>
+                                                                                   <span class="n">caseRC</span><span class="p">,</span> <span class="n">caseGQ</span><span class="p">,</span> <span class="n">controlDR</span><span class="p">,</span> <span class="n">controlRR</span><span class="p">,</span> <span class="n">controlDV</span><span class="p">,</span> <span class="n">controlRV</span><span class="p">,</span> <span class="n">controlRC</span><span class="p">,</span> <span class="n">controlGQ</span><span class="p">,</span> <span class="n">cosmic_fusion_counts</span><span class="p">,</span>
                                                                                    <span class="n">rr_site1</span><span class="p">,</span> <span class="n">rr_site2</span><span class="p">,</span> <span class="n">cc_chr_band</span><span class="p">,</span> <span class="n">cc_t_t</span><span class="p">,</span> <span class="n">cc_c_s</span><span class="p">,</span> <span class="n">cc_m_t</span><span class="p">,</span> <span class="n">cc_t_p</span><span class="p">,</span> <span class="n">dgv_site1</span><span class="p">,</span> <span class="n">dgv_site2</span><span class="p">]</span>
 
         <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>

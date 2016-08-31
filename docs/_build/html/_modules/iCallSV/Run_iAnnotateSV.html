@@ -47,7 +47,7 @@
           <div class="body" role="main">
             
   <h1>Source code for iCallSV.Run_iAnnotateSV</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Run_iAnnotate</span>
 <span class="sd">~~~~~~~~~~~~~</span>
 
@@ -94,6 +94,7 @@
         <span class="n">canonicalTranscriptFile</span><span class="p">,</span>
         <span class="n">uniprotFile</span><span class="p">,</span>
         <span class="n">cosmicFile</span><span class="p">,</span>
+        <span class="n">cosmicCountsFile</span><span class="p">,</span>
         <span class="n">repeatregionFile</span><span class="p">,</span>
         <span class="n">dgvFile</span><span class="p">,</span>
         <span class="n">inputTabFile</span><span class="p">,</span>
@@ -110,6 +111,7 @@
 <span class="sd">    :param str outputDir: Name of the output directory where the outputPrefix will be written</span>
 <span class="sd">    :param str uniprotFile: Location for ucsc uniprot file</span>
 <span class="sd">    :param str cosmicFile: Location for cosmic census file</span>
+<span class="sd">    :param str cosmicCountsFile: Location for cosmic fusion counts file</span>
 <span class="sd">    :param str repeatregionFile: Location for repeat region file</span>
 <span class="sd">    :param str dgvFile: Location for database of Genomic Variants file</span>
 <span class="sd">    :return: str of the output file</span>
@@ -127,6 +129,7 @@
     <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">canonicalTranscriptFile</span><span class="p">)</span>
     <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">uniprotFile</span><span class="p">)</span>
     <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">cosmicFile</span><span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">cosmicCountsFile</span><span class="p">)</span>
     <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">repeatregionFile</span><span class="p">)</span>
     <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">dgvFile</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Run_iAnnotateSV: All input parameters look good. Lets run the package.&quot;</span><span class="p">)</span>
@@ -136,7 +139,7 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Run_iAnnotateSV: ProcessID:</span><span class="si">%s</span><span class="s2">, Date:</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">myPid</span><span class="p">,</span> <span class="n">today</span><span class="p">)</span>
     <span class="n">outputFile</span> <span class="o">=</span> <span class="n">outputDir</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">outputPrefix</span> <span class="o">+</span> <span class="s2">&quot;_Annotated.txt&quot;</span>
     <span class="n">cmd</span> <span class="o">=</span> <span class="n">python</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">iAnnotateSV</span> <span class="o">+</span> <span class="s2">&quot; -r &quot;</span> <span class="o">+</span> <span class="n">build</span> <span class="o">+</span> <span class="s2">&quot; -i &quot;</span> <span class="o">+</span> <span class="n">inputTabFile</span> <span class="o">+</span> <span class="s2">&quot; -o &quot;</span> <span class="o">+</span> <span class="n">outputDir</span> <span class="o">+</span> <span class="s2">&quot; -ofp &quot;</span> <span class="o">+</span> <span class="n">outputPrefix</span> <span class="o">+</span> <span class="s2">&quot; -d &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
-        <span class="n">distance</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; -c &quot;</span> <span class="o">+</span> <span class="n">canonicalTranscriptFile</span> <span class="o">+</span> <span class="s2">&quot; -rr &quot;</span> <span class="o">+</span> <span class="n">repeatregionFile</span> <span class="o">+</span> <span class="s2">&quot; -cc &quot;</span> <span class="o">+</span> <span class="n">cosmicFile</span> <span class="o">+</span> <span class="s2">&quot; -dgv &quot;</span> <span class="o">+</span> <span class="n">dgvFile</span> <span class="o">+</span> <span class="s2">&quot; -v -p -u &quot;</span> <span class="o">+</span> <span class="n">uniprotFile</span>
+        <span class="n">distance</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; -c &quot;</span> <span class="o">+</span> <span class="n">canonicalTranscriptFile</span> <span class="o">+</span> <span class="s2">&quot; -rr &quot;</span> <span class="o">+</span> <span class="n">repeatregionFile</span> <span class="o">+</span> <span class="s2">&quot; -cc &quot;</span> <span class="o">+</span> <span class="n">cosmicFile</span> <span class="o">+</span> <span class="s2">&quot; -cct &quot;</span> <span class="o">+</span> <span class="n">cosmicCountsFile</span> <span class="o">+</span> <span class="s2">&quot; -dgv &quot;</span> <span class="o">+</span> <span class="n">dgvFile</span> <span class="o">+</span> <span class="s2">&quot; -v -p -u &quot;</span> <span class="o">+</span> <span class="n">uniprotFile</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Run_iAnnotateSV: Command that will be run: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="p">)</span>
     <span class="c1"># Remove if the file exists</span>

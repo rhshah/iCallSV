@@ -21,7 +21,7 @@
 
 
 \title{iCallSV Documentation}
-\date{June 07, 2016}
+\date{August 31, 2016}
 \release{}
 \author{Author}
 \newcommand{\sphinxlogo}{}
@@ -166,6 +166,15 @@ Contents:
 \section{iCallSV: Structural Aberration Detection from NGS datasets}
 \label{iCallSV::doc}\label{iCallSV:icallsv-structural-aberration-detection-from-ngs-datasets}
 
+\section{Note}
+\label{iCallSV:note}
+For some reason docstrings is not shown by \href{https:read-the-docs.readthedocs.io}{Read The Docs}
+
+So please use these url from \href{https:github.com}{Github} with \href{https://htmlpreview.github.io/}{Html Preview} for each module information:
+
+\href{https://htmlpreview.github.io/?https://raw.githubusercontent.com/rhshah/iCallSV/master/docs/\_build/html/iCallSV.html}{Per Module Info}
+
+
 \section{Required Packages}
 \label{iCallSV:required-packages}
 We require that you install:
@@ -183,13 +192,13 @@ We require that you install:
 \href{https://pypi.python.org/pypi/PyVCF}{0.6.7}
 
 \item[{Delly}] \leavevmode
-\href{https://github.com/tobiasrausch/delly}{v0.7.3}
+\href{https://github.com/tobiasrausch/delly}{v0.7.5}
 
 \item[{targetSeqView}] \leavevmode
 \href{https://github.com/Eitan177/targetSeqView}{master}
 
 \item[{iAnnotateSV}] \leavevmode
-\href{https://github.com/rhshah/iAnnotateSV/tree/1.0.5}{v1.0.5}
+\href{https://github.com/rhshah/iAnnotateSV/tree/1.0.5}{v1.0.6}
 
 \end{description}\end{quote}
 
@@ -770,7 +779,7 @@ This module will run iAnnotateSV package
 \index{run() (in module iCallSV.Run\_iAnnotateSV)}
 
 \begin{fulllineitems}
-\phantomsection\label{iCallSV:iCallSV.Run_iAnnotateSV.run}\pysiglinewithargsret{\code{iCallSV.Run\_iAnnotateSV.}\bfcode{run}}{\emph{python}, \emph{iAnnotateSV}, \emph{build}, \emph{distance}, \emph{canonicalTranscriptFile}, \emph{uniprotFile}, \emph{cosmicFile}, \emph{repeatregionFile}, \emph{dgvFile}, \emph{inputTabFile}, \emph{outputPrefix}, \emph{outputDir}}{}
+\phantomsection\label{iCallSV:iCallSV.Run_iAnnotateSV.run}\pysiglinewithargsret{\code{iCallSV.Run\_iAnnotateSV.}\bfcode{run}}{\emph{python}, \emph{iAnnotateSV}, \emph{build}, \emph{distance}, \emph{canonicalTranscriptFile}, \emph{uniprotFile}, \emph{cosmicFile}, \emph{cosmicCountsFile}, \emph{repeatregionFile}, \emph{dgvFile}, \emph{inputTabFile}, \emph{outputPrefix}, \emph{outputDir}}{}
 This module will run iAnnotateSV package.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
@@ -797,6 +806,9 @@ This module will run iAnnotateSV package.
 
 \item {} 
 \textbf{\texttt{cosmicFile}} (\emph{\texttt{str}}) -- Location for cosmic census file
+
+\item {} 
+\textbf{\texttt{cosmicCountsFile}} (\emph{\texttt{str}}) -- Location for cosmic fusion counts file
 
 \item {} 
 \textbf{\texttt{repeatregionFile}} (\emph{\texttt{str}}) -- Location for repeat region file
@@ -1350,7 +1362,7 @@ bool
 \index{run() (in module iCallSV.filterAnnotatedSV)}
 
 \begin{fulllineitems}
-\phantomsection\label{iCallSV:iCallSV.filterAnnotatedSV.run}\pysiglinewithargsret{\code{iCallSV.filterAnnotatedSV.}\bfcode{run}}{\emph{inputTxt}, \emph{outputDir}, \emph{outPrefix}, \emph{blacklistGenesFile}, \emph{genesToKeepFile}, \emph{verbose}}{}
+\phantomsection\label{iCallSV:iCallSV.filterAnnotatedSV.run}\pysiglinewithargsret{\code{iCallSV.filterAnnotatedSV.}\bfcode{run}}{\emph{inputTxt}, \emph{outputDir}, \emph{outPrefix}, \emph{blacklistGenesFile}, \emph{verbose}, \emph{genesToKeepFile=None}}{}
 This will \code{filter sv calls} from the final merged file.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
@@ -1367,10 +1379,10 @@ This will \code{filter sv calls} from the final merged file.
 \textbf{\texttt{blacklistGenesFile}} (\emph{\texttt{str}}) -- str for the txt file containing blacklisted genes
 
 \item {} 
-\textbf{\texttt{genesToKeepFile}} (\emph{\texttt{str}}) -- str for the txt file containing genes to keep
+\textbf{\texttt{verbose}} (\emph{\texttt{bool}}) -- a boolean
 
 \item {} 
-\textbf{\texttt{verbose}} (\emph{\texttt{bool}}) -- a boolean
+\textbf{\texttt{genesToKeepFile}} (\emph{\texttt{str}}) -- str for the txt file containing genes to keep
 
 \end{itemize}
 

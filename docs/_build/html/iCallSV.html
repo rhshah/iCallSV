@@ -51,6 +51,12 @@
   <div class="section" id="icallsv-structural-aberration-detection-from-ngs-datasets">
 <h1>iCallSV: Structural Aberration Detection from NGS datasets<a class="headerlink" href="#icallsv-structural-aberration-detection-from-ngs-datasets" title="Permalink to this headline">¶</a></h1>
 </div>
+<div class="section" id="note">
+<h1>Note<a class="headerlink" href="#note" title="Permalink to this headline">¶</a></h1>
+<p>For some reason docstrings is not shown by <a class="reference external" href="https:read-the-docs.readthedocs.io">Read The Docs</a></p>
+<p>So please use these url from <a class="reference external" href="https:github.com">Github</a> with <a class="reference external" href="https://htmlpreview.github.io/">Html Preview</a> for each module information:</p>
+<p><a class="reference external" href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/rhshah/iCallSV/master/docs/_build/html/iCallSV.html">Per Module Info</a></p>
+</div>
 <div class="section" id="required-packages">
 <h1>Required Packages<a class="headerlink" href="#required-packages" title="Permalink to this headline">¶</a></h1>
 <p>We require that you install:</p>
@@ -66,11 +72,11 @@
 </tr>
 <tr class="field-even field"><th class="field-name">pyvcf:</th><td class="field-body"><a class="reference external" href="https://pypi.python.org/pypi/PyVCF">0.6.7</a></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Delly:</th><td class="field-body"><a class="reference external" href="https://github.com/tobiasrausch/delly">v0.7.3</a></td>
+<tr class="field-odd field"><th class="field-name">Delly:</th><td class="field-body"><a class="reference external" href="https://github.com/tobiasrausch/delly">v0.7.5</a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">targetSeqView:</th><td class="field-body"><a class="reference external" href="https://github.com/Eitan177/targetSeqView">master</a></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">iAnnotateSV:</th><td class="field-body"><a class="reference external" href="https://github.com/rhshah/iAnnotateSV/tree/1.0.5">v1.0.5</a></td>
+<tr class="field-odd field"><th class="field-name">iAnnotateSV:</th><td class="field-body"><a class="reference external" href="https://github.com/rhshah/iAnnotateSV/tree/1.0.5">v1.0.6</a></td>
 </tr>
 </tbody>
 </table>
@@ -141,7 +147,7 @@
 </div>
 <div class="section" id="configuration-file-format">
 <h1>Configuration File Format<a class="headerlink" href="#configuration-file-format" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-sh"><div class="highlight"><pre><span class="c1">#~~~Template configuration file to run iCallSV~~~#</span>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1">#~~~Template configuration file to run iCallSV~~~#</span>
 <span class="c1">#### Path to python executable ###</span>
 <span class="o">[</span>Python<span class="o">]</span>
 PYTHON:
@@ -238,10 +244,10 @@ OverallMapqHotspot: 5
 </div>
 <div class="section" id="quick-usage">
 <h1>Quick Usage<a class="headerlink" href="#quick-usage" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-sh"><div class="highlight"><pre>python iCallSV.py -sc /path/to/template.ini -abam /path/to/casebamFile -bbam /path/to/controlbamFile -aId caseID -bId controlId -o /path/to/output/directory -op prefix_for_the_output_files
+<div class="highlight-sh"><div class="highlight"><pre><span></span>python iCallSV.py -sc /path/to/template.ini -abam /path/to/casebamFile -bbam /path/to/controlbamFile -aId caseID -bId controlId -o /path/to/output/directory -op prefix_for_the_output_files
 </pre></div>
 </div>
-<div class="highlight-sh"><div class="highlight"><pre>python iCallSV.py -h
+<div class="highlight-sh"><div class="highlight"><pre><span></span>python iCallSV.py -h
 
 usage: iCallSV.py [-h] [-v] [-V] -sc config.ini -abam caseBAMFile.bam -bbam
                   controlBAMFile.bam -aId caseID -bId controlID -o
@@ -289,7 +295,7 @@ optional arguments:
 <div class="section" id="running-icallsv-on-msk-impact-pools">
 <h2>Running iCallSV on MSK-IMPACT Pools<a class="headerlink" href="#running-icallsv-on-msk-impact-pools" title="Permalink to this headline">¶</a></h2>
 <p><strong>This is only for MSK-IMPACT internal samples</strong></p>
-<div class="highlight-sh"><div class="highlight"><pre>python iCallSV_dmp_wrapper.py -h
+<div class="highlight-sh"><div class="highlight"><pre><span></span>python iCallSV_dmp_wrapper.py -h
 
 usage: iCallSV_dmp_wrapper.py <span class="o">[</span>options<span class="o">]</span>
 
@@ -322,7 +328,7 @@ optional arguments:
 </div>
 <div class="section" id="taking-the-icallsv-and-chechking-for-processed-transcript-cdna-in-samples">
 <h2>Taking the iCallSV and chechking for processed transcript/cDNA in samples<a class="headerlink" href="#taking-the-icallsv-and-chechking-for-processed-transcript-cdna-in-samples" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-sh"><div class="highlight"><pre>python check_cDNA_contamination.py -h
+<div class="highlight-sh"><div class="highlight"><pre><span></span>python check_cDNA_contamination.py -h
 usage: check_cDNA_contamination.py <span class="o">[</span>options<span class="o">]</span>
 
 Calculate cDNA contamination per sample based of the Structural Variants
@@ -576,7 +582,7 @@ results.</p>
 </table>
 <dl class="function">
 <dt id="iCallSV.Run_iAnnotateSV.run">
-<code class="descclassname">iCallSV.Run_iAnnotateSV.</code><code class="descname">run</code><span class="sig-paren">(</span><em>python</em>, <em>iAnnotateSV</em>, <em>build</em>, <em>distance</em>, <em>canonicalTranscriptFile</em>, <em>uniprotFile</em>, <em>cosmicFile</em>, <em>repeatregionFile</em>, <em>dgvFile</em>, <em>inputTabFile</em>, <em>outputPrefix</em>, <em>outputDir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/Run_iAnnotateSV.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.Run_iAnnotateSV.run" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">iCallSV.Run_iAnnotateSV.</code><code class="descname">run</code><span class="sig-paren">(</span><em>python</em>, <em>iAnnotateSV</em>, <em>build</em>, <em>distance</em>, <em>canonicalTranscriptFile</em>, <em>uniprotFile</em>, <em>cosmicFile</em>, <em>cosmicCountsFile</em>, <em>repeatregionFile</em>, <em>dgvFile</em>, <em>inputTabFile</em>, <em>outputPrefix</em>, <em>outputDir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/Run_iAnnotateSV.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.Run_iAnnotateSV.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>This module will run iAnnotateSV package.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -591,6 +597,7 @@ results.</p>
 <li><strong>outputDir</strong> (<em>str</em>) &#8211; Name of the output directory where the outputPrefix will be written</li>
 <li><strong>uniprotFile</strong> (<em>str</em>) &#8211; Location for ucsc uniprot file</li>
 <li><strong>cosmicFile</strong> (<em>str</em>) &#8211; Location for cosmic census file</li>
+<li><strong>cosmicCountsFile</strong> (<em>str</em>) &#8211; Location for cosmic fusion counts file</li>
 <li><strong>repeatregionFile</strong> (<em>str</em>) &#8211; Location for repeat region file</li>
 <li><strong>dgvFile</strong> (<em>str</em>) &#8211; Location for database of Genomic Variants file</li>
 </ul>
@@ -1100,7 +1107,7 @@ results.</p>
 
 <dl class="function">
 <dt id="iCallSV.filterAnnotatedSV.run">
-<code class="descclassname">iCallSV.filterAnnotatedSV.</code><code class="descname">run</code><span class="sig-paren">(</span><em>inputTxt</em>, <em>outputDir</em>, <em>outPrefix</em>, <em>blacklistGenesFile</em>, <em>genesToKeepFile</em>, <em>verbose</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/filterAnnotatedSV.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.filterAnnotatedSV.run" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">iCallSV.filterAnnotatedSV.</code><code class="descname">run</code><span class="sig-paren">(</span><em>inputTxt</em>, <em>outputDir</em>, <em>outPrefix</em>, <em>blacklistGenesFile</em>, <em>verbose</em>, <em>genesToKeepFile=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/filterAnnotatedSV.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.filterAnnotatedSV.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will <code class="docutils literal"><span class="pre">filter</span> <span class="pre">sv</span> <span class="pre">calls</span></code> from the final merged file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1111,8 +1118,8 @@ results.</p>
 <li><strong>outputDir</strong> (<em>str</em>) &#8211; str for the output directory</li>
 <li><strong>outputPrefix</strong> (<em>str</em>) &#8211; str prefix for the output File</li>
 <li><strong>blacklistGenesFile</strong> (<em>str</em>) &#8211; str for the txt file containing blacklisted genes</li>
-<li><strong>genesToKeepFile</strong> (<em>str</em>) &#8211; str for the txt file containing genes to keep</li>
 <li><strong>verbose</strong> (<em>bool</em>) &#8211; a boolean</li>
+<li><strong>genesToKeepFile</strong> (<em>str</em>) &#8211; str for the txt file containing genes to keep</li>
 </ul>
 </td>
 </tr>
@@ -1397,6 +1404,7 @@ Description: This module will be launching functions as threads
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">iCallSV: Structural Aberration Detection from NGS datasets</a></li>
+<li><a class="reference internal" href="#note">Note</a></li>
 <li><a class="reference internal" href="#required-packages">Required Packages</a></li>
 <li><a class="reference internal" href="#required-data-files">Required Data Files</a></li>
 <li><a class="reference internal" href="#configuration-file-format">Configuration File Format</a></li>

@@ -1,0 +1,156 @@
+
+iCallSV: Structural Aberration Detection from NGS datasets
+**********************************************************
+
+Author:
+   Ronak H Shah
+
+Contact:
+   rons.shah@gmail.com
+
+Source code:
+   http://github.com/rhshah/iCallSV
+
+Wiki:
+   http://icallsv.readthedocs.io/en/latest/
+
+License:
+   Apache License 2.0
+
+[image: Code Health][image][image]
+
+iCallSV is a Python library and command-line software toolkit to call
+structural aberrations from Next Generation DNA sequencing data.
+Behind the scenes it uses Delly2 to do structural variant calling. It
+is designed for use with hybrid capture, including both whole-exome
+and custom target panels, and short-read sequencing platforms such as
+Illumina.
+
+
+Citation
+********
+
+We are in the process of publishing a manuscript describing iCallSV as
+part of the Structural Variant Detection framework. If you use this
+software in a publication, for now, please cite our website iCallSV.
+
+Contents:
+
+* iCallSV: Structural Aberration Detection from NGS datasets
+
+* Note
+
+* Required Packages
+
+* Required Data Files
+
+* Configuration File Format
+
+* Quick Usage
+
+* Utilities
+
+  * Running iCallSV on MSK-IMPACT Pools
+
+  * Taking the iCallSV and chechking for processed transcript/cDNA
+    in samples
+
+* Submodules
+
+  * iCallSV.iCallSV module
+
+    * iCallSV
+
+  * iCallSV.FilterDellyCalls module
+
+    * FilterDellyCalls
+
+  * iCallSV.Run_Delly module
+
+    * Run_Delly
+
+  * iCallSV.Run_iAnnotateSV module
+
+    * Run_iAnnotate
+
+  * iCallSV.Run_samblaster module
+
+    * Run_samblaster
+
+  * iCallSV.Run_targetSeqView module
+
+    * Run_targetSeqView
+
+  * iCallSV.checkBlackList module
+
+    * checkBlackList
+
+  * iCallSV.checkHotSpotList module
+
+    * checkHotSpotList
+
+  * iCallSV.checkparameters module
+
+    * checkparameters
+
+  * iCallSV.combineVCF module
+
+    * combineVCF
+
+  * iCallSV.dellyVcf2Tab module
+
+    * dellyVcf2Tab
+
+  * iCallSV.dellyVcf2targetSeqView module
+
+    * dellyVcf2targetSeqView
+
+  * iCallSV.filterAnnotatedSV module
+
+    * filterAnnotatedSV
+
+  * iCallSV.utilities.iCallSV_dmp_wrapper module
+
+  * iCallSV.utilities.check_cDNA_contamination module
+
+  * iCallSV.launchThreads module
+
+  * iCallSV.launch_FilterDellyCalls module
+
+    * launch_FilterDellyCalls
+
+  * iCallSV.launch_Run_Delly module
+
+    * launch_Run_Delly
+
+  * iCallSV.make_analysis_dir module
+
+    * make_analysis_dir
+
+  * iCallSV.makebamindex module
+
+    * makebamindex
+
+  * iCallSV.mergeFinalFiles module
+
+    * mergeFinalFiles
+
+  * iCallSV.sortbamByCoordinate module
+
+    * sortbamByCoordinate
+
+  * iCallSV.sortbamByReadName module
+
+    * sortbamByReadName
+
+  * Module contents
+
+
+Indices and tables
+******************
+
+* Index
+
+* Module Index
+
+* Search Page
