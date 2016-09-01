@@ -148,10 +148,11 @@ def main():
         os.path.join(
             outdir,
             "IMPACT*",
-            "StructuralVariantAnalysis/DellyDir/*/*final.txt"))
+            "StructuralVariantAnalysis","DellyDir","*","*final.txt"))
     df_list = []
     full_df = pd.DataFrame()
     for filename in sorted(interesting_files):
+        print "File to be merged:", filename
         df_list.append(pd.read_csv(filename))
     full_df = pd.concat(df_list)
     full_df.to_csv(os.path.join(outdir, 'FinalOutput.txt'), sep='\t', index=False)
