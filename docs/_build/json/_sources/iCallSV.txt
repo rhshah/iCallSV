@@ -255,6 +255,8 @@ Running iCallSV on MSK-IMPACT Pools
 	  -v, --verbose         make lots of noise [default]
 	  -o /somepath/output, --outDir /somepath/output
 	                        Full Path to the output dir.
+	  -of outputfile.txt, --outDir outputfile.txt
+					  	    Name of the final output file.
 
 
 

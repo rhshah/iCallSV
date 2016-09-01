@@ -129,8 +129,8 @@ def main():
         action="store",
         dest="outFile",
         required=True,
-        metavar='/somepath/outputfile',
-        help="Full Path to the final output file.")
+        metavar='outputfile.txt',
+        help="Name of the final output file.")
 
     args = parser.parse_args()
     if(args.verbose):
