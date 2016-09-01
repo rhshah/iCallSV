@@ -123,6 +123,14 @@ def main():
         required=True,
         metavar='/somepath/output',
         help="Full Path to the output dir.")
+    parser.add_argument(
+        "-of",
+        "--outFile",
+        action="store",
+        dest="outFile",
+        required=True,
+        metavar='/somepath/outputfile',
+        help="Full Path to the final output file.")
 
     args = parser.parse_args()
     if(args.verbose):
@@ -155,7 +163,7 @@ def main():
         print "File to be merged:", filename
         df_list.append(pd.read_csv(filename,sep="\t",header=0))
     full_df = pd.concat(df_list)
-    full_df.to_csv(os.path.join(args.outDir, 'FinalOutput.txt'), sep='\t', index=False)
+    full_df.to_csv(os.path.join(args.outDir, args.outFile), sep='\t', index=False)
     if(args.verbose):
         print "Finished the Process to Run iCallSV."
 
