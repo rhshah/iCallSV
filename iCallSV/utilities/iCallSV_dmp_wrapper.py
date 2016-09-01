@@ -148,7 +148,7 @@ def main():
         os.path.join(
             outdir,
             "IMPACT*",
-            "StructuralVariantAnalysis/DellyDir/*final.txt"))
+            "StructuralVariantAnalysis/DellyDir/*/*final.txt"))
     df_list = []
     full_df = pd.DataFrame()
     for filename in sorted(interesting_files):
