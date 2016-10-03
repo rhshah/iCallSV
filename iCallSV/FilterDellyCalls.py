@@ -197,7 +197,21 @@ def run(
             caseIDinVcf = sample
         else:
             controlIDinVcf = sample
-    #
+    # Check if ID are assigned properly or not
+    if(caseIDinVcf == None):
+        logger.error("FilterDellyCalls: caseID was not assigned properly, please make sure that the vcf case id and the provided case id match")
+        sys.exit(1)
+    else:
+        if(verbose):
+            logger.info("FilterDellyCalls:Case ID is: ,%s file", caseIDinVcf)
+    if(controlIDinVcf == None):
+        logger.error("FilterDellyCalls: controlID was not assigned properly, please make sure that the vcf control id and the provided control id match")
+        sys.exit(1)
+    else:
+        if(verbose):
+            logger.info("FilterDellyCalls:Control ID is: ,%s file", controlIDinVcf)
+    
+    # Traversing the VCF
     for record in vcf_reader:
         # Define all variables:
         (chrom1,
