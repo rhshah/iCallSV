@@ -54,10 +54,9 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
     else:
         keepGenes = None
     inputDF = pd.read_csv(inputTxt, sep="\t", header=0, keep_default_na='True')
-    outputDF = pd.DataFrame(columns=inputDF.columns)
-    outputDF = outputDF.reset_index()
+    outputDF = inputDF.copy()
+    #outputDF = pd.DataFrame(columns=inputDF.columns)
     outputFile = os.path.join(outputDir, outPrefix + "_final.txt")
-    count = 0
     for index, row in inputDF.iterrows():
         gene1 = row.loc['Gene1']
         gene2 = row.loc['Gene2']
@@ -95,12 +94,11 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
                     igrFlag,
                     blacklistGeneFlag,
                     eventInIntronFlag)
-            continue
+            outputDF = outputDF.drop(index)
         else:
-            outputDF.loc[count] = row
-            count = count + 1
+            pass
     # Write The Final Output File
-    outputDF.reset_index().to_csv(outputFile, sep='\t', index=False)
+    outputDF.to_csv(outputFile, sep='\t', index=False)
     if(verbose):
         logger.info(
             "iCallSV::FilterFinalFile: Finished Filtering, Final data written in %s",
