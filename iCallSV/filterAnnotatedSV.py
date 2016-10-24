@@ -54,7 +54,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
     else:
         keepGenes = None
     inputDF = pd.read_csv(inputTxt, sep="\t", header=0, keep_default_na='True')
-    outputDF = pd.DataFrame.empty(columns=inputDF.columns)
+    outputDF = pd.DataFrame(columns=inputDF.columns)
     outputDF = outputDF.reset_index()
     outputFile = os.path.join(outputDir, outPrefix + "_final.txt")
     count = 0
