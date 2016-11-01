@@ -31,7 +31,7 @@ import re
 logger = logging.getLogger('iCallSV.FilterDellyCalls')
 
 
-def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose,genesToKeepFile=None):
+def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeepFile=None):
     """
     This will ``filter sv calls`` from the final merged file.
 
@@ -54,9 +54,9 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose,genesToKeepF
     else:
         keepGenes = None
     inputDF = pd.read_csv(inputTxt, sep="\t", header=0, keep_default_na='True')
-    outputDF = pd.DataFrame(columns=inputDF.columns)
+    outputDF = inputDF.copy()
+    #outputDF = pd.DataFrame(columns=inputDF.columns)
     outputFile = os.path.join(outputDir, outPrefix + "_final.txt")
-    count = 0
     for index, row in inputDF.iterrows():
         gene1 = row.loc['Gene1']
         gene2 = row.loc['Gene2']
@@ -94,11 +94,10 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose,genesToKeepF
                     igrFlag,
                     blacklistGeneFlag,
                     eventInIntronFlag)
-            continue
+            outputDF = outputDF.drop(index)
         else:
-            outputDF.loc[count] = row
-            count = count + 1
-
+            pass
+    # Write The Final Output File
     outputDF.to_csv(outputFile, sep='\t', index=False)
     if(verbose):
         logger.info(
@@ -144,7 +143,6 @@ def checkEventInIntronFlag(gene1, gene2, site1, site2):
     """
     This will ``Check if the event is in the intron only and not affecting
     splicing``
-
 
     :param str gene1: str for the name of gene at breakpoint 1
     :param str gene2: str for the name of gene at breakpoint 2
