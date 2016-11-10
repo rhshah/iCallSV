@@ -199,13 +199,13 @@ def run(
         else:
             controlIDinVcf = sample
     # Check if ID are assigned properly or not
-    if(caseIDinVcf == None):
+    if(caseIDinVcf is None):
         logger.error("FilterDellyCalls: caseID was not assigned properly, please make sure that the vcf case id and the provided case id match")
         sys.exit(1)
     else:
         if(verbose):
             logger.info("FilterDellyCalls:Case ID is: %s file", caseIDinVcf)
-    if(controlIDinVcf == None):
+    if(controlIDinVcf is None):
         logger.error("FilterDellyCalls: controlID was not assigned properly, please make sure that the vcf control id and the provided control id match")
         sys.exit(1)
     else:
