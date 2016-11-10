@@ -78,6 +78,8 @@
 </tr>
 <tr class="field-odd field"><th class="field-name">iAnnotateSV:</th><td class="field-body"><a class="reference external" href="https://github.com/rhshah/iAnnotateSV/tree/1.0.5">v1.0.6</a></td>
 </tr>
+<tr class="field-even field"><th class="field-name">coloredlogs:</th><td class="field-body"><a class="reference external" href="https://pypi.python.org/pypi/coloredlogs">v5.2</a></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -289,6 +291,29 @@ optional arguments:
                         Id of the Tumor bam file which will be used as the
                         prefix for output files
 </pre></div>
+</div>
+</div>
+<div class="section" id="running-on-sge-or-lsf">
+<h1>Running on SGE or LSF<a class="headerlink" href="#running-on-sge-or-lsf" title="Permalink to this headline">¶</a></h1>
+<div class="sidebar">
+<p class="first sidebar-title">Note:</p>
+<p class="last">For both SGE and LSF you need to provide total number of cores based on the number of threads you have assinged to delly installation using <strong>OMP_NUM_THREADS</strong>.</p>
+</div>
+<div class="sidebar">
+<p class="first sidebar-title">Note:</p>
+<p class="last">For example: if you set <strong>OMP_NUM_THREADS</strong> as <cite>export OMP_NUM_THREADS=3</cite> then you need to set total number of cores to be 13 (12 + 1 extra as buffer) so for each of the Delly program it utilizes 3 cores. Here I use pythons multiprocessing module to launch delly, so all four programs would be launch as seprate process utilizing number of threads given to them but setting the <strong>OMP_NUM_THREADS</strong></p>
+</div>
+<div class="section" id="sge">
+<h2>SGE<a class="headerlink" href="#sge" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>qsub -q some.q -N iCallSV_JobName -o iCallSV.stdout -e iCallSV.stderr -V -l <span class="nv">h_vmem</span><span class="o">=</span>6G,virtual_free<span class="o">=</span>6G -pe smp <span class="m">13</span> -wd /some/path/to/working/dir -sync y  -b y python iCallSV.py -sc template.ini -bbam control.bam -abam <span class="k">case</span>.bam -aId caseID -bId controlID -op outputPrefix -o  /some/path/to/output/dir -v
+</pre></div>
+</div>
+</div>
+<div class="section" id="lsf">
+<h2>LSF<a class="headerlink" href="#lsf" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bsub -q some.q -J iCallSV_JobName -o iCallSV.stdout -e iCallSV.stderr -We 24:00 -R <span class="s2">&quot;rusage[mem=20]&quot;</span> -M <span class="m">30</span> -n <span class="m">13</span> -cwd /some/path/to/working/dir <span class="s2">&quot;python iCallSV.py -sc template.ini -bbam control.bam -abam case.bam -aId caseID -bId controlID -op outputPrefix -o  /some/path/to/output/dir -v&quot;</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="utilities">
@@ -1110,7 +1135,7 @@ results.</p>
 
 <dl class="function">
 <dt id="iCallSV.filterAnnotatedSV.run">
-<code class="descclassname">iCallSV.filterAnnotatedSV.</code><code class="descname">run</code><span class="sig-paren">(</span><em>inputTxt</em>, <em>outputDir</em>, <em>outPrefix</em>, <em>blacklistGenesFile</em>, <em>verbose</em>, <em>genesToKeepFile=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/filterAnnotatedSV.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.filterAnnotatedSV.run" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">iCallSV.filterAnnotatedSV.</code><code class="descname">run</code><span class="sig-paren">(</span><em>inputTxt</em>, <em>outputDir</em>, <em>outPrefix</em>, <em>blacklistGenesFile</em>, <em>verbose</em>, <em>genesToKeepFile='somefile.txt'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iCallSV/filterAnnotatedSV.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iCallSV.filterAnnotatedSV.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>This will <code class="docutils literal"><span class="pre">filter</span> <span class="pre">sv</span> <span class="pre">calls</span></code> from the final merged file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1412,6 +1437,11 @@ Description: This module will be launching functions as threads
 <li><a class="reference internal" href="#required-data-files">Required Data Files</a></li>
 <li><a class="reference internal" href="#configuration-file-format">Configuration File Format</a></li>
 <li><a class="reference internal" href="#quick-usage">Quick Usage</a></li>
+<li><a class="reference internal" href="#running-on-sge-or-lsf">Running on SGE or LSF</a><ul>
+<li><a class="reference internal" href="#sge">SGE</a></li>
+<li><a class="reference internal" href="#lsf">LSF</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#utilities">Utilities</a><ul>
 <li><a class="reference internal" href="#running-icallsv-on-msk-impact-pools">Running iCallSV on MSK-IMPACT Pools</a></li>
 <li><a class="reference internal" href="#taking-the-icallsv-and-chechking-for-processed-transcript-cdna-in-samples">Taking the iCallSV and chechking for processed transcript/cDNA in samples</a></li>

@@ -30,9 +30,10 @@ import time
 from datetime import date, timedelta
 import checkparameters as cp
 import logging
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.Run_targetSeqView')
-
+coloredlogs.install(level='DEBUG')
 
 def run(
         RLocation,

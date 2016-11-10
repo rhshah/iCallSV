@@ -46,6 +46,7 @@ We require that you install:
 :Delly: `v0.7.5 <https://github.com/tobiasrausch/delly>`_
 :targetSeqView: `master <https://github.com/Eitan177/targetSeqView>`_
 :iAnnotateSV: `v1.0.6 <https://github.com/rhshah/iAnnotateSV/tree/1.0.5>`_
+:coloredlogs: `v5.2 <https://pypi.python.org/pypi/coloredlogs>`_
 
 Required Data Files
 ===================
@@ -240,7 +241,32 @@ Quick Usage
 	                        Id of the Tumor bam file which will be used as the
 	                        prefix for output files
 
+Running on SGE or LSF
+=====================
 
+.. sidebar:: Note:
+			
+	For both SGE and LSF you need to provide total number of cores based on the number of threads you have assinged to delly installation using **OMP_NUM_THREADS**. 
+
+.. sidebar:: Note:
+
+	For example: if you set **OMP_NUM_THREADS** as `export OMP_NUM_THREADS=3` then you need to set total number of cores to be 13 (12 + 1 extra as buffer) so for each of the Delly program it utilizes 3 cores. Here I use pythons multiprocessing module to launch delly, so all four programs would be launch as seprate process utilizing number of threads given to them but setting the **OMP_NUM_THREADS**
+	
+SGE
+---
+
+.. code-block:: sh
+	
+	qsub -q some.q -N iCallSV_JobName -o iCallSV.stdout -e iCallSV.stderr -V -l h_vmem=6G,virtual_free=6G -pe smp 13 -wd /some/path/to/working/dir -sync y  -b y python iCallSV.py -sc template.ini -bbam control.bam -abam case.bam -aId caseID -bId controlID -op outputPrefix -o  /some/path/to/output/dir -v 
+
+LSF
+---
+
+.. code-block:: sh
+
+	bsub -q some.q -J iCallSV_JobName -o iCallSV.stdout -e iCallSV.stderr -We 24:00 -R "rusage[mem=20]" -M 30 -n 13 -cwd /some/path/to/working/dir "python iCallSV.py -sc template.ini -bbam control.bam -abam case.bam -aId caseID -bId controlID -op outputPrefix -o  /some/path/to/output/dir -v"
+
+						
 Utilities
 =========
 

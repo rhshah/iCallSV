@@ -14,10 +14,10 @@ import os
 import sys
 import pysam
 import logging
-
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.sortbamByCoordinate')
-
+coloredlogs.install(level='DEBUG')
 
 def sortBam(inputBam, outputBamName, outputDir):
     logger.info("sortbamByCoordinate: Trying to sort BAM file by Coordinate")

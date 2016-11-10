@@ -34,12 +34,13 @@ import time
 from datetime import date, timedelta
 import checkparameters as cp
 import logging
+import coloredlogs
 import makebamindex as mbi
 from distutils.version import LooseVersion, StrictVersion
 # This function will run delly based on given inputs
 
 logger = logging.getLogger('iCallSV.Run_Delly')
-
+coloredlogs.install(level='DEBUG')
 
 def run(
         delly,

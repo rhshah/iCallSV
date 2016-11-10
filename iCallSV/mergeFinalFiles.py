@@ -27,9 +27,10 @@ import vcf
 import checkparameters as cp
 import pandas as pd
 import re
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.mergeFinalFiles')
-
+coloredlogs.install(level='DEBUG')
 
 def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     """

@@ -246,7 +246,21 @@
             <span class="n">caseIDinVcf</span> <span class="o">=</span> <span class="n">sample</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">controlIDinVcf</span> <span class="o">=</span> <span class="n">sample</span>
-    <span class="c1">#</span>
+    <span class="c1"># Check if ID are assigned properly or not</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">caseIDinVcf</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;FilterDellyCalls: caseID was not assigned properly, please make sure that the vcf case id and the provided case id match&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;FilterDellyCalls:Case ID is: </span><span class="si">%s</span><span class="s2"> file&quot;</span><span class="p">,</span> <span class="n">caseIDinVcf</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">controlIDinVcf</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;FilterDellyCalls: controlID was not assigned properly, please make sure that the vcf control id and the provided control id match&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;FilterDellyCalls:Control ID is: </span><span class="si">%s</span><span class="s2"> file&quot;</span><span class="p">,</span> <span class="n">controlIDinVcf</span><span class="p">)</span>
+    
+    <span class="c1"># Traversing the VCF</span>
     <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">vcf_reader</span><span class="p">:</span>
         <span class="c1"># Define all variables:</span>
         <span class="p">(</span><span class="n">chrom1</span><span class="p">,</span>

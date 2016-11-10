@@ -10,9 +10,10 @@ import pysam
 import os
 import sys
 import logging
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.makebamindex')
-
+coloredlogs.install(level='DEBUG')
 
 def MakeIndex(bamFile):
     """

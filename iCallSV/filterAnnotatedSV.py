@@ -26,12 +26,13 @@ import pandas as pd
 import logging
 import checkparameters as cp
 import re
+import coloredlogs
 
 # Initiate logger
 logger = logging.getLogger('iCallSV.FilterDellyCalls')
+coloredlogs.install(level='DEBUG')
 
-
-def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeepFile=None):
+def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeepFile="somefile.txt"):
     """
     This will ``filter sv calls`` from the final merged file.
 
@@ -50,6 +51,9 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
     cp.checkDir(outputDir)
     cp.checkEmpty(outPrefix, "Prefix for the output file")
     if(os.path.isfile(genesToKeepFile)):
+        logger.info(
+            "iCallSV::FilterFinalFile: Genes to Keep File Given %s and will be used.",
+            outputFile)
         keepGenes = [line.strip() for line in open(genesToKeepFile, 'r')]
     else:
         keepGenes = None
@@ -60,11 +64,8 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
     for index, row in inputDF.iterrows():
         gene1 = row.loc['Gene1']
         gene2 = row.loc['Gene2']
-        transcript1 = row.loc['Transcript1']
-        transcript2 = row.loc['Transcript2']
         site1 = row.loc['Site1Description']
         site2 = row.loc['Site2Description']
-        fusion = row.loc['Fusion']
         # skip IGR records
         if("IGR" in site1 and "IGR" in site2):
             igrFlag = True
@@ -73,7 +74,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
 
         # check records from these gene
         if(keepGenes):
-            keepGeneFlag = checkBlackListGene(gene1, gene2, keepGenes)
+            keepGeneFlag = checkGeneListToKeep(gene1, gene2, keepGenes)
         else:
             keepGeneFlag = True
         # check records from these gene
@@ -89,7 +90,11 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
         if((keepGeneFlag is False) or (igrFlag) or (blacklistGeneFlag) or (eventInIntronFlag)):
             if(verbose):
                 logger.warn(
-                    "iCallSV::FilterFinalFile: Record will be Filtered as keepGeneFlag:%s, IGR:%s, blackListGene:%s, Intronic Event:%s",
+                    "iCallSV::FilterFinalFile: Record: gene1:%s, gene2:%s, site1:%s, site2:$s, will be Filtered as keepGeneFlag:%s, IGR:%s, blackListGene:%s, Intronic Event:%s",
+                    gene1,
+                    gene2,
+                    site1,
+                    site2,
                     keepGeneFlag,
                     igrFlag,
                     blacklistGeneFlag,
@@ -106,7 +111,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
 
     return(outputFile)
 
-# Check if the gene is a blacklist gene
+# Check if the gene is a Keep gene
 
 
 def checkGeneListToKeep(gene1, gene2, keepGenes):

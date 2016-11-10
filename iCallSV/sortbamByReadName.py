@@ -14,9 +14,10 @@ import os
 import sys
 import pysam
 import logging
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.sortbamByReadName')
-
+coloredlogs.install(level='DEBUG')
 
 def sortBam(inputBam, outputBamName, outputDir):
     logger.info("sortbamByReadName: Trying to sort BAM file by Read Name")

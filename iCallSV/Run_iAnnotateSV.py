@@ -33,9 +33,10 @@ import time
 from datetime import date, timedelta
 import checkparameters as cp
 import logging
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.Run_iAnnotateSV')
-
+coloredlogs.install(level='DEBUG')
 
 def run(
         python,

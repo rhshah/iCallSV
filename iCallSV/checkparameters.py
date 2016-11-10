@@ -14,10 +14,11 @@ Description: This modules checks the parameters for various type of inputs.
 import os
 import sys
 import logging
+import coloredlogs
 
 # initiate Logger
 logger = logging.getLogger('iCallSV.checkparameters')
-
+coloredlogs.install(level='DEBUG')
 # Check if the file exist
 
 

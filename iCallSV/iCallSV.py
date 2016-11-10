@@ -30,12 +30,13 @@ import dellyVcf2targetSeqView as dvcf2tsv
 import Run_targetSeqView as rtsv
 import mergeFinalFiles as mff
 import filterAnnotatedSV as fas
+import coloredlogs
 
 __all__ = []
 __version_info__ = ('0', '0', '5')
 __version__ = '.'.join(__version_info__)
 __date__ = '2015-03-30'
-__updated__ = '2016-06-01'
+__updated__ = '2016-11-09'
 
 
 def main(argv=None):  # IGNORE:C0111
@@ -226,6 +227,8 @@ USAGE
     # add the handlers to the logger
     logger.addHandler(fh)
     logger.addHandler(ch)
+
+    coloredlogs.install(level='DEBUG')
 
     # Print if Verbose mode is on
     if(verbose):

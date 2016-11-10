@@ -27,9 +27,10 @@ outputFile: TargetSeqView format text file for a given vcf file.
 import vcf
 import checkparameters as cp
 import logging
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.dellyVcf2targetSeqView')
-
+coloredlogs.install(level='DEBUG')
 
 def Convert2targetSeqView(
         sampleName,

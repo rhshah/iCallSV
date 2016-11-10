@@ -46,9 +46,10 @@ import checkparameters as cp
 import checkHotSpotList as chl
 import checkBlackList as cbl
 import logging
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.FilterDellyCalls')
-
+coloredlogs.install(level='DEBUG')
 
 def run(
         inputVcf,
