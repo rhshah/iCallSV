@@ -162,7 +162,7 @@ def main():
     for filename in sorted(interesting_files):
         print "File to be merged:", filename
         df_list.append(pd.read_csv(filename,sep="\t",header=0))
-    full_df = pd.concat(df_list,axis=0)
+    full_df = pd.concat(df_list,axis=0,ignore_index=True)
     full_df.to_csv(os.path.join(args.outDir, args.outFile), sep='\t', index=False)
     if(args.verbose):
         print "Finished the Process to Run iCallSV."
