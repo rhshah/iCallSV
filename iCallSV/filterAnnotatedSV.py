@@ -90,7 +90,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
         if((keepGeneFlag is False) or (igrFlag) or (blacklistGeneFlag) or (eventInIntronFlag)):
             if(verbose):
                 logger.warn(
-                    "iCallSV::FilterFinalFile: Record: gene1:%s, gene2:%s, site1:%s, site2:$s, will be Filtered as keepGeneFlag:%s, IGR:%s, blackListGene:%s, Intronic Event:%s",
+                    "iCallSV::FilterFinalFile: Record: gene1:%s; gene2:%s; site1:%s; site2:$s; will be Filtered as keepGeneFlag:%r; IGR:%r; blackListGene:%r; Intronic Event:%r",
                     gene1,
                     gene2,
                     site1,
