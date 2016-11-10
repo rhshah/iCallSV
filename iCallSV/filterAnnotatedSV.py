@@ -53,7 +53,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
     if(os.path.isfile(genesToKeepFile)):
         logger.info(
             "iCallSV::FilterFinalFile: Genes to Keep File Given %s and will be used.",
-            outputFile)
+            genesToKeepFile)
         keepGenes = [line.strip() for line in open(genesToKeepFile, 'r')]
     else:
         keepGenes = None
