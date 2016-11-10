@@ -19,9 +19,10 @@ It is a merged vcf file
 '''
 import vcf
 import logging
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.combineVCF')
-
+coloredlogs.install(level='DEBUG')
 
 def run(vcfFiles, combinedVCF, verbose):
     """

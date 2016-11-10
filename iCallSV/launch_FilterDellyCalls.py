@@ -23,9 +23,10 @@ import os
 import logging
 import FilterDellyCalls as fdc
 import multiprocessing as mp
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.launch_FilterDellyCalls')
-
+coloredlogs.install(level='DEBUG')
 
 def launch_filterdellycalls_for_different_analysis_type(
         args, config, sampleOutdirForDelly, del_vcf, dup_vcf, inv_vcf, tra_vcf):

@@ -27,9 +27,10 @@ import os
 import vcf
 import checkparameters as cp
 import logging
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.dellyVcf2Tab')
-
+coloredlogs.install(level='DEBUG')
 
 def vcf2tab(vcfFile, outputDir, verbose):
     """This ``converts`` the Delly Vcf file having tumor normal, to tab-delimited format for input to iAnnotateSV

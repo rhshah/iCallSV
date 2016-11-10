@@ -19,9 +19,10 @@ import logging
 import Run_Delly as rd
 import multiprocessing as mp
 import makebamindex as mbi
+import coloredlogs
 
 logger = logging.getLogger('iCallSV.launch_Run_Delly')
-
+coloredlogs.install(level='DEBUG')
 
 def launch_delly_for_different_analysis_type(args, config, sampleOutdirForDelly):
     """
