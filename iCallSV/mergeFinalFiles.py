@@ -206,30 +206,30 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         controlCalls = record.genotype(controlIDinVcf)
 
         if(hasattr(caseCalls.data, "GQ")):
-            caseGQ = caseCalls.data.GQ
+            caseGQ = np.int(caseCalls.data.GQ)
         if(hasattr(caseCalls.data, "RC")):
-            caseRC = caseCalls.data.RC
+            caseRC = np.intcaseCalls.data.RC)
         if(hasattr(caseCalls.data, "DR")):
-            caseDR = caseCalls.data.DR
+            caseDR = np.intcaseCalls.data.DR)
         if(hasattr(caseCalls.data, "DV")):
-            caseDV = caseCalls.data.DV
+            caseDV = np.intcaseCalls.data.DV)
         if(hasattr(caseCalls.data, "RR")):
-            caseRR = caseCalls.data.RR
+            caseRR = np.intcaseCalls.data.RR)
         if(hasattr(caseCalls.data, "RV")):
-            caseRV = caseCalls.data.RV
+            caseRV = np.intcaseCalls.data.RV)
 
         if(hasattr(controlCalls.data, "GQ")):
-            controlGQ = controlCalls.data.GQ
+            controlGQ = np.intcontrolCalls.data.GQ)
         if(hasattr(controlCalls.data, "RC")):
-            controlRC = controlCalls.data.RC
+            controlRC = np.intcontrolCalls.data.RC)
         if(hasattr(controlCalls.data, "DR")):
-            controlDR = controlCalls.data.DR
+            controlDR = np.intcontrolCalls.data.DR)
         if(hasattr(controlCalls.data, "DV")):
-            controlDV = controlCalls.data.DV
+            controlDV = np.intcontrolCalls.data.DV)
         if(hasattr(controlCalls.data, "RR")):
-            controlRR = controlCalls.data.RR
+            controlRR = np.intcontrolCalls.data.RR)
         if(hasattr(controlCalls.data, "RV")):
-            controlRV = controlCalls.data.RV
+            controlRV = np.intcontrolCalls.data.RV)
 
         # Get data from annotation file
         (indexList,
@@ -303,7 +303,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
                 sys.exit(1)
             else:
                 confIndex = indexList[0]
-            confidenceScore = confDF.iloc[confIndex]['ProbabilityScore']
+            confidenceScore = np.float(confDF.iloc[confIndex]['ProbabilityScore'])
 
         # populate final dataframe
         outDF.loc[count,
