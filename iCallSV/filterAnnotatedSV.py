@@ -57,7 +57,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
         keepGenes = [line.strip() for line in open(genesToKeepFile, 'r')]
     else:
         keepGenes = None
-    inputDF = pd.read_csv(inputTxt, sep="\t", header=0, keep_default_na='True')
+    inputDF = pd.read_table(inputTxt, keep_default_na='True')
     outputDF = inputDF.copy()
     #outputDF = pd.DataFrame(columns=inputDF.columns)
     outputFile = os.path.join(outputDir, outPrefix + "_final.txt")
@@ -90,15 +90,15 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
         if((keepGeneFlag is False) or (igrFlag) or (blacklistGeneFlag) or (eventInIntronFlag)):
             if(verbose):
                 logger.warn(
-                    "iCallSV::FilterFinalFile: Record: gene1:%s, gene2:%s, site1:%s, site2:$s, will be Filtered as keepGeneFlag:%s, IGR:%s, blackListGene:%s, Intronic Event:%s",
+                    "iCallSV::FilterFinalFile: Record: gene1:%s; gene2:%s; site1:%s; site2:%s; will be Filtered as keepGeneFlag:%s; IGR:%s; blackListGene:%s; Intronic Event:%s",
                     gene1,
                     gene2,
                     site1,
                     site2,
-                    keepGeneFlag,
-                    igrFlag,
-                    blacklistGeneFlag,
-                    eventInIntronFlag)
+                    str(keepGeneFlag),
+                    str(igrFlag),
+                    str(blacklistGeneFlag),
+                    str(eventInIntronFlag))
             outputDF = outputDF.drop(index)
         else:
             pass
