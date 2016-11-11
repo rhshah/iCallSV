@@ -158,7 +158,7 @@ def main():
             "IMPACT*",
             "StructuralVariantAnalysis","DellyDir","*","*final.txt"))
     df_list = []
-    full_df = pd.DataFrame().empty()
+    full_df = pd.DataFrame()
     for filename in sorted(interesting_files):
         print "File to be merged:", filename
         df_list.append(pd.read_csv(filename,sep="\t",header=0))

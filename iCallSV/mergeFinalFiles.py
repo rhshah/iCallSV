@@ -28,6 +28,7 @@ import checkparameters as cp
 import pandas as pd
 import re
 import coloredlogs
+import numpy as np
 
 logger = logging.getLogger('iCallSV.mergeFinalFiles')
 coloredlogs.install(level='DEBUG')
@@ -168,18 +169,18 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         if("SVTYPE" in record.INFO):
             svtype = record.INFO['SVTYPE']
         if("SVLEN" in record.INFO):
-            svlengthFromDelly = record.INFO['SVLEN']
+            svlengthFromDelly = np.int(record.INFO['SVLEN'])
         else:
             if(svtype == "TRA"):
                 svlengthFromDelly = None
             else:
                 svlengthFromDelly = abs(start2 - start1)
         if("MAPQ" in record.INFO):
-            mapqFromDelly = record.INFO['MAPQ']
+            mapqFromDelly =  np.int(record.INFO['MAPQ'])
         if("PE" in record.INFO):
-            peSupportFromDelly = record.INFO['PE']
+            peSupportFromDelly = np.int(record.INFO['PE'])
         if("SR" in record.INFO):
-            srSupportFromDelly = record.INFO['SR']
+            srSupportFromDelly = np.int(record.INFO['SR'])
         if("CT" in record.INFO):
             contype = record.INFO['CT']
         if("CONSENSUS" in record.INFO):
