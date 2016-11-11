@@ -208,28 +208,28 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         if(hasattr(caseCalls.data, "GQ")):
             caseGQ = np.int(caseCalls.data.GQ)
         if(hasattr(caseCalls.data, "RC")):
-            caseRC = np.intcaseCalls.data.RC)
+            caseRC = np.int(caseCalls.data.RC)
         if(hasattr(caseCalls.data, "DR")):
-            caseDR = np.intcaseCalls.data.DR)
+            caseDR = np.int(caseCalls.data.DR)
         if(hasattr(caseCalls.data, "DV")):
-            caseDV = np.intcaseCalls.data.DV)
+            caseDV = np.int(caseCalls.data.DV)
         if(hasattr(caseCalls.data, "RR")):
-            caseRR = np.intcaseCalls.data.RR)
+            caseRR = np.int(caseCalls.data.RR)
         if(hasattr(caseCalls.data, "RV")):
-            caseRV = np.intcaseCalls.data.RV)
+            caseRV = np.int(caseCalls.data.RV)
 
         if(hasattr(controlCalls.data, "GQ")):
-            controlGQ = np.intcontrolCalls.data.GQ)
+            controlGQ = np.int(controlCalls.data.GQ)
         if(hasattr(controlCalls.data, "RC")):
-            controlRC = np.intcontrolCalls.data.RC)
+            controlRC = np.int(controlCalls.data.RC)
         if(hasattr(controlCalls.data, "DR")):
-            controlDR = np.intcontrolCalls.data.DR)
+            controlDR = np.int(controlCalls.data.DR)
         if(hasattr(controlCalls.data, "DV")):
-            controlDV = np.intcontrolCalls.data.DV)
+            controlDV = np.int(controlCalls.data.DV)
         if(hasattr(controlCalls.data, "RR")):
-            controlRR = np.intcontrolCalls.data.RR)
+            controlRR = np.int(controlCalls.data.RR)
         if(hasattr(controlCalls.data, "RV")):
-            controlRV = np.intcontrolCalls.data.RV)
+            controlRV = np.int(controlCalls.data.RV)
 
         # Get data from annotation file
         (indexList,
