@@ -130,14 +130,15 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          start2,
          chrom2,
          filter,
-         svlengthFromDelly,
-         mapqFromDelly,
          svtype,
          brktype,
+         contype,
+         conseq) = (None for i in range(9))
+         
+        (svlengthFromDelly,
+         mapqFromDelly,
          peSupportFromDelly,
          srSupportFromDelly,
-         contype,
-         conseq,
          ciEndNeg,
          ciEndPos,
          ciPosNeg,
@@ -153,7 +154,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          controlDR,
          controlDV,
          controlRR,
-         controlRV) = (None for i in range(29))
+         controlRV) = (0 for i in range(20))
         chrom1 = str(record.CHROM)
         start1 = record.POS
         filter = record.FILTER
@@ -174,7 +175,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             if(svtype == "TRA"):
                 svlengthFromDelly = None
             else:
-                svlengthFromDelly = abs(start2 - start1)
+                svlengthFromDelly = np.int(abs(start2 - start1))
         if("MAPQ" in record.INFO):
             mapqFromDelly =  np.int(record.INFO['MAPQ'])
         if("PE" in record.INFO):
