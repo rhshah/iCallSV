@@ -57,7 +57,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
         keepGenes = [line.strip() for line in open(genesToKeepFile, 'r')]
     else:
         keepGenes = None
-    inputDF = pd.read_csv(inputTxt, sep="\t", header=0, keep_default_na='True')
+    inputDF = pd.read_table(inputTxt, keep_default_na='True')
     outputDF = inputDF.copy()
     #outputDF = pd.DataFrame(columns=inputDF.columns)
     outputFile = os.path.join(outputDir, outPrefix + "_final.txt")
