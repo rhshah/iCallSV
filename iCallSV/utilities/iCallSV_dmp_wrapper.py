@@ -158,12 +158,12 @@ def main():
             "IMPACT*",
             "StructuralVariantAnalysis","DellyDir","*","*final.txt"))
     df_list = []
-    full_df = pd.DataFrame()
+    #full_df = pd.DataFrame()
     for filename in sorted(interesting_files):
         print "File to be merged:", filename
-        full_df.append(pd.read_csv(filename,sep="\t",header=0))
+        df_list.append(pd.read_table(filename,header=0))
     
-    #full_df = pd.concat(df_list,axis=0,ignore_index=True)
+    full_df = pd.concat(df_list,axis=0,ignore_index=True)
     full_df.reset_index(drop=True).to_csv(os.path.join(args.outDir, args.outFile), sep='\t', index=False)
     if(args.verbose):
         print "Finished the Process to Run iCallSV."
