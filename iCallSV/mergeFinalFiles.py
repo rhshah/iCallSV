@@ -255,6 +255,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         cosmic_fusion_counts = 0
 
         annoDF[['chr1', 'chr2']] = annoDF[['chr1', 'chr2']].astype(str)
+        annoDF['Cosmic_Fusion_Counts'].fillna(0, inplace=True)
         annoDF[['Cosmic_Fusion_Counts']] = annoDF[['Cosmic_Fusion_Counts']].astype(int)
         indexList = annoDF.loc[annoDF['chr1'].isin([chrom1]) &
                                annoDF['pos1'].isin([int(start1)]) &
