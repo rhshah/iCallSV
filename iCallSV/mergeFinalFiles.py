@@ -276,7 +276,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         fusion = annoDF.iloc[annoIndex]['fusion']
         rr_site1 = annoDF.iloc[annoIndex]['repName-repClass-repFamily:-site1']
         rr_site2 = annoDF.iloc[annoIndex]['repName-repClass-repFamily:-site2']
-        cosmic_fusion_counts = str(annoDF.iloc[annoIndex]['Cosmic_Fusion_Counts'])
+        cosmic_fusion_counts = int(annoDF.iloc[annoIndex]['Cosmic_Fusion_Counts'])
         cc_chr_band = annoDF.iloc[annoIndex]['CC_Chr_Band']
         cc_t_t = annoDF.iloc[annoIndex]['CC_Tumour_Types(Somatic)']
         cc_c_s = annoDF.iloc[annoIndex]['CC_Cancer_Syndrome']

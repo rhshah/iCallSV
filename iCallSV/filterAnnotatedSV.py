@@ -102,7 +102,7 @@ def run(inputTxt, outputDir, outPrefix, blacklistGenesFile, verbose, genesToKeep
             outputDF = outputDF.drop(index)
         else:
             pass
-    ouputDF[['SV_LENGTH', 'Cosmic_Fusion_Counts']] = outputDF[['SV_LENGTH', 'Cosmic_Fusion_Counts']].astype(int)
+    outputDF[['SV_LENGTH', 'Cosmic_Fusion_Counts']] = outputDF[['SV_LENGTH', 'Cosmic_Fusion_Counts']].astype(int)
     # Write The Final Output File
     outputDF.to_csv(outputFile, sep='\t', index=False)
     if(verbose):
