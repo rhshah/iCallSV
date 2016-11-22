@@ -242,7 +242,6 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          site1,
          site2,
          fusion,
-         cosmic_fusion_counts,
          rr_site1,
          rr_site2,
          cc_chr_band,
@@ -252,7 +251,8 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          cc_t_p,
          dgv_site1,
          dgv_site2
-         ) = (None for i in range(19))
+         ) = (None for i in range(18))
+         cosmic_fusion_counts = 0
 
         annoDF[['chr1', 'chr2']] = annoDF[['chr1', 'chr2']].astype(str)
         indexList = annoDF.loc[annoDF['chr1'].isin([chrom1]) &
