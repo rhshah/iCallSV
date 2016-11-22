@@ -252,7 +252,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          dgv_site1,
          dgv_site2
          ) = (None for i in range(18))
-         cosmic_fusion_counts = 0
+        cosmic_fusion_counts = 0
 
         annoDF[['chr1', 'chr2']] = annoDF[['chr1', 'chr2']].astype(str)
         indexList = annoDF.loc[annoDF['chr1'].isin([chrom1]) &
