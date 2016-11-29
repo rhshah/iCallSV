@@ -33,10 +33,10 @@ import filterAnnotatedSV as fas
 import coloredlogs
 
 __all__ = []
-__version_info__ = ('0', '0', '5')
+__version_info__ = ('0', '0', '6')
 __version__ = '.'.join(__version_info__)
 __date__ = '2015-03-30'
-__updated__ = '2016-11-09'
+__updated__ = '2016-11-29'
 
 
 def main(argv=None):  # IGNORE:C0111
