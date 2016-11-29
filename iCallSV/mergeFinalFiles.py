@@ -173,7 +173,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             svlengthFromDelly = np.int(record.INFO['SVLEN'])
         else:
             if(svtype == "TRA"):
-                svlengthFromDelly = None
+                svlengthFromDelly = 0
             else:
                 svlengthFromDelly = np.int(abs(start2 - start1))
         if("MAPQ" in record.INFO):
