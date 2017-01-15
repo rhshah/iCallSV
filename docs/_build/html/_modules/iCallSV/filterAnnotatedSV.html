@@ -2,11 +2,11 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>iCallSV.filterAnnotatedSV &mdash; iCallSV  documentation</title>
+    <title>iCallSV.filterAnnotatedSV &#8212; iCallSV  documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -36,8 +36,8 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">iCallSV  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">iCallSV  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -71,14 +71,15 @@
 <span class="sd">Filtered Output files</span>
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">checkparameters</span> <span class="kn">as</span> <span class="nn">cp</span>
+<span class="kn">import</span> <span class="nn">checkparameters</span> <span class="k">as</span> <span class="nn">cp</span>
 <span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">coloredlogs</span>
 
 <span class="c1"># Initiate logger</span>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;iCallSV.FilterDellyCalls&#39;</span><span class="p">)</span>
-
+<span class="n">coloredlogs</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="run"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.filterAnnotatedSV.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">inputTxt</span><span class="p">,</span> <span class="n">outputDir</span><span class="p">,</span> <span class="n">outPrefix</span><span class="p">,</span> <span class="n">blacklistGenesFile</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">genesToKeepFile</span><span class="o">=</span><span class="s2">&quot;somefile.txt&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -101,11 +102,11 @@
     <span class="k">if</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">genesToKeepFile</span><span class="p">)):</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="s2">&quot;iCallSV::FilterFinalFile: Genes to Keep File Given </span><span class="si">%s</span><span class="s2"> and will be used.&quot;</span><span class="p">,</span>
-            <span class="n">outputFile</span><span class="p">)</span>
+            <span class="n">genesToKeepFile</span><span class="p">)</span>
         <span class="n">keepGenes</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">genesToKeepFile</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">keepGenes</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="n">inputDF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">inputTxt</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keep_default_na</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
+        <span class="n">keepGenes</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">inputDF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">inputTxt</span><span class="p">,</span> <span class="n">keep_default_na</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
     <span class="n">outputDF</span> <span class="o">=</span> <span class="n">inputDF</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="c1">#outputDF = pd.DataFrame(columns=inputDF.columns)</span>
     <span class="n">outputFile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outputDir</span><span class="p">,</span> <span class="n">outPrefix</span> <span class="o">+</span> <span class="s2">&quot;_final.txt&quot;</span><span class="p">)</span>
@@ -116,42 +117,43 @@
         <span class="n">site2</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Site2Description&#39;</span><span class="p">]</span>
         <span class="c1"># skip IGR records</span>
         <span class="k">if</span><span class="p">(</span><span class="s2">&quot;IGR&quot;</span> <span class="ow">in</span> <span class="n">site1</span> <span class="ow">and</span> <span class="s2">&quot;IGR&quot;</span> <span class="ow">in</span> <span class="n">site2</span><span class="p">):</span>
-            <span class="n">igrFlag</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">igrFlag</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">igrFlag</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">igrFlag</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="c1"># check records from these gene</span>
         <span class="k">if</span><span class="p">(</span><span class="n">keepGenes</span><span class="p">):</span>
             <span class="n">keepGeneFlag</span> <span class="o">=</span> <span class="n">checkGeneListToKeep</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">keepGenes</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">keepGeneFlag</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">keepGeneFlag</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="c1"># check records from these gene</span>
         <span class="n">blacklistGenes</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">blacklistGenesFile</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)]</span>
         <span class="n">blacklistGeneFlag</span> <span class="o">=</span> <span class="n">checkBlackListGene</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">blacklistGenes</span><span class="p">)</span>
         <span class="c1"># skip record occurring within intron</span>
-        <span class="n">eventInIntronFlag</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="k">if</span><span class="p">((</span><span class="n">gene1</span> <span class="o">==</span> <span class="n">gene2</span><span class="p">)</span> <span class="ow">and</span> <span class="p">((</span><span class="n">igrFlag</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">blacklistGeneFlag</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;Intron&quot;</span> <span class="ow">in</span> <span class="n">site1</span> <span class="ow">and</span> <span class="s2">&quot;Intron&quot;</span> <span class="ow">in</span> <span class="n">site2</span><span class="p">)):</span>
+        <span class="n">eventInIntronFlag</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">gene1</span> <span class="o">==</span> <span class="n">gene2</span><span class="p">)</span> <span class="ow">and</span> <span class="p">((</span><span class="n">igrFlag</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">blacklistGeneFlag</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;Intron&quot;</span> <span class="ow">in</span> <span class="n">site1</span> <span class="ow">and</span> <span class="s2">&quot;Intron&quot;</span> <span class="ow">in</span> <span class="n">site2</span><span class="p">)):</span>
             <span class="n">eventInIntronFlag</span> <span class="o">=</span> <span class="n">checkEventInIntronFlag</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">site1</span><span class="p">,</span> <span class="n">site2</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">pass</span>
 
-        <span class="k">if</span><span class="p">((</span><span class="n">keepGeneFlag</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">igrFlag</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">blacklistGeneFlag</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">eventInIntronFlag</span><span class="p">)):</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">keepGeneFlag</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">igrFlag</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">blacklistGeneFlag</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">eventInIntronFlag</span><span class="p">)):</span>
             <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                    <span class="s2">&quot;iCallSV::FilterFinalFile: Record: gene1:</span><span class="si">%s</span><span class="s2">, gene2:</span><span class="si">%s</span><span class="s2">, site1:</span><span class="si">%s</span><span class="s2">, site2:$s, will be Filtered as keepGeneFlag:</span><span class="si">%s</span><span class="s2">, IGR:</span><span class="si">%s</span><span class="s2">, blackListGene:</span><span class="si">%s</span><span class="s2">, Intronic Event:</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;iCallSV::FilterFinalFile: Record: gene1:</span><span class="si">%s</span><span class="s2">; gene2:</span><span class="si">%s</span><span class="s2">; site1:</span><span class="si">%s</span><span class="s2">; site2:</span><span class="si">%s</span><span class="s2">; will be Filtered as keepGeneFlag:</span><span class="si">%s</span><span class="s2">; IGR:</span><span class="si">%s</span><span class="s2">; blackListGene:</span><span class="si">%s</span><span class="s2">; Intronic Event:</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
                     <span class="n">gene1</span><span class="p">,</span>
                     <span class="n">gene2</span><span class="p">,</span>
                     <span class="n">site1</span><span class="p">,</span>
                     <span class="n">site2</span><span class="p">,</span>
-                    <span class="n">keepGeneFlag</span><span class="p">,</span>
-                    <span class="n">igrFlag</span><span class="p">,</span>
-                    <span class="n">blacklistGeneFlag</span><span class="p">,</span>
-                    <span class="n">eventInIntronFlag</span><span class="p">)</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">keepGeneFlag</span><span class="p">),</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">igrFlag</span><span class="p">),</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">blacklistGeneFlag</span><span class="p">),</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">eventInIntronFlag</span><span class="p">))</span>
             <span class="n">outputDF</span> <span class="o">=</span> <span class="n">outputDF</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">pass</span>
+    <span class="n">outputDF</span><span class="p">[[</span><span class="s1">&#39;SV_LENGTH&#39;</span><span class="p">,</span> <span class="s1">&#39;Cosmic_Fusion_Counts&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">outputDF</span><span class="p">[[</span><span class="s1">&#39;SV_LENGTH&#39;</span><span class="p">,</span> <span class="s1">&#39;Cosmic_Fusion_Counts&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="c1"># Write The Final Output File</span>
-    <span class="n">outputDF</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">outputFile</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">outputDF</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">outputFile</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="s2">&quot;iCallSV::FilterFinalFile: Finished Filtering, Final data written in </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -164,9 +166,9 @@
 
 <div class="viewcode-block" id="checkGeneListToKeep"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.filterAnnotatedSV.checkGeneListToKeep">[docs]</a><span class="k">def</span> <span class="nf">checkGeneListToKeep</span><span class="p">(</span><span class="n">gene1</span><span class="p">,</span> <span class="n">gene2</span><span class="p">,</span> <span class="n">keepGenes</span><span class="p">):</span>
     <span class="k">if</span><span class="p">((</span><span class="n">gene1</span> <span class="ow">in</span> <span class="n">keepGenes</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">gene2</span> <span class="ow">in</span> <span class="n">keepGenes</span><span class="p">)):</span>
-        <span class="n">kgFlag</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">kgFlag</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">kgFlag</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">kgFlag</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">return</span><span class="p">(</span><span class="n">kgFlag</span><span class="p">)</span></div>
 
 <span class="c1"># Check if the gene is a blacklist gene</span>
@@ -185,9 +187,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span><span class="p">((</span><span class="n">gene1</span> <span class="ow">in</span> <span class="n">blacklistGenes</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">gene2</span> <span class="ow">in</span> <span class="n">blacklistGenes</span><span class="p">)):</span>
-        <span class="n">bgFlag</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">bgFlag</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">bgFlag</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">bgFlag</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">return</span><span class="p">(</span><span class="n">bgFlag</span><span class="p">)</span></div>
 
 
@@ -216,17 +218,17 @@
                     <span class="n">s1location</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">r&#39;\d+&#39;</span><span class="p">,</span> <span class="n">s1a</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
                     <span class="n">s2location</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">r&#39;\d+&#39;</span><span class="p">,</span> <span class="n">s2a</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
                     <span class="k">if</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s1location</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">s2location</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">):</span>
-                        <span class="n">eviFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                        <span class="n">eviFlag</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">eviFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                        <span class="n">eviFlag</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">eviFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="n">eviFlag</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">eviFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="n">eviFlag</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">eviFlag</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">eviFlag</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">eviFlag</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">eviFlag</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">return</span><span class="p">(</span><span class="n">eviFlag</span><span class="p">)</span></div>
 </pre></div>
 
@@ -238,14 +240,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -261,13 +260,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">iCallSV  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">iCallSV  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2016, Author.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+        &#169; Copyright 2016, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

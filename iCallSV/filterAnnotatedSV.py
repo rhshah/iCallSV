@@ -173,11 +173,11 @@ def checkEventInIntronFlag(gene1, gene2, site1, site2):
                     else:
                         eviFlag = True
                 else:
-                    eviFlag = False
+                    eviFlag = True
             else:
-                eviFlag = False
+                eviFlag = True
         else:
-            eviFlag = False
+            eviFlag = True
     else:
-        eviFlag = False
+        eviFlag = True
     return(eviFlag)

@@ -36,7 +36,7 @@ __all__ = []
 __version_info__ = ('0', '0', '6')
 __version__ = '.'.join(__version_info__)
 __date__ = '2015-03-30'
-__updated__ = '2016-11-29'
+__updated__ = '2017-01-14'
 
 
 def main(argv=None):  # IGNORE:C0111
@@ -54,7 +54,7 @@ def main(argv=None):  # IGNORE:C0111
     iCallSV.iCallSV -- wrapper to run iCallSV package
 
       Created by Ronak H Shah on 2015-03-30.
-      Copyright 2015-2016 Ronak H Shah. All rights reserved.
+      Copyright 2016-2017 Ronak H Shah. All rights reserved.
 
       Licensed under the Apache License 2.0
       http://www.apache.org/licenses/LICENSE-2.0
