@@ -114,7 +114,6 @@ def run(
         logger.info("FilterDellyCalls: We will now check all the input parameters")
     # Check input parameters
     cp.checkDir(outputDir)
-    cp.checkFile(inputVcf)
     cp.checkFile(hotspotFile)
     cp.checkFile(blacklistFile)
     cp.checkEmpty(controlId, "Control Bam ID")
@@ -184,8 +183,12 @@ def run(
     hotspotDict = chl.ReadHotSpotFile(hotspotFile)
     blacklist = cbl.ReadBlackListFile(blacklistFile)
     outputVcf = os.path.splitext(os.path.basename(inputVcf))[0] + "_filtered.vcf"
-    vcf_reader = vcf.Reader(open(inputVcf, 'r'))
     outputFile = os.path.join(outputDir, outputVcf)
+    if(not os.path.isfile(inputVcf)):
+        if(verbose):
+            logger.warning("VCF file %s does not exists.", inputVcf)
+        return(outputFile)
+    vcf_reader = vcf.Reader(open(inputVcf, 'r'))
     vcf_writer = vcf.Writer(open(outputFile, 'w'), vcf_reader)
     samples = vcf_reader.samples
     pattern = re.compile(caseID)

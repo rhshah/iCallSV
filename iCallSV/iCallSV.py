@@ -272,8 +272,15 @@ USAGE
                                                                                    dup_vcf,
                                                                                    inv_vcf,
                                                                                    tra_vcf)
-        # Combine all VCF to a single VCF file
+        #Check and Combine all VCF to a single VCF file
         listOfFilteredVCFfiles = [filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf]
+        listOfFilteredVCFfiles_copy = list(listOfFilteredVCFfiles)
+        for vcffile in listOfFilteredVCFfiles_copy:
+            if( not os.path.isfile(vcffile)):
+                if(verbose):
+                    logger.warning("VCF file %s does not exists.", vcffile)
+                listOfFilteredVCFfiles.remove(vcffile)
+        
         combinedVCF = sampleOutdirForDelly + "/" + args.caseId + "_allSVFiltered.vcf"
         combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose)
         # Check if VCF file is empty
