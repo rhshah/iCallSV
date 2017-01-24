@@ -6,7 +6,7 @@ iCallSV
 
 :Description: iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina
 :author:     Ronak H Shah
-:copyright:  (c) 2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
+:copyright:  (c) 2016-2017 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
 :license:    Apache License 2.0
 :contact:    rons.shah@gmail.com
 
@@ -33,10 +33,10 @@ import filterAnnotatedSV as fas
 import coloredlogs
 
 __all__ = []
-__version_info__ = ('0', '0', '6')
+__version_info__ = ('0', '0', '7')
 __version__ = '.'.join(__version_info__)
 __date__ = '2015-03-30'
-__updated__ = '2017-01-14'
+__updated__ = '2017-01-24'
 
 
 def main(argv=None):  # IGNORE:C0111
