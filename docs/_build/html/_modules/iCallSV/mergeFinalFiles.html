@@ -184,7 +184,11 @@
          <span class="n">contype</span><span class="p">,</span>
          <span class="n">conseq</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>
          
-        <span class="p">(</span><span class="n">svlengthFromDelly</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">startCT</span><span class="p">,</span>
+         <span class="n">endCT</span><span class="p">,</span>
+         <span class="n">str1</span><span class="p">,</span>
+         <span class="n">str2</span><span class="p">,</span>
+         <span class="n">svlengthFromDelly</span><span class="p">,</span>
          <span class="n">mapqFromDelly</span><span class="p">,</span>
          <span class="n">peSupportFromDelly</span><span class="p">,</span>
          <span class="n">srSupportFromDelly</span><span class="p">,</span>
@@ -203,7 +207,7 @@
          <span class="n">controlDR</span><span class="p">,</span>
          <span class="n">controlDV</span><span class="p">,</span>
          <span class="n">controlRR</span><span class="p">,</span>
-         <span class="n">controlRV</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+         <span class="n">controlRV</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">))</span>
         <span class="n">chrom1</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">CHROM</span><span class="p">)</span>
         <span class="n">start1</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">POS</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">FILTER</span>
@@ -233,6 +237,24 @@
             <span class="n">srSupportFromDelly</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">INFO</span><span class="p">[</span><span class="s1">&#39;SR&#39;</span><span class="p">])</span>
         <span class="k">if</span><span class="p">(</span><span class="s2">&quot;CT&quot;</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">INFO</span><span class="p">):</span>
             <span class="n">contype</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">INFO</span><span class="p">[</span><span class="s1">&#39;CT&#39;</span><span class="p">]</span>
+        <span class="p">(</span><span class="n">startCT</span><span class="p">,</span> <span class="n">endCT</span><span class="p">)</span> <span class="o">=</span> <span class="n">contype</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;to&quot;</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">startCT</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">endCT</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)):</span>
+            <span class="n">str1</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">str2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">startCT</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">endCT</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)):</span>
+            <span class="n">str1</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">str2</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">elif</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">startCT</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">endCT</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)):</span>
+            <span class="n">str1</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">str2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">startCT</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">endCT</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)):</span>
+            <span class="n">str1</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">str2</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">&quot;mergeFinalFiles: The connection type (CT) given in the vcf file is incorrect.CT: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="n">contype</span><span class="p">)</span>
         <span class="k">if</span><span class="p">(</span><span class="s2">&quot;CONSENSUS&quot;</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">INFO</span><span class="p">):</span>
             <span class="n">conseq</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">INFO</span><span class="p">[</span><span class="s1">&#39;CONSENSUS&#39;</span><span class="p">]</span>
         <span class="k">if</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">is_sv_precise</span><span class="p">):</span>
@@ -309,7 +331,9 @@
         <span class="n">indexList</span> <span class="o">=</span> <span class="n">annoDF</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">annoDF</span><span class="p">[</span><span class="s1">&#39;chr1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">chrom1</span><span class="p">])</span> <span class="o">&amp;</span>
                                <span class="n">annoDF</span><span class="p">[</span><span class="s1">&#39;pos1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">start1</span><span class="p">)])</span> <span class="o">&amp;</span>
                                <span class="n">annoDF</span><span class="p">[</span><span class="s1">&#39;chr2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">chrom2</span><span class="p">])</span> <span class="o">&amp;</span>
-                               <span class="n">annoDF</span><span class="p">[</span><span class="s1">&#39;pos2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">start2</span><span class="p">)])]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                               <span class="n">annoDF</span><span class="p">[</span><span class="s1">&#39;pos2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">start2</span><span class="p">)])</span> <span class="o">&amp;</span> 
+                               <span class="n">annoDF</span><span class="p">[</span><span class="s1">&#39;str1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">str1</span><span class="p">])</span> <span class="o">&amp;</span>
+                               <span class="n">annoDF</span><span class="p">[</span><span class="s1">&#39;str2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">str2</span><span class="p">])]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
         <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">indexList</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
             <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">fatal</span><span class="p">(</span>

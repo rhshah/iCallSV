@@ -43,7 +43,7 @@ def makeOutputDir(args, tool):
             pass
     else:
         if(args.verbose):
-                logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", AnalysisDir)
+            logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", AnalysisDir)
         pass
     
     if not os.path.exists (AnalysisDir):
@@ -55,7 +55,7 @@ def makeOutputDir(args, tool):
             pass
     else:
         if(args.verbose):
-                logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
+            logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
         pass
 
     if os.path.isdir(SampleAnalysisDir):
@@ -71,10 +71,10 @@ def makeOutputDir(args, tool):
             tag = True
         except OSError:
             if(args.verbose):
-            logging.fatal(
+                logging.fatal(
                 "make_output_dir:Dir=>%s exists and we wont run the analysis",
                 SampleAnalysisDir)
-            logging.info("make_output_dir:Please delete this directory and rerun the program")
+                logging.info("make_output_dir:Please delete this directory and rerun the program")
             tag = False
 
     return(tag, SampleAnalysisDir)

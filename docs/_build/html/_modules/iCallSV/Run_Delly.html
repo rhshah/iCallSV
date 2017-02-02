@@ -226,10 +226,10 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
                         <span class="n">logger</span><span class="o">.</span><span class="n">fatal</span><span class="p">(</span>
-                            <span class="s2">&quot;Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code </span><span class="si">%d</span><span class="s2"> for </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;Run_Delly_bcf2vcf: bcf file was not generated the return code is </span><span class="si">%d</span><span class="s2"> for </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
                             <span class="n">retcode</span><span class="p">,</span>
                             <span class="n">caseId</span><span class="p">)</span>
-                        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                        <span class="c1">#sys.exit(1)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">outputVcf</span><span class="p">)):</span>
                     <span class="k">return</span><span class="p">(</span><span class="n">outputVcf</span><span class="p">)</span>

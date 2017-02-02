@@ -83,16 +83,29 @@
     <span class="n">AnalysisDir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">outdir</span><span class="p">,</span> <span class="n">static_SV_Dir</span><span class="p">)</span>
     <span class="n">ToolDir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">AnalysisDir</span><span class="p">,</span> <span class="n">static_tool_Dir</span><span class="p">)</span>
     <span class="n">SampleAnalysisDir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ToolDir</span><span class="p">,</span> <span class="n">SampleDirName</span><span class="p">)</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">AnalysisDir</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span> <span class="p">(</span><span class="n">AnalysisDir</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">AnalysisDir</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;make_output_dir:Dir=&gt;</span><span class="si">%s</span><span class="s2"> exists thus we wont be making it&quot;</span><span class="p">,</span> <span class="n">AnalysisDir</span><span class="p">)</span>
+            <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">):</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;make_output_dir:Dir=&gt;</span><span class="si">%s</span><span class="s2"> exists thus we wont be making it&quot;</span><span class="p">,</span> <span class="n">AnalysisDir</span><span class="p">)</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">ToolDir</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span> <span class="p">(</span><span class="n">AnalysisDir</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">ToolDir</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;make_output_dir:Dir=&gt;</span><span class="si">%s</span><span class="s2"> exists thus we wont be making it&quot;</span><span class="p">,</span> <span class="n">ToolDir</span><span class="p">)</span>
+            <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">):</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;make_output_dir:Dir=&gt;</span><span class="si">%s</span><span class="s2"> exists thus we wont be making it&quot;</span><span class="p">,</span> <span class="n">ToolDir</span><span class="p">)</span>
+        <span class="k">pass</span>
 
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">SampleAnalysisDir</span><span class="p">):</span>
         <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">):</span>
@@ -102,8 +115,16 @@
             <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;make_output_dir:Please delete this directory and rerun the program&quot;</span><span class="p">)</span>
         <span class="n">tag</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">SampleAnalysisDir</span><span class="p">)</span>
-        <span class="n">tag</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">SampleAnalysisDir</span><span class="p">)</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">fatal</span><span class="p">(</span>
+                <span class="s2">&quot;make_output_dir:Dir=&gt;</span><span class="si">%s</span><span class="s2"> exists and we wont run the analysis&quot;</span><span class="p">,</span>
+                <span class="n">SampleAnalysisDir</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;make_output_dir:Please delete this directory and rerun the program&quot;</span><span class="p">)</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">return</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">SampleAnalysisDir</span><span class="p">)</span></div>
 </pre></div>
