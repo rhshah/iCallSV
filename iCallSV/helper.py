@@ -20,7 +20,7 @@ outputFile: File with following header
 import os
 try:
     import pandas as pd
-except ImportError, e:
+except:
     print "helper: pandas is not installed, please install pandas as it is required to run the mapping, trying again"
     import tempfile
     import atexit

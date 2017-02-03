@@ -31,7 +31,7 @@ import numpy as np
 #So that matplotlib doesnot complain stale file handle
 try:
     import pandas as pd
-except ImportError, e:
+except:
     print "mergeFinalFiles: pandas is not installed, please install pandas as it is required to run the mapping, trying again"
     import tempfile
     import atexit
