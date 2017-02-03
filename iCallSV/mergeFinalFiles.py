@@ -25,13 +25,16 @@ import os
 import logging
 import vcf
 import checkparameters as cp
-import pandas as pd
 import re
 import coloredlogs
 import numpy as np
-
 logger = logging.getLogger('iCallSV.mergeFinalFiles')
 coloredlogs.install(level='DEBUG')
+try:
+    import pandas as pd
+except ImportError, e:
+    logger.fatal("mergeFinalFiles: pandas is not installed, please install pandas as it is required to run the mapping.")
+    sys.exit(1)
 
 def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     """
