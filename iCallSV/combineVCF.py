@@ -17,6 +17,7 @@ mergedVCF: Name of the combined vcf to output
 ::Output::
 It is a merged vcf file
 '''
+import os
 import vcf
 import logging
 import coloredlogs
