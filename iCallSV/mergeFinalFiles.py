@@ -28,14 +28,18 @@ import checkparameters as cp
 import re
 import coloredlogs
 import numpy as np
-import tempfile
-os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp() #So that matplotlib doesnot complain stale file handle
+#So that matplotlib doesnot complain stale file handle
 try:
     import pandas as pd
 except ImportError, e:
-    print "mergeFinalFiles: pandas is not installed, please install pandas as it is required to run the mapping."
-    sys.exit(1)
-    
+    print "mergeFinalFiles: pandas is not installed, please install pandas as it is required to run the mapping, trying again"
+    import tempfile
+    import atexit
+    import shutil
+    mpldir = tempfile.mkdtemp()
+    atexit.register(shutil.rmtree, mpldir)  # rm directory on succ exit
+    os.environ['MPLCONFIGDIR'] = mpldir
+    import pandas as pd
 logger = logging.getLogger('iCallSV.mergeFinalFiles')
 coloredlogs.install(level='DEBUG')
 
