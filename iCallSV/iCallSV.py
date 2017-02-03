@@ -6,7 +6,7 @@ iCallSV
 
 :Description: iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina
 :author:     Ronak H Shah
-:copyright:  (c) 2016-2017 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
+:copyright:  (c) 2015-2017 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
 :license:    Apache License 2.0
 :contact:    rons.shah@gmail.com
 
@@ -19,18 +19,30 @@ from argparse import ArgumentParser
 from argparse import RawDescriptionHelpFormatter
 import ConfigParser as configparser
 import logging
-import make_analysis_dir as mad
-import checkparameters as cp
-import launch_Run_Delly as lrd
-import launch_FilterDellyCalls as lfd
-import dellyVcf2Tab as dvcf2tab
-import combineVCF as cvcf
-import Run_iAnnotateSV as annSV
-import dellyVcf2targetSeqView as dvcf2tsv
-import Run_targetSeqView as rtsv
-import mergeFinalFiles as mff
-import filterAnnotatedSV as fas
-import coloredlogs
+
+try:
+    import coloredlogs
+    coloredlogs.install(level='DEBUG')
+except ImportError:
+    logger.warning("get_DMP_ID: coloredlogs is not installed, please install it if you wish to see color in logs on standard out.")
+    pass
+try:
+    import make_analysis_dir as mad
+    import checkparameters as cp
+    import launch_Run_Delly as lrd
+    import launch_FilterDellyCalls as lfd
+    import dellyVcf2Tab as dvcf2tab
+    import combineVCF as cvcf
+    import Run_iAnnotateSV as annSV
+    import dellyVcf2targetSeqView as dvcf2tsv
+    import Run_targetSeqView as rtsv
+    import mergeFinalFiles as mff
+    import filterAnnotatedSV as fas
+    import helper as hp
+except ImportError:
+    logger.fatal("iCallSV: sub python were not imported, please make sure that sub python scripts are in same folder as iCallSV.py.")
+    sys.exit(1)
+
 
 __all__ = []
 __version_info__ = ('0', '0', '7')
@@ -228,8 +240,6 @@ USAGE
     logger.addHandler(fh)
     logger.addHandler(ch)
 
-    coloredlogs.install(level='DEBUG')
-
     # Print if Verbose mode is on
     if(verbose):
         logger.info("iCallSV:Verbose mode on")
@@ -348,6 +358,8 @@ USAGE
             if(verbose):
                 logger.warn(
                     "All Records have been filtered in standard filtered step. Thus we will exit the program and not proceed.")
+                outputFile = os.path.join(args.outDir, args.outprefix + "_final.txt")
+                hp.make_empty_outputfile(outputFile)
                 logger.info("Thank you for using iCallSV.")
             sys.exit(0)
     else:
