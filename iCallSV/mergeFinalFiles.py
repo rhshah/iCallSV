@@ -29,7 +29,7 @@ import re
 import coloredlogs
 import numpy as np
 import tempfile
-os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp()
+os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp() #So that matplotlib doesnot complain stale file handle
 try:
     import pandas as pd
 except ImportError, e:
