@@ -49,7 +49,7 @@ def makeOutputDir(args, tool):
         pass
     #Making sure there is no race when multiple instance are launched
     time.sleep(5)
-    if not os.path.exists (AnalysisDir):
+    if not os.path.exists (ToolDir):
         try:
             os.mkdir(ToolDir)
         except OSError:
