@@ -26,18 +26,13 @@ import logging
 import checkparameters as cp
 import re
 import coloredlogs
-#So that matplotlib doesnot complain stale file handle
+import tempfile
+os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp() #So that matplotlib doesnot complain stale file handle
 try:
     import pandas as pd
-except:
-    print "filterAnnotatedSV: pandas is not installed, please install pandas as it is required to run the mapping, trying again"
-    import tempfile
-    import atexit
-    import shutil
-    mpldir = tempfile.mkdtemp()
-    atexit.register(shutil.rmtree, mpldir)  # rm directory on succ exit
-    os.environ['MPLCONFIGDIR'] = mpldir
-    import pandas as pd
+except ImportError, e:
+    print "filterAnnotatedSV: pandas is not installed, please install pandas as it is required to run the mapping."
+    sys.exit(1)
 
 
 # Initiate logger

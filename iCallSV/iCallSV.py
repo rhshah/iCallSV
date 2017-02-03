@@ -39,7 +39,7 @@ try:
     import mergeFinalFiles as mff
     import filterAnnotatedSV as fas
     import helper as hp
-except ImportError:
+except ImportError, e:
     print "iCallSV: sub python were not imported, please make sure that sub python scripts are in same folder as iCallSV.py."
     sys.exit(1)
 
