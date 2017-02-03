@@ -24,7 +24,7 @@ try:
     import coloredlogs
     coloredlogs.install(level='DEBUG')
 except ImportError:
-    logger.warning("get_DMP_ID: coloredlogs is not installed, please install it if you wish to see color in logs on standard out.")
+    logger.warning("iCallSV: coloredlogs is not installed, please install it if you wish to see color in logs on standard out.")
     pass
 try:
     import make_analysis_dir as mad
