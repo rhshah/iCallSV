@@ -24,7 +24,7 @@ try:
     import coloredlogs
     coloredlogs.install(level='DEBUG')
 except ImportError:
-    logger.warning("iCallSV: coloredlogs is not installed, please install it if you wish to see color in logs on standard out.")
+    print "iCallSV: coloredlogs is not installed, please install it if you wish to see color in logs on standard out."
     pass
 try:
     import make_analysis_dir as mad
@@ -40,7 +40,7 @@ try:
     import filterAnnotatedSV as fas
     import helper as hp
 except ImportError:
-    logger.fatal("iCallSV: sub python were not imported, please make sure that sub python scripts are in same folder as iCallSV.py.")
+    print "iCallSV: sub python were not imported, please make sure that sub python scripts are in same folder as iCallSV.py."
     sys.exit(1)
 
 
