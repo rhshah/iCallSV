@@ -2,11 +2,11 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>iCallSV.FilterDellyCalls &mdash; iCallSV  documentation</title>
+    <title>iCallSV.FilterDellyCalls &#8212; iCallSV  documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -36,8 +36,8 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">iCallSV  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">iCallSV  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -91,13 +91,14 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">vcf</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">checkparameters</span> <span class="kn">as</span> <span class="nn">cp</span>
-<span class="kn">import</span> <span class="nn">checkHotSpotList</span> <span class="kn">as</span> <span class="nn">chl</span>
-<span class="kn">import</span> <span class="nn">checkBlackList</span> <span class="kn">as</span> <span class="nn">cbl</span>
+<span class="kn">import</span> <span class="nn">checkparameters</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="kn">import</span> <span class="nn">checkHotSpotList</span> <span class="k">as</span> <span class="nn">chl</span>
+<span class="kn">import</span> <span class="nn">checkBlackList</span> <span class="k">as</span> <span class="nn">cbl</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">coloredlogs</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;iCallSV.FilterDellyCalls&#39;</span><span class="p">)</span>
-
+<span class="n">coloredlogs</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="run"><a class="viewcode-back" href="../../iCallSV.html#iCallSV.FilterDellyCalls.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
         <span class="n">inputVcf</span><span class="p">,</span>
@@ -162,7 +163,6 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;FilterDellyCalls: We will now check all the input parameters&quot;</span><span class="p">)</span>
     <span class="c1"># Check input parameters</span>
     <span class="n">cp</span><span class="o">.</span><span class="n">checkDir</span><span class="p">(</span><span class="n">outputDir</span><span class="p">)</span>
-    <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">inputVcf</span><span class="p">)</span>
     <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">hotspotFile</span><span class="p">)</span>
     <span class="n">cp</span><span class="o">.</span><span class="n">checkFile</span><span class="p">(</span><span class="n">blacklistFile</span><span class="p">)</span>
     <span class="n">cp</span><span class="o">.</span><span class="n">checkEmpty</span><span class="p">(</span><span class="n">controlId</span><span class="p">,</span> <span class="s2">&quot;Control Bam ID&quot;</span><span class="p">)</span>
@@ -232,14 +232,18 @@
     <span class="n">hotspotDict</span> <span class="o">=</span> <span class="n">chl</span><span class="o">.</span><span class="n">ReadHotSpotFile</span><span class="p">(</span><span class="n">hotspotFile</span><span class="p">)</span>
     <span class="n">blacklist</span> <span class="o">=</span> <span class="n">cbl</span><span class="o">.</span><span class="n">ReadBlackListFile</span><span class="p">(</span><span class="n">blacklistFile</span><span class="p">)</span>
     <span class="n">outputVcf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">inputVcf</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_filtered.vcf&quot;</span>
-    <span class="n">vcf_reader</span> <span class="o">=</span> <span class="n">vcf</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">inputVcf</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">))</span>
     <span class="n">outputFile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outputDir</span><span class="p">,</span> <span class="n">outputVcf</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">inputVcf</span><span class="p">)):</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;VCF file </span><span class="si">%s</span><span class="s2"> does not exists.&quot;</span><span class="p">,</span> <span class="n">inputVcf</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">outputFile</span><span class="p">)</span>
+    <span class="n">vcf_reader</span> <span class="o">=</span> <span class="n">vcf</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">inputVcf</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">))</span>
     <span class="n">vcf_writer</span> <span class="o">=</span> <span class="n">vcf</span><span class="o">.</span><span class="n">Writer</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">outputFile</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">),</span> <span class="n">vcf_reader</span><span class="p">)</span>
     <span class="n">samples</span> <span class="o">=</span> <span class="n">vcf_reader</span><span class="o">.</span><span class="n">samples</span>
     <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">caseID</span><span class="p">)</span>
     <span class="c1"># Get the case and control id</span>
-    <span class="n">caseIDinVcf</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="n">controlIDinVcf</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">caseIDinVcf</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">controlIDinVcf</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
         <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
         <span class="k">if</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
@@ -247,13 +251,13 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">controlIDinVcf</span> <span class="o">=</span> <span class="n">sample</span>
     <span class="c1"># Check if ID are assigned properly or not</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">caseIDinVcf</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">caseIDinVcf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;FilterDellyCalls: caseID was not assigned properly, please make sure that the vcf case id and the provided case id match&quot;</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;FilterDellyCalls:Case ID is: </span><span class="si">%s</span><span class="s2"> file&quot;</span><span class="p">,</span> <span class="n">caseIDinVcf</span><span class="p">)</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">controlIDinVcf</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">controlIDinVcf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;FilterDellyCalls: controlID was not assigned properly, please make sure that the vcf control id and the provided control id match&quot;</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -284,7 +288,7 @@
          <span class="n">controlDV</span><span class="p">,</span>
          <span class="n">controlRR</span><span class="p">,</span>
          <span class="n">controlRV</span><span class="p">,</span>
-         <span class="n">controlFT</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="bp">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">22</span><span class="p">))</span>
+         <span class="n">controlFT</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">22</span><span class="p">))</span>
         <span class="n">chrom1</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">CHROM</span>
         <span class="n">start1</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">POS</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">FILTER</span>
@@ -304,7 +308,7 @@
             <span class="n">svlengthFromDelly</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">INFO</span><span class="p">[</span><span class="s1">&#39;SVLEN&#39;</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span><span class="p">(</span><span class="n">svtype</span> <span class="o">==</span> <span class="s2">&quot;TRA&quot;</span><span class="p">):</span>
-                <span class="n">svlengthFromDelly</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">svlengthFromDelly</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">svlengthFromDelly</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">start2</span> <span class="o">-</span> <span class="n">start1</span><span class="p">)</span>
         <span class="k">if</span><span class="p">(</span><span class="s2">&quot;MAPQ&quot;</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">INFO</span><span class="p">):</span>
@@ -438,7 +442,7 @@
     <span class="c1"># Get if its a blacklist or not</span>
     <span class="n">blacklistTag</span> <span class="o">=</span> <span class="n">cbl</span><span class="o">.</span><span class="n">CheckIfItIsBlacklisted</span><span class="p">(</span><span class="n">chrom1</span><span class="p">,</span> <span class="n">start1</span><span class="p">,</span> <span class="n">chrom2</span><span class="p">,</span> <span class="n">start2</span><span class="p">,</span> <span class="n">blacklist</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
     <span class="c1"># Get the flag for pass and fail for tumor and normal</span>
-    <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="c1"># print &quot;CaseControlPassFlag:&quot;, casePassFlag, &quot; : &quot;, controlPassFlag</span>
 
     <span class="k">if</span><span class="p">(</span><span class="n">hotspotTag</span><span class="p">):</span>
@@ -460,45 +464,45 @@
         <span class="k">if</span><span class="p">(</span><span class="nb">filter</span> <span class="o">==</span> <span class="s2">&quot;PASS&quot;</span> <span class="ow">and</span> <span class="n">controlPassFlag</span> <span class="ow">and</span> <span class="n">casePassFlag</span><span class="p">):</span>
             <span class="k">if</span><span class="p">(</span><span class="n">svlengthFromDelly</span> <span class="o">!=</span> <span class="s2">&quot;None&quot;</span><span class="p">):</span>
                 <span class="k">if</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">svlengthFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">svlength</span><span class="p">)):</span>
-                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
 
-            <span class="k">if</span><span class="p">(</span><span class="n">filterFlag</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">):</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">filterFlag</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">):</span>
                 <span class="k">if</span><span class="p">(</span><span class="n">svlengthFromDelly</span> <span class="o">!=</span> <span class="s2">&quot;None&quot;</span><span class="p">):</span>
                     <span class="k">if</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">svlengthFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">svlength</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">mapqFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mapqHotspot</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">peSupportFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupportHotspot</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">caseDV</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupportHotspotCase</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlDV</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupportHotspotControl</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlDV</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseDV</span><span class="p">))):</span>
                         <span class="k">if</span><span class="p">(</span><span class="n">preciseFlag</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span><span class="p">):</span>
                             <span class="k">if</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">srSupportFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupportHotspot</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">caseRV</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupportHotspotCase</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlRV</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupportHotspotControl</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlRV</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseRV</span><span class="p">))):</span>
-                                <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                                <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                                 <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
                             <span class="k">else</span><span class="p">:</span>
-                                <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                                <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
                         <span class="k">else</span><span class="p">:</span>
-                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                             <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                        <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">if</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">mapqFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mapqHotspot</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">peSupportFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupportHotspot</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">caseDV</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupportHotspotCase</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlDV</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupportHotspotControl</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlDV</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseDV</span><span class="p">))):</span>
                         <span class="k">if</span><span class="p">(</span><span class="n">preciseFlag</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span><span class="p">):</span>
                             <span class="k">if</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">srSupportFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupportHotspot</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">caseRV</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupportHotspotCase</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlRV</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupportHotspotControl</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlRV</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseRV</span><span class="p">))):</span>
-                                <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                                <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                                 <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
                             <span class="k">else</span><span class="p">:</span>
-                                <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                                <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
                         <span class="k">else</span><span class="p">:</span>
-                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                             <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                        <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">casePassFlag</span> <span class="o">=</span> <span class="n">GetCaseFlag</span><span class="p">(</span><span class="n">caseDR</span><span class="p">,</span> <span class="n">caseDV</span><span class="p">,</span> <span class="n">preciseFlag</span><span class="p">,</span> <span class="n">caseRR</span><span class="p">,</span>
                                    <span class="n">caseRV</span><span class="p">,</span> <span class="n">caseAltFreq</span><span class="p">,</span> <span class="n">caseTotalCount</span><span class="p">)</span>
@@ -512,14 +516,14 @@
         <span class="k">if</span><span class="p">(</span><span class="nb">filter</span> <span class="o">==</span> <span class="s2">&quot;PASS&quot;</span> <span class="ow">and</span> <span class="n">controlPassFlag</span> <span class="ow">and</span> <span class="n">casePassFlag</span><span class="p">):</span>
             <span class="k">if</span><span class="p">(</span><span class="n">svlengthFromDelly</span> <span class="o">!=</span> <span class="s2">&quot;None&quot;</span><span class="p">):</span>
                 <span class="k">if</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">svlengthFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">svlength</span><span class="p">)):</span>
-                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">filterFlag</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">filterFlag</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">):</span>
             <span class="k">if</span><span class="p">(</span><span class="n">svlengthFromDelly</span> <span class="o">!=</span> <span class="s2">&quot;None&quot;</span><span class="p">):</span>
                 <span class="c1"># print svlengthFromDelly, svlength, mapqFromDelly, mapq,</span>
                 <span class="c1"># peSupportFromDelly, peSupport, caseDV, peSupportCase, controlDV,</span>
@@ -527,33 +531,33 @@
                 <span class="k">if</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">svlengthFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">svlength</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">mapqFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mapq</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">peSupportFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupport</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">caseDV</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupportCase</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlDV</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupportControl</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlDV</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseDV</span><span class="p">))):</span>
                     <span class="k">if</span><span class="p">(</span><span class="n">preciseFlag</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span><span class="p">):</span>
                         <span class="k">if</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">srSupportFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupport</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">caseRV</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupportCase</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlRV</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupportControl</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlRV</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseRV</span><span class="p">))):</span>
-                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                             <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
                         <span class="k">else</span><span class="p">:</span>
-                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                        <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                         <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">mapqFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mapq</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">peSupportFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupport</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">caseDV</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupportCase</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlDV</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peSupportControl</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlDV</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseDV</span><span class="p">))):</span>
                     <span class="k">if</span><span class="p">(</span><span class="n">preciseFlag</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span><span class="p">):</span>
                         <span class="k">if</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">srSupportFromDelly</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupport</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">caseRV</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupportCase</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlRV</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srSupportControl</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlRV</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseRV</span><span class="p">))):</span>
-                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                             <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
                         <span class="k">else</span><span class="p">:</span>
-                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                            <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+                        <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
                         <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="k">if</span><span class="p">(</span><span class="n">blacklistTag</span><span class="p">):</span>
-            <span class="n">filterFlag</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">filterFlag</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">return</span><span class="p">(</span><span class="n">filterFlag</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">filterFlag</span> <span class="o">=</span> <span class="n">filterFlag</span></div>
@@ -578,14 +582,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">caseAltAf</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">caseCovg</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">caseFlag</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">caseDR</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="n">caseFlag</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">caseDR</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">caseDR</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">caseDV</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">caseDV</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">caseDV</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">caseRR</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">caseRR</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">caseRR</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">caseRV</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">caseRV</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">caseRR</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">if</span><span class="p">(</span><span class="n">preciseFlag</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span><span class="p">):</span>
         <span class="n">caseCovg</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseRR</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseRV</span><span class="p">)</span>
@@ -598,11 +602,11 @@
             <span class="n">caseAltAf</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">caseDV</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">caseDR</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseDV</span><span class="p">))</span>
 
     <span class="k">if</span><span class="p">(</span><span class="n">caseAltAf</span> <span class="o">&gt;=</span> <span class="nb">float</span><span class="p">(</span><span class="n">caseAltFreq</span><span class="p">)</span> <span class="ow">and</span> <span class="n">caseCovg</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseTotalCount</span><span class="p">)):</span>
-        <span class="n">caseFlag</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">caseFlag</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">elif</span><span class="p">((</span><span class="n">preciseFlag</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">caseRV</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">caseCovg</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">caseTotalCount</span><span class="p">))):</span>
-        <span class="n">caseFlag</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">caseFlag</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">caseFlag</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">caseFlag</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">return</span><span class="p">(</span><span class="n">caseFlag</span><span class="p">)</span></div>
 
 
@@ -622,14 +626,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">controlAltAf</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">controlCovg</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">controlFlag</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">controlDR</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="n">controlFlag</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">controlDR</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">controlDR</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">controlDV</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">controlDV</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">controlDV</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">controlRR</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">controlRR</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">controlRR</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">controlRV</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">controlRV</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">controlRR</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">if</span><span class="p">(</span><span class="n">preciseFlag</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span><span class="p">):</span>
         <span class="k">if</span><span class="p">((</span><span class="nb">float</span><span class="p">(</span><span class="n">controlRR</span><span class="p">)</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">controlRV</span><span class="p">)</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">)):</span>
@@ -640,9 +644,9 @@
             <span class="n">controlAltAf</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">controlDV</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">controlDR</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">controlDV</span><span class="p">))</span>
 
     <span class="k">if</span><span class="p">(</span><span class="n">controlAltAf</span> <span class="o">&lt;=</span> <span class="nb">float</span><span class="p">(</span><span class="n">controlAltFreq</span><span class="p">)):</span>
-        <span class="n">controlFlag</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">controlFlag</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">controlFlag</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">controlFlag</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">return</span><span class="p">(</span><span class="n">controlFlag</span><span class="p">)</span></div>
 </pre></div>
 
@@ -654,14 +658,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -677,13 +678,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">iCallSV  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">iCallSV  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2016, Author.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+        &#169; Copyright 2016, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

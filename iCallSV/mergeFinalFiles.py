@@ -25,13 +25,20 @@ import os
 import logging
 import vcf
 import checkparameters as cp
-import pandas as pd
 import re
 import coloredlogs
 import numpy as np
-
+import tempfile
+os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp() #So that matplotlib doesnot complain stale file handle
+try:
+    import pandas as pd
+except ImportError, e:
+    print "mergeFinalFiles: pandas is not installed, please install pandas as it is required to run the mapping."
+    sys.exit(1)
+    
 logger = logging.getLogger('iCallSV.mergeFinalFiles')
 coloredlogs.install(level='DEBUG')
+
 
 def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
     """
@@ -135,7 +142,11 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          contype,
          conseq) = (None for i in range(9))
          
-        (svlengthFromDelly,
+        (startCT,
+         endCT,
+         str1,
+         str2,
+         svlengthFromDelly,
          mapqFromDelly,
          peSupportFromDelly,
          srSupportFromDelly,
@@ -154,7 +165,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          controlDR,
          controlDV,
          controlRR,
-         controlRV) = (0 for i in range(20))
+         controlRV) = (0 for i in range(24))
         chrom1 = str(record.CHROM)
         start1 = record.POS
         filter = record.FILTER
@@ -184,6 +195,24 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
             srSupportFromDelly = np.int(record.INFO['SR'])
         if("CT" in record.INFO):
             contype = record.INFO['CT']
+        (startCT, endCT) = contype.split("to")
+        if((int(startCT) == 3) and (int(endCT) == 3)):
+            str1 = 0
+            str2 = 0
+        elif((int(startCT) == 3) and (int(endCT) == 5)):
+            str1 = 0
+            str2 = 1
+        elif((int(startCT) == 5) and (int(endCT) == 3)):
+            str1 = 1
+            str2 = 0
+        elif((int(startCT) == 5) and (int(endCT) == 5)):
+            str1 = 1
+            str2 = 1
+        else:
+            if(verbose):
+                logger.warning(
+                    "mergeFinalFiles: The connection type (CT) given in the vcf file is incorrect.CT: %s",
+                    contype)
         if("CONSENSUS" in record.INFO):
             conseq = record.INFO['CONSENSUS']
         if(record.is_sv_precise):
@@ -260,7 +289,9 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
         indexList = annoDF.loc[annoDF['chr1'].isin([chrom1]) &
                                annoDF['pos1'].isin([int(start1)]) &
                                annoDF['chr2'].isin([chrom2]) &
-                               annoDF['pos2'].isin([int(start2)])].index.tolist()
+                               annoDF['pos2'].isin([int(start2)]) & 
+                               annoDF['str1'].isin([str1]) &
+                               annoDF['str2'].isin([str2])].index.tolist()
         if(len(indexList) > 1):
             if(verbose):
                 logger.fatal(

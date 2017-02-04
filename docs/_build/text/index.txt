@@ -17,7 +17,7 @@ Wiki:
 License:
    Apache License 2.0
 
-[image: Code Health][image][image]
+[image: Code Health][image][image][image]
 
 iCallSV is a Python library and command-line software toolkit to call
 structural aberrations from Next Generation DNA sequencing data.
