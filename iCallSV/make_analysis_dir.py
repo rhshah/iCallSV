@@ -16,7 +16,7 @@ args: Arguments passed to iCallSV
 import os
 import re
 import logging
-
+import time
 
 def makeOutputDir(args, tool):
     """
@@ -34,16 +34,32 @@ def makeOutputDir(args, tool):
     AnalysisDir = os.path.join(args.outdir, static_SV_Dir)
     ToolDir = os.path.join(AnalysisDir, static_tool_Dir)
     SampleAnalysisDir = os.path.join(ToolDir, SampleDirName)
-    try:
-        os.mkdir(AnalysisDir)
-    except OSError:
+    #Making sure there is no race when multiple instance are launched
+    time.sleep(5)
+    if not os.path.exists (AnalysisDir):
+        try:
+            os.mkdir(AnalysisDir)
+        except OSError:
+            if(args.verbose):
+                logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", AnalysisDir)
+            pass
+    else:
         if(args.verbose):
             logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", AnalysisDir)
-    try:
-        os.mkdir(ToolDir)
-    except OSError:
+        pass
+    #Making sure there is no race when multiple instance are launched
+    time.sleep(5)
+    if not os.path.exists (ToolDir):
+        try:
+            os.mkdir(ToolDir)
+        except OSError:
+            if(args.verbose):
+                logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
+            pass
+    else:
         if(args.verbose):
             logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
+        pass
 
     if os.path.isdir(SampleAnalysisDir):
         if(args.verbose):
@@ -53,7 +69,15 @@ def makeOutputDir(args, tool):
             logging.info("make_output_dir:Please delete this directory and rerun the program")
         tag = False
     else:
-        os.mkdir(SampleAnalysisDir)
-        tag = True
+        try:
+            os.mkdir(SampleAnalysisDir)
+            tag = True
+        except OSError:
+            if(args.verbose):
+                logging.fatal(
+                "make_output_dir:Dir=>%s exists and we wont run the analysis",
+                SampleAnalysisDir)
+                logging.info("make_output_dir:Please delete this directory and rerun the program")
+            tag = False
 
     return(tag, SampleAnalysisDir)

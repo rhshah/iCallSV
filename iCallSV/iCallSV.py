@@ -6,7 +6,7 @@ iCallSV
 
 :Description: iCallSV is a wrapper to the iCallSV package which facilitates calling structural variants from Next Generation Sequencing methods such as Illumina
 :author:     Ronak H Shah
-:copyright:  (c) 2015-2016 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
+:copyright:  (c) 2015-2017 by Ronak H Shah for Memorial Sloan Kettering Cancer Center. All rights reserved.
 :license:    Apache License 2.0
 :contact:    rons.shah@gmail.com
 
@@ -19,24 +19,36 @@ from argparse import ArgumentParser
 from argparse import RawDescriptionHelpFormatter
 import ConfigParser as configparser
 import logging
-import make_analysis_dir as mad
-import checkparameters as cp
-import launch_Run_Delly as lrd
-import launch_FilterDellyCalls as lfd
-import dellyVcf2Tab as dvcf2tab
-import combineVCF as cvcf
-import Run_iAnnotateSV as annSV
-import dellyVcf2targetSeqView as dvcf2tsv
-import Run_targetSeqView as rtsv
-import mergeFinalFiles as mff
-import filterAnnotatedSV as fas
-import coloredlogs
+
+try:
+    import coloredlogs
+    coloredlogs.install(level='DEBUG')
+except ImportError:
+    print "iCallSV: coloredlogs is not installed, please install it if you wish to see color in logs on standard out."
+    pass
+try:
+    import make_analysis_dir as mad
+    import checkparameters as cp
+    import launch_Run_Delly as lrd
+    import launch_FilterDellyCalls as lfd
+    import dellyVcf2Tab as dvcf2tab
+    import combineVCF as cvcf
+    import Run_iAnnotateSV as annSV
+    import dellyVcf2targetSeqView as dvcf2tsv
+    import Run_targetSeqView as rtsv
+    import mergeFinalFiles as mff
+    import filterAnnotatedSV as fas
+    import helper as hp
+except ImportError, e:
+    print "iCallSV: sub python were not imported, please make sure that sub python scripts are in same folder as iCallSV.py."
+    sys.exit(1)
+
 
 __all__ = []
-__version_info__ = ('0', '0', '6')
+__version_info__ = ('0', '0', '7')
 __version__ = '.'.join(__version_info__)
 __date__ = '2015-03-30'
-__updated__ = '2016-11-29'
+__updated__ = '2017-01-24'
 
 
 def main(argv=None):  # IGNORE:C0111
@@ -54,7 +66,7 @@ def main(argv=None):  # IGNORE:C0111
     iCallSV.iCallSV -- wrapper to run iCallSV package
 
       Created by Ronak H Shah on 2015-03-30.
-      Copyright 2015-2016 Ronak H Shah. All rights reserved.
+      Copyright 2016-2017 Ronak H Shah. All rights reserved.
 
       Licensed under the Apache License 2.0
       http://www.apache.org/licenses/LICENSE-2.0
@@ -228,8 +240,6 @@ USAGE
     logger.addHandler(fh)
     logger.addHandler(ch)
 
-    coloredlogs.install(level='DEBUG')
-
     # Print if Verbose mode is on
     if(verbose):
         logger.info("iCallSV:Verbose mode on")
@@ -272,8 +282,15 @@ USAGE
                                                                                    dup_vcf,
                                                                                    inv_vcf,
                                                                                    tra_vcf)
-        # Combine all VCF to a single VCF file
+        #Check and Combine all VCF to a single VCF file
         listOfFilteredVCFfiles = [filter_del_vcf, filter_dup_vcf, filter_inv_vcf, filter_tra_vcf]
+        listOfFilteredVCFfiles_copy = list(listOfFilteredVCFfiles)
+        for vcffile in listOfFilteredVCFfiles_copy:
+            if( not os.path.isfile(vcffile)):
+                if(verbose):
+                    logger.warning("VCF file %s does not exists.", vcffile)
+                listOfFilteredVCFfiles.remove(vcffile)
+        
         combinedVCF = sampleOutdirForDelly + "/" + args.caseId + "_allSVFiltered.vcf"
         combinedVCF = cvcf.run(listOfFilteredVCFfiles, combinedVCF, verbose)
         # Check if VCF file is empty
@@ -341,6 +358,9 @@ USAGE
             if(verbose):
                 logger.warn(
                     "All Records have been filtered in standard filtered step. Thus we will exit the program and not proceed.")
+            outputFile = os.path.join(sampleOutdirForDelly, args.outprefix + "_final.txt")
+            hp.make_empty_outputfile(outputFile)
+            if(verbose):
                 logger.info("Thank you for using iCallSV.")
             sys.exit(0)
     else:

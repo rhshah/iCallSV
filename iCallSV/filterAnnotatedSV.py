@@ -22,11 +22,18 @@ genesToKeepFile: List of genes that should be kept
 Filtered Output files
 '''
 import os
-import pandas as pd
 import logging
 import checkparameters as cp
 import re
 import coloredlogs
+import tempfile
+os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp() #So that matplotlib doesnot complain stale file handle
+try:
+    import pandas as pd
+except ImportError, e:
+    print "filterAnnotatedSV: pandas is not installed, please install pandas as it is required to run the mapping."
+    sys.exit(1)
+
 
 # Initiate logger
 logger = logging.getLogger('iCallSV.FilterDellyCalls')
@@ -173,11 +180,11 @@ def checkEventInIntronFlag(gene1, gene2, site1, site2):
                     else:
                         eviFlag = True
                 else:
-                    eviFlag = False
+                    eviFlag = True
             else:
-                eviFlag = False
+                eviFlag = True
         else:
-            eviFlag = False
+            eviFlag = True
     else:
-        eviFlag = False
+        eviFlag = True
     return(eviFlag)

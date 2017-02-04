@@ -177,10 +177,10 @@ def run(
                 else:
                     if(verbose):
                         logger.fatal(
-                            "Run_Delly_bcf2vcf: bcftools is either still running on local machine or it errored out with return code %d for %s",
+                            "Run_Delly_bcf2vcf: bcf file was not generated the return code is %d for %s",
                             retcode,
                             caseId)
-                        sys.exit(1)
+                        #sys.exit(1)
             else:
                 if(os.path.isfile(outputVcf)):
                     return(outputVcf)
