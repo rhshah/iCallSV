@@ -358,8 +358,9 @@ USAGE
             if(verbose):
                 logger.warn(
                     "All Records have been filtered in standard filtered step. Thus we will exit the program and not proceed.")
-                outputFile = os.path.join(args.outDir, args.outprefix + "_final.txt")
-                hp.make_empty_outputfile(outputFile)
+            outputFile = os.path.join(sampleOutdirForDelly, args.outprefix + "_final.txt")
+            hp.make_empty_outputfile(outputFile)
+            if(verbose):
                 logger.info("Thank you for using iCallSV.")
             sys.exit(0)
     else:
