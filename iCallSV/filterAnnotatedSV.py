@@ -177,5 +177,7 @@ def checkEventInIntronFlag(gene1, gene2, site1, site2):
                     s1location = re.findall(r'\d+', s1a)[0]
                     s2location = re.findall(r'\d+', s2a)[0]
                     if(int(s1location) < 5 or int(s2location) < 5):
+                        eviFlag = False
+                    else:
                         eviFlag = True
     return(eviFlag)
