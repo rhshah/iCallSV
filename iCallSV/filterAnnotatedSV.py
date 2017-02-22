@@ -165,6 +165,7 @@ def checkEventInIntronFlag(gene1, gene2, site1, site2):
     :rtype: bool
 
     """
+    eviFlag = False
     if(gene1 == gene2):
         (s1A, s1B) = site1.split(":")
         (s2A, s2B) = site2.split(":")
@@ -176,15 +177,5 @@ def checkEventInIntronFlag(gene1, gene2, site1, site2):
                     s1location = re.findall(r'\d+', s1a)[0]
                     s2location = re.findall(r'\d+', s2a)[0]
                     if(int(s1location) < 5 or int(s2location) < 5):
-                        eviFlag = False
-                    else:
                         eviFlag = True
-                else:
-                    eviFlag = True
-            else:
-                eviFlag = True
-        else:
-            eviFlag = True
-    else:
-        eviFlag = True
     return(eviFlag)
