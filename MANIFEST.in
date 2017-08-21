@@ -1,0 +1,19 @@
+# Include the license file
+include LICENSE.txt
+
+# Include the data files
+recursive-include iCallSV/data *
+
+#Include the codecov file
+include codecov.yml
+
+#Include R
+recursive-include iCallSV/R *
+
+#Include Docs
+recursive-include docs *
+
+#Include utilities
+recursive-include iCallSV/utilities *
+
+

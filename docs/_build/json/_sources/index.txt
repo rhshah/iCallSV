@@ -23,8 +23,9 @@ iCallSV: Structural Aberration Detection from NGS datasets
 
 .. image:: https://codecov.io/gh/rhshah/iCallSV/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/rhshah/iCallSV
-   
 
+.. image:: https://badge.fury.io/py/iCallSV.svg
+    :target: https://badge.fury.io/py/iCallSV
 
 iCallSV is a Python library and command-line software toolkit to call structural aberrations from Next Generation DNA sequencing data. Behind the scenes it uses Delly2 to do structural variant calling. It is designed for use with hybrid capture, including both whole-exome and custom target panels, and
 short-read sequencing platforms such as Illumina.
