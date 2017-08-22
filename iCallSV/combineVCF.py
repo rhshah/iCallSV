@@ -21,7 +21,7 @@ import os
 import vcf
 import logging
 import coloredlogs
-import checkparameters as cp
+#import checkparameters as cp
 
 logger = logging.getLogger('iCallSV.combineVCF')
 coloredlogs.install(level='DEBUG')

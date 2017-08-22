@@ -25,11 +25,11 @@ try:
     coloredlogs.install(level='DEBUG')
 except ImportError:
     print "iCallSV: coloredlogs is not installed, please install it if you wish to see color in logs on standard out."
-    pass
+
 try:
     import make_analysis_dir as mad
     import checkparameters as cp
-    import launch_Run_Delly as lrd
+    #import launch_Run_Delly as lrd
     import launch_FilterDellyCalls as lfd
     import dellyVcf2Tab as dvcf2tab
     import combineVCF as cvcf
@@ -48,7 +48,7 @@ __all__ = []
 __version_info__ = ('0', '0', '7')
 __version__ = '.'.join(__version_info__)
 __date__ = '2015-03-30'
-__updated__ = '2017-01-24'
+__updated__ = '2017-08-21'
 
 
 def main(argv=None):  # IGNORE:C0111

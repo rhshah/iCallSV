@@ -14,7 +14,7 @@ args: Arguments passed to iCallSV
 '''
 
 import os
-import re
+#import re
 import logging
 import time
 
@@ -40,26 +40,18 @@ def makeOutputDir(args, tool):
         try:
             os.mkdir(AnalysisDir)
         except OSError:
-            if(args.verbose):
-                logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", AnalysisDir)
-            pass
-    else:
-        if(args.verbose):
             logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", AnalysisDir)
-        pass
+    else:
+        logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", AnalysisDir)
     #Making sure there is no race when multiple instance are launched
     time.sleep(5)
     if not os.path.exists (ToolDir):
         try:
             os.mkdir(ToolDir)
         except OSError:
-            if(args.verbose):
-                logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
-            pass
-    else:
-        if(args.verbose):
             logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
-        pass
+    else:
+        logging.warn("make_output_dir:Dir=>%s exists thus we wont be making it", ToolDir)
 
     if os.path.isdir(SampleAnalysisDir):
         if(args.verbose):
@@ -73,11 +65,8 @@ def makeOutputDir(args, tool):
             os.mkdir(SampleAnalysisDir)
             tag = True
         except OSError:
-            if(args.verbose):
-                logging.fatal(
-                "make_output_dir:Dir=>%s exists and we wont run the analysis",
-                SampleAnalysisDir)
-                logging.info("make_output_dir:Please delete this directory and rerun the program")
+            logging.fatal("make_output_dir:Dir=>%s exists and we wont run the analysis",SampleAnalysisDir)
+            logging.info("make_output_dir:Please delete this directory and rerun the program")
             tag = False
 
     return(tag, SampleAnalysisDir)

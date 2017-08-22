@@ -222,7 +222,7 @@ def run(
          start1,
          start2,
          chrom2,
-         filter,
+         vcf_filter,
          svlengthFromDelly,
          mapqFromDelly,
          svtype,
@@ -242,11 +242,11 @@ def run(
          controlFT) = (None for i in range(22))
         chrom1 = record.CHROM
         start1 = record.POS
-        filter = record.FILTER
-        if(len(filter) < 1):
-            filter = "PASS"
+        vcf_filter = record.FILTER
+        if(len(vcf_filter) < 1):
+            vcf_filter = "PASS"
         else:
-            filter = filter[0]
+            vcf_filter = vcf_filter[0]
         preciseFlag = record.is_sv_precise
         # print "Precise:",preciseFlag,":",type(preciseFlag)
         if("END" in record.INFO):
@@ -298,7 +298,7 @@ def run(
                               start1,
                               start2,
                               chrom2,
-                              filter,
+                              vcf_filter,
                               svlengthFromDelly,
                               mapqFromDelly,
                               svtype,
@@ -369,7 +369,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
      start1,
      start2,
      chrom2,
-     filter,
+     vcf_filter,
      svlengthFromDelly,
      mapqFromDelly,
      svtype,
@@ -412,7 +412,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
             controlRR,
             controlRV,
             controlAltFreqHotspot)
-        if(filter == "PASS" and controlPassFlag and casePassFlag):
+        if(vcf_filter == "PASS" and controlPassFlag and casePassFlag):
             if(svlengthFromDelly != "None"):
                 if(int(svlengthFromDelly) >= int(svlength)):
                     filterFlag = True
@@ -464,7 +464,7 @@ def GetFilteredRecords(dellyVarialbles, thresholdVariables, hotspotDict, blackli
             controlRR,
             controlRV,
             controlAltFreq)
-        if(filter == "PASS" and controlPassFlag and casePassFlag):
+        if(vcf_filter == "PASS" and controlPassFlag and casePassFlag):
             if(svlengthFromDelly != "None"):
                 if(int(svlengthFromDelly) >= int(svlength)):
                     filterFlag = True

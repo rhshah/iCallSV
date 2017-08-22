@@ -22,6 +22,7 @@ genesToKeepFile: List of genes that should be kept
 Filtered Output files
 '''
 import os
+import sys
 import logging
 import checkparameters as cp
 import re

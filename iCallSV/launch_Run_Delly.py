@@ -14,7 +14,7 @@ args: Arguments passed to iCallSV
 config: configuration file passed to iCallSV
 sampleOutdirForDelly: Output directory for delly vcf files.
 '''
-import os
+#import os
 import logging
 import Run_Delly as rd
 import multiprocessing as mp

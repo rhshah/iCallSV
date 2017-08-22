@@ -136,7 +136,7 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          start1,
          start2,
          chrom2,
-         filter,
+         vcf_filter,
          svtype,
          brktype,
          contype,
@@ -168,11 +168,11 @@ def run(aId, bId, vcfFile, annoTab, confTab, outDir, outputPrefix, verbose):
          controlRV) = (0 for i in range(24))
         chrom1 = str(record.CHROM)
         start1 = record.POS
-        filter = record.FILTER
-        if(len(filter) < 1):
-            filter = None
+        vcf_filter = record.FILTER
+        if(len(vcf_filter) < 1):
+            vcf_filter = None
         else:
-            filter = filter[0]
+            vcf_filter = filter[0]
         preciseFlag = record.is_sv_precise
         if("END" in record.INFO):
             start2 = record.INFO['END']

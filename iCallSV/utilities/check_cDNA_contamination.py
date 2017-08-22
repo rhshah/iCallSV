@@ -10,7 +10,7 @@ TumorId    NormalId    Chr1    Pos1    Chr2    Pos2    SV_Type    Gene1    Gene2
 import argparse
 import pandas as pd
 import time
-import sys
+#import sys
 
 def main():
     parser = argparse.ArgumentParser(

@@ -18,13 +18,15 @@ outputFile: File with following header
 '''
 
 import os
+import sys
 import tempfile
-os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp() #So that matplotlib doesnot complain stale file handle
+os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp()  # So that matplotlib doesnot complain stale file handle
+
 try:
-    import pandas as pd
+	import pandas as pd
 except ImportError, e:
-    print "helper: pandas is not installed, please install pandas as it is required to run the mapping."
-    sys.exit(1)
+	print "helper: pandas is not installed, please install pandas as it is required to run the mapping."
+	sys.exit(1)
 
 def make_empty_outputfile(outFile):
 	outDF = pd.DataFrame(
