@@ -28,8 +28,8 @@ except ImportError:
 
 try:
     import make_analysis_dir as mad
-    import checkparameters as cp
-    #import launch_Run_Delly as lrd
+    #import checkparameters as cp
+    import launch_Run_Delly as lrd
     import launch_FilterDellyCalls as lfd
     import dellyVcf2Tab as dvcf2tab
     import combineVCF as cvcf
